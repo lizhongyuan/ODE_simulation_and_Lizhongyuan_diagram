@@ -7,7 +7,23 @@ def print_hi(name):
 
 def init_table(table_headers):
     df = pd.DataFrame(index=list(table_headers), columns=list(table_headers))
-    print(df)
+
+    return df
+
+
+def no_same_chr(str1, str2):
+    for char in str1:
+        if char in str2:
+            return False
+
+    return True
+
+
+def string_merge(str1, str2):
+    merged_str = str1 + str2
+    merged_str = ''.join(sorted(merged_str))
+
+    return merged_str
 
 
 def gen_table_header_arr(event_indexes):
@@ -57,6 +73,15 @@ def gen_table_header_arr(event_indexes):
     }
 
 
+def build_table(table):
+    for item1 in table.axes[0].values:
+        for item2 in table.axes[1].values:
+            if no_same_chr(item1, item2):
+                table[item1][item2] = string_merge(item1, item2)
+            else:
+                table[item1][item2] = 'ERR'
+
+
 if __name__ == '__main__':
     print_hi('PyCharm')
 
@@ -82,4 +107,7 @@ if __name__ == '__main__':
     res = gen_table_header_arr(str1)
 
     # print(res)
-    init_table(res['table_headers'])
+    table = init_table(res['table_headers'])
+    build_table(table)
+
+    print(table)
