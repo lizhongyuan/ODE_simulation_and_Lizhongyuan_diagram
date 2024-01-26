@@ -1,4 +1,6 @@
 import pandas as pd
+import dataframe_image as dfi
+import numpy as np
 
 
 def print_hi(name):
@@ -82,10 +84,28 @@ def build_table(table):
                 table[item1][item2] = 'ERR'
 
 
+def highlight(x, color1, color2):
+    # ref = x[0]
+    ans = [None]
+    for y in x[1:]:
+        # c = color1 if y < ref else color2
+        c = color1 if y == 'ERR' else color2
+        ans.append(f"color: {c};")
+    return ans
+
+
+def colorize(x):
+    if x == 'ERR':
+        return 'background-color: red'
+
+    return ''
+
+
 if __name__ == '__main__':
     print_hi('PyCharm')
 
-    str1 = 'abc'
+    # str1 = 'abc'
+    str1 = '012'
     # a, b, c, ab, ac, bc, abc
 
     str2 = 'abcd'
@@ -111,3 +131,8 @@ if __name__ == '__main__':
     build_table(table)
 
     print(table)
+
+    # table = pd.DataFrame(np.random.randn(6, 6), columns=list('ABCDEF'))
+    df_styled = table.style.background_gradient()  # adding a gradient based on values in cell
+
+    dfi.export(obj=df_styled, filename='table1.jpg', fontsize=20, max_cols=-1, max_rows=-1)
