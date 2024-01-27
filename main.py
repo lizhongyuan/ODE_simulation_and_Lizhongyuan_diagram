@@ -79,9 +79,11 @@ def build_table(table):
     for item1 in table.axes[0].values:
         for item2 in table.axes[1].values:
             if no_same_chr(item1, item2):
-                table[item1][item2] = string_merge(item1, item2)
+                # table[item1][item2] = string_merge(item1, item2)
+                table.loc[item1, item2] = string_merge(item1, item2)
             else:
-                table[item1][item2] = 'ERR'
+                # table[item1][item2] = 'ERR'
+                table.loc[item1, item2] = 'ERR'
 
 
 def highlight(x, color1, color2):
@@ -99,6 +101,21 @@ def colorize(x):
         return 'background-color: red'
 
     return ''
+
+
+def highlight_cells(x):
+    df = x.copy()
+    #set default color
+    #df.loc[:,:] = 'background-color: papayawhip'
+    df.loc[:,:] = ''
+    #set particular cell colors
+    df.iloc[0,0] = 'background-color: red'
+    df.iloc[1,1] = 'background-color: orange'
+    df.iloc[2,2] = 'background-color: yellow'
+    df.iloc[3,3] = 'background-color: lightgreen'
+    df.iloc[4,4] = 'background-color: cyan'
+    df.iloc[5,5] = 'background-color: violet'
+
 
 
 if __name__ == '__main__':
@@ -133,6 +150,8 @@ if __name__ == '__main__':
     print(table)
 
     # table = pd.DataFrame(np.random.randn(6, 6), columns=list('ABCDEF'))
-    df_styled = table.style.background_gradient()  # adding a gradient based on values in cell
+    # df_styled = table.style.background_gradient()  # adding a gradient based on values in cell
+    # df_styled = table.style.apply(highlight_cells, axis=None)
+    table.style.apply(highlight_cells, axis=None)
 
-    dfi.export(obj=df_styled, filename='table1.jpg', fontsize=20, max_cols=-1, max_rows=-1)
+    dfi.export(table, filename='table1.jpg', fontsize=20, max_cols=-1, max_rows=-1)
