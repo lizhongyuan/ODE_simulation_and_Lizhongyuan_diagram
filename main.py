@@ -1,6 +1,8 @@
 import pandas as pd
 import dataframe_image as dfi
 import numpy as np
+import seaborn as sns
+from html2image import Html2Image
 
 
 def print_hi(name):
@@ -122,13 +124,13 @@ if __name__ == '__main__':
     print_hi('PyCharm')
 
     # str1 = 'abc'
-    str1 = '012'
+    str1 = 'ABC'
     # a, b, c, ab, ac, bc, abc
 
     str2 = 'abcd'
     # a, b, c, d, ab, ac, ad, bc, bd, cd, abc, abd, bcd, abcd
 
-    str3 = 'abcde'
+    str3 = 'ABCDE'
     # a, b, c, d, e,
     # ab, ac, ad, ae, bc, bd, be, cd, ce, de,
     # abc, abd, abe, acd, ace, ade, bcd, bce, bde, cde,
@@ -141,7 +143,7 @@ if __name__ == '__main__':
 
     # arr = test(str1)
     # arr = test(str2)
-    res = gen_table_header_arr(str1)
+    res = gen_table_header_arr(str3)
 
     # print(res)
     table = init_table(res['table_headers'])
@@ -149,9 +151,3 @@ if __name__ == '__main__':
 
     print(table)
 
-    # table = pd.DataFrame(np.random.randn(6, 6), columns=list('ABCDEF'))
-    # df_styled = table.style.background_gradient()  # adding a gradient based on values in cell
-    # df_styled = table.style.apply(highlight_cells, axis=None)
-    table.style.apply(highlight_cells, axis=None)
-
-    dfi.export(table, filename='table1.jpg', fontsize=20, max_cols=-1, max_rows=-1)

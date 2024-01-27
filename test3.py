@@ -1,26 +1,26 @@
+#import packages
 import pandas as pd
-import dataframe_image as dfi
-import numpy as np
+import matplotlib.pyplot as plt
 
+fig, ax =plt.subplots(1,1)
+data=[[1,2,3],
+      [9,1,8],
+      [6,5,4]]
+column_labels=["Col 1", "Col 2", "Col 3"]
 
-def rain_condition(v):
-    if v < 1.75:
-        return "Dry"
-    elif v < 2.75:
-        return "Rain"
-    return "Heavy Rain"
+#creating a 2-dimensional dataframe out of the given data
+df=pd.DataFrame(data,columns=column_labels)
 
-def make_pretty(styler):
-    styler.set_caption("Weather Conditions")
-    styler.format(rain_condition)
-    styler.format_index(lambda v: v.strftime("%A"))
-    styler.background_gradient(axis=None, vmin=1, vmax=5, cmap="YlGnBu")
-    return styler
+ax.axis('tight') #turns off the axis lines and labels
+ax.axis('off') #changes x and y axis limits such that all data is shown
 
-weather_df = pd.DataFrame(np.random.rand(10,2)*5,
-                          index=pd.date_range(start="2021-01-01", periods=10),
-                          columns=["Tokyo", "Beijing"])
-
-weather_df.loc["2021-01-04":"2021-01-08"].style.pipe(make_pretty)
-
-dfi.export(weather_df, filename='table3.jpg', fontsize=20, max_cols=-1, max_rows=-1)
+#plotting data
+table = ax.table(cellText=df.values,
+        colLabels=df.columns,
+        rowLabels=["Row 1","Row 2","Row 3"],
+        rowColours =["yellow"] * 3,
+        colColours =["red"] * 3,
+        loc="center")
+table.set_fontsize(14)
+table.scale(1,2)
+plt.show()
