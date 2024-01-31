@@ -1,4 +1,5 @@
 import pandas as pd
+import matplotlib.pyplot as plt
 import dataframe_image as dfi
 import numpy as np
 import seaborn as sns
@@ -88,6 +89,45 @@ def build_table(table):
                 table.loc[item1, item2] = 'ERR'
 
 
+def color_up_table(table):
+    print('color_up_table')
+
+    fig, ax = plt.subplots(1, 1)
+
+    # data = [[1, 2, 3],
+    #         [9, 1, 8],
+    #        [6, 5, 4]]
+    data = []
+    for i in range(table.columns.size):
+        inner_arr = []
+        for j in range(table.columns.size):
+            inner_arr.append(table.values[i][j])
+        data.append(inner_arr)
+
+    column_labels = table.columns
+    indexes = table.columns
+
+    color_table = ax.table(cellText=table.values,
+                           colLabels=column_labels,
+                           rowLabels=indexes,
+                           loc="center"
+                           )
+
+    ax.axis('tight')
+    ax.axis('off')
+
+    for i in range(table.columns.size):
+        # i = i + 1
+        for j in range(table.columns.size):
+            if table.values[i][j] == 'ERR':
+                color_table.get_celld()[(i + 1, j)].set_facecolor('#222222')
+            else:
+                color_table.get_celld()[(i + 1, j)].set_facecolor('#D40000')
+
+    plt.show()
+
+    print(1)
+
 def highlight(x, color1, color2):
     # ref = x[0]
     ans = [None]
@@ -127,7 +167,7 @@ if __name__ == '__main__':
     str1 = 'ABC'
     # a, b, c, ab, ac, bc, abc
 
-    str2 = 'abcd'
+    str2 = 'ABCD'
     # a, b, c, d, ab, ac, ad, bc, bd, cd, abc, abd, bcd, abcd
 
     str3 = 'ABCDE'
@@ -137,17 +177,19 @@ if __name__ == '__main__':
     # abcd, abce, abde, acde, bcde
     # abcde
 
-    str4 = 'abcdef'
+    str4 = 'ABCDEF'
     str5 = 'abcdefg'
     str6 = 'abcdefghijklmn'
 
     # arr = test(str1)
     # arr = test(str2)
-    res = gen_table_header_arr(str3)
+    res = gen_table_header_arr(str4)
 
-    # print(res)
     table = init_table(res['table_headers'])
+
     build_table(table)
+    color_up_table(table)
+
 
     print(table)
 
