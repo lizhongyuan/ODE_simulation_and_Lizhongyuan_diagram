@@ -1,30 +1,36 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-import dataframe_image as dfi
-import numpy as np
-import seaborn as sns
-from html2image import Html2Image
 
 
-def print_hi(name):
-    print(f'Hi, {name}')
-
-
-def init_table(table_headers):
+def init_data_frame(table_headers):
     df = pd.DataFrame(index=list(table_headers), columns=list(table_headers))
 
     return df
 
 
-def no_same_chr(str1, str2):
-    for char in str1:
-        if char in str2:
+def has_no_common_chr(str1, str2):
+    """
+    检查两个字符串是否有公共字符
+    @param str1: 字符串1
+    @param str2: 字符串2
+    @return: 是否有公共字符
+    """
+
+    for chr in str1:
+        if chr in str2:
             return False
 
     return True
 
 
 def string_merge(str1, str2):
+    """
+    合并字符串
+    @param str1: 字符串1
+    @param str2: 字符串2
+    @return: 合并的字符串
+    """
+
     merged_str = str1 + str2
     merged_str = ''.join(sorted(merged_str))
 
@@ -78,93 +84,40 @@ def gen_table_header_arr(event_indexes):
     }
 
 
-def build_table(table):
-    for item1 in table.axes[0].values:
-        for item2 in table.axes[1].values:
-            if no_same_chr(item1, item2):
-                # table[item1][item2] = string_merge(item1, item2)
-                table.loc[item1, item2] = string_merge(item1, item2)
+def build_data_frame(data_frame):
+    for row in data_frame.index:
+        for col in data_frame.columns:
+            if has_no_common_chr(row, col):
+                data_frame.loc[row, col] = string_merge(row, col)
             else:
-                # table[item1][item2] = 'ERR'
-                table.loc[item1, item2] = 'ERR'
+                data_frame.loc[row, col] = 'ERR'
 
 
-def color_up_table(table):
+def color_up_data_frame(data_frame, plt):
     print('color_up_table')
 
     fig, ax = plt.subplots(1, 1)
 
-    # data = [[1, 2, 3],
-    #         [9, 1, 8],
-    #        [6, 5, 4]]
-    data = []
-    for i in range(table.columns.size):
-        inner_arr = []
-        for j in range(table.columns.size):
-            inner_arr.append(table.values[i][j])
-        data.append(inner_arr)
-
-    column_labels = table.columns
-    indexes = table.columns
-
-    color_table = ax.table(cellText=table.values,
-                           colLabels=column_labels,
-                           rowLabels=indexes,
+    color_table = ax.table(cellText=data_frame.values,
+                           colLabels=data_frame.columns,
+                           rowLabels=data_frame.index,
                            loc="center"
                            )
 
     ax.axis('tight')
     ax.axis('off')
 
-    for i in range(table.columns.size):
-        # i = i + 1
-        for j in range(table.columns.size):
-            if table.values[i][j] == 'ERR':
-                color_table.get_celld()[(i + 1, j)].set_facecolor('#222222')
+    for row_idx in range(data_frame.index.size):
+        for col_idx in range(data_frame.columns.size):
+            if data_frame.values[row_idx][col_idx] == 'ERR':
+                color_table.get_celld()[(row_idx + 1, col_idx)].set_facecolor('#222222')
             else:
-                color_table.get_celld()[(i + 1, j)].set_facecolor('#D40000')
-
-    plt.show()
-
-    print(1)
-
-def highlight(x, color1, color2):
-    # ref = x[0]
-    ans = [None]
-    for y in x[1:]:
-        # c = color1 if y < ref else color2
-        c = color1 if y == 'ERR' else color2
-        ans.append(f"color: {c};")
-    return ans
-
-
-def colorize(x):
-    if x == 'ERR':
-        return 'background-color: red'
-
-    return ''
-
-
-def highlight_cells(x):
-    df = x.copy()
-    #set default color
-    #df.loc[:,:] = 'background-color: papayawhip'
-    df.loc[:,:] = ''
-    #set particular cell colors
-    df.iloc[0,0] = 'background-color: red'
-    df.iloc[1,1] = 'background-color: orange'
-    df.iloc[2,2] = 'background-color: yellow'
-    df.iloc[3,3] = 'background-color: lightgreen'
-    df.iloc[4,4] = 'background-color: cyan'
-    df.iloc[5,5] = 'background-color: violet'
-
+                color_table.get_celld()[(row_idx + 1, col_idx)].set_facecolor('#D40000')
 
 
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
     # str1 = 'abc'
-    str1 = 'ABC'
+    test_str1 = 'ABC'
     # a, b, c, ab, ac, bc, abc
 
     str2 = 'ABCD'
@@ -183,13 +136,13 @@ if __name__ == '__main__':
 
     # arr = test(str1)
     # arr = test(str2)
-    res = gen_table_header_arr(str4)
+    res = gen_table_header_arr(str2)
 
-    table = init_table(res['table_headers'])
+    data_frame = init_data_frame(res['table_headers'])
 
-    build_table(table)
-    color_up_table(table)
+    build_data_frame(data_frame)
+    color_up_data_frame(data_frame, plt)
 
+    plt.show()
 
-    print(table)
-
+    print(data_frame)
