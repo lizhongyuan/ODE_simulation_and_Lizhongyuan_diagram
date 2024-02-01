@@ -77,6 +77,9 @@ def gen_table_header_arr(event_indexes):
             table_headers.append(cur_value)
             table_header_groups[i].append(cur_value)
 
+    table_headers.insert(0, '0')
+    table_header_groups.insert(0, ['0'])
+
     # return arrange_arr
     return {
         'table_headers': table_headers,
@@ -87,10 +90,15 @@ def gen_table_header_arr(event_indexes):
 def build_data_frame(data_frame):
     for row in data_frame.index:
         for col in data_frame.columns:
-            if has_no_common_chr(row, col):
-                data_frame.loc[row, col] = string_merge(row, col)
+            if row == '0':
+                data_frame.loc[row, col] = col
+            elif col == '0':
+                data_frame.loc[row, col] = row
             else:
-                data_frame.loc[row, col] = 'ERR'
+                if has_no_common_chr(row, col):
+                    data_frame.loc[row, col] = string_merge(row, col)
+                else:
+                    data_frame.loc[row, col] = 'ERR'
 
 
 def color_up_data_frame(data_frame, plt):
