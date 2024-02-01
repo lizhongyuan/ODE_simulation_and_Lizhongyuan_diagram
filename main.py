@@ -39,51 +39,51 @@ def string_merge(str1, str2):
 
 def gen_table_header_arr(event_indexes):
     str_len = len(event_indexes)
-    arrange_arr = [[]]
+    combinations_and_pivots_array = [[]]
 
     for i in range(str_len):
         if i == 0:
-            cur_arrange_arr = arrange_arr[0]
+            cur_array = combinations_and_pivots_array[0]
             for j in range(str_len):
-                cur_data = {
-                    'value': event_indexes[j],
-                    'last_idx': j
+                cur_item = {
+                    'combination': event_indexes[j],
+                    'pivot': j
                 }
-                cur_arrange_arr.insert(len(cur_arrange_arr), cur_data)
+                cur_array.insert(len(cur_array), cur_item)
         else:
-            pre_arrange_arr = arrange_arr[i - 1]
-            cur_arrange_arr = []
+            pre_array = combinations_and_pivots_array[i - 1]
+            cur_array = []
 
-            for pre_arrange_arr_idx in range(len(pre_arrange_arr)):
+            for j in range(len(pre_array)):
 
-                cur_pre_arrange_str = pre_arrange_arr[pre_arrange_arr_idx]['value']
+                cur_pre_combination = pre_array[j]['combination']
 
-                for cur in range(pre_arrange_arr[pre_arrange_arr_idx]['last_idx'] + 1, str_len):
-                    cur_new_str = cur_pre_arrange_str + event_indexes[cur]
-                    cur_data = {
-                        'value': cur_new_str,
-                        'last_idx': cur
+                for k in range(pre_array[j]['pivot'] + 1, str_len):
+                    cur_combination = cur_pre_combination + event_indexes[k]
+                    cur_item = {
+                        'combination': cur_combination,
+                        'pivot': k
                     }
-                    cur_arrange_arr.insert(len(cur_arrange_arr), cur_data)
+                    cur_array.insert(len(cur_array), cur_item)
 
-            arrange_arr.insert(len(arrange_arr), cur_arrange_arr)
+            combinations_and_pivots_array.insert(len(combinations_and_pivots_array), cur_array)
 
-    table_headers = []
-    table_header_groups = []
+    combination_array = []
+    binomial_theorem_array = []
     for i in range(str_len):
-        table_header_groups.append([])
-        for j in range(len(arrange_arr[i])):
-            cur_value = arrange_arr[i][j]['value']
-            table_headers.append(cur_value)
-            table_header_groups[i].append(cur_value)
+        binomial_theorem_array.append([])
+        for j in range(len(combinations_and_pivots_array[i])):
+            cur_value = combinations_and_pivots_array[i][j]['combination']
+            combination_array.append(cur_value)
+            binomial_theorem_array[i].append(cur_value)
 
-    table_headers.insert(0, '0')
-    table_header_groups.insert(0, ['0'])
+    combination_array.insert(0, '0')
+    binomial_theorem_array.insert(0, ['0'])
 
-    # return arrange_arr
+    # return combinations_and_pivots
     return {
-        'table_headers': table_headers,
-        'table_header_groups': table_header_groups
+        'combination_array': combination_array,
+        'binomial_theorem_array': binomial_theorem_array
     }
 
 
@@ -146,7 +146,7 @@ if __name__ == '__main__':
     # arr = test(str2)
     res = gen_table_header_arr(str2)
 
-    data_frame = init_data_frame(res['table_headers'])
+    data_frame = init_data_frame(res['combination_array'])
 
     build_data_frame(data_frame)
     color_up_data_frame(data_frame, plt)
