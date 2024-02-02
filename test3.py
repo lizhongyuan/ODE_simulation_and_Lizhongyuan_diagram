@@ -19,6 +19,7 @@ print(df)
 
 ax.axis('tight')  # turns off the axis lines and labels
 ax.axis('off')  # changes x and y axis limits such that all data is shown
+ax.set_aspect('equal')
 
 # plotting data
 table = ax.table(cellText=df.values,

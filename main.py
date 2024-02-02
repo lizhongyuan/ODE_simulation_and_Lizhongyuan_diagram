@@ -1,3 +1,4 @@
+import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
@@ -38,39 +39,39 @@ def string_merge(str1, str2):
 
 
 def gen_table_header_arr(event_indexes):
-    str_len = len(event_indexes)
+    count = len(event_indexes)
     combinations_and_pivots_array = [[]]
 
-    for i in range(str_len):
+    for i in range(count):
         if i == 0:
-            cur_array = combinations_and_pivots_array[0]
-            for j in range(str_len):
+            cur_items = combinations_and_pivots_array[0]
+            for j in range(count):
                 cur_item = {
                     'combination': event_indexes[j],
                     'pivot': j
                 }
-                cur_array.insert(len(cur_array), cur_item)
+                cur_items.insert(len(cur_items), cur_item)
         else:
-            pre_array = combinations_and_pivots_array[i - 1]
-            cur_array = []
+            pre_items = combinations_and_pivots_array[i - 1]
+            cur_items = []
 
-            for j in range(len(pre_array)):
+            for j in range(len(pre_items)):
 
-                cur_pre_combination = pre_array[j]['combination']
+                pre_combination = pre_items[j]['combination']
 
-                for k in range(pre_array[j]['pivot'] + 1, str_len):
-                    cur_combination = cur_pre_combination + event_indexes[k]
+                for k in range(pre_items[j]['pivot'] + 1, count):
+                    cur_combination = pre_combination + event_indexes[k]
                     cur_item = {
                         'combination': cur_combination,
                         'pivot': k
                     }
-                    cur_array.insert(len(cur_array), cur_item)
+                    cur_items.insert(len(cur_items), cur_item)
 
-            combinations_and_pivots_array.insert(len(combinations_and_pivots_array), cur_array)
+            combinations_and_pivots_array.insert(len(combinations_and_pivots_array), cur_items)
 
     combination_array = []
     binomial_theorem_array = []
-    for i in range(str_len):
+    for i in range(count):
         binomial_theorem_array.append([])
         for j in range(len(combinations_and_pivots_array[i])):
             cur_value = combinations_and_pivots_array[i][j]['combination']
@@ -104,24 +105,42 @@ def build_data_frame(data_frame):
 def color_up_data_frame(data_frame, plt):
     print('color_up_table')
 
-    fig, ax = plt.subplots(1, 1)
+    fig, ax = plt.subplots()
 
-    color_table = ax.table(cellText=data_frame.values,
-                           colLabels=data_frame.columns,
-                           rowLabels=data_frame.index,
-                           loc="center"
-                           )
+    # color_table = ax.table(cellText=data_frame.values,
+    #                        colLabels=data_frame.columns,
+    #                        rowLabels=data_frame.index,
+    #                        loc="center")
 
-    ax.axis('tight')
-    ax.axis('off')
-
+    color_arr = []
     for row_idx in range(data_frame.index.size):
+        cur_row_arr = []
         for col_idx in range(data_frame.columns.size):
             if data_frame.values[row_idx][col_idx] == 'ERR':
-                color_table.get_celld()[(row_idx + 1, col_idx)].set_facecolor('#222222')
+                # color_table.get_celld()[(row_idx + 1, col_idx)].set_facecolor('#222222')
+                cur_row_arr.append(0)
             else:
-                color_table.get_celld()[(row_idx + 1, col_idx)].set_facecolor('#D40000')
+                # color_table.get_celld()[(row_idx + 1, col_idx)].set_facecolor('#D40000')
+                cur_row_arr.append(2)
+        color_arr.append(cur_row_arr)
 
+    ax.imshow(X=color_arr, cmap=plt.cm.get_cmap('gist_heat'))
+
+    # ax.axis('tight')
+    # ax.axis('off')
+    ax.set_xticks(np.arange(data_frame.columns.size), labels=data_frame.columns)
+    ax.set_yticks(np.arange(data_frame.index.size), labels=data_frame.index)
+
+    fig.tight_layout()
+    plt.show()
+    #
+    # for row_idx in range(data_frame.index.size):
+    #     for col_idx in range(data_frame.columns.size):
+    #         if data_frame.values[row_idx][col_idx] == 'ERR':
+    #             color_table.get_celld()[(row_idx + 1, col_idx)].set_facecolor('#222222')
+    #         else:
+    #             color_table.get_celld()[(row_idx + 1, col_idx)].set_facecolor('#D40000')
+    #
 
 if __name__ == '__main__':
     # str1 = 'abc'
@@ -145,8 +164,9 @@ if __name__ == '__main__':
     # arr = test(str1)
     # arr = test(str2)
     res = gen_table_header_arr(str2)
+    headers = res['combination_array']
 
-    data_frame = init_data_frame(res['combination_array'])
+    data_frame = init_data_frame(headers)
 
     build_data_frame(data_frame)
     color_up_data_frame(data_frame, plt)

@@ -1,51 +1,36 @@
 import matplotlib.pyplot as plt
-import numpy as np
 
-data = [[ 66386, 174296,  75131, 577908,  32015],
-        [ 58230, 381139,  78045,  99308, 160454],
-        [ 89135,  80552, 152558, 497981, 603535],
-        [ 78415,  81858, 150656, 193263,  69638],
-        [139361, 331509, 343164, 781380,  52269]]
+from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 
-columns = ('Freeze', 'Wind', 'Flood', 'Quake', 'Hail')
-rows = ['%d year' % x for x in (100, 50, 20, 10, 5)]
+# fig, (ax1, ax2) = plt.subplots(1, 2, figsize=[6, 3])
+fig, (ax1) = plt.subplots(1, figsize=[6, 6])
 
-values = np.arange(0, 2500, 500)
-value_increment = 1000
+im1 = ax1.imshow([[0, 1, 2, 3, 4],
+                  [1, 2, 3, 4, 5],
+                  [2, 3, 4, 5, 6]])
 
-# Get some pastel shades for the colors
-colors = plt.cm.BuPu(np.linspace(0, 0.5, len(rows)))
-n_rows = len(data)
+# axins1 = inset_axes(
+#     ax1,
+#     width="10%",  # width: 50% of parent_bbox width
+#     height="5%",  # height: 5%
+#     loc="upper right",
+# )
+# axins1.xaxis.set_ticks_position("bottom")
 
-index = np.arange(len(columns)) + 0.3
-bar_width = 0.4
 
-# Initialize the vertical-offset for the stacked bar chart.
-y_offset = np.zeros(len(columns))
+# fig.colorbar(im1, cax=axins1, orientation="horizontal", ticks=[1, 2, 3])
 
-# Plot bars and create text labels for the table
-cell_text = []
-for row in range(n_rows):
-    plt.bar(index, data[row], bar_width, bottom=y_offset, color=colors[row])
-    y_offset = y_offset + data[row]
-    cell_text.append(['%1.1f' % (x / 1000.0) for x in y_offset])
-# Reverse colors and text labels to display the last value at the top.
-colors = colors[::-1]
-cell_text.reverse()
 
-# Add a table at the bottom of the axes
-the_table = plt.table(cellText=cell_text,
-                      rowLabels=rows,
-                      rowColours=colors,
-                      colLabels=columns,
-                      loc='bottom')
-
-# Adjust layout to make room for the table:
-plt.subplots_adjust(left=0.2, bottom=0.2)
-
-plt.ylabel(f"Loss in ${value_increment}'s")
-plt.yticks(values * value_increment, ['%d' % val for val in values])
-plt.xticks([])
-plt.title('Loss by Disaster')
-
+# im = ax2.imshow([[1, 2], [2, 3]])
+# axins = inset_axes(
+#     ax2,
+#     width="5%",  # width: 5% of parent_bbox width
+#     height="50%",  # height: 50%
+#     loc="lower left",
+#     bbox_to_anchor=(1.05, 0., 1, 1),
+#     bbox_transform=ax2.transAxes,
+#     borderpad=0,
+# )
+# fig.colorbar(im, cax=axins, ticks=[1, 2, 3])
+#
 plt.show()
