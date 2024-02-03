@@ -1,6 +1,8 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import matplotlib as mpl
+from matplotlib import colors
 
 
 def init_data_frame(table_headers):
@@ -118,16 +120,19 @@ def color_up_data_frame(data_frame, plt):
         for col_idx in range(data_frame.columns.size):
             if data_frame.values[row_idx][col_idx] == 'ERR':
                 # color_table.get_celld()[(row_idx + 1, col_idx)].set_facecolor('#222222')
-                cur_row_arr.append(0)
+                cur_row_arr.append(0.0)
             else:
                 # color_table.get_celld()[(row_idx + 1, col_idx)].set_facecolor('#D40000')
-                cur_row_arr.append(2)
+                cur_row_arr.append(1.1)
         color_arr.append(cur_row_arr)
 
-    ax.imshow(X=color_arr, cmap=plt.cm.get_cmap('gist_heat'))
+    color_arr = np.array(color_arr)
+    print(color_arr)
+    # ax.imshow(X=color_arr, cmap=plt.cm.get_cmap('gist_heat'))
+    cmap = colors.ListedColormap(['#080402', '#D03D33'])
+    ax.imshow(X=np.array(color_arr), cmap=cmap)
+    # ax.imshow(X=np.array(color_arr), cmap=mpl.colormaps['copper'])
 
-    # ax.axis('tight')
-    # ax.axis('off')
     ax.set_xticks(np.arange(data_frame.columns.size), labels=data_frame.columns)
     ax.set_yticks(np.arange(data_frame.index.size), labels=data_frame.index)
 
@@ -144,7 +149,7 @@ def color_up_data_frame(data_frame, plt):
 
 if __name__ == '__main__':
     # str1 = 'abc'
-    test_str1 = 'ABC'
+    str1 = 'ABC'
     # a, b, c, ab, ac, bc, abc
 
     str2 = 'ABCD'
@@ -158,8 +163,9 @@ if __name__ == '__main__':
     # abcde
 
     str4 = 'ABCDEF'
-    str5 = 'abcdefg'
-    str6 = 'abcdefghijklmn'
+    str5 = 'ABCDEFG'
+    str6 = 'ABCDEFGH'
+    str7 = 'ABCDEFGHIJK'    # 再增加字符等待的时间会很久
 
     # arr = test(str1)
     # arr = test(str2)
@@ -171,6 +177,6 @@ if __name__ == '__main__':
     build_data_frame(data_frame)
     color_up_data_frame(data_frame, plt)
 
-    plt.show()
+    # plt.show()
 
     print(data_frame)
