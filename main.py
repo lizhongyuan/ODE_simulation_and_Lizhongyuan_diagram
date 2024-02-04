@@ -88,7 +88,7 @@ def gen_table_header_arr(event_indexes):
     }
 
 
-def gen_table_headers_recur(event_indexes):
+def gen_axes_headers_recur(event_indexes):
     print('recur version')
 
     total = len(event_indexes)
@@ -99,7 +99,7 @@ def gen_table_headers_recur(event_indexes):
     combination_array = [zero_event_idx]
     binomial_theorem_array = [zero_items]
 
-    get_sub_table_headers_recur(combinations_and_pivots_array, combination_array, binomial_theorem_array, total, event_indexes)
+    gen_sub_axes_headers_recur(combinations_and_pivots_array, combination_array, binomial_theorem_array, total, event_indexes)
 
     return {
         'combination_array': combination_array,
@@ -107,7 +107,20 @@ def gen_table_headers_recur(event_indexes):
     }
 
 
-def get_sub_table_headers_recur(combinations_and_pivots_array, combination_array, binomial_theorem_array, count, event_indexes):
+def gen_sub_axes_headers_recur(combinations_and_pivots_array,
+                               combination_array,
+                               binomial_theorem_array,
+                               count,
+                               event_indexes):
+    '''
+    生成子axes的headers
+    @param combinations_and_pivots_array: 字符串组合和结尾字符位置数组
+    @param combination_array:
+    @param binomial_theorem_array:
+    @param count:
+    @param event_indexes:
+    @return:
+    '''
     total = len(event_indexes)
     cur_items = []
 
@@ -119,7 +132,7 @@ def get_sub_table_headers_recur(combinations_and_pivots_array, combination_array
             }
             cur_items.append(cur_item)
     else:
-        get_sub_table_headers_recur(combinations_and_pivots_array, combination_array, binomial_theorem_array, count - 1, event_indexes)
+        gen_sub_axes_headers_recur(combinations_and_pivots_array, combination_array, binomial_theorem_array, count - 1, event_indexes)
 
         pre_items = combinations_and_pivots_array[count - 2]
 
