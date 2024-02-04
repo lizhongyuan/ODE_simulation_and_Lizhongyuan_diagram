@@ -41,8 +41,7 @@ def string_merge(str1, str2):
 
 
 def gen_table_header_arr(event_indexes):
-    count = len(event_indexes)
-    # combinations_and_pivots_array = [[]]
+    total = len(event_indexes)
     combinations_and_pivots_array = []
 
     zero_event_idx = '0'
@@ -50,11 +49,10 @@ def gen_table_header_arr(event_indexes):
     combination_array = [zero_event_idx]
     binomial_theorem_array = [zero_items]
 
-    for i in range(count):
+    for i in range(total):
+        cur_items = []
         if i == 0:
-            # cur_items = combinations_and_pivots_array[0]
-            cur_items = []
-            for j in range(count):
+            for j in range(total):
                 cur_item = {
                     'combination': event_indexes[j],
                     'pivot': j
@@ -62,13 +60,12 @@ def gen_table_header_arr(event_indexes):
                 cur_items.insert(len(cur_items), cur_item)
         else:
             pre_items = combinations_and_pivots_array[i - 1]
-            cur_items = []
 
             for j in range(len(pre_items)):
 
                 pre_combination = pre_items[j]['combination']
 
-                for k in range(pre_items[j]['pivot'] + 1, count):
+                for k in range(pre_items[j]['pivot'] + 1, total):
                     cur_combination = pre_combination + event_indexes[k]
                     cur_item = {
                         'combination': cur_combination,
@@ -78,7 +75,7 @@ def gen_table_header_arr(event_indexes):
 
         combinations_and_pivots_array.insert(len(combinations_and_pivots_array), cur_items)
 
-    for i in range(count):
+    for i in range(total):
         binomial_theorem_array.append([])
         for j in range(len(combinations_and_pivots_array[i])):
             cur_value = combinations_and_pivots_array[i][j]['combination']
@@ -91,17 +88,18 @@ def gen_table_header_arr(event_indexes):
     }
 
 
-def gen_table_header_arr2(event_indexes):
+def gen_table_headers_recur(event_indexes):
     print('recur version')
-    count = len(event_indexes)
-    combinations_and_pivots_array = [[]]
+
+    total = len(event_indexes)
+    combinations_and_pivots_array = []
 
     zero_event_idx = '0'
     zero_items = ['0']
     combination_array = [zero_event_idx]
     binomial_theorem_array = [zero_items]
 
-    recur(combinations_and_pivots_array, combination_array, binomial_theorem_array, count, count - 1, event_indexes)
+    get_sub_table_headers_recur(combinations_and_pivots_array, combination_array, binomial_theorem_array, total, event_indexes)
 
     return {
         'combination_array': combination_array,
@@ -109,53 +107,41 @@ def gen_table_header_arr2(event_indexes):
     }
 
 
-def recur(combinations_and_pivots_array, combination_array, binomial_theorem_array, count, i, event_indexes):
-    print('recur')
+def get_sub_table_headers_recur(combinations_and_pivots_array, combination_array, binomial_theorem_array, count, event_indexes):
+    total = len(event_indexes)
+    cur_items = []
 
-    if i == 0:
-        cur_items = combinations_and_pivots_array[i]
-        for j in range(count):
+    if count == 1:
+        for i in range(total):
             cur_item = {
-                'combination': event_indexes[j],
-                'pivot': j
+                'combination': event_indexes[i],
+                'pivot': i
             }
-            cur_items.insert(len(cur_items), cur_item)
-
-        # combinations_and_pivots_array.insert(len(combinations_and_pivots_array), cur_items)
-
-        binomial_theorem_array.append([])
-        for j in range(len(combinations_and_pivots_array[0])):
-            cur_value = combinations_and_pivots_array[i][j]['combination']
-            combination_array.append(cur_value)
-            # binomial_theorem_array[i].append(cur_value)
-            binomial_theorem_array[i + 1].append(cur_value)
-
-        print(1234)
+            cur_items.append(cur_item)
     else:
-        recur(combinations_and_pivots_array, combination_array, binomial_theorem_array, count, i - 1, event_indexes)
+        get_sub_table_headers_recur(combinations_and_pivots_array, combination_array, binomial_theorem_array, count - 1, event_indexes)
 
-        pre_items = combinations_and_pivots_array[i - 1]
-        cur_items = []
+        pre_items = combinations_and_pivots_array[count - 2]
 
-        for j in range(len(pre_items)):
+        for i in range(len(pre_items)):
 
-            pre_combination = pre_items[j]['combination']
+            pre_combination = pre_items[i]['combination']
 
-            for k in range(pre_items[j]['pivot'] + 1, count):
-                cur_combination = pre_combination + event_indexes[k]
+            for j in range(pre_items[i]['pivot'] + 1, total):
+                cur_combination = pre_combination + event_indexes[j]
                 cur_item = {
                     'combination': cur_combination,
-                    'pivot': k
+                    'pivot': j
                 }
-                cur_items.insert(len(cur_items), cur_item)
+                cur_items.append(cur_item)
 
-        combinations_and_pivots_array.insert(len(combinations_and_pivots_array), cur_items)
+    combinations_and_pivots_array.insert(len(combinations_and_pivots_array), cur_items)
 
-        binomial_theorem_array.append([])
-        for j in range(len(combinations_and_pivots_array[i])):
-            cur_value = combinations_and_pivots_array[i][j]['combination']
-            combination_array.append(cur_value)
-            binomial_theorem_array[i + 1].append(cur_value)
+    binomial_theorem_array.append([])
+    for i in range(len(cur_items)):
+        cur_value = cur_items[i]['combination']
+        combination_array.append(cur_value)
+        binomial_theorem_array[count].append(cur_value)
 
 
 def build_data_frame(data_frame):
@@ -220,8 +206,8 @@ if __name__ == '__main__':
     str10 = 'ABCDEFGHIJ'
     str11 = 'ABCDEFGHIJK'  # 再增加字符等待的时间会很久
 
-    # res = gen_table_header_arr(str3)
-    res = gen_table_header_arr2(str4)
+    res = gen_table_header_arr(str7)
+    # res = gen_table_header_arr2(str7)
     headers = res['combination_array']
 
     data_frame = init_data_frame(headers)
