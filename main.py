@@ -207,7 +207,7 @@ def color_up_plot(data_frame, plt, dpi, font_size, axis_length_zero):
     mpl.rcParams["font.size"] = font_size
 
     if dpi is not None:
-        mpl.rcParams["figure.dpi"] = 1000
+        mpl.rcParams["figure.dpi"] = dpi
 
     fig, ax = plt.subplots()
 
@@ -268,6 +268,12 @@ if __name__ == '__main__':
     font_size = 0.75
     axis_length_zero = True
     res = gen_combinations_data(elements9)
+
+    # 10: 4000, 0.5
+    # dpi = 3000
+    # font_size = 0.3
+    # axis_length_zero = True
+    # res = gen_combinations_data(elements10)
 
     headers = res['combinations']
 
