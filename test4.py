@@ -1,32 +1,31 @@
-import pandas as pd
-import seaborn as sns
+import matplotlib.pyplot as plt
+import numpy as np
 
-data = {('count', 's25'):
-       {('2017-08-11', 'Friday'): 88.0,
-        ('2017-08-12', 'Saturday'): 90.0,
-        ('2017-08-13', 'Sunday'): 93.0},
-        ('count', 's67'):
-       {('2017-08-11', 'Friday'): 404.0,
-        ('2017-08-12', 'Saturday'): 413.0,
-        ('2017-08-13', 'Sunday'): 422.0},
-        ('count', 's74'):
-       {('2017-08-11', 'Friday'): 203.0,
-        ('2017-08-12', 'Saturday'): 227.0,
-        ('2017-08-13', 'Sunday'): 265.0},
-        ('count', 's79'):
-       {('2017-08-11', 'Friday'): 53.0,
-        ('2017-08-12', 'Saturday'): 53.0,
-        ('2017-08-13', 'Sunday'): 53.0}}
+with plt.xkcd():
+    # Based on "Stove Ownership" from XKCD by Randall Munroe
+    # https://xkcd.com/418/
 
-table = pd.DataFrame.from_dict(data)
-table.sort_index(ascending=False, inplace=True)
+    fig = plt.figure()
+    ax = fig.add_axes((0.1, 0.2, 0.8, 0.7))
+    # ax.spines[['top', 'right']].set_visible(False)
+    ax.set_xticks([])
+    ax.set_yticks([])
+    ax.set_ylim([-30, 10])
 
-cm = sns.light_palette("seagreen", as_cmap=True)
-styled_table = table.style.background_gradient(cmap=cm)
+    data = np.ones(100)
+    data[70:] -= np.arange(30)
 
-html = styled_table.to_html()
+    ax.annotate(
+        'THE DAY I REALIZED\nI COULD COOK BACON\nWHENEVER I WANTED',
+        xy=(70, 1), arrowprops=dict(arrowstyle='->'), xytext=(15, -10))
 
-from html2image import Html2Image
+    ax.plot(data)
 
-hti = Html2Image()
-hti.screenshot(html_str=html, save_as="save.png")
+    ax.set_xlabel('time')
+    ax.set_ylabel('my overall health')
+    fig.text(
+        0.5, 0.05,
+        '"Stove Ownership" from xkcd by Randall Munroe',
+        ha='center')
+
+    plt.show()

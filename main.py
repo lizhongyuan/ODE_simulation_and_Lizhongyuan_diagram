@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib import colors
+import matplotlib as mpl
 
 
 def init_data_frame(table_headers):
@@ -195,7 +196,7 @@ def build_data_frame(data_frame, zero_element):
                     data_frame.loc[row, col] = 'ERR'
 
 
-def color_up_plot(data_frame, plt):
+def color_up_plot(data_frame, plt, dpi, font_size, axis_length_zero):
     """
     plot上色
     @param data_frame:
@@ -203,7 +204,20 @@ def color_up_plot(data_frame, plt):
     @return:
     """
 
+    mpl.rcParams["font.size"] = font_size
+
+    if dpi is not None:
+        mpl.rcParams["figure.dpi"] = 1000
+
     fig, ax = plt.subplots()
+
+    if axis_length_zero:
+        ax.tick_params(axis='both', which='both', length=0)
+
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
+    ax.spines['left'].set_visible(False)
+    ax.spines['bottom'].set_visible(False)
 
     color_matrix = []
     for row_idx in range(data_frame.index.size):
@@ -222,6 +236,12 @@ def color_up_plot(data_frame, plt):
     ax.set_xticks(np.arange(data_frame.columns.size), labels=data_frame.columns)
     ax.set_yticks(np.arange(data_frame.index.size), labels=data_frame.index)
 
+    ax.tick_params(top=True, bottom=False,
+                   labeltop=True, labelbottom=False)
+
+    # Rotate the tick labels and set their alignment.
+    plt.setp(ax.get_xticklabels(), rotation=-70, ha="right", rotation_mode="anchor")
+
     fig.tight_layout()
 
 
@@ -238,13 +258,24 @@ if __name__ == '__main__':
     elements10 = 'ABCDEFGHIJ'
     elements11 = 'ABCDEFGHIJK'  # 再增加字符等待的时间会很久
 
-    res = gen_combinations_data(elements7)
-    # res = gen_combinations_data_recur(elements5)
+    # dpi = 100
+    # font_size = 10
+    # axis_length_zero = False
+    # res = gen_combinations_data(elements3)
+
+    # 9: 3000, 0.75
+    dpi = 3000
+    font_size = 0.75
+    axis_length_zero = True
+    res = gen_combinations_data(elements9)
+
     headers = res['combinations']
 
     data_frame = init_data_frame(headers)
 
     build_data_frame(data_frame, zero_element='0')
-    color_up_plot(data_frame, plt)
+    color_up_plot(data_frame, plt, dpi, font_size, axis_length_zero)
 
-    plt.show()
+    # plt.show()
+
+    plt.savefig('pic.png')
