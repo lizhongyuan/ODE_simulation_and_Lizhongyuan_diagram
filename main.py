@@ -1,178 +1,207 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-import matplotlib as mpl
 from matplotlib import colors
 
 
 def init_data_frame(table_headers):
     df = pd.DataFrame(index=list(table_headers), columns=list(table_headers))
-
     return df
 
 
-def has_no_common_chr(str1, str2):
+def has_no_common_element(combination1, combination2):
     """
-    检查两个字符串是否有公共字符
-    @param str1: 字符串1
-    @param str2: 字符串2
-    @return: 是否有公共字符
+    检查两个元素组合是否没有相同元素
+    @param combination1: 元素组合1
+    @param combination2: 元素组合2
+    @return: 是否没有相同元素
     """
 
-    for chr in str1:
-        if chr in str2:
+    for element in combination1:
+        if element in combination2:
             return False
 
     return True
 
 
-def string_merge(str1, str2):
+def combination_merge(combination1, combination2):
     """
-    合并字符串
-    @param str1: 字符串1
-    @param str2: 字符串2
-    @return: 合并的字符串
+    合并组合
+    @param combination1: 元素组合1
+    @param combination2: 元素组合2
+    @return: 合并后的组合
     """
 
-    merged_str = str1 + str2
-    merged_str = ''.join(sorted(merged_str))
+    merged_combination = combination1 + combination2
+    merged_combination = ''.join(sorted(merged_combination))
 
-    return merged_str
+    return merged_combination
 
 
-def gen_table_header_arr(event_indexes):
-    total = len(event_indexes)
-    combinations_and_pivots_array = []
+def gen_combinations_data(elements):
+    """
+    生成组合数据
+    @param elements: 元素集合
+    @return: 组合数据
+    """
 
-    zero_event_idx = '0'
-    zero_items = ['0']
-    combination_array = [zero_event_idx]
-    binomial_theorem_array = [zero_items]
+    total = len(elements)
+    combinations_and_pivots_cache = []
+
+    zero_element = '0'
+    zero_elements = ['0']
+    combinations = [zero_element]
+    binomial_theorem_array = [zero_elements]
 
     for i in range(total):
-        cur_items = []
+        cur_combinations_and_pivots = []
         if i == 0:
             for j in range(total):
-                cur_item = {
-                    'combination': event_indexes[j],
+                cur_combination_and_pivot = {
+                    'combination': elements[j],
                     'pivot': j
                 }
-                cur_items.insert(len(cur_items), cur_item)
+                cur_combinations_and_pivots.insert(len(cur_combinations_and_pivots), cur_combination_and_pivot)
         else:
-            pre_items = combinations_and_pivots_array[i - 1]
+            pre_combinations_and_pivots = combinations_and_pivots_cache[i - 1]
 
-            for j in range(len(pre_items)):
-
-                pre_combination = pre_items[j]['combination']
-
-                for k in range(pre_items[j]['pivot'] + 1, total):
-                    cur_combination = pre_combination + event_indexes[k]
-                    cur_item = {
+            for j in range(len(pre_combinations_and_pivots)):
+                pre_combination = pre_combinations_and_pivots[j]['combination']
+                for k in range(pre_combinations_and_pivots[j]['pivot'] + 1, total):
+                    cur_combination = pre_combination + elements[k]
+                    cur_combination_and_pivot = {
                         'combination': cur_combination,
                         'pivot': k
                     }
-                    cur_items.insert(len(cur_items), cur_item)
+                    cur_combinations_and_pivots.append(cur_combination_and_pivot)
 
-        combinations_and_pivots_array.insert(len(combinations_and_pivots_array), cur_items)
+        combinations_and_pivots_cache.append(cur_combinations_and_pivots)
 
     for i in range(total):
         binomial_theorem_array.append([])
-        for j in range(len(combinations_and_pivots_array[i])):
-            cur_value = combinations_and_pivots_array[i][j]['combination']
-            combination_array.append(cur_value)
-            binomial_theorem_array[i].append(cur_value)
+        cur_binomial_theorem_item = []
+        for j in range(len(combinations_and_pivots_cache[i])):
+            cur_combination = combinations_and_pivots_cache[i][j]['combination']
+            combinations.append(cur_combination)
+            cur_binomial_theorem_item.append(cur_combination)
+        binomial_theorem_array.append(cur_binomial_theorem_item)
 
     return {
-        'combination_array': combination_array,
+        'combinations': combinations,
         'binomial_theorem_array': binomial_theorem_array
     }
 
 
-def gen_axes_headers_recur(event_indexes):
-    print('recur version')
+def gen_combinations_data_recur(elements):
+    """
+    生成组合数据(递归)
+    @param elements: 元素集合
+    @return: 组合数据
+    """
 
-    total = len(event_indexes)
-    combinations_and_pivots_array = []
+    combinations_and_pivots_cache = []
 
-    zero_event_idx = '0'
-    zero_items = ['0']
-    combination_array = [zero_event_idx]
-    binomial_theorem_array = [zero_items]
+    zero_element = '0'
+    zero_element_array = ['0']
+    combinations = [zero_element]
+    binomial_theorem_array = [zero_element_array]
 
-    gen_sub_axes_headers_recur(combinations_and_pivots_array, combination_array, binomial_theorem_array, total, event_indexes)
+    gen_sub_combinations_data_recur(combinations_and_pivots_cache,
+                                    combinations,
+                                    binomial_theorem_array,
+                                    len(elements),
+                                    elements)
 
     return {
-        'combination_array': combination_array,
+        'combinations': combinations,
         'binomial_theorem_array': binomial_theorem_array
     }
 
 
-def gen_sub_axes_headers_recur(combinations_and_pivots_array,
-                               combination_array,
-                               binomial_theorem_array,
-                               count,
-                               event_indexes):
-    '''
+def gen_sub_combinations_data_recur(combinations_and_pivots_cache,
+                                    combinations,
+                                    binomial_theorem_array,
+                                    count,
+                                    elements):
+    """
     生成子axes的headers
-    @param combinations_and_pivots_array: 字符串组合和结尾字符位置数组
-    @param combination_array:
-    @param binomial_theorem_array:
-    @param count:
-    @param event_indexes:
-    @return:
-    '''
-    total = len(event_indexes)
-    cur_items = []
+    @param combinations_and_pivots_cache: 元素组合和结尾元素位置数组
+    @param combinations: 元素组合数组
+    @param binomial_theorem_array: 二项式定理分布数组
+    @param count: 参与组合的元素数
+    @param elements: 全部元素数组
+    @return
+    """
+
+    total = len(elements)
+    cur_combinations_and_pivots = []
 
     if count == 1:
         for i in range(total):
-            cur_item = {
-                'combination': event_indexes[i],
+            cur_combination_and_pivot = {
+                'combination': elements[i],
                 'pivot': i
             }
-            cur_items.append(cur_item)
+            cur_combinations_and_pivots.append(cur_combination_and_pivot)
     else:
-        gen_sub_axes_headers_recur(combinations_and_pivots_array, combination_array, binomial_theorem_array, count - 1, event_indexes)
+        gen_sub_combinations_data_recur(combinations_and_pivots_cache,
+                                        combinations,
+                                        binomial_theorem_array,
+                                        count - 1,
+                                        elements)
 
-        pre_items = combinations_and_pivots_array[count - 2]
+        pre_combinations_and_pivots = combinations_and_pivots_cache[count - 2]
 
-        for i in range(len(pre_items)):
+        for i in range(len(pre_combinations_and_pivots)):
+            pre_combination = pre_combinations_and_pivots[i]['combination']
 
-            pre_combination = pre_items[i]['combination']
-
-            for j in range(pre_items[i]['pivot'] + 1, total):
-                cur_combination = pre_combination + event_indexes[j]
-                cur_item = {
+            for j in range(pre_combinations_and_pivots[i]['pivot'] + 1, total):
+                cur_combination = pre_combination + elements[j]
+                cur_combination_and_pivot = {
                     'combination': cur_combination,
                     'pivot': j
                 }
-                cur_items.append(cur_item)
+                cur_combinations_and_pivots.append(cur_combination_and_pivot)
 
-    combinations_and_pivots_array.insert(len(combinations_and_pivots_array), cur_items)
+    combinations_and_pivots_cache.append(cur_combinations_and_pivots)
 
+    cur_binomial_theorem_item = []
     binomial_theorem_array.append([])
-    for i in range(len(cur_items)):
-        cur_value = cur_items[i]['combination']
-        combination_array.append(cur_value)
-        binomial_theorem_array[count].append(cur_value)
+    for i in range(len(cur_combinations_and_pivots)):
+        cur_combination = cur_combinations_and_pivots[i]['combination']
+        combinations.append(cur_combination)
+        cur_binomial_theorem_item.append(cur_combination)
+
+    binomial_theorem_array.append(cur_binomial_theorem_item)
 
 
-def build_data_frame(data_frame):
+def build_data_frame(data_frame, zero_element):
+    """
+    构造data_frame
+    @param data_frame:
+    @param zero_element: 0元素
+    @return:
+    """
     for row in data_frame.index:
         for col in data_frame.columns:
-            if row == '0':
+            if row == zero_element:
                 data_frame.loc[row, col] = col
-            elif col == '0':
+            elif col == zero_element:
                 data_frame.loc[row, col] = row
             else:
-                if has_no_common_chr(row, col):
-                    data_frame.loc[row, col] = string_merge(row, col)
+                if has_no_common_element(row, col):
+                    data_frame.loc[row, col] = combination_merge(row, col)
                 else:
                     data_frame.loc[row, col] = 'ERR'
 
 
-def color_up_data_frame(data_frame, plt):
-    print('color_up_table')
+def color_up_plot(data_frame, plt):
+    """
+    plot上色
+    @param data_frame:
+    @param plt:
+    @return:
+    """
 
     fig, ax = plt.subplots()
 
@@ -181,9 +210,9 @@ def color_up_data_frame(data_frame, plt):
         row_colors = []
         for col_idx in range(data_frame.columns.size):
             if data_frame.values[row_idx][col_idx] == 'ERR':
-                row_colors.append(0)  # set black
+                row_colors.append(0)        # set black
             else:
-                row_colors.append(100)  # set color
+                row_colors.append(100)      # set color
         color_matrix.append(row_colors)
 
     # ax.imshow(X=color_arr, cmap=plt.cm.get_cmap('gist_heat'))
@@ -197,37 +226,25 @@ def color_up_data_frame(data_frame, plt):
 
 
 if __name__ == '__main__':
-    str1 = 'A'
-    str2 = 'AB'
-    str3 = 'ABC'
-    # a, b, c, ab, ac, bc, abc
+    elements1 = 'A'
+    elements2 = 'AB'
+    elements3 = 'ABC'
+    elements4 = 'ABCD'
+    elements5 = 'ABCDE'
+    elements6 = 'ABCDEF'
+    elements7 = 'ABCDEFG'
+    elements8 = 'ABCDEFGH'
+    elements9 = 'ABCDEFGHI'
+    elements10 = 'ABCDEFGHIJ'
+    elements11 = 'ABCDEFGHIJK'  # 再增加字符等待的时间会很久
 
-    str4 = 'ABCD'
-    # a, b, c, d, ab, ac, ad, bc, bd, cd, abc, abd, bcd, abcd
-
-    str5 = 'ABCDE'
-    # a, b, c, d, e,
-    # ab, ac, ad, ae, bc, bd, be, cd, ce, de,
-    # abc, abd, abe, acd, ace, ade, bcd, bce, bde, cde,
-    # abcd, abce, abde, acde, bcde
-    # abcde
-
-    str6 = 'ABCDEF'
-    str7 = 'ABCDEFG'
-    str8 = 'ABCDEFGH'
-    str9 = 'ABCDEFGHI'
-    str10 = 'ABCDEFGHIJ'
-    str11 = 'ABCDEFGHIJK'  # 再增加字符等待的时间会很久
-
-    res = gen_table_header_arr(str7)
-    # res = gen_table_header_arr2(str7)
-    headers = res['combination_array']
+    res = gen_combinations_data(elements7)
+    # res = gen_combinations_data_recur(elements5)
+    headers = res['combinations']
 
     data_frame = init_data_frame(headers)
 
-    build_data_frame(data_frame)
-    color_up_data_frame(data_frame, plt)
+    build_data_frame(data_frame, zero_element='0')
+    color_up_plot(data_frame, plt)
 
     plt.show()
-
-    # print(data_frame)
