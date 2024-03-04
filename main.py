@@ -46,7 +46,7 @@ def gen_combinations_data(elements):
     @return: 组合数据
     """
 
-    total = len(elements)
+    # total = len(elements)
     combinations_and_pivots_cache = []
 
     zero_element = '0'
@@ -54,10 +54,10 @@ def gen_combinations_data(elements):
     combinations = [zero_element]
     binomial_theorem_array = [zero_elements]
 
-    for i in range(total):
+    for i in range(len(elements)):
         cur_combinations_and_pivots = []
         if i == 0:
-            for j in range(total):
+            for j in range(len(elements)):
                 cur_combination_and_pivot = {
                     'combination': elements[j],
                     'pivot': j
@@ -68,7 +68,7 @@ def gen_combinations_data(elements):
 
             for j in range(len(pre_combinations_and_pivots)):
                 pre_combination = pre_combinations_and_pivots[j]['combination']
-                for k in range(pre_combinations_and_pivots[j]['pivot'] + 1, total):
+                for k in range(pre_combinations_and_pivots[j]['pivot'] + 1, len(elements)):
                     cur_combination = pre_combination + elements[k]
                     cur_combination_and_pivot = {
                         'combination': cur_combination,
@@ -78,7 +78,7 @@ def gen_combinations_data(elements):
 
         combinations_and_pivots_cache.append(cur_combinations_and_pivots)
 
-    for i in range(total):
+    for i in range(len(elements)):
         binomial_theorem_array.append([])
         cur_binomial_theorem_item = []
         for j in range(len(combinations_and_pivots_cache[i])):
@@ -134,12 +134,11 @@ def gen_sub_combinations_data_recur(combinations_and_pivots_cache,
     @return
     """
 
-    total = len(elements)
-    cur_combinations_and_pivots = []
+    cur_combinations_and_pivots = []                                                        # 声明"当前组合和枢轴数组"
 
-    if count == 1:
-        for i in range(total):
-            cur_combination_and_pivot = {
+    if count == 1:                                                                          # if elements元素数为1
+        for i in range(len(elements)):                                                      # 遍历elements数组:
+            cur_combination_and_pivot = {                                                   #
                 'combination': elements[i],
                 'pivot': i
             }
@@ -156,7 +155,7 @@ def gen_sub_combinations_data_recur(combinations_and_pivots_cache,
         for i in range(len(pre_combinations_and_pivots)):
             pre_combination = pre_combinations_and_pivots[i]['combination']
 
-            for j in range(pre_combinations_and_pivots[i]['pivot'] + 1, total):
+            for j in range(pre_combinations_and_pivots[i]['pivot'] + 1, len(elements)):
                 cur_combination = pre_combination + elements[j]
                 cur_combination_and_pivot = {
                     'combination': cur_combination,
@@ -267,7 +266,7 @@ if __name__ == '__main__':
     dpi = 3000
     font_size = 0.75
     axis_length_zero = True
-    res = gen_combinations_data(elements9)
+    res = gen_combinations_data(elements4)
 
     # 10: 4000, 0.5
     # dpi = 3000
