@@ -18,6 +18,11 @@ class Set:
         return self._setList
 
 
+class Tuple:
+    def __init__(self, tupleList):
+        self._tupleList = tupleList
+
+
 class TwoT:
 
     def __init__(self, first, second):
