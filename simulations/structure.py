@@ -1,3 +1,23 @@
+class Set:
+    def __init__(self, setList):
+        self._setList = setList
+
+    def __str__(self):
+        formatStr = "{ "
+        for i, elem in enumerate(self._setList):
+            if i < len(self._setList) - 1:
+                formatStr += (str(elem) + ", ")
+            else:
+                formatStr += str(elem)
+        return formatStr + " }"
+
+    def cardinality(self):
+        return len(self._setList)
+
+    def list(self):
+        return self._setList
+
+
 class TwoT:
 
     def __init__(self, first, second):
@@ -12,22 +32,22 @@ class TwoT:
         return self._twoTuple[1]
 
 
-class TwoTplS:
-    def __init__(self, twoTplList):
-        self._twoTplList = twoTplList
+class TwoTplS(Set):
+    def test(self):
+        print("test")
+    # def __init__(self, twoTplList):
+    #     self._twoTplList = twoTplList
+    #
+    # def __str__(self):
+    #     formatStr = "{ "
+    #     for i, twoT in enumerate(self._twoTplList):
+    #         if i < len(self._twoTplList) - 1:
+    #             formatStr += (str(twoT) + ", ")
+    #         else:
+    #             formatStr += str(twoT)
+    #     return formatStr + " }"
 
-    def __str__(self):
-        formatStr = "{ "
-        for i, twoT in enumerate(self._twoTplList):
-            if i < len(self._twoTplList) - 1:
-                formatStr += (str(twoT) + ", ")
-            else:
-                formatStr += str(twoT)
-        return formatStr + " }"
+    # def list(self):
+    #     return self._twoTplList
 
-twoT1 = TwoT(1,2)
-twoT2 = TwoT(2,3)
-print(str(twoT1))
 
-twoTplS = TwoTplS([twoT1, twoT2])
-print(str(twoTplS))
