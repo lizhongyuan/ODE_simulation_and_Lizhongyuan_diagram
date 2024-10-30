@@ -1,59 +1,63 @@
 
 
-class Set:
+class MySet(set):
     def __init__(self, setList):
         self._setList = setList
 
-    def __str__(self):
-        formatStr = "{ "
+    def __str__(self) -> str:
+        formatStr = "{"
         for i, elem in enumerate(self._setList):
             if i < len(self._setList) - 1:
                 formatStr += (str(elem) + ", ")
             else:
                 formatStr += str(elem)
-        return formatStr + " }"
+        return formatStr + "}"
 
-    def Cardinality(self):
+    def Cardinality(self) -> int:
         return len(self._setList)
 
-    def List(self):
+    def List(self) -> list:
         return self._setList
 
-    def Empty(self):
+    def Empty(self) -> bool:
         return len(self._setList) == 0
 
 
 class Tuple:
+
     def __init__(self, tupleList):
         self._tupleList = tupleList
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"({self._tupleList[0]}, {self._tupleList[1]})"
 
-    def __len__(self):
+    def __len__(self) -> int:
         return len(self._tupleList)
 
-    def List(self):
+    def List(self) -> list:
         return self._tupleList
 
 
-class TwoT(Tuple):
+class TwoTuple(Tuple):
 
-    def First(self):
+    def First(self) -> object:
         return self._tupleList[0]
 
     def Second(self):
         return self._tupleList[1]
 
 
-class TwoTplS(Set):
+class TwoTupleS(MySet):
     pass
 
-class TwoTplSS(Set):
+class TwoTupleSS(MySet):
+    pass
+
+class TwoTupleTS(MySet):
     pass
 
 
-class TwoTplT(Tuple):
+class TwoTupleT(Tuple):
 
     def First(self):
         return self._tupleList[0]

@@ -1,13 +1,13 @@
 from simulations.function import fMin1oS, fMax2oS
-from simulations.structure import TwoT, TwoTplT
-from simulations.structure import TwoTplS
+from simulations.structure import TwoTuple, TwoTupleT
+from simulations.structure import TwoTupleS
 
 if __name__ == '__main__':
-    twoT1 = TwoT([1,2])
-    twoT2 = TwoT([2,3])
+    twoT1 = TwoTuple([1, 2])
+    twoT2 = TwoTuple([2, 3])
     print(str(twoT1))
 
-    twoTplS = TwoTplS([twoT1, twoT2])
+    twoTplS = TwoTupleS([twoT1, twoT2])
     print(str(twoTplS))
 #    print(str(len(twoTplS.List())))         # OK
 
@@ -16,5 +16,5 @@ if __name__ == '__main__':
     print(minFirst)
     print(maxSecond)
 
-    twoTplT = TwoTplT([twoT1, twoT2])
+    twoTplT = TwoTupleT([twoT1, twoT2])
     print(str(twoTplT))
