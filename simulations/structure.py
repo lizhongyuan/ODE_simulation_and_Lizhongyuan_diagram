@@ -16,7 +16,7 @@ class MySet:
     def Cardinality(self) -> int:
         return len(self._setList)
 
-    def List(self) -> list:
+    def list(self) -> list:
         return self._setList
 
     def Empty(self) -> bool:
@@ -40,16 +40,16 @@ class Tuple:
     def __len__(self) -> int:
         return len(self._tupleList)
 
-    def List(self) -> list:
+    def list(self) -> list:
         return self._tupleList
 
 
 class TwoTuple(Tuple):
 
-    def First(self) -> object:
+    def first(self) -> object:
         return self._tupleList[0]
 
-    def Second(self):
+    def second(self):
         return self._tupleList[1]
 
 
@@ -64,9 +64,4 @@ class TwoTupleTS(MySet):
 
 
 class TwoTupleT(Tuple):
-
-    def First(self):
-        return self._tupleList[0]
-
-    def Second(self):
-        return self._tupleList[1]
+    pass
