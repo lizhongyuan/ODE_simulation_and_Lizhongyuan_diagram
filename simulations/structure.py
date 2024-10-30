@@ -1,6 +1,6 @@
 
 
-class MySet(set):
+class MySet:
     def __init__(self, setList):
         self._setList = setList
 
@@ -29,7 +29,13 @@ class Tuple:
         self._tupleList = tupleList
 
     def __str__(self) -> str:
-        return f"({self._tupleList[0]}, {self._tupleList[1]})"
+        formatStr = "("
+        for i, elem in enumerate(self._tupleList):
+            if i < len(self._tupleList) - 1:
+                formatStr += (str(elem) + ", ")
+            else:
+                formatStr += str(elem)
+        return formatStr + ")"
 
     def __len__(self) -> int:
         return len(self._tupleList)
