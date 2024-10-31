@@ -81,6 +81,9 @@ class TwoTuple(MyTuple):
 class TwoTupleS(MySet):
     pass
 
+class CutTwoTupleS(MySet):
+    pass
+
 class TwoTupleSS(MySet):
     pass
 
