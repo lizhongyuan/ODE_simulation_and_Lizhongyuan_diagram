@@ -28,9 +28,7 @@ class PDIE:
         print("print")
 
 class PDIES(MySet):
-
-    def set_unfeasible(self, unfeasible_info):
-        self._unfeasible_info = unfeasible_info
+    pass
 
 
 pdie = PDIE(isAtom=True,

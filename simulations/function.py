@@ -38,9 +38,7 @@ def get_CP_of_2tupleSS(p_2tupleSS: TwoTupleSS, p_idxT: List[int]) -> TwoTupleTS:
 # 递归求2tupleSS内某些元素的笛卡尔积
 def get_CP_of_2tupleSS_recur(p_2tupleSS: TwoTupleSS, p_idxT: List[int], pivot: int) -> List[List[object]]:
 
-    # cur_idx = p_idxT[pivot - 1] - 1               # pivot所代表的索引
-    # cur_2tupleS = p_2tupleSS.list()[cur_idx]
-    cur_idx = p_idxT[pivot - 1]               # pivot所代表的索引
+    cur_idx = p_idxT[pivot - 1]               # pivot所代表的2tupleS的索引
     cur_2tupleS = p_2tupleSS[cur_idx]
 
     _2tupleTS_list = []
@@ -93,6 +91,11 @@ def get_bound_2tuple_S(p_2tupleT_S: TwoTupleTS) -> TwoTupleS | None:
             bound_2tuple_map.add(cur_bound_2tuple.instance())
 
     return TwoTupleS(bound_2tuple_S_list)
+
+
+# fUnfeasibleAscMetaDI2tupleTS函数实现
+def fUnfeasibleAscMetaDI2tupleTS():
+    pass
 
 def fCut2tupleSbyDomain(p2tupleS, pA, pB):
     pass
