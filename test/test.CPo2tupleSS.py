@@ -1,6 +1,5 @@
-from simulations.function import fMin1oS, fMax2oS, get_CP_of_2tupleSS_recur
-from simulations.function import get_CP_of_2tupleSS
-from simulations.structure import TwoTuple, TwoTupleT, TwoTupleSS
+from simulations.function import get_CP_of_2tuple_SS
+from simulations.structure import TwoTuple, TwoTupleSS
 from simulations.structure import TwoTupleS
 
 if __name__ == '__main__':
@@ -22,6 +21,6 @@ if __name__ == '__main__':
     idxT = [1, 2, 3]
 
     # 2tupleSS做某个顺序的笛卡尔积
-    twoTupleTS_CP = get_CP_of_2tupleSS(twoTupleSS, idxT)
+    twoTupleTS_CP = get_CP_of_2tuple_SS(twoTupleSS, idxT)
 
     print(str(twoTupleTS_CP))

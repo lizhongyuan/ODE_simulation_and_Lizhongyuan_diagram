@@ -2,18 +2,18 @@ from simulations.function import get_bound_2tuple, get_bound_2tuple_S
 from simulations.structure import TwoTuple, TwoTupleT, TwoTupleTS
 
 if __name__ == '__main__':
-    twoT1 = TwoTuple([1, 2])
-    twoT2 = TwoTuple([3, 4])
-    _2tuple_T_1 = TwoTupleT([twoT1, twoT2])
+    _2tuple_1 = TwoTuple([1, 2])
+    _2tuple_2 = TwoTuple([3, 4])
+    _2tuple_T_1 = TwoTupleT([_2tuple_1, _2tuple_2])
 
-    twoT3 = TwoTuple([1, 3])
-    twoT4 = TwoTuple([2, 4])
-    _2tuple_T_2 = TwoTupleT([twoT3, twoT4])
+    _2tuple_3 = TwoTuple([1, 3])
+    _2tuple_4 = TwoTuple([2, 4])
+    _2tuple_T_2 = TwoTupleT([_2tuple_3, _2tuple_4])
 
-    twoT5 = TwoTuple([1, 2])
-    twoT6 = TwoTuple([3, 4])
-    twoT7 = TwoTuple([4, 5])
-    _2tuple_T_3 = TwoTupleT([twoT5, twoT6, twoT7])
+    _2tuple_5 = TwoTuple([1, 2])
+    _2tuple_6 = TwoTuple([3, 4])
+    _2tuple_7 = TwoTuple([4, 5])
+    _2tuple_T_3 = TwoTupleT([_2tuple_5, _2tuple_6, _2tuple_7])
 
     bound_2tuple_1 = get_bound_2tuple(_2tuple_T_1)
     bound_2tuple_2 = get_bound_2tuple(_2tuple_T_2)

@@ -3,25 +3,27 @@ from typing import List
 from simulations.structure import TwoTuple, TwoTupleSS, TwoTupleT, TwoTupleTS
 from simulations.structure import TwoTupleS
 
-def fMin1oS(p2tupleS: TwoTupleS) -> object:
-    minFirst = None
-    for item in p2tupleS.list():
-        if minFirst is None or minFirst > item.first():
-            minFirst = item.first()
-    return minFirst
+# fMin1oS
+def get_min_first_of_2tuple_S(p_2tuple_S: TwoTupleS) -> object:
+    min_first = None
+    for item in p_2tuple_S:
+        if min_first is None or min_first > item.first():
+            min_first = item.first()
+    return min_first
 
 
-def fMax2oS(p2tupleS: TwoTupleS) -> object:
-    maxSecond = None
-    for item in p2tupleS.list():
-        if maxSecond is None or maxSecond < item.second():
-            maxSecond = item.second()
-    return maxSecond
+# fMax2oS
+def get_max_second_of_2tuple_S(p_2tuple_S: TwoTupleS) -> object:
+    max_second = None
+    for item in p_2tuple_S:
+        if max_second is None or max_second < item.second():
+            max_second = item.second()
+    return max_second
 
 
 # fCPo2tupleSS实现
 # 2tupleSS内所有元素, 以pIdxT为顺序, 做笛卡尔积
-def get_CP_of_2tupleSS(p_2tupleSS: TwoTupleSS, p_idxT: List[int]) -> TwoTupleTS:
+def get_CP_of_2tuple_SS(p_2tupleSS: TwoTupleSS, p_idxT: List[int]) -> TwoTupleTS:
 
     sub_2tupleTS_list = get_CP_of_2tupleSS_recur(p_2tupleSS, p_idxT, 1)
 
@@ -40,19 +42,19 @@ def get_CP_of_2tupleSS_recur(p_2tupleSS: TwoTupleSS,
                              p_idxT: List[int],
                              pivot: int) -> List[List[object]]:
 
-    cur_idx = p_idxT[pivot - 1]               # pivot所代表的2tupleS的索引
+    cur_idx = p_idxT[pivot - 1] - 1               # pivot所代表的2tupleS的索引
     cur_2tupleS = p_2tupleSS[cur_idx]
 
     _2tupleTS_list = []
 
     if pivot == len(p_idxT):
-        for cur_2tuple in cur_2tupleS.list():
+        for cur_2tuple in cur_2tupleS:
                 _2tupleTS_list.append([cur_2tuple])
         return _2tupleTS_list
 
     post_2tupleTS_list = get_CP_of_2tupleSS_recur(p_2tupleSS, p_idxT, pivot + 1)
 
-    for cur_2tuple in cur_2tupleS.list():
+    for cur_2tuple in cur_2tupleS:
         for cur_post_2tupleT in post_2tupleTS_list:
             cur_2tupleT = [ cur_2tuple ] + cur_post_2tupleT
             _2tupleTS_list.append(cur_2tupleT)
@@ -96,6 +98,12 @@ def get_cut_2tuple_S_by_domain(p_2tuple_S: TwoTupleS,
     cut_2tuple_S = TwoTupleS(cut_2tuple_S_list)
 
     return cut_2tuple_S
+
+
+# fLargestCommCut2tupleS函数实现, 求p_2tuple_SS的最大的公共切割二元组集合
+def get_largest_comm_cut_2tuple_S(p_2tuple_SS: TwoTupleSS) -> TwoTupleS:
+    # todo
+    pass
 
 
 # fBound2tuple函数实现

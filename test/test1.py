@@ -1,4 +1,4 @@
-from simulations.function import fMin1oS, fMax2oS
+from simulations.function import get_min_first_of_2tuple_S, get_max_second_of_2tuple_S
 from simulations.structure import TwoTuple, TwoTupleT, TwoTupleSS
 from simulations.structure import TwoTupleS
 
