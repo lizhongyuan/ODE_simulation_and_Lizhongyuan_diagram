@@ -38,14 +38,16 @@ def get_CP_of_2tupleSS(p_2tupleSS: TwoTupleSS, p_idxT: List[int]) -> TwoTupleTS:
 # 递归求2tupleSS内某些元素的笛卡尔积
 def get_CP_of_2tupleSS_recur(p_2tupleSS: TwoTupleSS, p_idxT: List[int], pivot: int) -> List[List[object]]:
 
-    cur_idx = p_idxT[pivot - 1] - 1               # pivot所代表的索引
-    cur_2tupleS = p_2tupleSS.list()[cur_idx]
+    # cur_idx = p_idxT[pivot - 1] - 1               # pivot所代表的索引
+    # cur_2tupleS = p_2tupleSS.list()[cur_idx]
+    cur_idx = p_idxT[pivot - 1]               # pivot所代表的索引
+    cur_2tupleS = p_2tupleSS[cur_idx]
 
     _2tupleTS_list = []
 
     if pivot == len(p_idxT):
         for cur_2tuple in cur_2tupleS.list():
-            _2tupleTS_list.append([cur_2tuple])
+                _2tupleTS_list.append([cur_2tuple])
         return _2tupleTS_list
 
     post_2tupleTS_list = get_CP_of_2tupleSS_recur(p_2tupleSS, p_idxT, pivot + 1)
@@ -64,8 +66,8 @@ def get_bound_2tuple(p_2tupleT: TwoTupleT) -> TwoTuple | None:
     if p_2tupleT is None:
         return None
 
-    min_first = p_2tupleT.list()[0].first()
-    max_second = p_2tupleT.list()[0].second()
+    min_first = p_2tupleT[1].first()
+    max_second = p_2tupleT[1].second()
 
     for item in p_2tupleT.list():
         if min_first > item.first():

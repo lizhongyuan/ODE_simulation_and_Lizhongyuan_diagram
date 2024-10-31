@@ -1,5 +1,6 @@
 import json
-from frozendict import frozendict
+
+from simulations.structure import MySet
 
 
 class PDIE:
@@ -26,17 +27,22 @@ class PDIE:
     def print(self):
         print("print")
 
+class PDIES(MySet):
+
+    def set_unfeasible(self, unfeasible_info):
+        self._unfeasible_info = unfeasible_info
+
 
 pdie = PDIE(isAtom=True,
             metaPDIES=None,
             DI2tupleS=None)
 
-DI2tupleS = list()
-DI2tupleS.append((0, 1))
-DI2tupleS.append((1, 2))
-DI2tupleS.append((3, 4))
-
-pdie.setDI2tupleS(DI2tupleS)
-
-pdie.print()
-print(pdie.getDI2tupleS())
+# DI2tupleS = list()
+# DI2tupleS.append((0, 1))
+# DI2tupleS.append((1, 2))
+# DI2tupleS.append((3, 4))
+#
+# pdie.setDI2tupleS(DI2tupleS)
+#
+# pdie.print()
+# print(pdie.getDI2tupleS())

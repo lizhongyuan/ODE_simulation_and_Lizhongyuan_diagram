@@ -2,50 +2,66 @@
 
 class MySet:
     def __init__(self, setList):
-        self._setList = setList
+        self._list = setList
+        self._dict = {i: self._list[i - 1] for i in range(1, len(self._list) + 1)}
+
+    def __getitem__(self, index):
+        return self._list[index - 1]
+    def __setitem__(self, index, value):
+        self._list[index - 1] = value
 
     def __str__(self) -> str:
-        formatStr = "{"
-        for i, elem in enumerate(self._setList):
-            if i < len(self._setList) - 1:
-                formatStr += (str(elem) + ", ")
+        format_str = "{"
+        for i, elem in enumerate(self._list):
+            if i < len(self._list) - 1:
+                format_str += (str(elem) + ", ")
             else:
-                formatStr += str(elem)
-        return formatStr + "}"
+                format_str += str(elem)
+        format_str += "}"
 
-    def Cardinality(self) -> int:
-        return len(self._setList)
+        return format_str
+
+    def cardinality(self) -> int:
+        return len(self._list)
 
     def list(self) -> list:
-        return self._setList
+        return self._list
 
-    def Empty(self) -> bool:
-        return len(self._setList) == 0
+    def empty(self) -> bool:
+        return len(self._list) == 0
 
 
 class MyTuple:
 
     def __init__(self, tupleList):
-        self._tupleList = tupleList
+        self._list = tupleList
+
+    def __getitem__(self, index):
+        return self._list[index - 1]
+
+    def __setitem__(self, index, value):
+        self._list[index - 1] = value
 
     def __str__(self) -> str:
-        formatStr = "("
-        for i, elem in enumerate(self._tupleList):
-            if i < len(self._tupleList) - 1:
-                formatStr += (str(elem) + ", ")
+        format_str = "("
+        for i, elem in enumerate(self._list):
+            if i < len(self._list) - 1:
+                format_str += (str(elem) + ", ")
             else:
-                formatStr += str(elem)
-        return formatStr + ")"
+                format_str += str(elem)
+        format_str += ")"
+
+        return format_str
 
     def __len__(self) -> int:
-        return len(self._tupleList)
+        return len(self._list)
 
     def list(self) -> list:
-        return self._tupleList
+        return self._list
 
     def __eq__(self, other):
-        for i in range(len(self._tupleList)):
-            if self._tupleList[i] != other.list()[i]:
+        for i in range(1, len(self._list) + 1):
+            if self.__getitem__(i) != other[i]:
                 return False
         return True
 
@@ -53,13 +69,13 @@ class MyTuple:
 class TwoTuple(MyTuple):
 
     def first(self) -> object:
-        return self._tupleList[0]
+        return self.__getitem__(1)
 
     def second(self):
-        return self._tupleList[1]
+        return self.__getitem__(2)
 
     def instance(self) -> tuple[object, object]:
-        return self._tupleList[0], self._tupleList[1]
+        return self.__getitem__(1), self.__getitem__(2)
 
 
 class TwoTupleS(MySet):
