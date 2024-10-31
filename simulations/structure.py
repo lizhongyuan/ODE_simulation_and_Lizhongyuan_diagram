@@ -23,7 +23,7 @@ class MySet:
         return len(self._setList) == 0
 
 
-class Tuple:
+class MyTuple:
 
     def __init__(self, tupleList):
         self._tupleList = tupleList
@@ -50,7 +50,7 @@ class Tuple:
         return True
 
 
-class TwoTuple(Tuple):
+class TwoTuple(MyTuple):
 
     def first(self) -> object:
         return self._tupleList[0]
@@ -58,8 +58,8 @@ class TwoTuple(Tuple):
     def second(self):
         return self._tupleList[1]
 
-    def instance(self):
-        return (self._tupleList[0], self._tupleList[1])
+    def instance(self) -> tuple[object, object]:
+        return self._tupleList[0], self._tupleList[1]
 
 
 class TwoTupleS(MySet):
@@ -72,5 +72,5 @@ class TwoTupleTS(MySet):
     pass
 
 
-class TwoTupleT(Tuple):
+class TwoTupleT(MyTuple):
     pass
