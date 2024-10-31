@@ -1,6 +1,6 @@
-from simulations.function import fMin1oS, fMax2oS, get_CP_of_2tupleSS_recur, get_bound_2tuple
+from simulations.function import fMin1oS, fMax2oS, get_CP_of_2tupleSS_recur, get_bound_2tuple, get_bound_2tuple_S
 from simulations.function import get_CP_of_2tupleSS
-from simulations.structure import TwoTuple, TwoTupleT, TwoTupleSS
+from simulations.structure import TwoTuple, TwoTupleT, TwoTupleSS, TwoTupleTS
 from simulations.structure import TwoTupleS
 
 if __name__ == '__main__':
@@ -24,3 +24,8 @@ if __name__ == '__main__':
     print(str(bound_2tuple_1))
     print(str(bound_2tuple_2))
     print(str(bound_2tuple_3))
+
+    _2tuple_TS = TwoTupleTS([_2tuple_T_1, _2tuple_T_2, _2tuple_T_3])
+
+    bound_2tuple_S = get_bound_2tuple_S(_2tuple_TS)
+    print(str(bound_2tuple_S))

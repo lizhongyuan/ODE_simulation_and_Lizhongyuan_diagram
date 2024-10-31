@@ -76,14 +76,21 @@ def get_bound_2tuple(p_2tupleT: TwoTupleT) -> TwoTuple | None:
     return TwoTuple([min_first, max_second])
 
 
+# fBound2tupleS函数实现
 def get_bound_2tuple_S(p_2tupleT_S: TwoTupleTS) -> TwoTupleS | None:
 
     if p_2tupleT_S is None:
         return None
 
-    res_list = []
-#    for cur_2tupleT in p_2tupleT_S.list(): % todo: 去重
+    bound_2tuple_S_list = []
+    bound_2tuple_map = set()
+    for cur_2tupleT in p_2tupleT_S.list():
+        cur_bound_2tuple = get_bound_2tuple(cur_2tupleT)
+        if cur_bound_2tuple.instance() not in bound_2tuple_map:
+            bound_2tuple_S_list.append(TwoTuple(cur_bound_2tuple.list()))
+            bound_2tuple_map.add(cur_bound_2tuple.instance())
 
+    return TwoTupleS(bound_2tuple_S_list)
 
 def fCut2tupleSbyDomain(p2tupleS, pA, pB):
     pass

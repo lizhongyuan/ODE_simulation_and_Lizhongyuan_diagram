@@ -43,6 +43,12 @@ class Tuple:
     def list(self) -> list:
         return self._tupleList
 
+    def __eq__(self, other):
+        for i in range(len(self._tupleList)):
+            if self._tupleList[i] != other.list()[i]:
+                return False
+        return True
+
 
 class TwoTuple(Tuple):
 
@@ -51,6 +57,9 @@ class TwoTuple(Tuple):
 
     def second(self):
         return self._tupleList[1]
+
+    def instance(self):
+        return (self._tupleList[0], self._tupleList[1])
 
 
 class TwoTupleS(MySet):
