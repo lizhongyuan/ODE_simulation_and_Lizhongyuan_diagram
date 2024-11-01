@@ -1,6 +1,5 @@
-from simulations.function import get_bound_2tuple, get_bound_2tuple_S, get_cut_2tuple_S_by_domain, is_cut_2tuple
-from simulations.structure import TwoTuple, TwoTupleT, TwoTupleTS, TwoTupleS
-
+from simulations.cut2tupleS import (get_cut_2tuple_S_by_domain, is_cut_2tuple, get_largest_comm_cut_2tuple_S)
+from simulations.structure import TwoTuple, TwoTupleT, TwoTupleTS, TwoTupleS, TwoTupleSS
 
 if __name__ == '__main__':
 
@@ -10,7 +9,6 @@ if __name__ == '__main__':
     twoT4 = TwoTuple([2, 4])
 
     _2tuple_S = TwoTupleS([twoT1, twoT2, twoT3, twoT4])
-
 
     ##
     # 1 测试is_cut_2tuple
@@ -45,3 +43,19 @@ if __name__ == '__main__':
 
     cut_2tuple_S_6 = get_cut_2tuple_S_by_domain(_2tuple_S, 0.5, 4)
     print(str(cut_2tuple_S_6))
+
+    print("---------- 3 Test get_largest_comm_cut_2tuple_S ----------")
+
+    twoTplS1 = TwoTupleS([twoT1, twoT2])
+    twoTplS2 = TwoTupleS([twoT3, twoT4])
+
+    twoT5 = TwoTuple([1, 2])
+    twoT6 = TwoTuple([3, 4])
+    twoT7 = TwoTuple([4, 5])
+    twoTplS3 = TwoTupleS([twoT5, twoT6, twoT7])
+
+    twoTupleSS = TwoTupleSS([twoTplS1, twoTplS2, twoTplS3])
+    # 最大的公共切割二元组集合
+    print(f"2tupleSS: {str(twoTupleSS)}")
+    largest_comm_cut_2tuple_S = get_largest_comm_cut_2tuple_S(twoTupleSS)
+    print(str(largest_comm_cut_2tuple_S))

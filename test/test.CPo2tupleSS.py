@@ -2,6 +2,7 @@ from simulations.function import get_CP_of_2tuple_SS
 from simulations.structure import TwoTuple, TwoTupleSS
 from simulations.structure import TwoTupleS
 
+
 if __name__ == '__main__':
     twoT1 = TwoTuple([1, 2])
     twoT2 = TwoTuple([3, 4])
