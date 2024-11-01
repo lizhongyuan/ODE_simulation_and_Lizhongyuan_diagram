@@ -1,4 +1,5 @@
-from simulations.cut2tupleS import (get_cut_2tuple_S_by_domain, is_cut_2tuple, get_largest_comm_cut_2tuple_S)
+from simulations.cut2tupleS import (get_cut_2tuple_S_by_domain, is_cut_2tuple, get_largest_comm_cut_2tuple_S,
+                                    get_max_comm_cut_2tuple)
 from simulations.structure import TwoTuple, TwoTupleT, TwoTupleTS, TwoTupleS, TwoTupleSS
 
 if __name__ == '__main__':
@@ -46,12 +47,13 @@ if __name__ == '__main__':
 
     print("---------- 3 Test get_largest_comm_cut_2tuple_S ----------")
 
-    twoTplS1 = TwoTupleS([twoT1, twoT2])
-    twoTplS2 = TwoTupleS([twoT3, twoT4])
 
     twoT5 = TwoTuple([1, 2])
     twoT6 = TwoTuple([3, 4])
     twoT7 = TwoTuple([4, 5])
+    twoTplS1 = TwoTupleS([twoT1, twoT2])
+    # twoTplS2 = TwoTupleS([twoT3, twoT4])
+    twoTplS2 = TwoTupleS([twoT3, twoT4, twoT6])
     twoTplS3 = TwoTupleS([twoT5, twoT6, twoT7])
 
     twoTupleSS = TwoTupleSS([twoTplS1, twoTplS2, twoTplS3])
@@ -59,3 +61,5 @@ if __name__ == '__main__':
     print(f"2tupleSS: {str(twoTupleSS)}")
     largest_comm_cut_2tuple_S = get_largest_comm_cut_2tuple_S(twoTupleSS)
     print(str(largest_comm_cut_2tuple_S))
+    max_comm_cut_2tuple = get_max_comm_cut_2tuple(twoTupleSS)
+    print(str(max_comm_cut_2tuple))

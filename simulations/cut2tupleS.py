@@ -113,4 +113,20 @@ def get_largest_comm_cut_2tuple_S(p_2tuple_SS: TwoTupleSS) -> TwoTupleS:
 
 ### fMaxCommCutTwoT 求最大公共切割二元组, todo: 检查论文是否有错
 def get_max_comm_cut_2tuple(p_2tuple_SS: TwoTupleSS):
-    pass
+    largest_comm_cut_2tuple_S = get_largest_comm_cut_2tuple_S(p_2tuple_SS)
+
+    if largest_comm_cut_2tuple_S is None:
+        return None
+
+    min_first = largest_comm_cut_2tuple_S[0].first()
+    max_second = largest_comm_cut_2tuple_S[0].second()
+
+    for cur_comm_cut_2tuple in largest_comm_cut_2tuple_S:
+        if min_first > cur_comm_cut_2tuple.first():
+            min_first = cur_comm_cut_2tuple.first()
+        if max_second < cur_comm_cut_2tuple.second():
+            max_second = cur_comm_cut_2tuple.second()
+
+    max_comm_cut_2tuple = TwoTuple([min_first, max_second])
+
+    return max_comm_cut_2tuple
