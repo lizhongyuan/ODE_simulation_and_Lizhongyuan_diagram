@@ -33,6 +33,12 @@ class MySet:
     def empty(self) -> bool:
         return len(self._list) == 0
 
+    def has(self, item: object) -> bool:
+        for elem in self._list:
+            if item == elem:
+                return True
+        return False
+
 
 class MyTuple:
 
