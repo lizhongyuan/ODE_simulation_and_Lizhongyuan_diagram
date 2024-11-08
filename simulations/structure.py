@@ -71,6 +71,9 @@ class MyTuple:
         return self._list
 
     def __eq__(self, other):
+        if len(self._list) != len(other):
+            return False
+
         for i in range(0, len(self._list)):
             if self.__getitem__(i) != other[i]:
                 return False

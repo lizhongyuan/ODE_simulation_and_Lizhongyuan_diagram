@@ -1,4 +1,4 @@
-from simulations.domainFilteredSub2tupleTS import Pred_is_2tuple_T_in_Domain
+from simulations.domainFilteredSub2tupleTS import Pred_is_2tuple_T_in_Domain, get_domain_filtered_sub_2tuple_TS
 from simulations.function import get_bound_2tuple, get_bound_2tuple_S
 from simulations.structure import TwoTuple, TwoTupleT, TwoTupleTS
 
@@ -25,3 +25,9 @@ if __name__ == '__main__':
     print(res)
     res = Pred_is_2tuple_T_in_Domain(_2tuple_TS, _2tuple_T_1, 1, 4.5)
     print(res)
+
+    domain_filtered_sub_2tuple_TS_2 = get_domain_filtered_sub_2tuple_TS(_2tuple_TS, 1, 4)
+    print(domain_filtered_sub_2tuple_TS_2)
+
+    domain_filtered_sub_2tuple_TS_3 = get_domain_filtered_sub_2tuple_TS(_2tuple_TS, 1, 4.5)
+    print(domain_filtered_sub_2tuple_TS_3)
