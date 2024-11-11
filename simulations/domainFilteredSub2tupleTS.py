@@ -17,6 +17,14 @@ def Pred_is_2tuple_T_in_Domain(_2tuple_TS: TwoTupleTS, _2tuple_T: TwoTupleT, A: 
 
 # 定义24, 求一个2tupleTS在域[A, B]的域过滤子集
 def get_domain_filtered_sub_2tuple_TS(_2tuple_TS: TwoTupleTS, A: object, B: object) -> TwoTupleTS | None:
+    """
+    求一个2tupleTS在域[A, B]的域过滤子集(定义24)
+    :param _2tuple_TS: 一个二元组的元组的集合
+    :param A: 过滤域的左边界
+    :param B: 过滤域的右边界
+    :return:
+    """
+
     _2tuple_TS_list = _2tuple_TS.list()
     _2tuple_T_list = []
     has_A_left = False
