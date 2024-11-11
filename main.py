@@ -266,7 +266,7 @@ if __name__ == '__main__':
     dpi = 3000
     font_size = 0.75
     axis_length_zero = True
-    res = gen_combinations_data(elements4)
+    res = gen_combinations_data(elements3)
 
     # 10: 4000, 0.5
     # dpi = 3000

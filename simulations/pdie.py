@@ -1,5 +1,3 @@
-import json
-
 from simulations.structure import MySet
 
 
@@ -24,23 +22,13 @@ class PDIE:
     def getDI2tupleS(self):
         return set(self._DI2tupleS)
 
-    def print(self):
-        print("print")
-
+    # def print(self):
+    #     print("print")
+    #
 class PDIES(MySet):
     pass
 
-
-pdie = PDIE(isAtom=True,
-            metaPDIES=None,
-            DI2tupleS=None)
-
-# DI2tupleS = list()
-# DI2tupleS.append((0, 1))
-# DI2tupleS.append((1, 2))
-# DI2tupleS.append((3, 4))
 #
-# pdie.setDI2tupleS(DI2tupleS)
-#
-# pdie.print()
-# print(pdie.getDI2tupleS())
+# pdie = PDIE(isAtom=True,
+#             metaPDIES=None,
+#             DI2tupleS=None)

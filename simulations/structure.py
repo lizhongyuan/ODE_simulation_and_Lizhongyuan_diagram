@@ -39,6 +39,12 @@ class MySet:
                 return True
         return False
 
+    def add(self, elem):
+        if self.has(elem):
+            return
+
+        self._list.append(elem)
+
 
 class MyTuple:
 

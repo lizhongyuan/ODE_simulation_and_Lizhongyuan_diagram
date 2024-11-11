@@ -25,16 +25,15 @@ def get_domain_filtered_sub_2tuple_TS(_2tuple_TS: TwoTupleTS, A: object, B: obje
     :return:
     """
 
-    _2tuple_TS_list = _2tuple_TS.list()
-    _2tuple_T_list = []
+    sub_2tuple_TS = TwoTupleTS([])
     has_A_left = False
     has_B_right = False
 
-    for _2tuple_T in _2tuple_TS_list:
+    for _2tuple_T in _2tuple_TS:
         if not Pred_is_2tuple_T_in_Domain(_2tuple_TS, _2tuple_T, A, B):
             continue
 
-        _2tuple_T_list.append(_2tuple_T)
+        sub_2tuple_TS.add(_2tuple_T)
 
         if not has_A_left and get_min_1_of_2tuple_T(_2tuple_T) == A:
             has_A_left = True
@@ -42,6 +41,6 @@ def get_domain_filtered_sub_2tuple_TS(_2tuple_TS: TwoTupleTS, A: object, B: obje
             has_B_right = True
 
     if has_A_left and has_B_right:
-        return TwoTupleTS(_2tuple_T_list)
+        return sub_2tuple_TS
 
-    return None
+    return TwoTupleTS([])

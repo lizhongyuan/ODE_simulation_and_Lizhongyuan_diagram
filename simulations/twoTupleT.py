@@ -18,18 +18,17 @@ def get_min_1_of_2tuple_T(p_2tupleT: TwoTupleT) -> object:
     return min_first
 
 
-##
-#
 def get_max_2_of_2tuple_T(p_2tupleT: TwoTupleT) -> object:
     """
     获取一个TwoTupleT实例的所有集合元素的最大第2项
 
     Args:
-        p_2tupleT (TwoTupleT): 一个TwoTupleT实例
+        p_2tupleT : 一个TwoTupleT实例
 
     Returns:
-        object: p_2tupleT的所有集合元素的最大第2项
+        p_2tupleT的所有集合元素的最大第2项
     """
+
     if p_2tupleT is None:
         return None
 
