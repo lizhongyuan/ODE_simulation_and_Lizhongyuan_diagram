@@ -22,7 +22,7 @@ if __name__ == '__main__':
     res2 = is_cut_2tuple(_2tuple_S, test_2tuple)
     print(f"res2: {res2}")
 
-    test_2tuple_2 = TwoTuple([1, 3])
+    test_2tuple_2 = TwoTuple([2, 3])
     res3 = is_cut_2tuple(_2tuple_S, test_2tuple_2)
     print(f"res3: {res3}")
 
