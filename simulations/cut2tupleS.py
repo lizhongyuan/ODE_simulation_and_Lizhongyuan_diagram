@@ -67,7 +67,7 @@ def get_cut_2tuple_S_by_domain(p_2tuple_S: TwoTupleS,
     return cut_2tuple_S
 
 
-# fLargestCommCut2tupleS函数实现, 求p_2tuple_SS的最大的公共切割二元组集合
+# fLargestCommCut2tupleS函数实现, 求p_2tuple_SS的最大的公共切割二元组的集合
 def get_largest_comm_cut_2tuple_S(p_2tuple_SS: TwoTupleSS) -> TwoTupleS:
 
     ### ---------- 1 获取所有的第一项和第二项 ----------
@@ -76,48 +76,49 @@ def get_largest_comm_cut_2tuple_S(p_2tuple_SS: TwoTupleSS) -> TwoTupleS:
     second_list = []
 
     for cur_2tuple_S in p_2tuple_SS:
-        for cur_2tuple in cur_2tuple_S:
-            first_list.append(cur_2tuple.first())
-            second_list.append(cur_2tuple.second())
+        for _2tuple in cur_2tuple_S:
+            first_list.append(_2tuple.first())
+            second_list.append(_2tuple.second())
 
     first_list = list(OrderedDict.fromkeys(first_list))
     second_list = list(OrderedDict.fromkeys(second_list))
 
-    largest_comm_cut_2tuple_S_list = []
+#    largest_comm_cut_2tuple_S_list = []
+    largest_comm_cut_2tuple_S = TwoTupleS([])
 
     ### ---------- 2 所有的第一项和第二项, 构造二元组, 检查是否是切割二元组, 并添加到列表 ----------
-    for cur_first in first_list:
-        for cur_second in second_list:
+    for first in first_list:
+        for second in second_list:
 
             # 2.1 跳过不合法的二元组
-            if cur_first >= cur_second:
+            if first >= second:
                 continue
 
             # 2.2 跳过重复的二元组
-            cur_2tuple = TwoTuple([cur_first, cur_second])
-            if cur_2tuple in largest_comm_cut_2tuple_S_list:
+            _2tuple = TwoTuple([first, second])
+            if _2tuple in largest_comm_cut_2tuple_S:
                 continue
 
             # 2.3 检查是否是p_2tuple_SS每个元素的切割二元组, 如果是则插入列表
             res = True
             for cur_2tuple_S in p_2tuple_SS:
-                if not is_cut_2tuple(cur_2tuple_S, cur_2tuple):
+                if not is_cut_2tuple(cur_2tuple_S, _2tuple):
                     res = False
                     break
 
             if res:
-                largest_comm_cut_2tuple_S_list.append(cur_2tuple)
+                largest_comm_cut_2tuple_S.add(_2tuple)
 
-    largest_comm_cut_2tuple_S = TwoTupleS(largest_comm_cut_2tuple_S_list)
+#    largest_comm_cut_2tuple_S = TwoTupleS(largest_comm_cut_2tuple_S_list)
 
     return largest_comm_cut_2tuple_S
 
 
-### fMaxCommCutTwoT 求最大公共切割二元组, todo: 检查论文是否有错
+### fMaxCommCutTwoT 求最大公共切割二元组
 def get_max_comm_cut_2tuple(p_2tuple_SS: TwoTupleSS):
     largest_comm_cut_2tuple_S = get_largest_comm_cut_2tuple_S(p_2tuple_SS)
 
-    if largest_comm_cut_2tuple_S is None:
+    if largest_comm_cut_2tuple_S.empty():
         return None
 
     min_first = largest_comm_cut_2tuple_S[0].first()
