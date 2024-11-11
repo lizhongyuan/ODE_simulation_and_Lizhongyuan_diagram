@@ -44,3 +44,15 @@ def get_domain_filtered_sub_2tuple_TS(_2tuple_TS: TwoTupleTS, A: object, B: obje
         return sub_2tuple_TS
 
     return TwoTupleTS([])
+
+
+def Pred_is_domain_filter_2tuple_T(_2tuple_TS: TwoTupleTS, _2tuple: TwoTuple) -> bool:
+    left = _2tuple.first()
+    right = _2tuple.second()
+
+    if get_domain_filtered_sub_2tuple_TS(_2tuple_TS, left, right):
+        return True
+
+    return False
+
+# todo: 定义25
