@@ -1,4 +1,4 @@
-from simulations.cut2tupleS import (get_cut_2tuple_S_by_domain, is_cut_2tuple, get_largest_comm_cut_2tuple_S,
+from simulations.cut2tupleS import (get_cut_2tuple_S_by_domain, Pred_is_cut_2tuple, get_largest_comm_cut_2tuple_S,
                                     get_max_comm_cut_2tuple)
 from simulations.structure import TwoTuple, TwoTupleT, TwoTupleTS, TwoTupleS, TwoTupleSS
 
@@ -15,15 +15,15 @@ if __name__ == '__main__':
     # 1 测试is_cut_2tuple
     print("---------- 1 Test is_cut_2tuple ----------")
 
-    res1 = is_cut_2tuple(_2tuple_S, twoT3)
+    res1 = Pred_is_cut_2tuple(_2tuple_S, twoT3)
     print(f"res1: {res1}")
 
     test_2tuple = TwoTuple([1, 2.5])
-    res2 = is_cut_2tuple(_2tuple_S, test_2tuple)
+    res2 = Pred_is_cut_2tuple(_2tuple_S, test_2tuple)
     print(f"res2: {res2}")
 
     test_2tuple_2 = TwoTuple([2, 3])
-    res3 = is_cut_2tuple(_2tuple_S, test_2tuple_2)
+    res3 = Pred_is_cut_2tuple(_2tuple_S, test_2tuple_2)
     print(f"res3: {res3}")
 
     print("---------- 2 Test get_cut_2tuple_S_by_domain ----------")

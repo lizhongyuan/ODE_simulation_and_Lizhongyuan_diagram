@@ -8,7 +8,7 @@ from collections import OrderedDict
 
 ##
 # is_cut_2tuple函数实现, 判断二元组_2tuple是否是p_2tupleS的一个切割二元组
-def is_cut_2tuple(p_2tupleS: TwoTupleS, p_2tuple: TwoTuple) -> bool:
+def Pred_is_cut_2tuple(p_2tupleS: TwoTupleS, p_2tuple: TwoTuple) -> bool:
     first_elem_match = False
     second_elem_match = False
 
@@ -33,7 +33,7 @@ def is_cut_2tuple(p_2tupleS: TwoTupleS, p_2tuple: TwoTuple) -> bool:
 def get_cut_2tuple_S_by_domain(p_2tuple_S: TwoTupleS,
                                p_A: object,
                                p_B: object) -> TwoTupleS | None:
-    if not is_cut_2tuple(p_2tuple_S, TwoTuple([p_A, p_B])):
+    if not Pred_is_cut_2tuple(p_2tuple_S, TwoTuple([p_A, p_B])):
         return TwoTupleS([])
 
     cut_2tuple_S = TwoTupleS([])
@@ -75,8 +75,8 @@ def get_largest_comm_cut_2tuple_S(p_2tuple_SS: TwoTupleSS) -> TwoTupleS:
     first_list = []
     second_list = []
 
-    for cur_2tuple_S in p_2tuple_SS:
-        for _2tuple in cur_2tuple_S:
+    for _2tuple_S in p_2tuple_SS:
+        for _2tuple in _2tuple_S:
             first_list.append(_2tuple.first())
             second_list.append(_2tuple.second())
 
@@ -100,16 +100,14 @@ def get_largest_comm_cut_2tuple_S(p_2tuple_SS: TwoTupleSS) -> TwoTupleS:
                 continue
 
             # 2.3 检查是否是p_2tuple_SS每个元素的切割二元组, 如果是则插入列表
-            res = True
-            for cur_2tuple_S in p_2tuple_SS:
-                if not is_cut_2tuple(cur_2tuple_S, _2tuple):
-                    res = False
+            is_comm_cut_2tuple = True
+            for _2tuple_S in p_2tuple_SS:
+                if not Pred_is_cut_2tuple(_2tuple_S, _2tuple):
+                    is_comm_cut_2tuple = False
                     break
 
-            if res:
+            if is_comm_cut_2tuple:
                 largest_comm_cut_2tuple_S.add(_2tuple)
-
-#    largest_comm_cut_2tuple_S = TwoTupleS(largest_comm_cut_2tuple_S_list)
 
     return largest_comm_cut_2tuple_S
 
