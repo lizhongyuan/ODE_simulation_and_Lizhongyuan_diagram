@@ -17,6 +17,8 @@ if __name__ == '__main__':
     min_1_of_2 = get_min_1_of_2tuple_T(_2tuple_T_2)
     max_2_of_2 = get_max_2_of_2tuple_T(_2tuple_T_2)
 
+    print(get_max_2_of_2tuple_T.__doc__)
+
     print(f'min_1_of_1: {min_1_of_1}')
     print(f'max_2_of_1: {max_2_of_1}')
     print(f'min_1_of_2: {min_1_of_2}')

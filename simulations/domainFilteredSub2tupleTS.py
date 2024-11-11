@@ -14,6 +14,7 @@ def Pred_is_2tuple_T_in_Domain(_2tuple_TS: TwoTupleTS, _2tuple_T: TwoTupleT, A: 
 
     return True
 
+
 # 定义24, 求一个2tupleTS在域[A, B]的域过滤子集
 def get_domain_filtered_sub_2tuple_TS(_2tuple_TS: TwoTupleTS, A: object, B: object) -> TwoTupleTS | None:
     _2tuple_TS_list = _2tuple_TS.list()
@@ -26,6 +27,7 @@ def get_domain_filtered_sub_2tuple_TS(_2tuple_TS: TwoTupleTS, A: object, B: obje
             continue
 
         _2tuple_T_list.append(_2tuple_T)
+
         if not has_A_left and get_min_1_of_2tuple_T(_2tuple_T) == A:
             has_A_left = True
         if not has_B_right and get_max_2_of_2tuple_T(_2tuple_T) == B:
