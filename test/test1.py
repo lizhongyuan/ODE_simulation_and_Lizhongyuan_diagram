@@ -1,17 +1,17 @@
 from simulations.function import get_min_first_of_2tuple_S, get_max_second_of_2tuple_S
-from simulations.structure import TwoTuple, TwoTupleT, TwoTupleSS
-from simulations.structure import TwoTupleS
+from simulations.structure import _2Tuple, _2TupleT, _2TupleSS
+from simulations.structure import _2TupleS
 
 if __name__ == '__main__':
-    twoT1 = TwoTuple([1, 2])
-    twoT2 = TwoTuple([4, 5])
-    twoTplS1 = TwoTupleS([twoT1, twoT2])
+    twoT1 = _2Tuple([1, 2])
+    twoT2 = _2Tuple([4, 5])
+    twoTplS1 = _2TupleS([twoT1, twoT2])
 
-    twoT3 = TwoTuple([1, 3])
-    twoT4 = TwoTuple([2, 4])
-    twoTplS2 = TwoTupleS([twoT3, twoT4])
+    twoT3 = _2Tuple([1, 3])
+    twoT4 = _2Tuple([2, 4])
+    twoTplS2 = _2TupleS([twoT3, twoT4])
 
-    twoTplSS = TwoTupleSS([twoTplS1, twoTplS2, twoTplS3])
+    twoTplSS = _2TupleSS([twoTplS1, twoTplS2, twoTplS3])
     print(str(twoTplSS))
 
 #     print(str(twoTplS))

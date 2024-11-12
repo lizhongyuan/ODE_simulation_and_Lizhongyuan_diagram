@@ -1,28 +1,28 @@
 from simulations.cut2tupleS import (get_cut_2tuple_S_by_domain, Pred_is_cut_2tuple, get_largest_comm_cut_2tuple_S,
                                     get_max_comm_cut_2tuple)
-from simulations.structure import TwoTuple, TwoTupleT, TwoTupleTS, TwoTupleS, TwoTupleSS
+from simulations.structure import _2Tuple, _2TupleT, _2TupleTS, _2TupleS, _2TupleSS
 
 if __name__ == '__main__':
 
-    twoT1 = TwoTuple([1, 2])
-    twoT2 = TwoTuple([3, 4])
-    twoT3 = TwoTuple([1, 3])
-    twoT4 = TwoTuple([2, 4])
+    _2tuple_1 = _2Tuple([1, 2])
+    _2tuple_2 = _2Tuple([3, 4])
+    _2tuple_3 = _2Tuple([1, 3])
+    _2tuple_4 = _2Tuple([2, 4])
 
-    _2tuple_S = TwoTupleS([twoT1, twoT2, twoT3, twoT4])
+    _2tuple_S = _2TupleS([_2tuple_1, _2tuple_2, _2tuple_3, _2tuple_4])
 
     ##
     # 1 测试is_cut_2tuple
     print("---------- 1 Test is_cut_2tuple ----------")
 
-    res1 = Pred_is_cut_2tuple(_2tuple_S, twoT3)
+    res1 = Pred_is_cut_2tuple(_2tuple_S, _2tuple_3)
     print(f"res1: {res1}")
 
-    test_2tuple = TwoTuple([1, 2.5])
+    test_2tuple = _2Tuple([1, 2.5])
     res2 = Pred_is_cut_2tuple(_2tuple_S, test_2tuple)
     print(f"res2: {res2}")
 
-    test_2tuple_2 = TwoTuple([2, 3])
+    test_2tuple_2 = _2Tuple([2, 3])
     res3 = Pred_is_cut_2tuple(_2tuple_S, test_2tuple_2)
     print(f"res3: {res3}")
 
@@ -47,14 +47,14 @@ if __name__ == '__main__':
 
     print("---------- 3 Test get_largest_comm_cut_2tuple_S ----------")
 
-    twoT5 = TwoTuple([1, 2])
-    twoT6 = TwoTuple([3, 4])
-    twoT7 = TwoTuple([4, 5])
-    twoTplS1 = TwoTupleS([twoT1, twoT2])
-    twoTplS2 = TwoTupleS([twoT3, twoT4, twoT6])
-    twoTplS3 = TwoTupleS([twoT5, twoT6, twoT7])
+    twoT5 = _2Tuple([1, 2])
+    twoT6 = _2Tuple([3, 4])
+    twoT7 = _2Tuple([4, 5])
+    twoTplS1 = _2TupleS([_2tuple_1, _2tuple_2])
+    twoTplS2 = _2TupleS([_2tuple_3, _2tuple_4, twoT6])
+    twoTplS3 = _2TupleS([twoT5, twoT6, twoT7])
 
-    twoTupleSS = TwoTupleSS([twoTplS1, twoTplS2, twoTplS3])
+    twoTupleSS = _2TupleSS([twoTplS1, twoTplS2, twoTplS3])
     # 最大的公共切割二元组集合
     print(f"2tupleSS: {str(twoTupleSS)}")
     largest_comm_cut_2tuple_S = get_largest_comm_cut_2tuple_S(twoTupleSS)

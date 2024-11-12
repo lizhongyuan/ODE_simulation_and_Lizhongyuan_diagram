@@ -86,7 +86,7 @@ class MyTuple:
         return True
 
 
-class TwoTuple(MyTuple):
+class _2Tuple(MyTuple):
 
     def first(self) -> object:
 #        return self.__getitem__(1)
@@ -101,18 +101,18 @@ class TwoTuple(MyTuple):
         return self.__getitem__(0), self.__getitem__(1)
 
 
-class TwoTupleS(MySet):
+class _2TupleS(MySet):
     pass
 
-class CutTwoTupleS(MySet):
+class Cut2TupleS(MySet):
     pass
 
-class TwoTupleSS(MySet):
+class _2TupleSS(MySet):
     pass
 
-class TwoTupleTS(MySet):
+class _2TupleTS(MySet):
     pass
 
 
-class TwoTupleT(MyTuple):
+class _2TupleT(MyTuple):
     pass

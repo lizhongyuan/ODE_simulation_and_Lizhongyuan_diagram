@@ -4,21 +4,21 @@ Documentation for this module.
 More details.
 """
 
-from simulations.structure import TwoTupleT
+from simulations.structure import _2TupleT
 
 
-def get_min_1_of_2tuple_T(p_2tupleT: TwoTupleT) -> object:
+def get_min_1st_of_2tuple_T(p_2tupleT: _2TupleT) -> object:
     if p_2tupleT is None:
         return None
 
-    min_first = p_2tupleT[0].first()
+    min_1st = p_2tupleT[0].first()
     for _2tuple in p_2tupleT:
-        if min_first > _2tuple.first():
-            min_first = _2tuple.first()
-    return min_first
+        if min_1st > _2tuple.first():
+            min_1st = _2tuple.first()
+    return min_1st
 
 
-def get_max_2_of_2tuple_T(p_2tupleT: TwoTupleT) -> object:
+def get_max_2nd_of_2tuple_T(p_2tupleT: _2TupleT) -> object:
     """
     获取一个TwoTupleT实例的所有集合元素的最大第2项
 
@@ -32,10 +32,10 @@ def get_max_2_of_2tuple_T(p_2tupleT: TwoTupleT) -> object:
     if p_2tupleT is None:
         return None
 
-    max_second = p_2tupleT[0].second()
+    max_2nd = p_2tupleT[0].second()
     for _2tuple in p_2tupleT:
-        if max_second < _2tuple.second():
-            max_second = _2tuple.second()
-    return max_second
+        if max_2nd < _2tuple.second():
+            max_2nd = _2tuple.second()
+    return max_2nd
 
 # todo: 定义24

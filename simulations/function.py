@@ -1,10 +1,10 @@
 from typing import List
 
-from simulations.structure import TwoTuple, TwoTupleSS, TwoTupleT, TwoTupleTS
-from simulations.structure import TwoTupleS
+from simulations.structure import _2Tuple, _2TupleSS, _2TupleT, _2TupleTS
+from simulations.structure import _2TupleS
 
 # fMin1oS
-def get_min_first_of_2tuple_S(p_2tuple_S: TwoTupleS) -> object:
+def get_min_first_of_2tuple_S(p_2tuple_S: _2TupleS) -> object:
     min_first = None
     for item in p_2tuple_S:
         if min_first is None or min_first > item.first():
@@ -13,7 +13,7 @@ def get_min_first_of_2tuple_S(p_2tuple_S: TwoTupleS) -> object:
 
 
 # fMax2oS
-def get_max_second_of_2tuple_S(p_2tuple_S: TwoTupleS) -> object:
+def get_max_second_of_2tuple_S(p_2tuple_S: _2TupleS) -> object:
     max_second = None
     for item in p_2tuple_S:
         if max_second is None or max_second < item.second():
@@ -23,22 +23,22 @@ def get_max_second_of_2tuple_S(p_2tuple_S: TwoTupleS) -> object:
 
 # fCPo2tupleSS实现
 # 2tupleSS内所有元素, 以pIdxT为顺序, 做笛卡尔积
-def get_CP_of_2tuple_SS(p_2tupleSS: TwoTupleSS, p_idxT: List[int]) -> TwoTupleTS:
+def get_CP_of_2tuple_SS(p_2tupleSS: _2TupleSS, p_idxT: List[int]) -> _2TupleTS:
 
     sub_2tupleTS_list = get_CP_of_2tupleSS_recur(p_2tupleSS, p_idxT, 1)
 
     _2tupleTS_list = []
     for cur_2tupleT_list in sub_2tupleTS_list:
-        cur_2tupleT = TwoTupleT(cur_2tupleT_list)
+        cur_2tupleT = _2TupleT(cur_2tupleT_list)
         _2tupleTS_list.append(cur_2tupleT)
 
-    _2tupleTS = TwoTupleTS(_2tupleTS_list)
+    _2tupleTS = _2TupleTS(_2tupleTS_list)
 
     return _2tupleTS
 
 
 # 递归求2tupleSS内某些元素的笛卡尔积
-def get_CP_of_2tupleSS_recur(p_2tupleSS: TwoTupleSS,
+def get_CP_of_2tupleSS_recur(p_2tupleSS: _2TupleSS,
                              p_idxT: List[int],
                              pivot: int) -> List[List[object]]:
 
@@ -66,7 +66,7 @@ def get_CP_of_2tupleSS_recur(p_2tupleSS: TwoTupleSS,
 
 
 # fBound2tuple函数实现
-def get_bound_2tuple(p_2tupleT: TwoTupleT) -> TwoTuple | None:
+def get_bound_2tuple(p_2tupleT: _2TupleT) -> _2Tuple | None:
 
     if p_2tupleT is None:
         return None
@@ -80,11 +80,11 @@ def get_bound_2tuple(p_2tupleT: TwoTupleT) -> TwoTuple | None:
         if max_second < item.second():
             max_second = item.second()
 
-    return TwoTuple([min_first, max_second])
+    return _2Tuple([min_first, max_second])
 
 
 # fBound2tupleS函数实现
-def get_bound_2tuple_S(p_2tupleT_S: TwoTupleTS) -> TwoTupleS | None:
+def get_bound_2tuple_S(p_2tupleT_S: _2TupleTS) -> _2TupleS | None:
 
     if p_2tupleT_S is None:
         return None
@@ -94,10 +94,10 @@ def get_bound_2tuple_S(p_2tupleT_S: TwoTupleTS) -> TwoTupleS | None:
     for cur_2tupleT in p_2tupleT_S.list():
         cur_bound_2tuple = get_bound_2tuple(cur_2tupleT)
         if cur_bound_2tuple.instance() not in bound_2tuple_map:
-            bound_2tuple_S_list.append(TwoTuple(cur_bound_2tuple.list()))
+            bound_2tuple_S_list.append(_2Tuple(cur_bound_2tuple.list()))
             bound_2tuple_map.add(cur_bound_2tuple.instance())
 
-    return TwoTupleS(bound_2tuple_S_list)
+    return _2TupleS(bound_2tuple_S_list)
 
 
 # fUnfeasibleAscMetaDI2tupleTS函数实现
