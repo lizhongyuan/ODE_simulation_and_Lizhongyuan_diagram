@@ -6,11 +6,9 @@ class MySet:
         self._dict = {i: self._list[i - 1] for i in range(1, len(self._list) + 1)}
 
     def __getitem__(self, index):
-#        return self._list[index - 1]
         return self._list[index]
 
     def __setitem__(self, index, value):
-#        self._list[index - 1] = value
         self._list[index] = value
 
     def __str__(self) -> str:

@@ -46,8 +46,7 @@ def get_domain_filtered_sub_2tuple_TS(_2tuple_TS: _2TupleTS, A: object, B: objec
     return _2TupleTS([])
 
 
-
-def Pred_is_domain_filter_2tuple_T(p_2tuple_TS: _2TupleTS, p_2tuple: _2Tuple) -> bool:
+def Pred_is_domain_filter_2tuple(p_2tuple_TS: _2TupleTS, p_2tuple: _2Tuple) -> bool:
     """
     (定义25)Predicate, 判定p_2tuple是否是p_2tuple_TS的域过滤二元组
     Args:
@@ -66,5 +65,7 @@ def Pred_is_domain_filter_2tuple_T(p_2tuple_TS: _2TupleTS, p_2tuple: _2Tuple) ->
 
     return False
 
-# todo: 定义25, 家里电脑
+# todo: 25, home mac
+
+
 
