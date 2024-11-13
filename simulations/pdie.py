@@ -38,6 +38,16 @@ class PDIE:
     def getDI2tupleS(self):
         return self._DI_2tuple_S
 
+
+class AtomPDIE(PDIE):
+    def __init__(self, DI_2tuple_S: _2TupleS):
+        super().__init__(is_atom=True,
+                         meta_PDIES=PDIES([]),
+                         DI_2tuple_S=DI_2tuple_S)
+
+    def __add__(self, other):
+        pass
+
     # def print(self):
     #     print("print")
     #
