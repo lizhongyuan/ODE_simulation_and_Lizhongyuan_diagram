@@ -1,7 +1,7 @@
 
 
 class MySet:
-    def __init__(self, setList):
+    def __init__(self, setList: list):
         self._list = setList
         self._dict = {i: self._list[i - 1] for i in range(1, len(self._list) + 1)}
 

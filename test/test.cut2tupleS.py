@@ -12,8 +12,8 @@ if __name__ == '__main__':
     _2tuple_S = _2TupleS([_2tuple_1, _2tuple_2, _2tuple_3, _2tuple_4])
 
     ##
-    # 1 测试is_cut_2tuple
-    print("---------- 1 Test is_cut_2tuple ----------")
+    # 1 测试is_cut_2tuple, 非论文内容
+    print("---------- 1 Test is_cut_2tuple, not in paper ----------")
 
     res1 = Pred_is_cut_2tuple(_2tuple_S, _2tuple_3)
     print(f"res1: {res1}")

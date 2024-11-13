@@ -10,7 +10,7 @@ from simulations.structure import _2TupleTS, _2Tuple
 
 def get_2tuple_from_2tuple_TS(p_2tuple_TS: _2TupleTS, p_idx: int, p_n: int) -> _2Tuple | None:
     """
-    从p_2tuple_TS获取索引号p_idx的元素的第n个二元组(p_idx和p_n都是从1开始计数)
+    (定义28)从p_2tuple_TS获取索引号p_idx的元素的第n个二元组(p_idx和p_n都是从1开始计数)
     Args:
         p_2tuple_TS (_2TupleTS):
         p_idx (int):

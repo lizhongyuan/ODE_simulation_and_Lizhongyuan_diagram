@@ -62,11 +62,16 @@ def get_CP_of_2tupleSS_recur(p_2tupleSS: _2TupleSS,
     return _2tupleTS_list
 
 
-
-
-
 # fBound2tuple函数实现
 def get_bound_2tuple(p_2tupleT: _2TupleT) -> _2Tuple | None:
+    """
+    (定义28)获取长度有限的二元组的元组的边界二元组
+    Args:
+        p_2tupleT (_2TupleT):
+
+    Returns:
+        _2Tuple:
+    """
 
     if p_2tupleT is None:
         return None
