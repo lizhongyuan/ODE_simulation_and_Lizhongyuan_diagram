@@ -5,7 +5,8 @@
 """
 from numpy.ma.core import empty
 
-from simulations.pdie import PDIES, PDIE, AtomPDIE
+from simulations.operations import atom_add
+from simulations.pdie import PDIES, PDIE, AtomPDIE, AtomPDIES
 from simulations.structure import _2TupleS, _2Tuple
 
 if __name__ == '__main__':
@@ -13,16 +14,24 @@ if __name__ == '__main__':
     empty_PDIES = PDIES([])
 
     _2_tuple_1 = _2Tuple([1, 2])
-    _2_tuple_2 = _2Tuple([4, 5])
-    DI_2tuple_S_1 = _2TupleS([_2_tuple_1, _2_tuple_2])
+    _2_tuple_2 = _2Tuple([3, 4])
+    _2_tuple_3 = _2Tuple([4, 5])
+    DI_2tuple_S_1 = _2TupleS([_2_tuple_1, _2_tuple_2, _2_tuple_3])
     atom_PDIE_1 = AtomPDIE(DI_2tuple_S=DI_2tuple_S_1)
 
     print(str(atom_PDIE_1))
 
-    _2_tuple_3 = _2Tuple([1, 3])
-    _2_tuple_4 = _2Tuple([2, 4])
-    _2_tuple_5 = _2Tuple([3, 5])
-    DI_2tuple_S_2 = _2TupleS([_2_tuple_3, _2_tuple_4, _2_tuple_5])
+    _2_tuple_4 = _2Tuple([1, 3])
+    _2_tuple_5 = _2Tuple([2, 4])
+    _2_tuple_6 = _2Tuple([3, 5])
+    DI_2tuple_S_2 = _2TupleS([_2_tuple_4, _2_tuple_5, _2_tuple_6])
     atom_PDIE_2 = AtomPDIE(DI_2tuple_S=DI_2tuple_S_2)
 
     print(str(atom_PDIE_2))
+    # def atom_add(atom_PDIE_S: AtomPDIES, idx_T: List[int]) -> PDIES | None:
+
+    atom_PDIE_S_1 = AtomPDIES([atom_PDIE_1, atom_PDIE_2])
+
+    comm_cut_2tuple_A = _2Tuple([1, 4])
+    res = atom_add(p_atom_PDIE_S=atom_PDIE_S_1, p_idx_T=[1, 2], p_comm_cut_2tuple=comm_cut_2tuple_A)
+    print(str(res))

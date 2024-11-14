@@ -10,6 +10,7 @@ class MySet:
 
     def __setitem__(self, index, value):
         self._list[index] = value
+        self._dict[index + 1] = value
 
     def __str__(self) -> str:
         format_str = "{"

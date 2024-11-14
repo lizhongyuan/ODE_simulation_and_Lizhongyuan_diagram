@@ -1,10 +1,24 @@
 from locale import format_string
 
-from simulations.structure import MySet, _2TupleS
+from simulations.structure import MySet, _2TupleS, _2TupleSS
 
 
 class PDIES(MySet):
-    pass
+
+    def get_DI_2tuple_SS(self) -> _2TupleSS:
+        _2tuple_SS = _2TupleSS([])
+        for item in self._list:
+            _2tuple_SS.add(item.getDI2tupleS())
+        return _2tuple_SS
+
+
+
+class AtomPDIES(MySet):
+    def get_DI_2tuple_SS(self) -> _2TupleSS:
+        _2tuple_SS = _2TupleSS([])
+        for item in self._list:
+            _2tuple_SS.add(item.getDI2tupleS())
+        return _2tuple_SS
 
 
 class PDIE:
@@ -52,7 +66,3 @@ class AtomPDIE(PDIE):
     #     print("print")
     #
 
-#
-# pdie = PDIE(isAtom=True,
-#             metaPDIES=None,
-#             DI2tupleS=None)
