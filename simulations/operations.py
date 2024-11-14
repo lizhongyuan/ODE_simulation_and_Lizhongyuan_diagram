@@ -7,15 +7,15 @@ from typing import List
 
 from simulations.cut2tupleS import get_largest_comm_cut_2tuple_S
 from simulations.domainFilteredSub2tupleTS import get_domain_filtered_sub_2tuple_TS
-from simulations.function import get_CP_of_2tuple_SS
-from simulations.pdie import PDIES, AtomPDIES
+from simulations.function import get_CP_of_2tuple_SS, get_bound_2tuple_S
+from simulations.pdie import PDIES, AtomPDIES, PDIE
 from simulations.structure import _2Tuple
 
 
 # todo:
 def atom_add(p_atom_PDIE_S: AtomPDIES,
              p_idx_T: List[int],
-             p_comm_cut_2tuple: _2Tuple) -> PDIES | None:
+             p_comm_cut_2tuple: _2Tuple) -> PDIE | None:
     print(f"AtomPDIES 时序加法:\n\n")
 
     # 1 取p_atom_PDIE_S的持续区间二元组集合的集合: DI_2tuple_SS
@@ -53,7 +53,11 @@ def atom_add(p_atom_PDIE_S: AtomPDIES,
         return None
     print(f"5 {str(domain_filtered_sub_2tuple_TS)}")
 
+    # 6
+    DI_2tuple_S = get_bound_2tuple_S(domain_filtered_sub_2tuple_TS)
+
     # 6 todo: 构造DIS和metaPDIES等等，返回对应PDIE
 
+    res_PDIE = PDIE(is_atom=False, meta_PDIES=p_atom_PDIE_S, DI_2tuple_S=DI_2tuple_S)
 
-    return None
+    return res_PDIE

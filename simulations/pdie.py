@@ -13,14 +13,16 @@ class PDIES(MySet):
 
 
 
-class AtomPDIES(MySet):
-    def get_DI_2tuple_SS(self) -> _2TupleSS:
-        _2tuple_SS = _2TupleSS([])
-        for item in self._list:
-            _2tuple_SS.add(item.getDI2tupleS())
-        return _2tuple_SS
+class AtomPDIES(PDIES):
+    # def get_DI_2tuple_SS(self) -> _2TupleSS:
+    #     _2tuple_SS = _2TupleSS([])
+    #     for item in self._list:
+    #         _2tuple_SS.add(item.getDI2tupleS())
+    #     return _2tuple_SS
+    pass
 
 
+# todo: 补充名字
 class PDIE:
     def __init__(self,
                  is_atom: bool,
@@ -37,7 +39,7 @@ class PDIE:
         format_str =\
             (f"{{\n" +
              f"\tis_atom: {self._is_atom},\n" +
-             f"\tmeta_PDIE: {str(self._meta_PDIE)},\n" +
+#             f"\tmeta_PDIE: {str(self._meta_PDIE)},\n" +
              f"\tDI_2tuple_S: {str(self._DI_2tuple_S)}\n" +
              f"}}"
              )
