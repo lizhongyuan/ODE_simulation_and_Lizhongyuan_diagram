@@ -88,8 +88,15 @@ def get_bound_2tuple(p_2tupleT: _2TupleT) -> _2Tuple | None:
     return _2Tuple([min_first, max_second])
 
 
-# fBound2tupleS函数实现
 def get_bound_2tuple_S(p_2tupleT_S: _2TupleTS) -> _2TupleS | None:
+    """
+    获取二元组的元组的集合p_2tupleT_S的边界二元组集合
+    Args:
+        p_2tupleT_S (_2TupleTS): 二元组的元组的集合
+
+    Returns:
+        (_2TupleS) p_2tupleT_S的边界二元组集合
+    """
 
     if p_2tupleT_S is None:
         return None

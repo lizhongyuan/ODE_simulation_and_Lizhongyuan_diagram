@@ -12,7 +12,6 @@ class PDIES(MySet):
         return _2tuple_SS
 
 
-
 class AtomPDIES(PDIES):
     # def get_DI_2tuple_SS(self) -> _2TupleSS:
     #     _2tuple_SS = _2TupleSS([])
@@ -63,8 +62,3 @@ class AtomPDIE(PDIE):
 
     def __add__(self, other):
         pass
-
-    # def print(self):
-    #     print("print")
-    #
-

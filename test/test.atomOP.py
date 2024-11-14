@@ -7,7 +7,7 @@ from numpy.ma.core import empty
 
 from simulations.operations import atom_add
 from simulations.pdie import PDIES, PDIE, AtomPDIE, AtomPDIES
-from simulations.structure import _2TupleS, _2Tuple
+from simulations.structure import _2TupleS, _2Tuple, _2TupleTS
 
 if __name__ == '__main__':
 
@@ -33,5 +33,14 @@ if __name__ == '__main__':
     atom_PDIE_S_1 = AtomPDIES([atom_PDIE_1, atom_PDIE_2])
 
     comm_cut_2tuple_A = _2Tuple([1, 4])
-    res = atom_add(p_atom_PDIE_S=atom_PDIE_S_1, p_idx_T=[1, 2], p_comm_cut_2tuple=comm_cut_2tuple_A)
+
+    unfeasible_DI_2tuple_TS_dict = {
+        "idx_T_asc": [1, 2],
+        "_2tuple_TS": _2TupleTS([])
+    }
+
+    res = atom_add(p_atom_PDIE_S=atom_PDIE_S_1,
+                   p_idx_T=[1, 2],
+                   p_comm_cut_2tuple=comm_cut_2tuple_A,
+                   p_unfeasible_DI_2tuple_TS_dict=unfeasible_DI_2tuple_TS_dict)
     print(str(res))
