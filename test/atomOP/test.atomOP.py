@@ -5,7 +5,7 @@
 """
 from numpy.ma.core import empty
 
-from simulations.operations import atom_add
+from simulations.atomOP import atom_add
 from simulations.pdie import PDIES, PDIE, AtomPDIE, AtomPDIES
 from simulations.structure import _2TupleS, _2Tuple, _2TupleTS, _2TupleT
 
@@ -32,9 +32,7 @@ if __name__ == '__main__':
     atom_PDIE_S_1 = AtomPDIES([atom_PDIE_1, atom_PDIE_2])
 
     comm_cut_2tuple_A = _2Tuple([1, 4])
-#    comm_cut_2tuple_B = _2Tuple([2, 4])
 
-    # 构造unfeasible_DI_2tuple_TS_dict
     unfeasible_DI_2tuple_TS_dict_1 = {
         "PDIE_list": [atom_PDIE_1, atom_PDIE_2],
         "idx_T_asc": [1, 2],

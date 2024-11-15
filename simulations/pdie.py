@@ -1,11 +1,21 @@
-from locale import format_string
-
+"""
+@brief: PDIE, PDIES, AtomPDIE, AtomPDIES and PDIE_ERROR
+@author: ZhongYuan.Li
+@date: 2024/11/15
+"""
 from simulations.structure import MySet, _2TupleS, _2TupleSS
 
-
 class PDIES(MySet):
+    """
+    PDIE Set
+    """
 
     def get_DI_2tuple_SS(self) -> _2TupleSS:
+        """
+        获取自身的持续区间二元组的集合的集合(Get the "set composed of duration interval 2-tuple sets" of itself)
+        Returns:
+            (_2TupleSS): 持续区间二元组的集合的集合(set composed of duration interval 2-tuple sets)
+        """
         _2tuple_SS = _2TupleSS([])
         for item in self._list:
             _2tuple_SS.add(item.getDI2tupleS())
@@ -13,11 +23,6 @@ class PDIES(MySet):
 
 
 class AtomPDIES(PDIES):
-    # def get_DI_2tuple_SS(self) -> _2TupleSS:
-    #     _2tuple_SS = _2TupleSS([])
-    #     for item in self._list:
-    #         _2tuple_SS.add(item.getDI2tupleS())
-    #     return _2tuple_SS
     pass
 
 
