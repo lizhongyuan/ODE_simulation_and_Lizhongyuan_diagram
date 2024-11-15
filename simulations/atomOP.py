@@ -10,6 +10,7 @@ from simulations.domainFilteredSub2tupleTS import get_domain_filtered_sub_2tuple
 from simulations.function import get_CP_of_2tuple_SS, get_bound_2tuple_S
 from simulations.pdie import PDIES, AtomPDIES, PDIE, PDIE_ERROR
 from simulations.structure import _2Tuple, _2TupleTS
+from simulations.unfeasible import get_feasible_DI_2tuple_TS
 
 
 # todo:
@@ -36,13 +37,19 @@ def atom_add(p_atom_PDIE_S: AtomPDIES,
     print(f"2 使用p_idx_T作为笛卡尔积表达式的运算数顺序, 取DI_2tuple_SS的所有集合元素, 以该顺序进行过笛卡尔积,\n得到一个二元组的元组的集合\n{str(_2tuple_TS_CP)}\n")
 
     # 3 取_2tuple_TS_CP的合法子集, (暂时认为都合法)todo, 增加索引顺序使用的调整
-    feasible_2tuple_TS = _2TupleTS([])
-    unfeasible_DI_2tuple_TS = p_unfeasible_DI_2tuple_TS_dict['_2tuple_TS']
-    for _2tuple_T in _2tuple_TS_CP:
-        if _2tuple_T not in unfeasible_DI_2tuple_TS:
-            feasible_2tuple_TS.add(_2tuple_T)
-    if feasible_2tuple_TS.empty():
-        return PDIE_ERROR()
+    # feasible_2tuple_TS = _2TupleTS([])
+    # unfeasible_DI_2tuple_TS = p_unfeasible_DI_2tuple_TS_dict['_2tuple_TS']
+    # for _2tuple_T in _2tuple_TS_CP:
+    #     if _2tuple_T not in unfeasible_DI_2tuple_TS:
+    #         feasible_2tuple_TS.add(_2tuple_T)
+    # if feasible_2tuple_TS.empty():
+    #     return PDIE_ERROR()
+
+    feasible_2tuple_TS = get_feasible_DI_2tuple_TS(_2tuple_TS_CP,
+                                                   p_unfeasible_DI_2tuple_TS_dict['_2tuple_TS'],
+                                                   p_idx_T,
+                                                   p_unfeasible_DI_2tuple_TS_dict['idx_T_asc'])
+
 
     print(f"3 取_2tuple_TS_CP的合法子集\n{str(feasible_2tuple_TS)}\n")
 
