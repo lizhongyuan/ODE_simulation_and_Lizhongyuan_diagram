@@ -8,7 +8,7 @@ from typing import List
 from simulations.cut2tupleS import get_largest_comm_cut_2tuple_S
 from simulations.domainFilteredSub2tupleTS import get_domain_filtered_sub_2tuple_TS
 from simulations.function import get_CP_of_2tuple_SS, get_bound_2tuple_S
-from simulations.pdie import PDIES, AtomPDIES, PDIE
+from simulations.pdie import PDIES, AtomPDIES, PDIE, PDIE_ERROR
 from simulations.structure import _2Tuple, _2TupleTS
 
 
@@ -18,6 +18,10 @@ def atom_add(p_atom_PDIE_S: AtomPDIES,
              p_comm_cut_2tuple: _2Tuple,
              p_unfeasible_DI_2tuple_TS_dict: dict) -> PDIE | None:
     print(f"AtomPDIES 时序加法:\n\n")
+
+    for atom_PDIE in p_atom_PDIE_S:
+        if atom_PDIE.isError():
+            return PDIE_ERROR()
 
     # 1 取p_atom_PDIE_S的持续区间二元组集合的集合: DI_2tuple_SS
     DI_2tuple_SS = p_atom_PDIE_S.get_DI_2tuple_SS()
@@ -38,27 +42,27 @@ def atom_add(p_atom_PDIE_S: AtomPDIES,
         if _2tuple_T not in unfeasible_DI_2tuple_TS:
             feasible_2tuple_TS.add(_2tuple_T)
     if feasible_2tuple_TS.empty():
-        return None
+        return PDIE_ERROR()
 
     print(f"3 取_2tuple_TS_CP的合法子集\n{str(feasible_2tuple_TS)}\n")
 
     # 4 取DI_2tuple_SS的最大公共切割二元组集合: largest_comm_cut_2tuple_S
     largest_comm_cut_2tuple_S = get_largest_comm_cut_2tuple_S(DI_2tuple_SS)
     if largest_comm_cut_2tuple_S.empty():
-        return None
+        return PDIE_ERROR()
 
     print(f"4 取DI_2tuple_SS的最大公共切割二元组集合\n{str(largest_comm_cut_2tuple_S)}\n")
 
     # 5
     if p_comm_cut_2tuple not in largest_comm_cut_2tuple_S:
-        return None
+        return PDIE_ERROR()
 
     TS_start = p_comm_cut_2tuple.first()
     TS_end = p_comm_cut_2tuple.second()
 
     domain_filtered_sub_2tuple_TS = get_domain_filtered_sub_2tuple_TS(feasible_2tuple_TS, TS_start, TS_end)
     if domain_filtered_sub_2tuple_TS.empty():
-        return None
+        return PDIE_ERROR()
     print(f"5 {str(domain_filtered_sub_2tuple_TS)}")
 
     # 6 todo: 论文里完善
@@ -66,6 +70,9 @@ def atom_add(p_atom_PDIE_S: AtomPDIES,
 
     # todo: 构造DIS和metaPDIES等等，返回对应PDIE
 
-    res_PDIE = PDIE(is_atom=False, meta_PDIES=p_atom_PDIE_S, DI_2tuple_S=DI_2tuple_S)
+    res_PDIE = PDIE(is_error=False,
+                    is_atom=False,
+                    meta_PDIES=p_atom_PDIE_S,
+                    DI_2tuple_S=DI_2tuple_S)
 
     return res_PDIE
