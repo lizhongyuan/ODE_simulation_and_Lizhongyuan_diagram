@@ -33,8 +33,9 @@ def atom_add(p_atom_PDIE_S: AtomPDIES,
 
     # 3 取_2tuple_TS_CP的合法子集, (暂时认为都合法)todo, 增加索引顺序使用的调整
     feasible_2tuple_TS = _2TupleTS([])
+    unfeasible_DI_2tuple_TS = p_unfeasible_DI_2tuple_TS_dict['_2tuple_TS']
     for _2tuple_T in _2tuple_TS_CP:
-        if _2tuple_T not in p_unfeasible_DI_2tuple_TS_dict['_2tuple_TS']:
+        if _2tuple_T not in unfeasible_DI_2tuple_TS:
             feasible_2tuple_TS.add(_2tuple_T)
     if feasible_2tuple_TS.empty():
         return None

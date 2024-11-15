@@ -7,7 +7,7 @@ from numpy.ma.core import empty
 
 from simulations.operations import atom_add
 from simulations.pdie import PDIES, PDIE, AtomPDIE, AtomPDIES
-from simulations.structure import _2TupleS, _2Tuple, _2TupleTS
+from simulations.structure import _2TupleS, _2Tuple, _2TupleTS, _2TupleT
 
 if __name__ == '__main__':
 
@@ -28,19 +28,41 @@ if __name__ == '__main__':
     atom_PDIE_2 = AtomPDIE(DI_2tuple_S=DI_2tuple_S_2)
 
     print(str(atom_PDIE_2))
-    # def atom_add(atom_PDIE_S: AtomPDIES, idx_T: List[int]) -> PDIES | None:
 
     atom_PDIE_S_1 = AtomPDIES([atom_PDIE_1, atom_PDIE_2])
 
     comm_cut_2tuple_A = _2Tuple([1, 4])
+#    comm_cut_2tuple_B = _2Tuple([2, 4])
 
-    unfeasible_DI_2tuple_TS_dict = {
+    # 构造unfeasible_DI_2tuple_TS_dict
+    unfeasible_DI_2tuple_TS_dict_1 = {
+        "PDIE_list": [atom_PDIE_1, atom_PDIE_2],
         "idx_T_asc": [1, 2],
-        "_2tuple_TS": _2TupleTS([])
+        "_2tuple_TS": _2TupleTS([
+            _2TupleT([_2_tuple_1, _2_tuple_4])
+        ])
     }
+
+    unfeasible_DI_2tuple_TS_dict_2 = {
+        "PDIE_list": [atom_PDIE_1, atom_PDIE_2],
+        "idx_T_asc": [1, 2],
+        "_2tuple_TS": _2TupleTS([
+            _2TupleT([_2_tuple_1, _2_tuple_4]),
+            _2TupleT([_2_tuple_1, _2_tuple_5]),
+            _2TupleT([_2_tuple_2, _2_tuple_4]),
+        ])
+    }
+
 
     res = atom_add(p_atom_PDIE_S=atom_PDIE_S_1,
                    p_idx_T=[1, 2],
                    p_comm_cut_2tuple=comm_cut_2tuple_A,
-                   p_unfeasible_DI_2tuple_TS_dict=unfeasible_DI_2tuple_TS_dict)
+                   p_unfeasible_DI_2tuple_TS_dict=unfeasible_DI_2tuple_TS_dict_1)
+    print(str(res))
+
+    # todo: 让大伙验证一下这个
+    res = atom_add(p_atom_PDIE_S=atom_PDIE_S_1,
+                   p_idx_T=[1, 2],
+                   p_comm_cut_2tuple=comm_cut_2tuple_A,
+                   p_unfeasible_DI_2tuple_TS_dict=unfeasible_DI_2tuple_TS_dict_2)
     print(str(res))
