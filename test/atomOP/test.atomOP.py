@@ -4,8 +4,8 @@
 @date: 2024/11/12
 """
 
-from simulations.atomOP import atom_add
-from simulations.pdie import PDIES, PDIE, AtomPDIE, AtomPDIES
+from simulations.OP.atomOP import atom_add
+from simulations.pdie import PDIES, AtomPDIE, AtomPDIES
 from simulations.structure import _2TupleS, _2Tuple, _2TupleTS, _2TupleT
 
 if __name__ == '__main__':
