@@ -44,6 +44,20 @@ class MySet:
             return None
         return self._list[num - 1]
 
+    def index(self, item):
+        """
+
+        Args:
+            item:
+
+        Returns:
+
+        """
+        for i in range(1, len(self._list) + 1):
+            if self._list[i] == item:
+                return i
+        return 0
+
     def dict(self):
         return self._dict
 
