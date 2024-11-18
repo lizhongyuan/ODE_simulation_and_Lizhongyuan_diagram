@@ -128,9 +128,11 @@ class Cut2TupleS(MySet):
 class _2TupleSS(MySet):
     pass
 
+class _2TupleT(MyTuple):
+    pass
+
 class _2TupleTS(MySet):
     pass
 
-
-class _2TupleT(MyTuple):
+class _2TupleTSS(MySet):
     pass
