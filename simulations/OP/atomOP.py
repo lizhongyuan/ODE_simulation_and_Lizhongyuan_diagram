@@ -67,8 +67,19 @@ def atom_add(p_atom_PDIE_S: AtomPDIES,
     # 6 todo: 论文里完善
     DI_2tuple_S = get_bound_2tuple_S(domain_filtered_sub_2tuple_TS)
 
-    res_PDIE = PDIE(is_error=False,
+    # todo: 构造DIS和metaPDIES等等，返回对应PDIE
+
+    res_PDIE_expression = ""
+#    for idx in p_idx_T:
+    for i in range(len(p_idx_T)):
+        res_PDIE_expression += p_atom_PDIE_S[i].getExpression()
+        if i < len(p_idx_T) - 1:
+            res_PDIE_expression += ' + '
+
+    res_PDIE = PDIE(expression=res_PDIE_expression,
+                    is_error=False,
                     is_atom=False,
+                    OP='+',
                     meta_PDIES=p_atom_PDIE_S,
                     DI_2tuple_S=DI_2tuple_S)
 

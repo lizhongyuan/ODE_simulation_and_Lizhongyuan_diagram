@@ -16,7 +16,7 @@ if __name__ == '__main__':
     _2_tuple_2 = _2Tuple([3, 4])
     _2_tuple_3 = _2Tuple([4, 5])
     DI_2tuple_S_1 = _2TupleS([_2_tuple_1, _2_tuple_2, _2_tuple_3])
-    atom_PDIE_1 = AtomPDIE(DI_2tuple_S=DI_2tuple_S_1)
+    atom_PDIE_1 = AtomPDIE(expression='atomPDIE1', DI_2tuple_S=DI_2tuple_S_1)
 
     print(str(atom_PDIE_1))
 
@@ -24,7 +24,7 @@ if __name__ == '__main__':
     _2_tuple_5 = _2Tuple([2, 4])
     _2_tuple_6 = _2Tuple([3, 5])
     DI_2tuple_S_2 = _2TupleS([_2_tuple_4, _2_tuple_5, _2_tuple_6])
-    atom_PDIE_2 = AtomPDIE(DI_2tuple_S=DI_2tuple_S_2)
+    atom_PDIE_2 = AtomPDIE(expression='atomPDIE2', DI_2tuple_S=DI_2tuple_S_2)
 
     print(str(atom_PDIE_2))
 

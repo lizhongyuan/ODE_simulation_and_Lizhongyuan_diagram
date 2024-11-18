@@ -3,6 +3,7 @@
 @author: ZhongYuan.Li
 @date: 2024/11/15
 """
+from simulations.expression_tree import expression
 from simulations.structure import MySet, _2TupleS, _2TupleSS
 
 class PDIES(MySet):
@@ -29,14 +30,18 @@ class AtomPDIES(PDIES):
 # todo: 补充名字
 class PDIE:
     def __init__(self,
+                 expression: str | None,
                  is_error: bool,
                  is_atom: bool,
+                 OP: str | None,
                  meta_PDIES: PDIES,
                  DI_2tuple_S: _2TupleS,
                  #                 expressionIdx: int = 0,    # todo: 应该不需要
                  ):
+        self._expression = expression
         self._is_error = is_error
         self._is_atom = is_atom
+        self._OP = OP
         self._meta_PDIE = meta_PDIES
         self._DI_2tuple_S = DI_2tuple_S
         self._expression_idx = 0
@@ -48,12 +53,17 @@ class PDIE:
 
         format_str =\
             (f"{{\n" +
+             f"\texpression: {self._expression},\n" +
+             f"\tis_error: {self._is_error},\n" +
              f"\tis_atom: {self._is_atom},\n" +
 #             f"\tmeta_PDIE: {str(self._meta_PDIE)},\n" +
              f"\tDI_2tuple_S: {str(self._DI_2tuple_S)}\n" +
              f"}}"
              )
         return format_str
+
+    def getExpression(self) -> str:
+        return self._expression
 
     def isError(self):
         return self._is_error
@@ -69,9 +79,13 @@ class PDIE:
 
 
 class AtomPDIE(PDIE):
-    def __init__(self, DI_2tuple_S: _2TupleS):
-        super().__init__(is_error=False,
+    def __init__(self,
+                 expression: str | None,
+                 DI_2tuple_S: _2TupleS):
+        super().__init__(expression=expression,
+                         is_error=False,
                          is_atom=True,
+                         OP=None,
                          meta_PDIES=PDIES([]),
                          DI_2tuple_S=DI_2tuple_S)
 
@@ -81,8 +95,11 @@ class AtomPDIE(PDIE):
 
 class PDIE_ERROR(PDIE):
     def __init__(self):
-        super().__init__(is_error=True,
+        super().__init__(
+                         expression='PDIE_error',
+                         is_error=True,
                          is_atom=False,
+                         OP=None,
                          meta_PDIES=PDIES([]),
                          DI_2tuple_S=_2TupleS([]))
 
