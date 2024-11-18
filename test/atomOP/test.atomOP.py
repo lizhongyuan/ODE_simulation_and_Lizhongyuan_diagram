@@ -34,16 +34,16 @@ if __name__ == '__main__':
     comm_cut_2tuple_B = _2Tuple([1, 5])
 
     unfeasible_DI_2tuple_TS_dict_1 = {
-        "PDIE_list": [atom_PDIE_1, atom_PDIE_2],
-        "idx_T_asc": [1, 2],
+        "PDIE_tuple": (atom_PDIE_1, atom_PDIE_2),
+        "idx_T_asc": (1, 2),
         "_2tuple_TS": _2TupleTS([
             _2TupleT([_2_tuple_1, _2_tuple_4])
         ])
     }
 
     unfeasible_DI_2tuple_TS_dict_2 = {
-        "PDIE_list": [atom_PDIE_1, atom_PDIE_2],
-        "idx_T_asc": [1, 2],
+        "PDIE_tuple": (atom_PDIE_1, atom_PDIE_2),
+        "idx_T_asc": (1, 2),
         "_2tuple_TS": _2TupleTS([
             _2TupleT([_2_tuple_1, _2_tuple_4]),
             _2TupleT([_2_tuple_1, _2_tuple_5]),
@@ -52,27 +52,26 @@ if __name__ == '__main__':
     }
 
     unfeasible_DI_2tuple_TS_dict_3 = {
-        "PDIE_list": [atom_PDIE_1, atom_PDIE_2],
-        "idx_T_asc": [1, 2],
+        "PDIE_tuple": (atom_PDIE_1, atom_PDIE_2),
+        "idx_T_asc": (1, 2),
         "_2tuple_TS": _2TupleTS([])
     }
 
-
     res = atom_add(p_atom_PDIE_S=atom_PDIE_S_1,
-                   p_idx_T=[1, 2],
+                   p_idx_T=(1, 2),
                    p_comm_cut_2tuple=comm_cut_2tuple_A,
                    p_unfeasible_DI_2tuple_TS_dict=unfeasible_DI_2tuple_TS_dict_1)
     print(str(res))
 
     # todo: 让大伙验证一下这个
     res = atom_add(p_atom_PDIE_S=atom_PDIE_S_1,
-                   p_idx_T=[1, 2],
+                   p_idx_T=(1, 2),
                    p_comm_cut_2tuple=comm_cut_2tuple_A,
                    p_unfeasible_DI_2tuple_TS_dict=unfeasible_DI_2tuple_TS_dict_2)
     print(str(res))
 
     res = atom_add(p_atom_PDIE_S=atom_PDIE_S_1,
-                   p_idx_T=[1, 2],
+                   p_idx_T=(1, 2),
                    p_comm_cut_2tuple=comm_cut_2tuple_B,
                    p_unfeasible_DI_2tuple_TS_dict=unfeasible_DI_2tuple_TS_dict_3)
     print(str(res))

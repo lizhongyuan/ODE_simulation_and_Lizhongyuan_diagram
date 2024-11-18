@@ -23,6 +23,25 @@ class MySet:
 
         return format_str
 
+    # todo: __eq__
+    def __eq__(self, other):
+        if len(self._list) != other.cardinality():
+            return False
+
+        for item in self._list:
+            cur_equal = False
+            for other_item in other:
+                if item == other_item:
+                    cur_equal = True
+                    break
+            if not cur_equal:
+                return False
+
+        return True
+
+    def dict(self):
+        return self._dict
+
     def cardinality(self) -> int:
         return len(self._list)
 
