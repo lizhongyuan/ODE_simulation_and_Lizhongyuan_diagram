@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Tuple
 
 from simulations.structure import _2Tuple, _2TupleSS, _2TupleT, _2TupleTS
 from simulations.structure import _2TupleS
@@ -23,9 +23,9 @@ def get_max_second_of_2tuple_S(p_2tuple_S: _2TupleS) -> object:
 
 # fCPo2tupleSS实现
 # 2tupleSS内所有元素, 以pIdxT为顺序, 做笛卡尔积
-def get_CP_of_2tuple_SS(p_2tupleSS: _2TupleSS, p_idxT: List[int]) -> _2TupleTS:
+def get_CP_of_2tuple_SS(p_2tupleSS: _2TupleSS, p_idx_T: Tuple[int]) -> _2TupleTS:
 
-    sub_2tupleTS_list = get_CP_of_2tupleSS_recur(p_2tupleSS, p_idxT, 1)
+    sub_2tupleTS_list = get_CP_of_2tupleSS_recur(p_2tupleSS, p_idx_T, 1)
 
     _2tupleTS_list = []
     for cur_2tupleT_list in sub_2tupleTS_list:
@@ -37,7 +37,7 @@ def get_CP_of_2tuple_SS(p_2tupleSS: _2TupleSS, p_idxT: List[int]) -> _2TupleTS:
     return _2tupleTS
 
 
-# 递归求2tupleSS内某些元素的笛卡尔积
+# 递归求2tupleSS内某些元素的笛卡尔积, todo: 全面改造
 def get_CP_of_2tupleSS_recur(p_2tupleSS: _2TupleSS,
                              p_idxT: List[int],
                              pivot: int) -> List[List[object]]:

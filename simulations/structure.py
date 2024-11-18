@@ -39,6 +39,11 @@ class MySet:
 
         return True
 
+    def get(self, num: int) -> object:
+        if num < 1 or num > len(self._list):
+            return None
+        return self._list[num - 1]
+
     def dict(self):
         return self._dict
 
