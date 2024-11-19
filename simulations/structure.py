@@ -70,7 +70,7 @@ class MySet:
         """
 
         for i in range(1, len(self._list) + 1):
-            if self._list[i] == p_item:
+            if self._list[i - 1] == p_item:
                 return i
         return None
 

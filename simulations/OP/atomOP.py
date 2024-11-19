@@ -24,6 +24,19 @@ def atom_add(p_atom_PDIE_S: AtomPDIES,
         if atom_PDIE.isError():
             return PDIE_ERROR()
 
+    unfeasible_PDIE_T = p_unfeasible_DI_2tuple_TS_dict['PDIE_tuple']
+
+    idx_T_asc_list = []
+    for pdie in unfeasible_PDIE_T:
+        cur_idx = p_atom_PDIE_S.index(pdie)
+        if cur_idx is None:
+            raise ValueError(f"p_atom_PDIE_S 中没有元素{pdie}")
+        if cur_idx in idx_T_asc_list:
+            return PDIE_ERROR()
+
+        idx_T_asc_list.append(cur_idx)
+
+
     # 1 取p_atom_PDIE_S的持续区间二元组集合的集合: DI_2tuple_SS
     DI_2tuple_SS = p_atom_PDIE_S.get_DI_2tuple_SS()
 
@@ -40,7 +53,8 @@ def atom_add(p_atom_PDIE_S: AtomPDIES,
     feasible_2tuple_TS = get_feasible_DI_2tuple_TS(_2tuple_TS_CP,
                                                    p_unfeasible_DI_2tuple_TS_dict['_2tuple_TS'],
                                                    p_idx_T,
-                                                   p_unfeasible_DI_2tuple_TS_dict['idx_T_asc'])
+                                                   tuple(idx_T_asc_list))
+                                                   # p_unfeasible_DI_2tuple_TS_dict['idx_T_asc'])
 
 
     print(f"3 取_2tuple_TS_CP的合法子集\n{str(feasible_2tuple_TS)}\n")

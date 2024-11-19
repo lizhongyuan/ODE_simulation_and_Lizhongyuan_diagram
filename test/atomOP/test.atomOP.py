@@ -35,7 +35,6 @@ if __name__ == '__main__':
 
     unfeasible_DI_2tuple_TS_dict_1 = {
         "PDIE_tuple": (atom_PDIE_1, atom_PDIE_2),
-        "idx_T_asc": (1, 2),    # todo：删掉
         "_2tuple_TS": _2TupleTS([
             _2TupleT([_2_tuple_1, _2_tuple_4])
         ])
@@ -43,7 +42,6 @@ if __name__ == '__main__':
 
     unfeasible_DI_2tuple_TS_dict_2 = {
         "PDIE_tuple": (atom_PDIE_1, atom_PDIE_2),
-        "idx_T_asc": (1, 2),
         "_2tuple_TS": _2TupleTS([
             _2TupleT([_2_tuple_1, _2_tuple_4]),
             _2TupleT([_2_tuple_1, _2_tuple_5]),
@@ -53,7 +51,6 @@ if __name__ == '__main__':
 
     unfeasible_DI_2tuple_TS_dict_3 = {
         "PDIE_tuple": (atom_PDIE_1, atom_PDIE_2),
-        "idx_T_asc": (1, 2),
         "_2tuple_TS": _2TupleTS([])
     }
 
