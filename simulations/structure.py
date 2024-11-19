@@ -1,16 +1,20 @@
 
 
 class MySet:
+
     def __init__(self, setList: list):
         self._list = setList
         self._dict = {i: self._list[i - 1] for i in range(1, len(self._list) + 1)}
 
+
     def __getitem__(self, index):
         return self._list[index]
+
 
     def __setitem__(self, index, value):
         self._list[index] = value
         self._dict[index + 1] = value
+
 
     def __str__(self) -> str:
         format_str = "{"
@@ -23,7 +27,7 @@ class MySet:
 
         return format_str
 
-    # todo: __eq__
+
     def __eq__(self, other):
         if len(self._list) != other.cardinality():
             return False
@@ -39,24 +43,36 @@ class MySet:
 
         return True
 
-    def get(self, num: int) -> object:
-        if num < 1 or num > len(self._list):
-            return None
-        return self._list[num - 1]
 
-    def index(self, item):
+    def get(self, p_i: int) -> object | None:
         """
-
+        Let set S = { a1, a2, a3, ..., an }, get an element with index number
         Args:
-            item:
+            p_i (int): index number
 
         Returns:
-
+            (object | None): The element of the set with the index number p_i,
+            if there is no such element in the set, return None
         """
+
+        if p_i < 1 or p_i > len(self._list):
+            return None
+        return self._list[p_i - 1]
+
+    def index(self, p_item) -> int | None :
+        """
+        Let set S = { a1, a2, a3, ..., an }, input an item, get its index
+        Args:
+            p_item: an input value
+
+        Returns:
+           (int | None) index of p_item, if there is no such element in the set, return None
+        """
+
         for i in range(1, len(self._list) + 1):
-            if self._list[i] == item:
+            if self._list[i] == p_item:
                 return i
-        return 0
+        return None
 
     def dict(self):
         return self._dict
