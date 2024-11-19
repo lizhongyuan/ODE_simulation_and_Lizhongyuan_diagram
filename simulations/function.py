@@ -24,6 +24,16 @@ def get_max_second_of_2tuple_S(p_2tuple_S: _2TupleS) -> object:
 # fCPo2tupleSS实现
 # 2tupleSS内所有元素, 以pIdxT为顺序, 做笛卡尔积
 def get_CP_of_2tuple_SS(p_2tupleSS: _2TupleSS, p_idx_T: Tuple[int]) -> _2TupleTS:
+    """
+    Let set 2tupleSS = { 2tupleS1, 2tupleS2, 2tupleS3, ... ,2tupleSn },
+    get cartesian product 2tupleS(p_idx_T[1]) * 2tupleS(p_idx_T[2]) * 2tupleS(p_idx_T[3]) * ... * 2tupleS(p_idx_T[n])
+    Args:
+        p_2tupleSS (_2TupleSS): A set whose elements are sets of 2-tuples
+        p_idx_T (Tuple[int]): A tuple representing the order of operands
+
+    Returns:
+
+    """
 
     sub_2tupleTS_list = get_CP_of_2tupleSS_recur(p_2tupleSS, p_idx_T, 1)
 
@@ -39,7 +49,7 @@ def get_CP_of_2tuple_SS(p_2tupleSS: _2TupleSS, p_idx_T: Tuple[int]) -> _2TupleTS
 
 # 递归求2tupleSS内某些元素的笛卡尔积, todo: 全面改造
 def get_CP_of_2tupleSS_recur(p_2tupleSS: _2TupleSS,
-                             p_idxT: List[int],
+                             p_idxT: Tuple[int],
                              pivot: int) -> List[List[object]]:
 
     cur_idx = p_idxT[pivot - 1] - 1               # pivot所代表的2tupleS的索引

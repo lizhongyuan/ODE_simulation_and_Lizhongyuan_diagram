@@ -54,7 +54,6 @@ def atom_add(p_atom_PDIE_S: AtomPDIES,
                                                    p_unfeasible_DI_2tuple_TS_dict['_2tuple_TS'],
                                                    p_idx_T,
                                                    tuple(idx_T_asc_list))
-                                                   # p_unfeasible_DI_2tuple_TS_dict['idx_T_asc'])
 
 
     print(f"3 取_2tuple_TS_CP的合法子集\n{str(feasible_2tuple_TS)}\n")
@@ -84,7 +83,6 @@ def atom_add(p_atom_PDIE_S: AtomPDIES,
     # todo: 构造DIS和metaPDIES等等，返回对应PDIE
 
     res_PDIE_expression = ""
-#    for idx in p_idx_T:
     for i in range(len(p_idx_T)):
         res_PDIE_expression += p_atom_PDIE_S[i].getExpression()
         if i < len(p_idx_T) - 1:
