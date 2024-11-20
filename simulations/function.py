@@ -86,8 +86,8 @@ def get_bound_2tuple(p_2tupleT: _2TupleT) -> _2Tuple | None:
     if p_2tupleT is None:
         return None
 
-    min_first = p_2tupleT[1].first()
-    max_second = p_2tupleT[1].second()
+    min_first = p_2tupleT[0].first()
+    max_second = p_2tupleT[0].second()
 
     for item in p_2tupleT.list():
         if min_first > item.first():

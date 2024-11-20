@@ -1,6 +1,6 @@
 """
 @brief: Brief description of the class.
-@author: Your Name
+@author: ZhongYuan.Li
 @date: 2024/11/12
 """
 
@@ -12,40 +12,41 @@ if __name__ == '__main__':
 
     empty_PDIES = PDIES([])
 
-    _2_tuple_1 = _2Tuple([1, 2])
-    _2_tuple_2 = _2Tuple([3, 4])
-    _2_tuple_3 = _2Tuple([4, 5])
-    DI_2tuple_S_1 = _2TupleS([_2_tuple_1, _2_tuple_2, _2_tuple_3])
+    _2_tuple_1 = _2Tuple([ 1, 2 ])
+    _2_tuple_2 = _2Tuple([ 3, 4 ])
+    _2_tuple_3 = _2Tuple([ 4, 5 ])
+    DI_2tuple_S_1 = _2TupleS([ _2_tuple_1, _2_tuple_2, _2_tuple_3 ])
     atom_PDIE_1 = AtomPDIE(expression='atomPDIE1', DI_2tuple_S=DI_2tuple_S_1)
 
     print(str(atom_PDIE_1))
+    print(str(atom_PDIE_1.get_factor_DI_distinct_same_bound_2tuple_TSS()))
 
-    _2_tuple_4 = _2Tuple([1, 3])
-    _2_tuple_5 = _2Tuple([2, 4])
-    _2_tuple_6 = _2Tuple([3, 5])
-    DI_2tuple_S_2 = _2TupleS([_2_tuple_4, _2_tuple_5, _2_tuple_6])
+    _2_tuple_4 = _2Tuple([ 1, 3 ])
+    _2_tuple_5 = _2Tuple([ 2, 4 ])
+    _2_tuple_6 = _2Tuple([ 3, 5 ])
+    DI_2tuple_S_2 = _2TupleS([ _2_tuple_4, _2_tuple_5, _2_tuple_6 ])
     atom_PDIE_2 = AtomPDIE(expression='atomPDIE2', DI_2tuple_S=DI_2tuple_S_2)
 
     print(str(atom_PDIE_2))
 
-    atom_PDIE_S_1 = AtomPDIES([atom_PDIE_1, atom_PDIE_2])
+    atom_PDIE_S_1 = AtomPDIES([ atom_PDIE_1, atom_PDIE_2 ])
 
-    comm_cut_2tuple_A = _2Tuple([1, 4])
-    comm_cut_2tuple_B = _2Tuple([1, 5])
+    comm_cut_2tuple_A = _2Tuple([ 1, 4 ])
+    comm_cut_2tuple_B = _2Tuple([ 1, 5 ])
 
     unfeasible_DI_2tuple_TS_dict_1 = {
         "PDIE_tuple": (atom_PDIE_1, atom_PDIE_2),
         "_2tuple_TS": _2TupleTS([
-            _2TupleT([_2_tuple_1, _2_tuple_4])
+            _2TupleT([ _2_tuple_1, _2_tuple_4 ])
         ])
     }
 
     unfeasible_DI_2tuple_TS_dict_2 = {
         "PDIE_tuple": (atom_PDIE_1, atom_PDIE_2),
         "_2tuple_TS": _2TupleTS([
-            _2TupleT([_2_tuple_1, _2_tuple_4]),
-            _2TupleT([_2_tuple_1, _2_tuple_5]),
-            _2TupleT([_2_tuple_2, _2_tuple_4]),
+            _2TupleT([ _2_tuple_1, _2_tuple_4 ]),
+            _2TupleT([ _2_tuple_1, _2_tuple_5 ]),
+            _2TupleT([ _2_tuple_2, _2_tuple_4 ]),
         ])
     }
 

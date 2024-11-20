@@ -4,7 +4,8 @@
 @date: 2024/11/15
 """
 from simulations.expression_tree import expression
-from simulations.structure import MySet, _2TupleS, _2TupleSS, _2TupleTS
+from simulations.sameBound import get_distinct_same_bound_2tuple_TSS
+from simulations.structure import MySet, _2TupleS, _2TupleSS, _2TupleTS, _2TupleT
 
 
 class PDIES(MySet):
@@ -80,13 +81,16 @@ class PDIE:
     def getDI2tupleS(self):
         return self._DI_2tuple_S
 
+    def get_factor_DI_distinct_same_bound_2tuple_TSS(self): # todo: 改论文
+        return get_distinct_same_bound_2tuple_TSS(self._factor_DI_2tuple_TS)
+
 
 class AtomPDIE(PDIE):
     def __init__(self, expression: str | None, DI_2tuple_S: _2TupleS):
 
         factor_DI_2tuple_T_list = []
         for DI_2tuple in DI_2tuple_S:
-            factor_DI_2tuple_T_list.append(DI_2tuple)
+            factor_DI_2tuple_T_list.append(_2TupleT([DI_2tuple]))
         factor_DI_2tuple_TS = _2TupleTS(factor_DI_2tuple_T_list)
 
         super().__init__(expression=expression,

@@ -99,7 +99,7 @@ class MySet:
         self._list.append(elem)
 
 
-class MyTuple:
+class MyTuple:  # todo: add get() func
 
     def __init__(self, tupleList):
         self._list = tupleList
