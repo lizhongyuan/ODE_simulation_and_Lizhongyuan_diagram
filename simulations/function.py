@@ -23,7 +23,7 @@ def get_max_second_of_2tuple_S(p_2tuple_S: _2TupleS) -> object:
 
 # fCPo2tupleSS实现
 # 2tupleSS内所有元素, 以pIdxT为顺序, 做笛卡尔积
-def get_CP_of_2tuple_SS(p_2tupleSS: _2TupleSS, p_idx_T: Tuple[int]) -> _2TupleTS:
+def get_CP_of_2tuple_SS(p_2tupleSS: _2TupleSS, p_idx_T: Tuple[int,...]) -> _2TupleTS:
     """
     Let set 2tupleSS = { 2tupleS1, 2tupleS2, 2tupleS3, ... ,2tupleSn },
     get cartesian product 2tupleS(p_idx_T[1]) * 2tupleS(p_idx_T[2]) * 2tupleS(p_idx_T[3]) * ... * 2tupleS(p_idx_T[n])
