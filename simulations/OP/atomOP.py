@@ -94,6 +94,8 @@ def atom_add(p_atom_PDIE_S: AtomPDIES,
                     is_atom=False,
                     OP='+',
                     meta_PDIES=p_atom_PDIE_S,
-                    DI_2tuple_S=DI_2tuple_S)
+                    DI_2tuple_S=DI_2tuple_S,
+                    factor_DI_2tuple_TS=_2TupleTS([])
+                    )
 
     return res_PDIE

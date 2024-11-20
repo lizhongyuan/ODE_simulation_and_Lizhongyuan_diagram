@@ -4,7 +4,8 @@
 @date: 2024/11/15
 """
 from simulations.expression_tree import expression
-from simulations.structure import MySet, _2TupleS, _2TupleSS
+from simulations.structure import MySet, _2TupleS, _2TupleSS, _2TupleTS
+
 
 class PDIES(MySet):
     """
@@ -34,8 +35,9 @@ class PDIE:
                  is_error: bool,
                  is_atom: bool,
                  OP: str | None,
-                 meta_PDIES: PDIES,
+                 meta_PDIES: PDIES,         # todo: 改为factor_PDIES ?
                  DI_2tuple_S: _2TupleS,
+                 factor_DI_2tuple_TS: _2TupleTS,
                  #                 expressionIdx: int = 0,    # todo: 应该不需要
                  ):
         self._expression = expression
@@ -44,6 +46,7 @@ class PDIE:
         self._OP = OP
         self._meta_PDIE = meta_PDIES
         self._DI_2tuple_S = DI_2tuple_S
+        self._factor_DI_2tuple_TS = factor_DI_2tuple_TS
         self._expression_idx = 0
 
     def __str__(self):
@@ -79,15 +82,20 @@ class PDIE:
 
 
 class AtomPDIE(PDIE):
-    def __init__(self,
-                 expression: str | None,
-                 DI_2tuple_S: _2TupleS):
+    def __init__(self, expression: str | None, DI_2tuple_S: _2TupleS):
+
+        factor_DI_2tuple_T_list = []
+        for DI_2tuple in DI_2tuple_S:
+            factor_DI_2tuple_T_list.append(DI_2tuple)
+        factor_DI_2tuple_TS = _2TupleTS(factor_DI_2tuple_T_list)
+
         super().__init__(expression=expression,
                          is_error=False,
                          is_atom=True,
                          OP=None,
                          meta_PDIES=PDIES([]),
-                         DI_2tuple_S=DI_2tuple_S)
+                         DI_2tuple_S=DI_2tuple_S,
+                         factor_DI_2tuple_TS=factor_DI_2tuple_TS)
 
     def __add__(self, other):
         pass
@@ -101,7 +109,8 @@ class PDIE_ERROR(PDIE):
                          is_atom=False,
                          OP=None,
                          meta_PDIES=PDIES([]),
-                         DI_2tuple_S=_2TupleS([]))
+                         DI_2tuple_S=_2TupleS([]),
+                         factor_DI_2tuple_TS=_2TupleTS([]))
 
     def __str__(self):
         return f"PDIE_error"
