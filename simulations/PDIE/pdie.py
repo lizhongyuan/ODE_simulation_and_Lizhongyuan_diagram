@@ -28,6 +28,8 @@ class PDIE(AbstractPDIE):
                  factor_DI_2tuple_TS: _2TupleTS,
                  #                 expressionIdx: int = 0,    # todo: 应该不需要
                  ):
+        super().__init__()
+
         self._expression = expression
         self._is_error = is_error
         self._is_atom = is_atom
