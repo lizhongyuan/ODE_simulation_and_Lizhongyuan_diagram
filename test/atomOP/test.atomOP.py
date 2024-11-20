@@ -5,7 +5,8 @@
 """
 
 from simulations.OP.atomOP import atom_add
-from simulations.pdie import PDIES, AtomPDIE, AtomPDIES
+from simulations.PDIE.pdie import AtomPDIE
+from simulations.PDIE.pdieS import PDIES, AtomPDIES
 from simulations.structure import _2TupleS, _2Tuple, _2TupleTS, _2TupleT
 
 if __name__ == '__main__':

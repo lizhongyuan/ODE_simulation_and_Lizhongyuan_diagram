@@ -5,7 +5,7 @@
 """
 from typing import Tuple
 
-from simulations.pdie import PDIES, PDIE, PDIE_ERROR
+from simulations.PDIE.pdie import PDIES, PDIE, PDIE_ERROR
 from simulations.structure import _2Tuple
 
 

@@ -3,7 +3,7 @@
 @author: Your Name
 @date: 2024/11/15
 """
-from simulations.pdie import PDIE_ERROR
+from simulations.PDIE.pdie import PDIE_ERROR
 
 if __name__ == '__main__':
     PDIE_error_1 = PDIE_ERROR()

@@ -3,12 +3,14 @@
 @author: ZhongYuan.Li
 @date: 2024/11/14
 """
-from typing import List, Tuple
+from typing import Tuple
 
+from simulations.PDIE.AbstractPDIE import AbstractPDIE
+from simulations.PDIE.pdieS import AtomPDIES
 from simulations.cut2tupleS import get_largest_comm_cut_2tuple_S
 from simulations.domainFilteredSub2tupleTS import get_domain_filtered_sub_2tuple_TS
 from simulations.function import get_CP_of_2tuple_SS, get_bound_2tuple_S
-from simulations.pdie import PDIES, AtomPDIES, PDIE, PDIE_ERROR
+from simulations.PDIE.pdie import PDIE, PDIE_ERROR
 from simulations.structure import _2Tuple, _2TupleTS
 from simulations.unfeasible import get_feasible_DI_2tuple_TS
 

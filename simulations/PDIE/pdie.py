@@ -3,34 +3,21 @@
 @author: ZhongYuan.Li
 @date: 2024/11/15
 """
+from simulations.PDIE.AbstractPDIE import AbstractPDIE
+from simulations.PDIE.pdieS import PDIES
 from simulations.expression_tree import expression
 from simulations.sameBound import get_distinct_same_bound_2tuple_TSS
 from simulations.structure import MySet, _2TupleS, _2TupleSS, _2TupleTS, _2TupleT
 
 
-class PDIES(MySet):
-    """
-    PDIE Set
-    """
-
-    def get_DI_2tuple_SS(self) -> _2TupleSS:
-        """
-        获取自身的持续区间二元组的集合的集合(Get the "set composed of duration interval 2-tuple sets" of itself)
-        Returns:
-            (_2TupleSS): 持续区间二元组的集合的集合(set composed of duration interval 2-tuple sets)
-        """
-        _2tuple_SS = _2TupleSS([])
-        for item in self._list:
-            _2tuple_SS.add(item.getDI2tupleS())
-        return _2tuple_SS
 
 
-class AtomPDIES(PDIES):
-    pass
+
+
 
 
 # todo: 补充名字
-class PDIE:
+class PDIE(AbstractPDIE):
     def __init__(self,
                  expression: str | None,
                  is_error: bool,
