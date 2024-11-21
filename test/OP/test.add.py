@@ -39,3 +39,4 @@ if __name__ == '__main__':
     atom_PDIE_4 = AtomPDIE(expression='atomPDIE4', DI_2tuple_S=DI_2tuple_S_4)
     print(str(atom_PDIE_4))
 
+    # todo: unfeasible出现部分非法的, 要考虑
