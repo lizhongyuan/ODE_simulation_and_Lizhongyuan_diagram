@@ -61,9 +61,9 @@ def parse_expression(expression):
     return parse(expression)
 
 
-# 测试表达式 A1 * (A2 + A3)
-expression = "A1*(A2+A3)"
-root = parse_expression(expression)
+# # 测试表达式 A1 * (A2 + A3)
+# expression = "A1*(A2+A3)"
+# root = parse_expression(expression)
 
 
 def inorder(node):
@@ -74,7 +74,7 @@ def inorder(node):
     inorder(node.right)
 
 
-# 中序遍历输出结果
-inorder(root)
+# # 中序遍历输出结果
+# inorder(root)
 
 

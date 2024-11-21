@@ -5,7 +5,7 @@
 """
 from simulations.PDIE.AbstractPDIE import AbstractPDIE
 from simulations.PDIE.pdieS import PDIES
-from simulations.expression_tree import expression
+# from simulations.expression_tree import expression
 from simulations.sameBound import get_distinct_same_bound_2tuple_TSS
 from simulations.structure import MySet, _2TupleS, _2TupleSS, _2TupleTS, _2TupleT
 
@@ -51,6 +51,8 @@ class PDIE(AbstractPDIE):
              f"\tis_atom: {self._is_atom},\n" +
 #             f"\tmeta_PDIE: {str(self._meta_PDIE)},\n" +
              f"\tDI_2tuple_S: {str(self._DI_2tuple_S)}\n" +
+             f"\tfactor_DI_2tuple_TS: {str(self._factor_DI_2tuple_TS)}\n" +
+             f"\tdistinct_same_bound_2tuple_TSS: {str(self.get_factor_DI_distinct_same_bound_2tuple_TSS())}\n" +
              f"}}"
              )
         return format_str
@@ -67,7 +69,7 @@ class PDIE(AbstractPDIE):
     def setDI2tupleS(self, DI2tupleS: _2TupleS):
         self._DI_2tuple_S = DI2tupleS
 
-    def getDI2tupleS(self):
+    def get_DI_2tuple_S(self):
         return self._DI_2tuple_S
 
     def get_factor_DI_distinct_same_bound_2tuple_TSS(self): # todo: 改论文

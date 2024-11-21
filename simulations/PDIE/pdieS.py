@@ -6,7 +6,7 @@
 from typing import List
 
 from simulations.PDIE.AbstractPDIE import AbstractPDIE
-from simulations.structure import MySet, _2TupleSS
+from simulations.structure import MySet, _2TupleSS, _2TupleTS
 
 
 class PDIES(MySet):
@@ -23,10 +23,18 @@ class PDIES(MySet):
         """
         _2tuple_SS = _2TupleSS([])
         for item in self._list:
-            _2tuple_SS.add(item.getDI2tupleS())
+            _2tuple_SS.add(item.get_DI_2tuple_S())
         return _2tuple_SS
 
-    def setTestList(self, PDIE_list: List[AbstractPDIE]):
+    # def setTestList(self, PDIE_list: List[AbstractPDIE]):
+    #     pass
+
+    # def UnfeasibleAscMetaDI2tupleTS(self):
+    #     pass
+
+    def get_unfeasible_asc_DI_2tuple_TS(self):
+        pass
+    def set_unfeasible_asc_DI_2tuple_TS(self, unfeasible_asc_DI_2tuple_TS: _2TupleTS):
         pass
 
 
