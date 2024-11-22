@@ -87,28 +87,31 @@ class PDIES(MySet):
     def get_unfeasible_DI_2tuple_info(self):
         return self._unfeasible_PDIE_tuple, self._unfeasible_DI_2tuple_TS
 
-    def get_CP_of_DI_2tuple_SS(self, p_idx_T: Tuple[int, ...] | None) -> _2TupleTS:
+    def get_CP_of_DI_2tuple_SS(self, p_op_idx_T: Tuple[int, ...] | None) -> _2TupleTS:
         """
-
+        按照p_op_idx_T的顺序获取集合元素的DI2TupleS的笛卡尔积,
+        如果p_op_idx_T为None, 顺序为默认索引元组(1, 2, 3, ..., n)
         Args:
-            p_idx_T:
+            p_op_idx_T: 笛卡尔积表达式运算数的索引顺序元组
 
         Returns:
-
+            集合元素的DI2TupleS的笛卡尔积
         """
 
         default_idx_T = tuple(range(1, len(self._list) + 1))
-        if p_idx_T is None:
-            p_idx_T = default_idx_T
+        if p_op_idx_T is None:
+            p_op_idx_T = default_idx_T
         else:
-            sorted_idx_T = tuple(sorted(p_idx_T))
+            sorted_idx_T = tuple(sorted(p_op_idx_T))
             if sorted_idx_T != default_idx_T:
-                raise ValueError("p_idx_T error")
+                raise ValueError("Wrong p_op_idx_T !")
 
         DI_2tuple_SS = self.get_DI_2tuple_SS()
-        _2tuple_TS = get_CP_of_2tuple_SS(DI_2tuple_SS, p_idx_T)
+        _2tuple_TS = get_CP_of_2tuple_SS(DI_2tuple_SS, p_op_idx_T)
 
         return _2tuple_TS
+
+    # todo: S2放到这
 
 
 class AtomPDIES(PDIES):
