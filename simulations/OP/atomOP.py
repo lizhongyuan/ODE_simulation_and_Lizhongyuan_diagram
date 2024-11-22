@@ -7,6 +7,7 @@ from typing import Tuple
 
 from simulations.PDIE.AbstractPDIE import AbstractPDIE
 from simulations.PDIE.pdieS import AtomPDIES
+from simulations.TwoTupleTS import get_largest_comm_cut_2tuple_S2
 from simulations.cut2tupleS import get_largest_comm_cut_2tuple_S
 from simulations.domainFilteredSub2tupleTS import get_domain_filtered_sub_2tuple_TS
 from simulations.function import get_CP_of_2tuple_SS, get_bound_2tuple_S
@@ -61,7 +62,8 @@ def atom_add(p_atom_PDIE_S: AtomPDIES,
     print(f"3 取_2tuple_TS_CP的合法子集\n{str(feasible_2tuple_TS)}\n")
 
     # 4 取DI_2tuple_SS的最大公共切割二元组集合: largest_comm_cut_2tuple_S
-    largest_comm_cut_2tuple_S = get_largest_comm_cut_2tuple_S(DI_2tuple_SS)
+    #largest_comm_cut_2tuple_S = get_largest_comm_cut_2tuple_S(DI_2tuple_SS)
+    largest_comm_cut_2tuple_S = get_largest_comm_cut_2tuple_S2(feasible_2tuple_TS)
     if largest_comm_cut_2tuple_S.empty():
         return PDIE_ERROR()
 

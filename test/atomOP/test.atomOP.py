@@ -77,15 +77,14 @@ if __name__ == '__main__':
     #                p_unfeasible_DI_2tuple_TS_dict=unfeasible_DI_2tuple_TS_dict_2)
     # print(str(res))
     #
-    # res = atom_add(p_atom_PDIE_S=atom_PDIE_S_1,
-    #                p_op_idx_T=(1, 2),
-    #                p_comm_cut_2tuple=comm_cut_2tuple_B,
-    #                p_unfeasible_DI_2tuple_TS_dict=unfeasible_DI_2tuple_TS_dict_3)
-    # print(str(res))
-
-    # todo: 待检查
     res = atom_add(p_atom_PDIE_S=atom_PDIE_S_1,
                    p_op_idx_T=(1, 2),
-                   p_comm_cut_2tuple=comm_cut_2tuple_A,
-                   p_unfeasible_DI_2tuple_TS_dict=unfeasible_DI_2tuple_TS_dict_4)
+                   p_comm_cut_2tuple=_2Tuple([ 1, 4 ]),
+                   p_unfeasible_DI_2tuple_TS_dict=unfeasible_DI_2tuple_TS_dict_3)
     print(str(res))
+
+    # res = atom_add(p_atom_PDIE_S=atom_PDIE_S_1,
+    #                p_op_idx_T=(1, 2),
+    #                p_comm_cut_2tuple=_2Tuple([ 1, 5 ]),
+    #                p_unfeasible_DI_2tuple_TS_dict=unfeasible_DI_2tuple_TS_dict_4)
+    # print(str(res))
