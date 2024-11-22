@@ -33,25 +33,23 @@ def get_largest_comm_cut_2tuple_S2(p_2tuple_TS: _2TupleTS) -> _2TupleS:
     if p_2tuple_TS.cardinality() == 0:
         return _2TupleS([])
 
-    list_cnt = len(p_2tuple_TS[0])
+    tuple_len = len(p_2tuple_TS[0])
 
     _2tuple_list_list = []
-    for i in range(list_cnt):
+    for i in range(tuple_len):
+        # 检查正确性
+        if len(p_2tuple_TS[i]) != tuple_len:
+            return _2TupleS([])
         _2tuple_list_list.append([])
 
-    # todo: 检查正确性
-
-    # for _2tuple_T in p_2tuple_TS:
-    #     for _2tuple in _2tuple_T:
     for i in range(p_2tuple_TS.cardinality()):
         _2tuple_T = p_2tuple_TS[i]
-        for j in range(list_cnt):
+        for j in range(tuple_len):
             _2tuple_list_list[j].append(_2tuple_T[j])
 
     _2tuple_S_list = []
     for _2tuple_list in _2tuple_list_list:
         _2tuple_S_list.append(_2TupleS(_2tuple_list))
-
     _2tuple_SS = _2TupleSS(_2tuple_S_list)
 
     _2tuple_S = get_largest_comm_cut_2tuple_S(_2tuple_SS)

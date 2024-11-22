@@ -20,7 +20,7 @@ from simulations.unfeasible import get_feasible_DI_2tuple_TS
 def atom_add(p_atom_PDIE_S: AtomPDIES,
              p_op_idx_T: Tuple[int,...],
              p_comm_cut_2tuple: _2Tuple,
-             p_unfeasible_DI_2tuple_TS_dict: dict) -> PDIE | None:
+             ) -> PDIE | None:
     print(f"AtomPDIES 时序加法:\n\n")
 
     for atom_PDIE in p_atom_PDIE_S:
@@ -41,7 +41,7 @@ def atom_add(p_atom_PDIE_S: AtomPDIES,
 
     # 3 取_2tuple_TS_CP的合法子集
 
-    unfeasible_PDIE_T = p_unfeasible_DI_2tuple_TS_dict['PDIE_tuple']
+    unfeasible_PDIE_T = p_atom_PDIE_S.get_unfeasible_DI_2tuple_info()[0]
     idx_T_asc_list = []
     if unfeasible_PDIE_T is not None and unfeasible_PDIE_T != ():
         for pdie in unfeasible_PDIE_T:
@@ -53,8 +53,9 @@ def atom_add(p_atom_PDIE_S: AtomPDIES,
 
             idx_T_asc_list.append(cur_idx)
 
+    unfeasible_DI_2tuple_TS = p_atom_PDIE_S.get_unfeasible_DI_2tuple_info()[1]
     feasible_2tuple_TS = get_feasible_DI_2tuple_TS(_2tuple_TS_CP,
-                                                   p_unfeasible_DI_2tuple_TS_dict['_2tuple_TS'],
+                                                   unfeasible_DI_2tuple_TS,
                                                    p_op_idx_T,
                                                    tuple(idx_T_asc_list))
 
@@ -62,7 +63,6 @@ def atom_add(p_atom_PDIE_S: AtomPDIES,
     print(f"3 取_2tuple_TS_CP的合法子集\n{str(feasible_2tuple_TS)}\n")
 
     # 4 取DI_2tuple_SS的最大公共切割二元组集合: largest_comm_cut_2tuple_S
-    #largest_comm_cut_2tuple_S = get_largest_comm_cut_2tuple_S(DI_2tuple_SS)
     largest_comm_cut_2tuple_S = get_largest_comm_cut_2tuple_S2(feasible_2tuple_TS)
     if largest_comm_cut_2tuple_S.empty():
         return PDIE_ERROR()
@@ -99,7 +99,7 @@ def atom_add(p_atom_PDIE_S: AtomPDIES,
                     OP='+',
                     meta_PDIES=p_atom_PDIE_S,
                     DI_2tuple_S=DI_2tuple_S,
-                    factor_DI_2tuple_TS=_2TupleTS([])
+                    factor_DI_2tuple_TS=_2TupleTS([]) # todo: 自身
                     )
 
     return res_PDIE
