@@ -57,24 +57,27 @@ def get_feasible_DI_2tuple_TS(p_entire_DI_2tuple_TS: _2TupleTS,
         # 符合表达式运算顺序的不可能持续区间二元组, 加入到op_ordered_unfeasible_DI_2tuple_TS
         op_ordered_unfeasible_DI_2tuple_TS.add(op_ordered_unfeasible_DI_2tuple_T)
 
-    # 3 构造合法的二元组的元组的集合
+    # 3 ---------- 构造合法的二元组的元组的集合 ----------
+
     feasible_DI_2tuple_TS = _2TupleTS([])
     for _2tuple_T in p_entire_DI_2tuple_TS:
-        # 如果在op_ordered_unfeasible_DI_2tuple_TS, 则_2tuple_T非法, continue
+        # 3.1 如果在op_ordered_unfeasible_DI_2tuple_TS, 则_2tuple_T非法, continue
         if _2tuple_T in op_ordered_unfeasible_DI_2tuple_TS:
             continue
 
-        has_match = False
+        # 3.2 如果通配在op_ordered_unfeasible_DI_2tuple_TS, continue
+        wildcard_matched = False
         for op_ordered_unfeasible_DI_2tuple_T in op_ordered_unfeasible_DI_2tuple_TS:
             if _2tuple_T.wildcard_match(op_ordered_unfeasible_DI_2tuple_T):
-                has_match = True
+                wildcard_matched = True
                 break
-        if has_match:
+        if wildcard_matched:
             continue
 
+        # 3.3 合法, 加入到feasible_DI_2tuple_TS
         feasible_DI_2tuple_TS.add(_2tuple_T)
 
-    # 4 返回结果
+    # 4 ---------- 返回结果 ----------
 
     return feasible_DI_2tuple_TS
 
