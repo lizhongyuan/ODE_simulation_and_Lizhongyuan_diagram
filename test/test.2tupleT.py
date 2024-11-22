@@ -21,3 +21,7 @@ if __name__ == '__main__':
     print(f'max_2nd_of_1: {max_2nd_of_1}')
     print(f'min_1st_of_2: {min_1st_of_2}')
     print(f'max_2nd_of_2: {max_2nd_of_2}')
+
+    wildcard_2tuple_T = _2TupleT([_2tuple_1, '*'])
+    print(_2tuple_T_1.wildcard_match(wildcard_2tuple_T))
+    print(_2tuple_T_2.wildcard_match(wildcard_2tuple_T))

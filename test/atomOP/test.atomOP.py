@@ -56,21 +56,36 @@ if __name__ == '__main__':
         "_2tuple_TS": _2TupleTS([])
     }
 
+    unfeasible_DI_2tuple_TS_dict_4 = {
+        "PDIE_tuple": (atom_PDIE_1, atom_PDIE_2),
+        "_2tuple_TS": _2TupleTS([
+            _2TupleT([ _2_tuple_3, '*', ]),            # atom_PDIE_1和atom_PDIE_2都存在时, atom_PDIE_1不能在_2_tuple_1执行
+#            _2TupleT([ _2_tuple_2, _2_tuple_4 ]),
+        ])
+    }
+
+    # res = atom_add(p_atom_PDIE_S=atom_PDIE_S_1,
+    #                p_op_idx_T=(1, 2),
+    #                p_comm_cut_2tuple=comm_cut_2tuple_A,
+    #                p_unfeasible_DI_2tuple_TS_dict=unfeasible_DI_2tuple_TS_dict_1)
+    # print(str(res))
+    #
+    # # todo: 让大伙验证一下这个
+    # res = atom_add(p_atom_PDIE_S=atom_PDIE_S_1,
+    #                p_op_idx_T=(1, 2),
+    #                p_comm_cut_2tuple=comm_cut_2tuple_A,
+    #                p_unfeasible_DI_2tuple_TS_dict=unfeasible_DI_2tuple_TS_dict_2)
+    # print(str(res))
+    #
+    # res = atom_add(p_atom_PDIE_S=atom_PDIE_S_1,
+    #                p_op_idx_T=(1, 2),
+    #                p_comm_cut_2tuple=comm_cut_2tuple_B,
+    #                p_unfeasible_DI_2tuple_TS_dict=unfeasible_DI_2tuple_TS_dict_3)
+    # print(str(res))
+
+    # todo: 待检查
     res = atom_add(p_atom_PDIE_S=atom_PDIE_S_1,
                    p_op_idx_T=(1, 2),
                    p_comm_cut_2tuple=comm_cut_2tuple_A,
-                   p_unfeasible_DI_2tuple_TS_dict=unfeasible_DI_2tuple_TS_dict_1)
-    print(str(res))
-
-    # todo: 让大伙验证一下这个
-    res = atom_add(p_atom_PDIE_S=atom_PDIE_S_1,
-                   p_op_idx_T=(1, 2),
-                   p_comm_cut_2tuple=comm_cut_2tuple_A,
-                   p_unfeasible_DI_2tuple_TS_dict=unfeasible_DI_2tuple_TS_dict_2)
-    print(str(res))
-
-    res = atom_add(p_atom_PDIE_S=atom_PDIE_S_1,
-                   p_op_idx_T=(1, 2),
-                   p_comm_cut_2tuple=comm_cut_2tuple_B,
-                   p_unfeasible_DI_2tuple_TS_dict=unfeasible_DI_2tuple_TS_dict_3)
+                   p_unfeasible_DI_2tuple_TS_dict=unfeasible_DI_2tuple_TS_dict_4)
     print(str(res))

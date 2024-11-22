@@ -164,7 +164,18 @@ class _2TupleSS(MySet):
     pass
 
 class _2TupleT(MyTuple):
-    pass
+    def wildcard_match(self, p_pattern_2tuple_T) -> bool:
+        if len(self._list) != len(p_pattern_2tuple_T):
+            return False
+
+        match = True
+        for i in range(0, len(self._list)):
+            if p_pattern_2tuple_T[i] != self._list[i] and p_pattern_2tuple_T[i] != '*':
+                match = False
+                break
+
+        return match
+
 
 class _2TupleTS(MySet):
     pass

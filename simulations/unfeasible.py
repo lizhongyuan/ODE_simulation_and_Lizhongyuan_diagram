@@ -63,6 +63,15 @@ def get_feasible_DI_2tuple_TS(p_entire_DI_2tuple_TS: _2TupleTS,
         # 如果在op_ordered_unfeasible_DI_2tuple_TS, 则_2tuple_T非法, continue
         if _2tuple_T in op_ordered_unfeasible_DI_2tuple_TS:
             continue
+
+        has_match = False
+        for op_ordered_unfeasible_DI_2tuple_T in op_ordered_unfeasible_DI_2tuple_TS:
+            if _2tuple_T.wildcard_match(op_ordered_unfeasible_DI_2tuple_T):
+                has_match = True
+                break
+        if has_match:
+            continue
+
         feasible_DI_2tuple_TS.add(_2tuple_T)
 
     # 4 返回结果
