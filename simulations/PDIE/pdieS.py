@@ -8,7 +8,8 @@ from typing import List, Tuple
 
 from simulations.PDIE.AbstractPDIE import AbstractPDIE
 from simulations.function import get_CP_of_2tuple_SS
-from simulations.structure import MySet, _2TupleSS, _2TupleTS
+from simulations.structure import MySet, _2TupleSS, _2TupleTS, _2TupleS
+from simulations.unfeasible import get_feasible_DI_2tuple_TS
 
 
 class PDIES(MySet):
@@ -51,6 +52,12 @@ class PDIES(MySet):
 
     def show_dict(self) -> None:
         print(self._get_dict_str())
+
+    def get_dict_key(self, p_PDIE: AbstractPDIE) -> str | None:
+        for key in list(self._dict.keys()):
+            if self._dict[key] == p_PDIE:
+                return key
+        return None
 
     def get_DI_2tuple_SS(self) -> _2TupleSS:
         """
@@ -111,7 +118,30 @@ class PDIES(MySet):
 
         return _2tuple_TS
 
+
+    def get_feasible_CP_of_DI_2tuple_SS(self, p_op_idx_T: tuple) -> _2TupleTS:
+
+        CP_of_DI_2tuple_SS = self.get_CP_of_DI_2tuple_SS(p_op_idx_T)
+
+        unfeasible_DI_idx_list = []
+
+        for unfeasible_PDIE in self._unfeasible_PDIE_tuple:
+            cur_idx = self.get_dict_key(unfeasible_PDIE)
+            if cur_idx is None:
+                return _2TupleTS([])
+            unfeasible_DI_idx_list.append(cur_idx)
+
+        feasible_CP_of_DI_2tuple_TS = get_feasible_DI_2tuple_TS(CP_of_DI_2tuple_SS,
+                                                   self._unfeasible_DI_2tuple_TS,
+                                                   p_op_idx_T,
+                                                   tuple(unfeasible_DI_idx_list))
+
+        return feasible_CP_of_DI_2tuple_TS
+
+
     # todo: S2放到这
+    def get_largest_comm_cut_2tuple_S2(self, p_2tuple_TS: _2TupleTS) -> _2TupleS:
+        pass
 
 
 class AtomPDIES(PDIES):

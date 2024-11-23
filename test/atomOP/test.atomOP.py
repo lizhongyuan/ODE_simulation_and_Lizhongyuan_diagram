@@ -35,49 +35,35 @@ if __name__ == '__main__':
     comm_cut_2tuple_A = _2Tuple([ 1, 4 ])
     comm_cut_2tuple_B = _2Tuple([ 1, 5 ])
 
-    unfeasible_DI_2tuple_TS_dict_1 = {
-        "PDIE_tuple": (atom_PDIE_1, atom_PDIE_2),
-        "_2tuple_TS": _2TupleTS([
-            _2TupleT([ _2_tuple_1, _2_tuple_4 ])
-        ])
-    }
+    unfeasible_DI_2tuple_TS_1 = _2TupleTS([
+        _2TupleT([ _2_tuple_1, _2_tuple_4 ])
+    ])
+    unfeasible_DI_2tuple_TS_2 = _2TupleTS([
+        _2TupleT([ _2_tuple_1, _2_tuple_4 ]),
+        _2TupleT([ _2_tuple_1, _2_tuple_5 ]),
+        _2TupleT([ _2_tuple_2, _2_tuple_4 ]),
+    ])
+    empty_unfeasible_DI_2tuple_TS = _2TupleTS([])
+    wildcard_unfeasible_DI_2tuple_TS = _2TupleTS([
+        _2TupleT([ _2_tuple_3, '*', ]),
+    ])
 
-    unfeasible_DI_2tuple_TS_dict_2 = {
-        "PDIE_tuple": (atom_PDIE_1, atom_PDIE_2),
-        "_2tuple_TS": _2TupleTS([
-            _2TupleT([ _2_tuple_1, _2_tuple_4 ]),
-            _2TupleT([ _2_tuple_1, _2_tuple_5 ]),
-            _2TupleT([ _2_tuple_2, _2_tuple_4 ]),
-        ])
-    }
-
-    unfeasible_DI_2tuple_TS_dict_3 = {
-        "PDIE_tuple": (atom_PDIE_1, atom_PDIE_2),
-        "_2tuple_TS": _2TupleTS([])
-    }
-
-    unfeasible_DI_2tuple_TS_dict_4 = {
-        "PDIE_tuple": (atom_PDIE_1, atom_PDIE_2),
-        "_2tuple_TS": _2TupleTS([
-            _2TupleT([ _2_tuple_3, '*', ]),
-        ])
-    }
-
+    # atom_PDIE_S_1.set_unfeasible_DI_2tuple_info(unfeasible_DI_2tuple_TS=unfeasible_DI_2tuple_TS_1,
+    #                                             unfeasible_PDIE_tuple=(atom_PDIE_1, atom_PDIE_2))
     # res = atom_add(p_atom_PDIE_S=atom_PDIE_S_1,
     #                p_op_idx_T=(1, 2),
-    #                p_comm_cut_2tuple=comm_cut_2tuple_A,
-    #                p_unfeasible_DI_2tuple_TS_dict=unfeasible_DI_2tuple_TS_dict_1)
+    #                p_comm_cut_2tuple=_2Tuple([ 1, 4 ]))
     # print(str(res))
-    #
+
     # # todo: 让大伙验证一下这个
+    # atom_PDIE_S_1.set_unfeasible_DI_2tuple_info(unfeasible_DI_2tuple_TS=wildcard_unfeasible_DI_2tuple_TS,
+    #                                             unfeasible_PDIE_tuple=(atom_PDIE_1, atom_PDIE_2))
     # res = atom_add(p_atom_PDIE_S=atom_PDIE_S_1,
     #                p_op_idx_T=(1, 2),
-    #                p_comm_cut_2tuple=comm_cut_2tuple_A,
-    #                p_unfeasible_DI_2tuple_TS_dict=unfeasible_DI_2tuple_TS_dict_2)
+    #                p_comm_cut_2tuple=_2Tuple([ 1, 4 ]))
     # print(str(res))
-    #
 
-    # atom_PDIE_S_1.set_unfeasible_DI_2tuple_info(unfeasible_DI_2tuple_TS=_2TupleTS([]),
+    # atom_PDIE_S_1.set_unfeasible_DI_2tuple_info(unfeasible_DI_2tuple_TS=empty_unfeasible_DI_2tuple_TS,
     #                                             unfeasible_PDIE_tuple=(atom_PDIE_1, atom_PDIE_2))
     # res = atom_add(p_atom_PDIE_S=atom_PDIE_S_1,
     #                p_op_idx_T=(1, 2),
@@ -85,7 +71,7 @@ if __name__ == '__main__':
     #                )
     # print(str(res))
 
-    atom_PDIE_S_1.set_unfeasible_DI_2tuple_info(unfeasible_DI_2tuple_TS=_2TupleTS([_2TupleT([ _2_tuple_3, '*', ]),]),
+    atom_PDIE_S_1.set_unfeasible_DI_2tuple_info(unfeasible_DI_2tuple_TS=unfeasible_DI_2tuple_TS_2,
                                                 unfeasible_PDIE_tuple=(atom_PDIE_1, atom_PDIE_2))
     res = atom_add(p_atom_PDIE_S=atom_PDIE_S_1,
                    p_op_idx_T=(1, 2),

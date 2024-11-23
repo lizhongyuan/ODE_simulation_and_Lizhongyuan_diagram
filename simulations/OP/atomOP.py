@@ -41,24 +41,7 @@ def atom_add(p_atom_PDIE_S: AtomPDIES,
 
     # 3 取_2tuple_TS_CP的合法子集
 
-    unfeasible_PDIE_T = p_atom_PDIE_S.get_unfeasible_DI_2tuple_info()[0]
-    idx_T_asc_list = []
-    if unfeasible_PDIE_T is not None and unfeasible_PDIE_T != ():
-        for pdie in unfeasible_PDIE_T:
-            cur_idx = p_atom_PDIE_S.index(pdie)
-            if cur_idx is None:
-                raise ValueError(f"p_atom_PDIE_S 中没有元素{pdie}")
-            if cur_idx in idx_T_asc_list:
-                return PDIE_ERROR()
-
-            idx_T_asc_list.append(cur_idx)
-
-    unfeasible_DI_2tuple_TS = p_atom_PDIE_S.get_unfeasible_DI_2tuple_info()[1]
-    feasible_2tuple_TS = get_feasible_DI_2tuple_TS(_2tuple_TS_CP,
-                                                   unfeasible_DI_2tuple_TS,
-                                                   p_op_idx_T,
-                                                   tuple(idx_T_asc_list))
-
+    feasible_2tuple_TS = p_atom_PDIE_S.get_feasible_CP_of_DI_2tuple_SS(p_op_idx_T)
 
     print(f"3 取_2tuple_TS_CP的合法子集\n{str(feasible_2tuple_TS)}\n")
 
@@ -99,7 +82,7 @@ def atom_add(p_atom_PDIE_S: AtomPDIES,
                     OP='+',
                     meta_PDIES=p_atom_PDIE_S,
                     DI_2tuple_S=DI_2tuple_S,
-                    factor_DI_2tuple_TS=_2TupleTS([]) # todo: 自身
+                    factor_DI_2tuple_TS=_2TupleTS([]) # todo: 自身?
                     )
 
     return res_PDIE
