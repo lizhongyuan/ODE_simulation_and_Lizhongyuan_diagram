@@ -28,16 +28,16 @@ def atom_add(p_atom_PDIE_S: AtomPDIES,
             return PDIE_ERROR()
 
     # 1 取p_atom_PDIE_S的持续区间二元组集合的集合: DI_2tuple_SS
-    DI_2tuple_SS = p_atom_PDIE_S.get_DI_2tuple_SS()
+#    DI_2tuple_SS = p_atom_PDIE_S.get_DI_2tuple_SS()
 
-    print(f"1 取p_atom_PDIE_S的持续区间二元组集合的集合\n{str(DI_2tuple_SS)}\n")
+#    print(f"1 取p_atom_PDIE_S的持续区间二元组集合的集合\n{str(DI_2tuple_SS)}\n")
 
     # 2 使用p_idx_T作为笛卡尔积表达式的运算数顺序,
     # 取DI_2tuple_SS的所有集合元素, 以该顺序进行过笛卡尔积,
     # 得到一个二元组的元组的集合: _2tuple_TS_CP
-    _2tuple_TS_CP = get_CP_of_2tuple_SS(DI_2tuple_SS, p_op_idx_T)
+#    _2tuple_TS_CP = get_CP_of_2tuple_SS(DI_2tuple_SS, p_op_idx_T)
 
-    print(f"2 使用p_idx_T作为笛卡尔积表达式的运算数顺序, 取DI_2tuple_SS的所有集合元素, 以该顺序进行过笛卡尔积,\n得到一个二元组的元组的集合\n{str(_2tuple_TS_CP)}\n")
+#    print(f"2 使用p_idx_T作为笛卡尔积表达式的运算数顺序, 取DI_2tuple_SS的所有集合元素, 以该顺序进行过笛卡尔积,\n得到一个二元组的元组的集合\n{str(_2tuple_TS_CP)}\n")
 
     # 3 取_2tuple_TS_CP的合法子集
 

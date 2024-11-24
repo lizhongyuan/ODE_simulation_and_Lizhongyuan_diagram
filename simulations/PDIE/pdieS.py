@@ -119,7 +119,15 @@ class PDIES(MySet):
         return _2tuple_TS
 
 
-    def get_feasible_CP_of_DI_2tuple_SS(self, p_op_idx_T: tuple) -> _2TupleTS:
+    def get_feasible_CP_of_DI_2tuple_SS(self, p_op_idx_T: tuple[int,...]) -> _2TupleTS:
+        """
+        获取所有集合内元素以p_op_idx_T作为运算顺序的笛卡尔积的合法子集
+        Args:
+            p_op_idx_T: 笛卡尔积表达式运算数的索引顺序(The index order tuple of operands in cartesian product expression)
+
+        Returns:
+
+        """
 
         CP_of_DI_2tuple_SS = self.get_CP_of_DI_2tuple_SS(p_op_idx_T)
 
