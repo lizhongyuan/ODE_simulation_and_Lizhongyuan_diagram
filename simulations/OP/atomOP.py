@@ -6,7 +6,7 @@
 from typing import Tuple
 
 from simulations.PDIE.AbstractPDIE import AbstractPDIE
-from simulations.PDIE.pdieS import AtomPDIES
+from simulations.PDIE.pdieS import PDIES
 from simulations.TwoTupleTS import get_largest_comm_cut_2tuple_S2
 from simulations.cut2tupleS import get_largest_comm_cut_2tuple_S
 from simulations.domainFilteredSub2tupleTS import get_domain_filtered_sub_2tuple_TS
@@ -17,13 +17,13 @@ from simulations.unfeasible import get_feasible_DI_2tuple_TS
 
 
 # todo:
-def atom_add(p_atom_PDIE_S: AtomPDIES,
-             p_op_idx_T: Tuple[int,...],
-             p_comm_cut_2tuple: _2Tuple,
-             ) -> PDIE | None:
-    print(f"AtomPDIES 时序加法:\n\n")
+def add(p_PDIE_S: PDIES,
+        p_op_idx_T: Tuple[int,...],
+        p_comm_cut_2tuple: _2Tuple,
+        ) -> PDIE | None:
+    print(f"PDIES 时序加法:\n\n")
 
-    for atom_PDIE in p_atom_PDIE_S:
+    for atom_PDIE in p_PDIE_S:
         if atom_PDIE.isError():
             return PDIE_ERROR()
 
@@ -41,7 +41,7 @@ def atom_add(p_atom_PDIE_S: AtomPDIES,
 
     # 3 取_2tuple_TS_CP的合法子集
 
-    feasible_2tuple_TS = p_atom_PDIE_S.get_feasible_CP_of_DI_2tuple_SS(p_op_idx_T)
+    feasible_2tuple_TS = p_PDIE_S.get_feasible_CP_of_DI_2tuple_SS(p_op_idx_T)
 
     print(f"3 取_2tuple_TS_CP的合法子集\n{str(feasible_2tuple_TS)}\n")
 
@@ -72,7 +72,7 @@ def atom_add(p_atom_PDIE_S: AtomPDIES,
 
     res_PDIE_expression = ""
     for i in range(len(p_op_idx_T)):
-        res_PDIE_expression += p_atom_PDIE_S[i].getExpression()
+        res_PDIE_expression += p_PDIE_S[i].getExpression()
         if i < len(p_op_idx_T) - 1:
             res_PDIE_expression += ' + '
 
@@ -80,9 +80,8 @@ def atom_add(p_atom_PDIE_S: AtomPDIES,
                     is_error=False,
                     is_atom=False,
                     OP='+',
-                    meta_PDIES=p_atom_PDIE_S,
+                    meta_PDIES=p_PDIE_S,
                     DI_2tuple_S=DI_2tuple_S,
-                    factor_DI_2tuple_TS=_2TupleTS([]) # todo: 自身?
                     )
 
     return res_PDIE

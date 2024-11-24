@@ -85,9 +85,21 @@ class PDIES(MySet):
             p_idx_T顺序下的不可能DI的二元组的元组的集合
         """
         pass
+
     def set_unfeasible_DI_2tuple_info(self,
                                       unfeasible_DI_2tuple_TS: _2TupleTS,
                                       unfeasible_PDIE_tuple: Tuple[AbstractPDIE, ...]):
+        for _2tuple_T in unfeasible_DI_2tuple_TS:
+            if len(_2tuple_T) != len(unfeasible_PDIE_tuple):
+                raise ValueError(f"Wrong unfeasible DI 2tuple info")
+            for i in range(len(_2tuple_T)):
+                cur_tuple = _2tuple_T[i]
+                if cur_tuple == '*':
+                    continue
+                cur_PDIE = unfeasible_PDIE_tuple[i]
+                if cur_tuple not in cur_PDIE.get_DI_2tuple_S():
+                    raise ValueError(f"Wrong unfeasible DI 2tuple info")
+
         self._unfeasible_DI_2tuple_TS = unfeasible_DI_2tuple_TS
         self._unfeasible_PDIE_tuple = unfeasible_PDIE_tuple
 

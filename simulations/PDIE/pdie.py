@@ -25,8 +25,6 @@ class PDIE(AbstractPDIE):
                  OP: str | None,
                  meta_PDIES: PDIES,         # todo: 改为factor_PDIES ?
                  DI_2tuple_S: _2TupleS,
-                 factor_DI_2tuple_TS: _2TupleTS,
-                 #                 expressionIdx: int = 0,    # todo: 应该不需要
                  ):
         super().__init__()
 
@@ -36,8 +34,8 @@ class PDIE(AbstractPDIE):
         self._OP = OP
         self._meta_PDIE = meta_PDIES
         self._DI_2tuple_S = DI_2tuple_S
-        self._factor_DI_2tuple_TS = factor_DI_2tuple_TS
-        self._expression_idx = 0
+#        self._factor_DI_2tuple_TS = factor_DI_2tuple_TS
+#        self._expression_idx = 0
 
     def __str__(self):
         format_str = f"PDIE_error"
@@ -51,8 +49,8 @@ class PDIE(AbstractPDIE):
              f"\tis_atom: {self._is_atom},\n" +
 #             f"\tmeta_PDIE: {str(self._meta_PDIE)},\n" +
              f"\tDI_2tuple_S: {str(self._DI_2tuple_S)}\n" +
-             f"\tfactor_DI_2tuple_TS: {str(self._factor_DI_2tuple_TS)}\n" +
-             f"\tdistinct_same_bound_2tuple_TSS: {str(self.get_factor_DI_distinct_same_bound_2tuple_TSS())}\n" +
+#             f"\tfactor_DI_2tuple_TS: {str(self._factor_DI_2tuple_TS)}\n" +
+#             f"\tdistinct_same_bound_2tuple_TSS: {str(self.get_factor_DI_distinct_same_bound_2tuple_TSS())}\n" +
              f"}}"
              )
         return format_str
@@ -72,17 +70,12 @@ class PDIE(AbstractPDIE):
     def get_DI_2tuple_S(self):
         return self._DI_2tuple_S
 
-    def get_factor_DI_distinct_same_bound_2tuple_TSS(self): # todo: 改论文
-        return get_distinct_same_bound_2tuple_TSS(self._factor_DI_2tuple_TS)
+    def __add__(self, other):
+        pass
 
 
 class AtomPDIE(PDIE):
     def __init__(self, expression: str | None, DI_2tuple_S: _2TupleS):
-
-        factor_DI_2tuple_T_list = []
-        for DI_2tuple in DI_2tuple_S:
-            factor_DI_2tuple_T_list.append(_2TupleT([DI_2tuple]))
-        factor_DI_2tuple_TS = _2TupleTS(factor_DI_2tuple_T_list)
 
         super().__init__(expression=expression,
                          is_error=False,
@@ -90,10 +83,7 @@ class AtomPDIE(PDIE):
                          OP=None,
                          meta_PDIES=PDIES([]),
                          DI_2tuple_S=DI_2tuple_S,
-                         factor_DI_2tuple_TS=factor_DI_2tuple_TS)
-
-    def __add__(self, other):
-        pass
+                         )
 
 
 class PDIE_ERROR(PDIE):
@@ -105,7 +95,7 @@ class PDIE_ERROR(PDIE):
                          OP=None,
                          meta_PDIES=PDIES([]),
                          DI_2tuple_S=_2TupleS([]),
-                         factor_DI_2tuple_TS=_2TupleTS([]))
+        )
 
     def __str__(self):
         return f"PDIE_error"

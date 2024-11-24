@@ -4,7 +4,7 @@
 @date: 2024/11/21
 """
 
-from simulations.OP.atomOP import atom_add
+from simulations.OP.atomOP import add
 from simulations.PDIE.pdie import AtomPDIE
 from simulations.PDIE.pdieS import PDIES, AtomPDIES
 from simulations.structure import _2TupleS, _2Tuple, _2TupleTS, _2TupleT
@@ -39,12 +39,10 @@ if __name__ == '__main__':
     atom_PDIE_4 = AtomPDIE(expression='atomPDIE4', DI_2tuple_S=DI_2tuple_S_4)
 #    print(str(atom_PDIE_4))
 
-    atom_PDIE_S = AtomPDIES([ atom_PDIE_1, atom_PDIE_2, atom_PDIE_3, atom_PDIE_4 ])
+    atom_PDIE_S = PDIES([ atom_PDIE_1, atom_PDIE_2, atom_PDIE_3, atom_PDIE_4 ])
     print(str(atom_PDIE_S))
 
     print(str(atom_PDIE_S.get_CP_of_DI_2tuple_SS(p_op_idx_T=None)))
     print(str(atom_PDIE_S.get_CP_of_DI_2tuple_SS((1, 2, 3, 4))))
     print(str(atom_PDIE_S.get_CP_of_DI_2tuple_SS((3, 2, 1, 4))))
     print(str(atom_PDIE_S.get_CP_of_DI_2tuple_SS((4, 2, 1, 3))))
-
-    a = 1
