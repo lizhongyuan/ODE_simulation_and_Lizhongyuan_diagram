@@ -28,7 +28,7 @@ def add(p_PDIE_S: PDIES,
     for i in range(len(p_op_idx_T)):
         res_PDIE_expression += p_PDIE_S[i].getExpression()
         if i < len(p_op_idx_T) - 1:
-            res_PDIE_expression += ' * '
+            res_PDIE_expression += ' + '
 
     for atom_PDIE in p_PDIE_S:
         if atom_PDIE.isError():
