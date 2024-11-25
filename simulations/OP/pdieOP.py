@@ -26,7 +26,7 @@ def add(p_PDIE_S: PDIES,
 
     res_PDIE_expression = ""
     for i in range(len(p_op_idx_T)):
-        res_PDIE_expression += p_PDIE_S[i].getExpression()
+        res_PDIE_expression += p_PDIE_S[p_op_idx_T[i] - 1].getExpression()
         if i < len(p_op_idx_T) - 1:
             res_PDIE_expression += ' + '
 
@@ -105,7 +105,7 @@ def multi(p_PDIE_S: PDIES,
 
     res_PDIE_expression = ""
     for i in range(len(p_op_idx_T)):
-        res_PDIE_expression += p_PDIE_S[i].getExpression()
+        res_PDIE_expression += p_PDIE_S[p_op_idx_T[i] - 1].getExpression()
         if i < len(p_op_idx_T) - 1:
             res_PDIE_expression += ' * '
 
@@ -121,7 +121,6 @@ def multi(p_PDIE_S: PDIES,
     print(f"2 使用p_idx_T作为笛卡尔积表达式的运算数顺序, 取DI_2tuple_SS的所有集合元素, 以该顺序进行过笛卡尔积,\n得到一个二元组的元组的集合")
     print(f"3 取笛卡尔积的合法子集\n{str(feasible_2tuple_TS)}\n")
 
-
     complete_asc_order_filtered_2tuple_TS = get_complete_asc_order_filtered_2tuple_TS(feasible_2tuple_TS)
     if complete_asc_order_filtered_2tuple_TS.empty():
         pdie_error = PDIE_ERROR()
@@ -135,14 +134,11 @@ def multi(p_PDIE_S: PDIES,
     print(f"5 使用complete_asc_order_filtered_2tuple_TS计算出结果PDIE的DI_2tuple_S\n{str(DI_2tuple_S)}\n")
 
     # todo: 构造DIS和metaPDIES等等，返回对应PDIE
-
-
     res_PDIE = PDIE(expression=res_PDIE_expression,
                     is_error=False,
                     is_atom=False,
                     OP='*',
                     meta_PDIES=p_PDIE_S,
-                    DI_2tuple_S=DI_2tuple_S,
-                    )
+                    DI_2tuple_S=DI_2tuple_S)
 
     return res_PDIE

@@ -77,7 +77,7 @@ class PDIES(MySet):
 
     def get_unfeasible_DI_2tuple_TS(self, p_idx_T: Tuple[int,...]):
         """
-        获取p_idx_T顺序下的不可能DI的二元组的元组的集合
+        (定义17)获取p_idx_T顺序下的不可能DI的二元组的元组的集合
         Args:
             p_idx_T: 一个索引号元组
 
@@ -89,6 +89,15 @@ class PDIES(MySet):
     def set_unfeasible_DI_2tuple_info(self,
                                       unfeasible_DI_2tuple_TS: _2TupleTS,
                                       unfeasible_PDIE_tuple: Tuple[AbstractPDIE, ...]):
+        """
+
+        Args:
+            unfeasible_DI_2tuple_TS:
+            unfeasible_PDIE_tuple:
+
+        Returns:
+
+        """
         for _2tuple_T in unfeasible_DI_2tuple_TS:
             if len(_2tuple_T) != len(unfeasible_PDIE_tuple):
                 raise ValueError(f"Wrong unfeasible DI 2tuple info")

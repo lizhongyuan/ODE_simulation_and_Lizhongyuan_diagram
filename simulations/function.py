@@ -23,53 +23,54 @@ def get_max_second_of_2tuple_S(p_2tuple_S: _2TupleS) -> object:
 
 # fCPo2tupleSS实现
 # 2tupleSS内所有元素, 以pIdxT为顺序, 做笛卡尔积
-def get_CP_of_2tuple_SS(p_2tupleSS: _2TupleSS, p_idx_T: Tuple[int,...]) -> _2TupleTS:
+def get_CP_of_2tuple_SS(p_2tuple_SS: _2TupleSS, p_idx_T: Tuple[int,...]) -> _2TupleTS:
     """
-    Let set 2tupleSS = { 2tupleS1, 2tupleS2, 2tupleS3, ... ,2tupleSn },
-    get cartesian product 2tupleS(p_idx_T[1]) * 2tupleS(p_idx_T[2]) * 2tupleS(p_idx_T[3]) * ... * 2tupleS(p_idx_T[n])
+    (定义16)Let set p_2tuple_SS = { p_2tuple_S_1, p_2tuple_S_2, p_2tuple_S_3, ... , p_2tuple_S_n },
+    and p_idx_T = [ p_idx_1, p_idx_2, p_idx_3, ..., p_idx_n ].
+    get cartesian product with expression p_2tuple_S_(p_idx_1) * p_2tuple_S_(p_idx_2) * p_2tuple_S_(p_idx_3) * ... * p_2tuple_S_(p_idx_n)
     Args:
-        p_2tupleSS (_2TupleSS): A set whose elements are sets of 2-tuples
-        p_idx_T (Tuple[int]): A tuple representing the order of operands
+        p_2tuple_SS (_2TupleSS): A set whose elements are sets of 2-tuples
+        p_idx_T (Tuple[int,...]): A tuple representing the index order of operands
 
     Returns:
-
+        (_2TupleTS): cartesian product
     """
 
-    sub_2tupleTS_list = get_CP_of_2tupleSS_recur(p_2tupleSS, p_idx_T, 1)
+    sub_2tuple_list_list = get_CP_of_2tuple_SS_recur(p_2tuple_SS, p_idx_T, 1)
 
-    _2tupleTS_list = []
-    for cur_2tupleT_list in sub_2tupleTS_list:
-        cur_2tupleT = _2TupleT(cur_2tupleT_list)
-        _2tupleTS_list.append(cur_2tupleT)
+    _2tuple_T_list = []
+    for _2tuple_list in sub_2tuple_list_list:
+        _2tuple_T = _2TupleT(_2tuple_list)
+        _2tuple_T_list.append(_2tuple_T)
 
-    _2tupleTS = _2TupleTS(_2tupleTS_list)
+    _2tuple_TS = _2TupleTS(_2tuple_T_list)
 
-    return _2tupleTS
+    return _2tuple_TS
 
 
 # 递归求2tupleSS内某些元素的笛卡尔积, todo: 全面改造
-def get_CP_of_2tupleSS_recur(p_2tupleSS: _2TupleSS,
-                             p_idxT: Tuple[int],
-                             pivot: int) -> List[List[object]]:
+def get_CP_of_2tuple_SS_recur(p_2tuple_SS: _2TupleSS,
+                              p_idx_T: Tuple[int,...],
+                              p_pivot: int) -> List[List[_2Tuple]]:
 
-    cur_idx = p_idxT[pivot - 1] - 1               # pivot所代表的2tupleS的索引
-    cur_2tupleS = p_2tupleSS[cur_idx]
+    cur_idx = p_idx_T[p_pivot - 1] - 1               # pivot所代表的2tupleS的索引
+    cur_2tuple_S = p_2tuple_SS[cur_idx]
 
-    _2tupleTS_list = []
+    _2tuple_list_list = []
 
-    if pivot == len(p_idxT):
-        for cur_2tuple in cur_2tupleS:
-                _2tupleTS_list.append([cur_2tuple])
-        return _2tupleTS_list
+    if p_pivot == len(p_idx_T):
+        for _2tuple in cur_2tuple_S:
+                _2tuple_list_list.append([ _2tuple ])
+        return _2tuple_list_list
 
-    post_2tupleTS_list = get_CP_of_2tupleSS_recur(p_2tupleSS, p_idxT, pivot + 1)
+    post_2tupleT_list_list = get_CP_of_2tuple_SS_recur(p_2tuple_SS, p_idx_T, p_pivot + 1)
 
-    for cur_2tuple in cur_2tupleS:
-        for cur_post_2tupleT in post_2tupleTS_list:
-            cur_2tupleT = [ cur_2tuple ] + cur_post_2tupleT
-            _2tupleTS_list.append(cur_2tupleT)
+    for _2tuple in cur_2tuple_S:
+        for post_2tuple_list in post_2tupleT_list_list:
+            _2tuple_list = [ _2tuple ] + post_2tuple_list
+            _2tuple_list_list.append(_2tuple_list)
 
-    return _2tupleTS_list
+    return _2tuple_list_list
 
 
 # fBound2tuple函数实现
