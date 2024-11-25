@@ -55,8 +55,10 @@ class PDIE(AbstractPDIE):
              )
         return format_str
 
-    def getExpression(self) -> str:
+    def getExpression(self) -> str | None:
         return self._expression
+    def setExpression(self, expression: str):
+        self._expression = expression
 
     def isError(self):
         return self._is_error
@@ -88,14 +90,12 @@ class AtomPDIE(PDIE):
 
 class PDIE_ERROR(PDIE):
     def __init__(self):
-        super().__init__(
-                         expression='PDIE_error',
+        super().__init__(expression='PDIE_error',
                          is_error=True,
                          is_atom=False,
                          OP=None,
                          meta_PDIES=PDIES([]),
-                         DI_2tuple_S=_2TupleS([]),
-        )
+                         DI_2tuple_S=_2TupleS([]))
 
     def __str__(self):
         return f"PDIE_error"

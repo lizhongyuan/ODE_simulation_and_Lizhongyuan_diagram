@@ -83,13 +83,15 @@ if __name__ == '__main__':
 
     PDIE_S_2.set_unfeasible_DI_2tuple_info(unfeasible_DI_2tuple_TS=unfeasible_DI_2tuple_TS_123,
                                            unfeasible_PDIE_tuple=(atom_PDIE_1, atom_PDIE_2, atom_PDIE_3))
-    res = add(p_PDIE_S=PDIE_S_2,
-              p_op_idx_T=(1, 2, 3),
-              p_comm_cut_2tuple=_2Tuple([ 1, 4 ]))
-    print(f"{str(res)}\n")
+    PDIE_res = add(p_PDIE_S=PDIE_S_2,
+                   p_op_idx_T=(1, 2, 3),
+                   p_comm_cut_2tuple=_2Tuple([ 1, 4 ]))
+    print(f"PDIE加法执行成功, 结果PDIE如下")
+    print(f"{str(PDIE_res)}\n")
 
     PDIE_S_1.set_unfeasible_DI_2tuple_info(unfeasible_DI_2tuple_TS=empty_unfeasible_DI_2tuple_TS,
                                            unfeasible_PDIE_tuple=(atom_PDIE_1, atom_PDIE_2))
-    res = multi(p_PDIE_S=PDIE_S_1,
-                p_op_idx_T=(1, 2))
-    print(f"{str(res)}\n")
+    PDIE_res = multi(p_PDIE_S=PDIE_S_1,
+                     p_op_idx_T=(1, 2))
+    print(f"PDIE乘法执行成功, 结果PDIE如下")
+    print(f"{str(PDIE_res)}\n")
