@@ -7,10 +7,9 @@
 from simulations.structure import _2TupleTS, _2TupleT
 
 
-def get_unfeasible_DI_2tuple_TS(p_unfeasible_DI_2tuple_TS: _2TupleTS,
-                                p_op_idx_T: tuple,
-                                p_unfeasible_DI_idx_T: tuple
-                                ):
+def get_op_ordered_unfeasible_DI_2tuple_TS(p_unfeasible_DI_2tuple_TS: _2TupleTS,
+                                           p_op_idx_T: tuple,
+                                           p_unfeasible_DI_idx_T: tuple):
     idx_trans_dict = {}
     for op_pos in range(0, len(p_op_idx_T)):
         for unfeasible_DI_pos in range(0, len(p_unfeasible_DI_idx_T)):

@@ -9,7 +9,7 @@ from typing import List, Tuple
 from simulations.PDIE.AbstractPDIE import AbstractPDIE
 from simulations.function import get_CP_of_2tuple_SS
 from simulations.structure import MySet, _2TupleSS, _2TupleTS, _2TupleS
-from simulations.unfeasible import get_feasible_DI_2tuple_TS
+from simulations.unfeasible import get_feasible_DI_2tuple_TS, get_op_ordered_unfeasible_DI_2tuple_TS
 
 
 class PDIES(MySet):
@@ -141,6 +141,18 @@ class PDIES(MySet):
 
 
     # todo: 增加定义16, 使用get_unfeasible_DI_2tuple_TS补充
+    def get_unfeasible_DI_2tuple_TS(self, p_op_idx_T: tuple[int,...]) -> _2TupleTS:
+
+        unfeasible_DI_idx_list = []
+
+        for unfeasible_PDIE in self._unfeasible_PDIE_tuple:
+            cur_idx = self.get_dict_key(unfeasible_PDIE)
+            if cur_idx is None:
+                return _2TupleTS([])
+            unfeasible_DI_idx_list.append(cur_idx)
+        return get_op_ordered_unfeasible_DI_2tuple_TS(self._unfeasible_DI_2tuple_TS,
+        p_op_idx_T,
+        tuple(unfeasible_DI_idx_list))
 
 
     def get_feasible_CP_of_DI_2tuple_SS(self, p_op_idx_T: tuple[int,...]) -> _2TupleTS:
