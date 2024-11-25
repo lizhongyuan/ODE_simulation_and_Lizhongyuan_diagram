@@ -4,7 +4,7 @@
 @date: 2024/11/12
 """
 
-from simulations.OP.atomOP import add, multi
+from simulations.OP.pdieOP import add, multi
 from simulations.PDIE.pdie import PDIE, AtomPDIE
 from simulations.PDIE.pdieS import PDIES
 from simulations.structure import _2TupleS, _2Tuple, _2TupleTS, _2TupleT
