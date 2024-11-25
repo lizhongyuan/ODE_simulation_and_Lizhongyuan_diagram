@@ -37,8 +37,6 @@ def get_feasible_DI_2tuple_TS(p_entire_DI_2tuple_TS: _2TupleTS,
             if p_unfeasible_DI_idx_T[unfeasible_DI_pos] == p_op_idx_T[op_pos]:
                 idx_trans_dict[unfeasible_DI_pos] = op_pos
 
-    print(str(idx_trans_dict))
-
     # 2.2 使用索引转换字典, 构造以p_op_idx_T为索引顺序的不可能区间二元组的元组的集合
     op_ordered_unfeasible_DI_2tuple_TS = _2TupleTS([])
     for unfeasible_DI_2tuple_T in p_unfeasible_DI_2tuple_TS:

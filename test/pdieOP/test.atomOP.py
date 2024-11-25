@@ -4,7 +4,7 @@
 @date: 2024/11/12
 """
 
-from simulations.OP.atomOP import add
+from simulations.OP.atomOP import add, multi
 from simulations.PDIE.pdie import PDIE, AtomPDIE
 from simulations.PDIE.pdieS import PDIES
 from simulations.structure import _2TupleS, _2Tuple, _2TupleTS, _2TupleT
@@ -17,12 +17,6 @@ if __name__ == '__main__':
     _2_tuple_2 = _2Tuple([ 3, 4 ])
     _2_tuple_3 = _2Tuple([ 4, 5 ])
     DI_2tuple_S_1 = _2TupleS([ _2_tuple_1, _2_tuple_2, _2_tuple_3 ])
-    # expression: str | None,
-    # is_error: bool,
-    # is_atom: bool,
-    # OP: str | None,
-    # meta_PDIES: PDIES,  # todo: 改为factor_PDIES ?
-    # DI_2tuple_S: _2TupleS,
     atom_PDIE_1 = AtomPDIE(expression='atomPDIE1', DI_2tuple_S=DI_2tuple_S_1)
 
     _2_tuple_4 = _2Tuple([ 1, 3 ])
@@ -31,8 +25,8 @@ if __name__ == '__main__':
     DI_2tuple_S_2 = _2TupleS([ _2_tuple_4, _2_tuple_5, _2_tuple_6 ])
     atom_PDIE_2 = AtomPDIE(expression='atomPDIE2', DI_2tuple_S=DI_2tuple_S_2)
 
-    _2_tuple_7 = _2Tuple([ 1, 4 ])
-    DI_2tuple_S_3 = _2TupleS([ _2_tuple_7 ])
+#    _2_tuple_7 = _2Tuple([ 1, 4 ])
+    DI_2tuple_S_3 = _2TupleS([ _2_tuple_1, _2_tuple_5 ])
     atom_PDIE_3 = AtomPDIE(expression='atomPDIE3', DI_2tuple_S=DI_2tuple_S_3)
 
     PDIE_S_1 = PDIES([ atom_PDIE_1, atom_PDIE_2 ])
@@ -92,4 +86,10 @@ if __name__ == '__main__':
     res = add(p_PDIE_S=PDIE_S_2,
               p_op_idx_T=(1, 2, 3),
               p_comm_cut_2tuple=_2Tuple([ 1, 4 ]))
-    print(str(res))
+    print(f"{str(res)}\n")
+
+    PDIE_S_1.set_unfeasible_DI_2tuple_info(unfeasible_DI_2tuple_TS=empty_unfeasible_DI_2tuple_TS,
+                                           unfeasible_PDIE_tuple=(atom_PDIE_1, atom_PDIE_2))
+    res = multi(p_PDIE_S=PDIE_S_1,
+                p_op_idx_T=(1, 2))
+    print(f"{str(res)}\n")
