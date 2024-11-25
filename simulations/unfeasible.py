@@ -7,6 +7,35 @@
 from simulations.structure import _2TupleTS, _2TupleT
 
 
+def get_unfeasible_DI_2tuple_TS(p_unfeasible_DI_2tuple_TS: _2TupleTS,
+                                p_op_idx_T: tuple,
+                                p_unfeasible_DI_idx_T: tuple
+                                ):
+    idx_trans_dict = {}
+    for op_pos in range(0, len(p_op_idx_T)):
+        for unfeasible_DI_pos in range(0, len(p_unfeasible_DI_idx_T)):
+            if p_unfeasible_DI_idx_T[unfeasible_DI_pos] == p_op_idx_T[op_pos]:
+                idx_trans_dict[unfeasible_DI_pos] = op_pos
+
+    op_ordered_unfeasible_DI_2tuple_TS = _2TupleTS([])
+    for unfeasible_DI_2tuple_T in p_unfeasible_DI_2tuple_TS:
+
+        # 2.2.1
+        # 以表达式运算数的顺序, 将当前不可能持续区间二元组unfeasible_DI_2tuple_T,
+        # 转化为符合表达式运算顺序的不可能持续区间二元组op_ordered_unfeasible_DI_2tuple_T
+        op_ordered_unfeasible_DI_2tuple_list = []
+        for cur_pos in range(0, len(p_unfeasible_DI_idx_T)):
+            op_pos = idx_trans_dict[cur_pos]
+            unfeasible_DI_2tuple = unfeasible_DI_2tuple_T[op_pos]
+            op_ordered_unfeasible_DI_2tuple_list.append(unfeasible_DI_2tuple)
+        op_ordered_unfeasible_DI_2tuple_T = _2TupleT(op_ordered_unfeasible_DI_2tuple_list)
+
+        # 2.2.2
+        # 符合表达式运算顺序的不可能持续区间二元组, 加入到op_ordered_unfeasible_DI_2tuple_TS
+        op_ordered_unfeasible_DI_2tuple_TS.add(op_ordered_unfeasible_DI_2tuple_T)
+
+    return op_ordered_unfeasible_DI_2tuple_TS
+
 def get_feasible_DI_2tuple_TS(p_entire_DI_2tuple_TS: _2TupleTS,
                               p_unfeasible_DI_2tuple_TS: _2TupleTS,
                               p_op_idx_T: tuple,

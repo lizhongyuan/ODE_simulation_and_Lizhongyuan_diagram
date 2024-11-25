@@ -140,6 +140,9 @@ class PDIES(MySet):
         return _2tuple_TS
 
 
+    # todo: 增加定义16, 使用get_unfeasible_DI_2tuple_TS补充
+
+
     def get_feasible_CP_of_DI_2tuple_SS(self, p_op_idx_T: tuple[int,...]) -> _2TupleTS:
         """
         获取所有集合内元素以p_op_idx_T作为运算顺序的笛卡尔积的合法子集
