@@ -108,6 +108,8 @@ def get_feasible_DI_2tuple_TS(p_entire_DI_2tuple_TS: _2TupleTS,
     return feasible_DI_2tuple_TS
 
 
+
+
 #
 # op_idx_T = (2, 1, 3)
 # # unfeasible_idx_T = (2, 1, 4)

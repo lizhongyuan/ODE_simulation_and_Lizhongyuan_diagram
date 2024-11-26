@@ -44,14 +44,14 @@ class MySet:
         return True
 
 
-    def get(self, p_i: int) -> object | None:
+    def get(self, p_i: int) -> any:
         """
         Let set S = { a1, a2, a3, ..., an }, get an element with index number
         Args:
             p_i (int): index number
 
         Returns:
-            (object | None): The element of the set with the index number p_i,
+            (any): The element of the set with the index number p_i,
             if there is no such element in the set, return None
         """
 
@@ -86,7 +86,7 @@ class MySet:
     def empty(self) -> bool:
         return len(self._list) == 0
 
-    def has(self, item: object) -> bool:
+    def has(self, item: any) -> bool:
         for elem in self._list:
             if item == elem:
                 return True
@@ -141,15 +141,15 @@ class MyTuple:  # todo: add get() func
 
 class _2Tuple(MyTuple):
 
-    def first(self) -> object:
+    def first(self) -> any:
 #        return self.__getitem__(1)
         return self.__getitem__(0)
 
-    def second(self):
+    def second(self) -> any:
 #        return self.__getitem__(2)
         return self.__getitem__(1)
 
-    def instance(self) -> tuple[object, object]:
+    def instance(self) -> tuple[any, any]:
 #        return self.__getitem__(1), self.__getitem__(2)
         return self.__getitem__(0), self.__getitem__(1)
 

@@ -12,6 +12,33 @@ from simulations.structure import MySet, _2TupleSS, _2TupleTS, _2TupleS
 from simulations.unfeasible import get_feasible_DI_2tuple_TS, get_op_ordered_unfeasible_DI_2tuple_TS
 
 
+def get_feasible_DI_2tuple_TS2(op_ordered_unfeasible_DI_2tuple_TS: _2TupleTS,
+                               op_ordered_CP_of_2tuple_SS: _2TupleTS) -> _2TupleTS:
+    # 3 ---------- 构造合法的二元组的元组的集合 ----------
+
+    feasible_DI_2tuple_TS = _2TupleTS([])
+    for _2tuple_T in op_ordered_CP_of_2tuple_SS:
+        # 3.1 如果在op_ordered_unfeasible_DI_2tuple_TS, 则_2tuple_T非法, continue
+        if _2tuple_T in op_ordered_unfeasible_DI_2tuple_TS:
+            continue
+
+        # 3.2 如果通配在op_ordered_unfeasible_DI_2tuple_TS, continue
+        wildcard_matched = False
+        for op_ordered_unfeasible_DI_2tuple_T in op_ordered_unfeasible_DI_2tuple_TS:
+            if _2tuple_T.wildcard_match(op_ordered_unfeasible_DI_2tuple_T):
+                wildcard_matched = True
+                break
+        if wildcard_matched:
+            continue
+
+        # 3.3 合法, 加入到feasible_DI_2tuple_TS
+        feasible_DI_2tuple_TS.add(_2tuple_T)
+
+    # 4 ---------- 返回结果 ----------
+
+    return feasible_DI_2tuple_TS
+
+
 class PDIES(MySet):
     """
     PDIE Set
@@ -75,20 +102,9 @@ class PDIES(MySet):
     def set_unfeasible_asc_DI_2tuple_TS(self, unfeasible_asc_DI_2tuple_TS: _2TupleTS):
         pass
 
-    def get_unfeasible_DI_2tuple_TS(self, p_idx_T: Tuple[int,...]):
-        """
-        (定义17)获取p_idx_T顺序下的不可能DI的二元组的元组的集合
-        Args:
-            p_idx_T: 一个索引号元组
-
-        Returns:
-            p_idx_T顺序下的不可能DI的二元组的元组的集合
-        """
-        pass
-
     def set_unfeasible_DI_2tuple_info(self,
                                       unfeasible_DI_2tuple_TS: _2TupleTS,
-                                      unfeasible_PDIE_tuple: Tuple[AbstractPDIE, ...]):
+                                      unfeasible_PDIE_tuple: Tuple[AbstractPDIE,...]):
         """
 
         Args:
@@ -112,8 +128,8 @@ class PDIES(MySet):
         self._unfeasible_DI_2tuple_TS = unfeasible_DI_2tuple_TS
         self._unfeasible_PDIE_tuple = unfeasible_PDIE_tuple
 
-    def get_unfeasible_DI_2tuple_info(self):
-        return self._unfeasible_PDIE_tuple, self._unfeasible_DI_2tuple_TS
+    # def get_unfeasible_DI_2tuple_info(self):
+    #     return self._unfeasible_PDIE_tuple, self._unfeasible_DI_2tuple_TS
 
     def get_CP_of_DI_2tuple_SS(self, p_op_idx_T: Tuple[int, ...] | None) -> _2TupleTS:
         """
@@ -141,7 +157,7 @@ class PDIES(MySet):
 
 
     # todo: 增加定义16, 使用get_unfeasible_DI_2tuple_TS补充
-    def get_unfeasible_DI_2tuple_TS(self, p_op_idx_T: tuple[int,...]) -> _2TupleTS:
+    def get_wildcard_unfeasible_DI_2tuple_TS(self, p_op_idx_T: tuple[int,...]) -> _2TupleTS:
 
         unfeasible_DI_idx_list = []
 
@@ -150,38 +166,10 @@ class PDIES(MySet):
             if cur_idx is None:
                 return _2TupleTS([])
             unfeasible_DI_idx_list.append(cur_idx)
+
         return get_op_ordered_unfeasible_DI_2tuple_TS(self._unfeasible_DI_2tuple_TS,
-        p_op_idx_T,
-        tuple(unfeasible_DI_idx_list))
-
-
-    def get_feasible_CP_of_DI_2tuple_SS(self, p_op_idx_T: tuple[int,...]) -> _2TupleTS:
-        """
-        获取所有集合内元素以p_op_idx_T作为运算顺序的笛卡尔积的合法子集
-        Args:
-            p_op_idx_T: 笛卡尔积表达式运算数的索引顺序(The index order tuple of operands in cartesian product expression)
-
-        Returns:
-
-        """
-
-        CP_of_DI_2tuple_SS = self.get_CP_of_DI_2tuple_SS(p_op_idx_T)
-
-        unfeasible_DI_idx_list = []
-
-        for unfeasible_PDIE in self._unfeasible_PDIE_tuple:
-            cur_idx = self.get_dict_key(unfeasible_PDIE)
-            if cur_idx is None:
-                return _2TupleTS([])
-            unfeasible_DI_idx_list.append(cur_idx)
-
-        feasible_CP_of_DI_2tuple_TS = get_feasible_DI_2tuple_TS(CP_of_DI_2tuple_SS,
-                                                   self._unfeasible_DI_2tuple_TS,
-                                                   p_op_idx_T,
-                                                   tuple(unfeasible_DI_idx_list))
-
-        return feasible_CP_of_DI_2tuple_TS
-
+                                                      p_op_idx_T,
+                                                      tuple(unfeasible_DI_idx_list))
 
     # todo: S2放到这
     def get_largest_comm_cut_2tuple_S2(self, p_2tuple_TS: _2TupleTS) -> _2TupleS:
