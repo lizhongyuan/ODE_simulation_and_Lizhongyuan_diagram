@@ -3,119 +3,58 @@
 @author: ZhongYuan.Li
 @date: 2024/11/15
 """
+from typing import List, Any
 
-from simulations.structure import _2TupleTS, _2TupleT
+from simulations.structure import _2TupleTS, _2TupleT, _2Tuple
 
 
-def get_op_ordered_unfeasible_DI_2tuple_TS(p_unfeasible_DI_2tuple_TS: _2TupleTS,
-                                           p_op_idx_T: tuple,
-                                           p_unfeasible_DI_idx_T: tuple):
-    idx_trans_dict = {}
-    for op_pos in range(0, len(p_op_idx_T)):
-        for unfeasible_DI_pos in range(0, len(p_unfeasible_DI_idx_T)):
-            if p_unfeasible_DI_idx_T[unfeasible_DI_pos] == p_op_idx_T[op_pos]:
-                idx_trans_dict[unfeasible_DI_pos] = op_pos
-
-    op_ordered_unfeasible_DI_2tuple_TS = _2TupleTS([])
-    for unfeasible_DI_2tuple_T in p_unfeasible_DI_2tuple_TS:
-
-        # 2.2.1
-        # 以表达式运算数的顺序, 将当前不可能持续区间二元组unfeasible_DI_2tuple_T,
-        # 转化为符合表达式运算顺序的不可能持续区间二元组op_ordered_unfeasible_DI_2tuple_T
-        op_ordered_unfeasible_DI_2tuple_list = []
-        for cur_pos in range(0, len(p_unfeasible_DI_idx_T)):
-            op_pos = idx_trans_dict[cur_pos]
-            unfeasible_DI_2tuple = unfeasible_DI_2tuple_T[op_pos]
-            op_ordered_unfeasible_DI_2tuple_list.append(unfeasible_DI_2tuple)
-        op_ordered_unfeasible_DI_2tuple_T = _2TupleT(op_ordered_unfeasible_DI_2tuple_list)
-
-        # 2.2.2
-        # 符合表达式运算顺序的不可能持续区间二元组, 加入到op_ordered_unfeasible_DI_2tuple_TS
-        op_ordered_unfeasible_DI_2tuple_TS.add(op_ordered_unfeasible_DI_2tuple_T)
-
-    return op_ordered_unfeasible_DI_2tuple_TS
-
-def get_feasible_DI_2tuple_TS(p_entire_DI_2tuple_TS: _2TupleTS,
-                              p_unfeasible_DI_2tuple_TS: _2TupleTS,
-                              p_op_idx_T: tuple,
-                              p_unfeasible_DI_idx_T: tuple) -> _2TupleTS:
+def get_custom_ordered_wildcard_unfeasible_2tuple_TS(p_op_idx_T: tuple[Any,...],
+                                                     p_wildcard_unfeasible_2tuple_TS: _2TupleTS,
+                                                     p_wildcard_unfeasible_idx_T: tuple[Any,...]) -> _2TupleTS:
     """
-    获取合法的持续区间元组的集合
+    令
+    p_wildcard_unfeasible_DI_2tuple_TS = { _2tuple_T_1, _2tuple_T_2, ..., _2tuple_T_n }
+    p_wildcard_unfeasible_DI_idx_T = { i1, i2, ..., in }, 其元组代表了p_wildcard_unfeasible_DI_2tuple_TS每个集合元素的元组索引顺序
+    p_op_idx_T = { idx_1, idx_2, ..., idx_n }
+    获取p_op_idx_T作为元组顺序的通配的不合法DI二元组的元组的集合
     Args:
-        p_entire_DI_2tuple_TS (_2TupleTS): 完整的持续区间元组的集合
-        p_unfeasible_DI_2tuple_TS (_2TupleTS): 非法的持续区间元组的集合
-        p_op_idx_T (tuple[int]): p_entire_DI_2tuple_TS对应的索引元组
-        p_unfeasible_DI_idx_T (tuple[int]): p_unfeasible_DI_2tuple_TS对应的索引元组
+        p_op_idx_T: 一个索引元组
+        p_wildcard_unfeasible_2tuple_TS: 通配的不合法DI二元组的元组的集合
+        p_wildcard_unfeasible_idx_T: 通配的不合法DI二元组的元组的集合的索引元组
 
     Returns:
-        _2TupleTS: 合法的持续区间元组的集合
+        (_2TupleTS): p_op_idx_T作为元组顺序的通配的不合法DI二元组的元组的集合
     """
 
-    # 1 ---------- 检查p_op_idx_T和p_unfeasible_idx_T是否合法 ----------
+    # ---------- 1 构造元组索引的转换词典 ----------
 
-    if tuple(sorted(p_op_idx_T)) != tuple(sorted(p_unfeasible_DI_idx_T)):
-        raise ValueError("p_op_idx_T and p_unfeasible_DI_idx_T must have same items !")
+    idx_trans_dict: dict = {}
+    for op_idx_pos in range(0, len(p_op_idx_T)):
+        for DI_pos in range(0, len(p_wildcard_unfeasible_idx_T)):
+            if p_wildcard_unfeasible_idx_T[DI_pos] == p_op_idx_T[op_idx_pos]:
+                idx_trans_dict[DI_pos] = op_idx_pos
 
-    # 2 ---------- 构造以p_op_idx_T为索引顺序的不可能区间二元组的元组的集合 ----------
+    # ---------- 2 构造p_op_idx_T作为元组顺序的通配的不合法DI二元组的元组的集合 ----------
 
-    # 2.1 构造索引转换字典(p_unfeasible_DI_idx_T每个元素在元组中的位置 ---> 它在p_op_idx_T的位置)
-    idx_trans_dict = {}
-    for op_pos in range(0, len(p_op_idx_T)):
-        for unfeasible_DI_pos in range(0, len(p_unfeasible_DI_idx_T)):
-            if p_unfeasible_DI_idx_T[unfeasible_DI_pos] == p_op_idx_T[op_pos]:
-                idx_trans_dict[unfeasible_DI_pos] = op_pos
+    op_ordered_wildcard_unfeasible_DI_2tuple_TS: _2TupleTS = _2TupleTS([])
+    for unfeasible_DI_2tuple_T in p_wildcard_unfeasible_2tuple_TS:
 
-    # 2.2 使用索引转换字典, 构造以p_op_idx_T为索引顺序的不可能区间二元组的元组的集合
-    op_ordered_unfeasible_DI_2tuple_TS = _2TupleTS([])
-    for unfeasible_DI_2tuple_T in p_unfeasible_DI_2tuple_TS:
+        # 2.1
+        # 以表达式运算数的顺序, 将wildcard_unfeasible_DI_2tuple_T,
+        # 转化为符合p_op_idx_T顺序的op_ordered_wildcard_unfeasible_DI_2tuple_T
+        op_ordered_wildcard_unfeasible_DI_2tuple_list: List[_2Tuple] = []
+        for DI_pos in range(0, len(p_wildcard_unfeasible_idx_T)):
+            op_idx_pos: int = idx_trans_dict[DI_pos]
+            wildcard_unfeasible_DI_2tuple: _2Tuple = unfeasible_DI_2tuple_T[op_idx_pos]
+            op_ordered_wildcard_unfeasible_DI_2tuple_list.append(wildcard_unfeasible_DI_2tuple)
 
-        # 2.2.1
-        # 以表达式运算数的顺序, 将当前不可能持续区间二元组unfeasible_DI_2tuple_T,
-        # 转化为符合表达式运算顺序的不可能持续区间二元组op_ordered_unfeasible_DI_2tuple_T
-        op_ordered_unfeasible_DI_2tuple_list = []
-        for cur_pos in range(0, len(p_unfeasible_DI_idx_T)):
-            op_pos = idx_trans_dict[cur_pos]
-            unfeasible_DI_2tuple = unfeasible_DI_2tuple_T[op_pos]
-            op_ordered_unfeasible_DI_2tuple_list.append(unfeasible_DI_2tuple)
-        op_ordered_unfeasible_DI_2tuple_T = _2TupleT(op_ordered_unfeasible_DI_2tuple_list)
+        op_ordered_unfeasible_DI_2tuple_T: _2TupleT = _2TupleT(op_ordered_wildcard_unfeasible_DI_2tuple_list)
 
-        # 2.2.2
-        # 符合表达式运算顺序的不可能持续区间二元组, 加入到op_ordered_unfeasible_DI_2tuple_TS
-        op_ordered_unfeasible_DI_2tuple_TS.add(op_ordered_unfeasible_DI_2tuple_T)
+        # 2.2
+        # op_ordered_wildcard_unfeasible_DI_2tuple_T加入到op_ordered_wildcard_unfeasible_DI_2tuple_TS
+        op_ordered_wildcard_unfeasible_DI_2tuple_TS.add(op_ordered_unfeasible_DI_2tuple_T)
 
-    # 3 ---------- 构造合法的二元组的元组的集合 ----------
+    # ---------- 3 返回结果 ----------
 
-    feasible_DI_2tuple_TS = _2TupleTS([])
-    for _2tuple_T in p_entire_DI_2tuple_TS:
-        # 3.1 如果在op_ordered_unfeasible_DI_2tuple_TS, 则_2tuple_T非法, continue
-        if _2tuple_T in op_ordered_unfeasible_DI_2tuple_TS:
-            continue
+    return op_ordered_wildcard_unfeasible_DI_2tuple_TS
 
-        # 3.2 如果通配在op_ordered_unfeasible_DI_2tuple_TS, continue
-        wildcard_matched = False
-        for op_ordered_unfeasible_DI_2tuple_T in op_ordered_unfeasible_DI_2tuple_TS:
-            if _2tuple_T.wildcard_match(op_ordered_unfeasible_DI_2tuple_T):
-                wildcard_matched = True
-                break
-        if wildcard_matched:
-            continue
-
-        # 3.3 合法, 加入到feasible_DI_2tuple_TS
-        feasible_DI_2tuple_TS.add(_2tuple_T)
-
-    # 4 ---------- 返回结果 ----------
-
-    return feasible_DI_2tuple_TS
-
-
-
-
-#
-# op_idx_T = (2, 1, 3)
-# # unfeasible_idx_T = (2, 1, 4)
-# unfeasible_idx_T = (1, 2, 3)
-#
-# entire_DI_2tuple_TS = _2TupleTS([])
-# unfeasible_DI_2tuple_TS = _2TupleTS([])
-#
-# get_feasible_DI_2tuple_TS(entire_DI_2tuple_TS, unfeasible_DI_2tuple_TS, op_idx_T, unfeasible_idx_T)

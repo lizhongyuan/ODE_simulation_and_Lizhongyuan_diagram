@@ -1,4 +1,4 @@
-from simulations.function import get_CP_of_2tuple_SS
+from simulations.function import get_custom_ordered_CP_of_2tuple_SS
 from simulations.structure import _2Tuple, _2TupleSS
 from simulations.structure import _2TupleS
 
@@ -22,6 +22,6 @@ if __name__ == '__main__':
     idxT = [1, 2, 3]
 
     # 2tupleSS做某个顺序的笛卡尔积
-    twoTupleTS_CP = get_CP_of_2tuple_SS(twoTupleSS, idxT)
+    twoTupleTS_CP = get_custom_ordered_CP_of_2tuple_SS(twoTupleSS, idxT)
 
     print(str(twoTupleTS_CP))

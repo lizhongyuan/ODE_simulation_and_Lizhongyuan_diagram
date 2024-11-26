@@ -6,8 +6,8 @@
 from typing import Tuple
 
 from simulations.PDIE.AbstractPDIE import AbstractPDIE
-from simulations.PDIE.pdieS import PDIES, get_feasible_DI_2tuple_TS2
-from simulations.TwoTupleTS import get_largest_comm_cut_2tuple_S2
+from simulations.PDIE.pdieS import PDIES, get_feasible_2tuple_TS
+from simulations.TwoTupleTS import get_largest_comm_cut_2tuple_S_from_2tuple_TS
 from simulations.completeAscOrderFilteredSub2tupleTS import get_complete_asc_order_filtered_2tuple_TS
 from simulations.domainFilteredSub2tupleTS import get_domain_filtered_sub_2tuple_TS
 from simulations.function import get_bound_2tuple_S
@@ -44,20 +44,20 @@ def add(p_PDIE_S: PDIES, p_op_idx_T: Tuple[int,...], p_comm_cut_2tuple: _2Tuple)
 
     # 3 取_2tuple_TS_CP的合法子集
 
-    wildcard_unfeasible_2tuple_TS: _2TupleTS = p_PDIE_S.get_wildcard_unfeasible_DI_2tuple_TS(p_op_idx_T)
-
-    print(f"3 取笛卡尔积的合法子集")
-    CP_of_DI_2tuple_SS: _2TupleTS = p_PDIE_S.get_CP_of_DI_2tuple_SS(p_op_idx_T)
-    feasible_2tuple_TS: _2TupleTS = get_feasible_DI_2tuple_TS2(wildcard_unfeasible_2tuple_TS,
-                                                               CP_of_DI_2tuple_SS)
-    print(f"{str(feasible_2tuple_TS)}")
-
     print(f"1 取p_atom_PDIE_S的持续区间二元组集合的集合")
     print(f"2 使用p_idx_T作为笛卡尔积表达式的运算数顺序, 取DI_2tuple_SS的所有集合元素, 以该顺序进行过笛卡尔积,\n得到一个二元组的元组的集合")
-    print(f"3 取笛卡尔积的合法子集\n{str(feasible_2tuple_TS)}\n")
+    CP_of_DI_2tuple_SS: _2TupleTS = p_PDIE_S.get_custom_ordered_CP_of_DI_2tuple_SS(p_op_idx_T)
+
+    custom_ordered_wildcard_unfeasible_2tuple_TS: _2TupleTS = p_PDIE_S.get_custom_ordered_wildcard_unfeasible_DI_2tuple_TS(p_op_idx_T)
+
+    print(f"3 取笛卡尔积的合法子集")
+    feasible_DI_2tuple_TS: _2TupleTS = get_feasible_2tuple_TS(custom_ordered_wildcard_unfeasible_2tuple_TS,
+                                                           CP_of_DI_2tuple_SS)
+    print(f"{str(feasible_DI_2tuple_TS)}")
+
 
     # 4 取DI_2tuple_SS的最大公共切割二元组集合: largest_comm_cut_2tuple_S
-    largest_comm_cut_2tuple_S: _2TupleS = get_largest_comm_cut_2tuple_S2(feasible_2tuple_TS)
+    largest_comm_cut_2tuple_S: _2TupleS = get_largest_comm_cut_2tuple_S_from_2tuple_TS(feasible_DI_2tuple_TS)
     if largest_comm_cut_2tuple_S.empty():
         pdie_error = PDIE_ERROR()
         pdie_error.setExpression(res_PDIE_expression)
@@ -74,7 +74,7 @@ def add(p_PDIE_S: PDIES, p_op_idx_T: Tuple[int,...], p_comm_cut_2tuple: _2Tuple)
     TS_start: any = p_comm_cut_2tuple.first()
     TS_end: any = p_comm_cut_2tuple.second()
 
-    domain_filtered_sub_2tuple_TS: _2TupleTS = get_domain_filtered_sub_2tuple_TS(feasible_2tuple_TS, TS_start, TS_end)
+    domain_filtered_sub_2tuple_TS: _2TupleTS = get_domain_filtered_sub_2tuple_TS(feasible_DI_2tuple_TS, TS_start, TS_end)
     if domain_filtered_sub_2tuple_TS.empty():
         pdie_error = PDIE_ERROR()
         pdie_error.setExpression(res_PDIE_expression)
@@ -114,12 +114,12 @@ def multi(p_PDIE_S: PDIES, p_op_idx_T: Tuple[int,...], ) -> PDIE:
 
     print(f"1 取p_atom_PDIE_S的持续区间二元组集合的集合")
     print(f"2 使用p_idx_T作为笛卡尔积表达式的运算数顺序, 取DI_2tuple_SS的所有集合元素, 以该顺序进行过笛卡尔积,\n得到一个二元组的元组的集合")
-    CP_of_DI_2tuple_SS: _2TupleTS = p_PDIE_S.get_CP_of_DI_2tuple_SS(p_op_idx_T)
+    custom_ordered_CP_of_DI_2tuple_SS: _2TupleTS = p_PDIE_S.get_custom_ordered_CP_of_DI_2tuple_SS(p_op_idx_T)
 
-    unfeasible_2tuple_TS: _2TupleTS = p_PDIE_S.get_wildcard_unfeasible_DI_2tuple_TS(p_op_idx_T)
+    unfeasible_2tuple_TS: _2TupleTS = p_PDIE_S.get_custom_ordered_wildcard_unfeasible_DI_2tuple_TS(p_op_idx_T)
 
     print(f"3 取笛卡尔积的合法子集")
-    feasible_2tuple_TS: _2TupleTS = get_feasible_DI_2tuple_TS2(unfeasible_2tuple_TS, CP_of_DI_2tuple_SS)
+    feasible_2tuple_TS: _2TupleTS = get_feasible_2tuple_TS(unfeasible_2tuple_TS, custom_ordered_CP_of_DI_2tuple_SS)
     print(f"{str(feasible_2tuple_TS)}")
 
     complete_asc_order_filtered_2tuple_TS: _2TupleTS = get_complete_asc_order_filtered_2tuple_TS(feasible_2tuple_TS)

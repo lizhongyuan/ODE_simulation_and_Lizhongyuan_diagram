@@ -1,6 +1,7 @@
 # cut2tupleS
 # 
 #
+from typing import List, Any
 
 from simulations.structure import _2Tuple, _2TupleSS, _2TupleT, _2TupleTS
 from simulations.structure import _2TupleS
@@ -85,7 +86,7 @@ def get_cut_2tuple_S_by_domain(p_2tuple_S: _2TupleS,
     return cut_2tuple_S
 
 
-def get_largest_comm_cut_2tuple_S(p_2tuple_SS: _2TupleSS) -> _2TupleS:
+def get_largest_comm_cut_2tuple_S_from_2tuple_SS(p_2tuple_SS: _2TupleSS) -> _2TupleS:
     """
     (定义21)获取二元组集合的集合的最大的公共切割二元组集合
     Args:
@@ -97,8 +98,8 @@ def get_largest_comm_cut_2tuple_S(p_2tuple_SS: _2TupleSS) -> _2TupleS:
 
     ### ---------- 1 获取所有的第一项和第二项 ----------
 
-    first_item_list = []
-    second_item_list = []
+    first_item_list: List[Any] = []
+    second_item_list: List[Any] = []
 
     for _2tuple_S in p_2tuple_SS:
         for _2tuple in _2tuple_S:
@@ -108,7 +109,7 @@ def get_largest_comm_cut_2tuple_S(p_2tuple_SS: _2TupleSS) -> _2TupleS:
     first_item_list = list(OrderedDict.fromkeys(first_item_list))
     second_item_list = list(OrderedDict.fromkeys(second_item_list))
 
-    largest_comm_cut_2tuple_S = _2TupleS([])
+    largest_comm_cut_2tuple_S: _2TupleS = _2TupleS([])
 
     ### ---------- 2 所有的第一项和第二项, 构造二元组, 检查是否是切割二元组, 并添加到列表 ----------
     for first in first_item_list:
@@ -125,7 +126,7 @@ def get_largest_comm_cut_2tuple_S(p_2tuple_SS: _2TupleSS) -> _2TupleS:
                 continue
 
             # 2.3 检查_2tuple是否是p_2tuple_SS每个元素的切割二元组, 如果是则加入到集合largest_comm_cut_2tuple_S
-            is_comm_cut_2tuple = True
+            is_comm_cut_2tuple: bool = True
             for _2tuple_S in p_2tuple_SS:
                 if not Pred_is_cut_2tuple(_2tuple_S, _2tuple):
                     is_comm_cut_2tuple = False
@@ -147,7 +148,7 @@ def get_max_comm_cut_2tuple(p_2tuple_SS: _2TupleSS) -> _2Tuple | None:
         _2Tuple | None:
     """
 
-    largest_comm_cut_2tuple_S = get_largest_comm_cut_2tuple_S(p_2tuple_SS)
+    largest_comm_cut_2tuple_S = get_largest_comm_cut_2tuple_S_from_2tuple_SS(p_2tuple_SS)
 
     if largest_comm_cut_2tuple_S.empty():
         return None

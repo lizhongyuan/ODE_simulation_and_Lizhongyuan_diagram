@@ -23,7 +23,7 @@ def get_max_second_of_2tuple_S(p_2tuple_S: _2TupleS) -> object:
 
 # fCPo2tupleSS实现
 # 2tupleSS内所有元素, 以pIdxT为顺序, 做笛卡尔积
-def get_CP_of_2tuple_SS(p_2tuple_SS: _2TupleSS, p_idx_T: Tuple[int,...]) -> _2TupleTS:
+def get_custom_ordered_CP_of_2tuple_SS(p_2tuple_SS: _2TupleSS, p_idx_T: Tuple[int,...]) -> _2TupleTS:
     """
     (定义16)Let set p_2tuple_SS = { p_2tuple_S_1, p_2tuple_S_2, p_2tuple_S_3, ... , p_2tuple_S_n },
     and p_idx_T = [ p_idx_1, p_idx_2, p_idx_3, ..., p_idx_n ].
@@ -36,10 +36,10 @@ def get_CP_of_2tuple_SS(p_2tuple_SS: _2TupleSS, p_idx_T: Tuple[int,...]) -> _2Tu
         (_2TupleTS): cartesian product
     """
 
-    sub_2tuple_list_list = get_CP_of_2tuple_SS_recur(p_2tuple_SS, p_idx_T, 1)
+    _2tuple_list_list = get_custom_ordered_CP_of_2tuple_SS_recur(p_2tuple_SS, p_idx_T, 1)
 
     _2tuple_T_list = []
-    for _2tuple_list in sub_2tuple_list_list:
+    for _2tuple_list in _2tuple_list_list:
         _2tuple_T = _2TupleT(_2tuple_list)
         _2tuple_T_list.append(_2tuple_T)
 
@@ -49,9 +49,9 @@ def get_CP_of_2tuple_SS(p_2tuple_SS: _2TupleSS, p_idx_T: Tuple[int,...]) -> _2Tu
 
 
 # 递归求2tupleSS内某些元素的笛卡尔积, todo: 全面改造
-def get_CP_of_2tuple_SS_recur(p_2tuple_SS: _2TupleSS,
-                              p_idx_T: Tuple[int,...],
-                              p_pivot: int) -> List[List[_2Tuple]]:
+def get_custom_ordered_CP_of_2tuple_SS_recur(p_2tuple_SS: _2TupleSS,
+                                             p_idx_T: Tuple[int,...],
+                                             p_pivot: int) -> List[List[_2Tuple]]:
 
     cur_idx = p_idx_T[p_pivot - 1] - 1               # pivot所代表的2tupleS的索引
     cur_2tuple_S = p_2tuple_SS[cur_idx]
@@ -63,7 +63,7 @@ def get_CP_of_2tuple_SS_recur(p_2tuple_SS: _2TupleSS,
                 _2tuple_list_list.append([ _2tuple ])
         return _2tuple_list_list
 
-    post_2tupleT_list_list = get_CP_of_2tuple_SS_recur(p_2tuple_SS, p_idx_T, p_pivot + 1)
+    post_2tupleT_list_list = get_custom_ordered_CP_of_2tuple_SS_recur(p_2tuple_SS, p_idx_T, p_pivot + 1)
 
     for _2tuple in cur_2tuple_S:
         for post_2tuple_list in post_2tupleT_list_list:

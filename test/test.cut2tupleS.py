@@ -1,4 +1,4 @@
-from simulations.cut2tupleS import (get_cut_2tuple_S_by_domain, Pred_is_cut_2tuple, get_largest_comm_cut_2tuple_S,
+from simulations.cut2tupleS import (get_cut_2tuple_S_by_domain, Pred_is_cut_2tuple, get_largest_comm_cut_2tuple_S_from_2tuple_SS,
                                     get_max_comm_cut_2tuple)
 from simulations.structure import _2Tuple, _2TupleT, _2TupleTS, _2TupleS, _2TupleSS
 
@@ -57,7 +57,7 @@ if __name__ == '__main__':
     twoTupleSS = _2TupleSS([twoTplS1, twoTplS2, twoTplS3])
     # 最大的公共切割二元组集合
     print(f"2tupleSS: {str(twoTupleSS)}")
-    largest_comm_cut_2tuple_S = get_largest_comm_cut_2tuple_S(twoTupleSS)
+    largest_comm_cut_2tuple_S = get_largest_comm_cut_2tuple_S_from_2tuple_SS(twoTupleSS)
     print(str(largest_comm_cut_2tuple_S))
 
     print("---------- 4 Test get_max_comm_cut_2tuple ----------")
