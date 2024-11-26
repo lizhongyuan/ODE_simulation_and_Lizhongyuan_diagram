@@ -3,9 +3,9 @@
 @author: ZhongYuan.Li
 @date: 2024/11/14
 """
+
 from typing import Tuple
 
-from simulations.PDIE.AbstractPDIE import AbstractPDIE
 from simulations.PDIE.pdieS import PDIES, get_feasible_2tuple_TS
 from simulations.TwoTupleTS import get_largest_comm_cut_2tuple_S_from_2tuple_TS
 from simulations.completeAscOrderFilteredSub2tupleTS import get_complete_asc_order_filtered_2tuple_TS
@@ -29,20 +29,6 @@ def add(p_PDIE_S: PDIES, p_op_idx_T: Tuple[int,...], p_comm_cut_2tuple: _2Tuple)
             pdie_error = PDIE_ERROR()
             pdie_error.setExpression(res_PDIE_expression)
             return pdie_error
-
-    # 1 取p_atom_PDIE_S的持续区间二元组集合的集合: DI_2tuple_SS
-#    DI_2tuple_SS = p_atom_PDIE_S.get_DI_2tuple_SS()
-
-#    print(f"1 取p_atom_PDIE_S的持续区间二元组集合的集合\n{str(DI_2tuple_SS)}\n")
-
-    # 2 使用p_idx_T作为笛卡尔积表达式的运算数顺序,
-    # 取DI_2tuple_SS的所有集合元素, 以该顺序进行过笛卡尔积,
-    # 得到一个二元组的元组的集合: _2tuple_TS_CP
-#    _2tuple_TS_CP = get_CP_of_2tuple_SS(DI_2tuple_SS, p_op_idx_T)
-
-#    print(f"2 使用p_idx_T作为笛卡尔积表达式的运算数顺序, 取DI_2tuple_SS的所有集合元素, 以该顺序进行过笛卡尔积,\n得到一个二元组的元组的集合\n{str(_2tuple_TS_CP)}\n")
-
-    # 3 取_2tuple_TS_CP的合法子集
 
     print(f"1 取p_atom_PDIE_S的持续区间二元组集合的集合")
     DI_2tuple_SS: _2TupleSS = p_PDIE_S.get_DI_2tuple_SS()
