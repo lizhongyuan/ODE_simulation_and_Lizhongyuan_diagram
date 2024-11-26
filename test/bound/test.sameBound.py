@@ -4,7 +4,6 @@
 @date: 2024/11/18
 """
 
-from simulations.function import get_bound_2tuple, get_bound_2tuple_S
 from simulations.sameBound import is_same_bound_2tuple_TS, get_distinct_same_bound_2tuple_TSS
 from simulations.structure import _2Tuple, _2TupleT, _2TupleTS
 
@@ -19,12 +18,7 @@ if __name__ == '__main__':
 
     _2tuple_5 = _2Tuple([1, 2])
     _2tuple_6 = _2Tuple([3, 4])
-#    _2tuple_7 = _2Tuple([4, 5])
     _2tuple_T_3 = _2TupleT([_2tuple_4, _2tuple_5, _2tuple_6])
-
-    # bound_2tuple_1 = get_bound_2tuple(_2tuple_T_1)
-    # bound_2tuple_2 = get_bound_2tuple(_2tuple_T_2)
-    # bound_2tuple_3 = get_bound_2tuple(_2tuple_T_3)
 
     _2tuple_7 = _2Tuple([4, 5])
     _2tuple_8 = _2Tuple([3, 5])

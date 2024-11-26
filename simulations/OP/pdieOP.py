@@ -41,8 +41,8 @@ def add(p_PDIE_S: PDIES, p_op_idx_T: Tuple[int,...], p_comm_cut_2tuple: _2Tuple)
 
     print(f"3 取笛卡尔积custom_ordered_CP_of_DI_2tuple_SS的合法子集custom_ordered_feasible_DI_2tuple_TS")
     custom_ordered_wildcard_unfeasible_2tuple_TS: _2TupleTS = p_PDIE_S.get_custom_ordered_wildcard_unfeasible_DI_2tuple_TS(p_op_idx_T)
-    custom_ordered_feasible_DI_2tuple_TS: _2TupleTS = get_feasible_2tuple_TS(custom_ordered_wildcard_unfeasible_2tuple_TS,
-                                                                             custom_ordered_CP_of_DI_2tuple_SS)
+    custom_ordered_feasible_DI_2tuple_TS: _2TupleTS = get_feasible_2tuple_TS(custom_ordered_CP_of_DI_2tuple_SS,
+                                                                             custom_ordered_wildcard_unfeasible_2tuple_TS)
     print(f"{str(custom_ordered_feasible_DI_2tuple_TS)}\n")
 
     print(f"4 取custom_ordered_feasible_DI_2tuple_TS的最大公共切割二元组集合largest_comm_cut_2tuple_S, 验证过滤域是否合法")
@@ -77,7 +77,7 @@ def add(p_PDIE_S: PDIES, p_op_idx_T: Tuple[int,...], p_comm_cut_2tuple: _2Tuple)
     DI_2tuple_S: _2TupleS = get_bound_2tuple_S(domain_filtered_sub_DI_2tuple_TS)
     print(f"{str(DI_2tuple_S)}\n")
 
-    # todo: 构造DIS和metaPDIES等等，返回对应PDIE
+    # todo: 构造DIS和metaPDIES等等，返回对应PDIE, 还是需要每个参与运算的PDIE的DI
     res_PDIE = PDIE(expression=res_PDIE_expression,
                     is_error=False,
                     is_atom=False,
@@ -113,7 +113,8 @@ def multi(p_PDIE_S: PDIES, p_op_idx_T: Tuple[int,...], ) -> PDIE:
 
     print(f"3 取笛卡尔积custom_ordered_CP_of_DI_2tuple_SS的合法子集custom_ordered_feasible_DI_2tuple_TS")
     custom_ordered_wildcard_unfeasible_DI_2tuple_TS: _2TupleTS = p_PDIE_S.get_custom_ordered_wildcard_unfeasible_DI_2tuple_TS(p_op_idx_T)
-    custom_ordered_feasible_DI_2tuple_TS: _2TupleTS = get_feasible_2tuple_TS(custom_ordered_wildcard_unfeasible_DI_2tuple_TS, custom_ordered_CP_of_DI_2tuple_SS)
+    custom_ordered_feasible_DI_2tuple_TS: _2TupleTS = get_feasible_2tuple_TS(custom_ordered_CP_of_DI_2tuple_SS,
+                                                                             custom_ordered_wildcard_unfeasible_DI_2tuple_TS)
     print(f"{str(custom_ordered_feasible_DI_2tuple_TS)}\n")
 
     print(f"4 使用完全正序规则对custom_ordered_feasible_DI_2tuple_TS进行过滤\n得到一个二元组的元组的集合complete_asc_order_filtered_DI_2tuple_TS")

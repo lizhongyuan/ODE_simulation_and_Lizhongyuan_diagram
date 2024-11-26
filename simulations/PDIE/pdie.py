@@ -84,8 +84,7 @@ class AtomPDIE(PDIE):
                          is_atom=True,
                          OP=None,
                          meta_PDIES=PDIES([]),
-                         DI_2tuple_S=DI_2tuple_S,
-                         )
+                         DI_2tuple_S=DI_2tuple_S)
 
 
 class PDIE_ERROR(PDIE):

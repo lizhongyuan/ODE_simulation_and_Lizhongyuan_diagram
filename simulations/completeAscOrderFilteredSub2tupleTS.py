@@ -3,6 +3,7 @@
 @author: ZhongYuan.Li
 @date: 2024/11/25
 """
+
 from simulations.structure import _2TupleTS
 
 
@@ -26,6 +27,3 @@ def get_complete_asc_order_filtered_2tuple_TS(_2tuple_TS: _2TupleTS) -> _2TupleT
             sub_2tuple_TS.add(_2tuple_T)
 
     return sub_2tuple_TS
-
-
-

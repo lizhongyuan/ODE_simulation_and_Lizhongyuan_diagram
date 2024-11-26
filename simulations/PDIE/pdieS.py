@@ -13,29 +13,29 @@ from simulations.structure import MySet, _2TupleSS, _2TupleTS, _2TupleS
 from simulations.unfeasible import get_custom_ordered_wildcard_unfeasible_2tuple_TS
 
 
-def get_feasible_2tuple_TS(ordered_unfeasible_DI_2tuple_TS: _2TupleTS,
-                           ordered_CP_of_2tuple_SS: _2TupleTS) -> _2TupleTS:
-    # 3 ---------- 构造合法的二元组的元组的集合 ----------
+def get_feasible_2tuple_TS(_2tuple_TS: _2TupleTS, wildcard_unfeasible_2tuple_TS: _2TupleTS) -> _2TupleTS:
+
+    # 1 ---------- 构造合法的二元组的元组的集合 ----------
 
     feasible_DI_2tuple_TS = _2TupleTS([])
-    for _2tuple_T in ordered_CP_of_2tuple_SS:
-        # 3.1 如果在op_ordered_unfeasible_DI_2tuple_TS, 则_2tuple_T非法, continue
-        if _2tuple_T in ordered_unfeasible_DI_2tuple_TS:
+    for _2tuple_T in _2tuple_TS:
+        # 1.1 如果在wildcard_unfeasible_2tuple_TS, 则_2tuple_T非法, continue
+        if _2tuple_T in wildcard_unfeasible_2tuple_TS:
             continue
 
-        # 3.2 如果通配在op_ordered_unfeasible_DI_2tuple_TS, continue
+        # 1.2 如果通配匹配在wildcard_unfeasible_2tuple_TS, 则_2tuple_T非法, continue
         wildcard_matched = False
-        for op_ordered_unfeasible_DI_2tuple_T in ordered_unfeasible_DI_2tuple_TS:
+        for op_ordered_unfeasible_DI_2tuple_T in wildcard_unfeasible_2tuple_TS:
             if _2tuple_T.wildcard_match(op_ordered_unfeasible_DI_2tuple_T):
                 wildcard_matched = True
                 break
         if wildcard_matched:
             continue
 
-        # 3.3 合法, 加入到feasible_DI_2tuple_TS
+        # 1.3 合法, 加入到feasible_DI_2tuple_TS
         feasible_DI_2tuple_TS.add(_2tuple_T)
 
-    # 4 ---------- 返回结果 ----------
+    # 2 ---------- 返回结果 ----------
 
     return feasible_DI_2tuple_TS
 
@@ -158,9 +158,8 @@ class PDIES(MySet):
             if sorted_idx_T != default_idx_T:
                 raise ValueError("Wrong p_op_idx_T !")
 
-        # ---------- 2 None参数处理和参数检查----------
+        # ---------- 2 获取p_op_idx_T作为表达式操作数索引顺序的, 集合内所有元素的DI2TupleS的笛卡尔积 ----------
 
-#        DI_2tuple_SS: _2TupleSS = self.get_DI_2tuple_SS()
         _2tuple_TS: _2TupleTS = get_custom_ordered_CP_of_2tuple_SS(p_2tuple_SS=p_DI_2tuple_SS,
                                                                    p_op_idx_T=p_op_idx_T)
 
@@ -184,10 +183,6 @@ class PDIES(MySet):
                                                                p_wildcard_unfeasible_idx_T=tuple(unfeasible_DI_idx_list))
 
         return wildcard_unfeasible_DI_2tuple_TS
-
-    # todo: S2放到这
-    def get_largest_comm_cut_2tuple_S2(self, p_2tuple_TS: _2TupleTS) -> _2TupleS:
-        pass
 
 
 class AtomPDIES(PDIES):
