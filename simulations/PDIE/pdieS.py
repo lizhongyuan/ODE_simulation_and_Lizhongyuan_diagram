@@ -45,16 +45,16 @@ class PDIES(MySet):
     PDIE Set
     """
 
-    def __init__(self, setList: list):
-        super().__init__(setList)
+    def __init__(self, p_set_list: list):
+        super().__init__(p_set_list)
         self._unfeasible_PDIE_tuple = None
-        self._unfeasible_DI_2tuple_TS = None
+        self._wildcard_unfeasible_DI_2tuple_TS = None
 
     def __str__(self):
 
-        dict_str = self._get_dict_str()
+        dict_str: str = self._get_dict_str()
 
-        format_str = \
+        format_str: str = \
             (f"{{\n" +
              f"\tdict: {dict_str},\n" +
              # f"\tis_error: {self._is_error},\n" +
@@ -68,9 +68,9 @@ class PDIES(MySet):
         return format_str
 
     def _get_dict_str(self) -> str:
-        dict_str = f"{{ "
+        dict_str: str = f"{{ "
         for i in range(len(self._dict.keys())):
-            key = list(self._dict.keys())[i]
+            key: any = list(self._dict.keys())[i]
             dict_str += f"{key}: {self._dict[key].getExpression()}"
             if i != len(self._dict.keys()) - 1:
                 dict_str += ", "
@@ -81,9 +81,9 @@ class PDIES(MySet):
     def show_dict(self) -> None:
         print(self._get_dict_str())
 
-    def get_dict_key(self, p_PDIE: AbstractPDIE) -> str | None:
+    def get_dict_key(self, p_pdie: AbstractPDIE) -> str | None:
         for key in list(self._dict.keys()):
-            if self._dict[key] == p_PDIE:
+            if self._dict[key] == p_pdie:
                 return key
         return None
 
@@ -103,35 +103,35 @@ class PDIES(MySet):
 
     def get_unfeasible_asc_DI_2tuple_TS(self):
         pass
-    def set_unfeasible_asc_DI_2tuple_TS(self, unfeasible_asc_DI_2tuple_TS: _2TupleTS):
+    def set_unfeasible_asc_DI_2tuple_TS(self, p_unfeasible_asc_DI_2tuple_TS: _2TupleTS):
         pass
 
-    def set_unfeasible_DI_2tuple_info(self,
-                                      unfeasible_DI_2tuple_TS: _2TupleTS,
-                                      unfeasible_PDIE_tuple: Tuple[AbstractPDIE,...]):
+    def set_wildcard_unfeasible_DI_2tuple_info(self,
+                                               p_wildcard_unfeasible_DI_2tuple_TS: _2TupleTS,
+                                               p_unfeasible_PDIE_tuple: Tuple[AbstractPDIE,...]):
         """
 
         Args:
-            unfeasible_DI_2tuple_TS:
-            unfeasible_PDIE_tuple:
+            p_wildcard_unfeasible_DI_2tuple_TS:
+            p_unfeasible_PDIE_tuple:
 
         Returns:
 
         """
 
-        for _2tuple_T in unfeasible_DI_2tuple_TS:
-            if len(_2tuple_T) != len(unfeasible_PDIE_tuple):
-                raise ValueError(f"Wrong unfeasible DI 2tuple info")
+        for _2tuple_T in p_wildcard_unfeasible_DI_2tuple_TS:
+            if len(_2tuple_T) != len(p_unfeasible_PDIE_tuple):
+                raise ValueError(f"Wrong wildcard unfeasible DI 2tuple info")
 
             for i in range(len(_2tuple_T)):
                 if _2tuple_T[i] == '*':
                     continue
-                cur_PDIE = unfeasible_PDIE_tuple[i]
-                if _2tuple_T[i] not in cur_PDIE.get_DI_2tuple_S():
-                    raise ValueError(f"Wrong unfeasible DI 2tuple info")
+                pdie: AbstractPDIE = p_unfeasible_PDIE_tuple[i]
+                if _2tuple_T[i] not in pdie.get_DI_2tuple_S():
+                    raise ValueError(f"Wrong wildcard unfeasible DI 2tuple info")
 
-        self._unfeasible_DI_2tuple_TS = unfeasible_DI_2tuple_TS
-        self._unfeasible_PDIE_tuple = unfeasible_PDIE_tuple
+        self._wildcard_unfeasible_DI_2tuple_TS = p_wildcard_unfeasible_DI_2tuple_TS
+        self._unfeasible_PDIE_tuple = p_unfeasible_PDIE_tuple
 
     # def get_unfeasible_DI_2tuple_info(self):
     #     return self._unfeasible_PDIE_tuple, self._unfeasible_DI_2tuple_TS
@@ -179,7 +179,7 @@ class PDIES(MySet):
 
         wildcard_unfeasible_DI_2tuple_TS: _2TupleTS \
             = get_custom_ordered_wildcard_unfeasible_2tuple_TS(p_op_idx_T=p_op_idx_T,
-                                                               p_wildcard_unfeasible_2tuple_TS=self._unfeasible_DI_2tuple_TS,
+                                                               p_wildcard_unfeasible_2tuple_TS=self._wildcard_unfeasible_DI_2tuple_TS,
                                                                p_wildcard_unfeasible_idx_T=tuple(unfeasible_DI_idx_list))
 
         return wildcard_unfeasible_DI_2tuple_TS

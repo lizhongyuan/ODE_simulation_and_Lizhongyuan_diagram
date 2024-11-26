@@ -5,4 +5,5 @@
 """
 
 class AbstractPDIE:
-    pass
+    def get_DI_2tuple_S(self):
+        pass

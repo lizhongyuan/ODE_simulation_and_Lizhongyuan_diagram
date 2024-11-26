@@ -19,26 +19,25 @@ from simulations.structure import MySet, _2TupleS, _2TupleSS, _2TupleTS, _2Tuple
 # todo: 补充名字
 class PDIE(AbstractPDIE):
     def __init__(self,
-                 expression: str | None,
-                 is_error: bool,
-                 is_atom: bool,
-                 OP: str | None,
-                 meta_PDIES: PDIES,         # todo: 改为factor_PDIES ?
-                 DI_2tuple_S: _2TupleS,
+                 p_expression: str | None,
+                 p_is_error: bool,
+                 p_is_atom: bool,
+                 p_OP: str | None,
+                 p_meta_PDIES: PDIES,  # todo: 改为factor_PDIES ?
+                 p_DI_2tuple_S: _2TupleS,
                  ):
         super().__init__()
 
-        self._expression = expression   # todo: 可能需要改为operand_tuple
-        self._is_error = is_error
-        self._is_atom = is_atom
-        self._OP = OP
-        self._meta_PDIE = meta_PDIES
-        self._DI_2tuple_S = DI_2tuple_S
-#        self._factor_DI_2tuple_TS = factor_DI_2tuple_TS
-#        self._expression_idx = 0
+        self._expression = p_expression   # todo: 可能需要改为operand_tuple
+        self._is_error = p_is_error
+        self._is_atom = p_is_atom
+        self._OP = p_OP
+        self._meta_PDIE = p_meta_PDIES
+        self._DI_2tuple_S = p_DI_2tuple_S
+
 
     def __str__(self):
-        format_str = f"PDIE_error"
+        format_str: str = f"PDIE_error"
         if self._is_error:
             return format_str
 
@@ -57,8 +56,8 @@ class PDIE(AbstractPDIE):
 
     def getExpression(self) -> str | None:
         return self._expression
-    def setExpression(self, expression: str):
-        self._expression = expression
+    def setExpression(self, p_expression: str):
+        self._expression = p_expression
 
     def isError(self):
         return self._is_error
@@ -77,24 +76,24 @@ class PDIE(AbstractPDIE):
 
 
 class AtomPDIE(PDIE):
-    def __init__(self, expression: str | None, DI_2tuple_S: _2TupleS):
+    def __init__(self, p_expression: str | None, p_DI_2tuple_S: _2TupleS):
 
-        super().__init__(expression=expression,
-                         is_error=False,
-                         is_atom=True,
-                         OP=None,
-                         meta_PDIES=PDIES([]),
-                         DI_2tuple_S=DI_2tuple_S)
+        super().__init__(p_expression=p_expression,
+                         p_is_error=False,
+                         p_is_atom=True,
+                         p_OP=None,
+                         p_meta_PDIES=PDIES([]),
+                         p_DI_2tuple_S=p_DI_2tuple_S)
 
 
 class PDIE_ERROR(PDIE):
-    def __init__(self, expression: str | None):
-        super().__init__(expression=expression,
-                         is_error=True,
-                         is_atom=False,
-                         OP=None,
-                         meta_PDIES=PDIES([]),
-                         DI_2tuple_S=_2TupleS([]))
+    def __init__(self, p_expression: str | None):
+        super().__init__(p_expression=p_expression,
+                         p_is_error=True,
+                         p_is_atom=False,
+                         p_OP=None,
+                         p_meta_PDIES=PDIES([]),
+                         p_DI_2tuple_S=_2TupleS([]))
 
     def __str__(self):
         return f"PDIE_error"

@@ -70,12 +70,12 @@ def add(p_PDIE_S: PDIES, p_op_idx_T: Tuple[int,...], p_comm_cut_2tuple: _2Tuple)
     print(f"{str(DI_2tuple_S)}\n")
 
     # todo: 构造DIS和metaPDIES等等，返回对应PDIE, 还是需要每个参与运算的PDIE的DI
-    res_PDIE = PDIE(expression=res_PDIE_expression,
-                    is_error=False,
-                    is_atom=False,
-                    OP='+',
-                    meta_PDIES=p_PDIE_S,
-                    DI_2tuple_S=DI_2tuple_S)
+    res_PDIE = PDIE(p_expression=res_PDIE_expression,
+                    p_is_error=False,
+                    p_is_atom=False,
+                    p_OP='+',
+                    p_meta_PDIES=p_PDIE_S,
+                    p_DI_2tuple_S=DI_2tuple_S)
 
     return res_PDIE
 
@@ -120,11 +120,11 @@ def multi(p_PDIE_S: PDIES, p_op_idx_T: Tuple[int,...], ) -> PDIE:
     print(f"{str(custom_ordered_feasible_DI_2tuple_TS)}\n")
 
     # todo: 构造DIS和metaPDIES等等，返回对应PDIE
-    res_PDIE = PDIE(expression=res_PDIE_expression,
-                    is_error=False,
-                    is_atom=False,
-                    OP='*',
-                    meta_PDIES=p_PDIE_S,
-                    DI_2tuple_S=DI_2tuple_S)
+    res_PDIE = PDIE(p_expression=res_PDIE_expression,
+                    p_is_error=False,
+                    p_is_atom=False,
+                    p_OP='*',
+                    p_meta_PDIES=p_PDIE_S,
+                    p_DI_2tuple_S=DI_2tuple_S)
 
     return res_PDIE
