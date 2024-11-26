@@ -6,9 +6,9 @@
 from simulations.PDIE.pdie import PDIE_ERROR
 
 if __name__ == '__main__':
-    PDIE_error_1 = PDIE_ERROR()
+    PDIE_error_1 = PDIE_ERROR(None)
     print(str(PDIE_error_1))
 
-    PDIE_error_2 = PDIE_ERROR()
+    PDIE_error_2 = PDIE_ERROR(None)
     print(str(PDIE_error_2))
 

@@ -88,8 +88,8 @@ class AtomPDIE(PDIE):
 
 
 class PDIE_ERROR(PDIE):
-    def __init__(self):
-        super().__init__(expression='PDIE_error',
+    def __init__(self, expression: str | None):
+        super().__init__(expression=expression,
                          is_error=True,
                          is_atom=False,
                          OP=None,
