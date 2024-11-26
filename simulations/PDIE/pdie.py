@@ -28,7 +28,7 @@ class PDIE(AbstractPDIE):
                  ):
         super().__init__()
 
-        self._expression = expression
+        self._expression = expression   # todo: 可能需要改为operand_tuple
         self._is_error = is_error
         self._is_atom = is_atom
         self._OP = OP
