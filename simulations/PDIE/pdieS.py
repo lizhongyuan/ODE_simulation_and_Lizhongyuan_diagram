@@ -136,15 +136,16 @@ class PDIES(MySet):
     # def get_unfeasible_DI_2tuple_info(self):
     #     return self._unfeasible_PDIE_tuple, self._unfeasible_DI_2tuple_TS
 
-    def get_custom_ordered_CP_of_DI_2tuple_SS(self, p_op_idx_T: Tuple[int, ...] | None) -> _2TupleTS:
+    def get_custom_ordered_CP_of_DI_2tuple_SS(self, p_DI_2tuple_SS: _2TupleSS, p_op_idx_T: Tuple[int,...] | None) -> _2TupleTS:
         """
         获取p_op_idx_T作为表达式操作数索引顺序的, 集合内所有元素的DI2TupleS的笛卡尔积.
         如果p_op_idx_T为None, 表达式操作数索引顺序为(1, 2, 3, ..., n)
         Args:
+            p_DI_2tuple_SS:
             p_op_idx_T: 笛卡尔积表达式运算数的索引顺序元组 或者 None
 
         Returns:
-            集合所有元素的DI2TupleS的笛卡尔积
+            _2TupleSS: 集合所有元素的DI2TupleS的笛卡尔积
         """
 
         # ---------- 1 None参数处理和参数检查----------
@@ -159,9 +160,9 @@ class PDIES(MySet):
 
         # ---------- 2 None参数处理和参数检查----------
 
-        DI_2tuple_SS: _2TupleSS = self.get_DI_2tuple_SS()
-        _2tuple_TS: _2TupleTS = get_custom_ordered_CP_of_2tuple_SS(p_2tuple_SS=DI_2tuple_SS,
-                                                                   p_idx_T=p_op_idx_T)
+#        DI_2tuple_SS: _2TupleSS = self.get_DI_2tuple_SS()
+        _2tuple_TS: _2TupleTS = get_custom_ordered_CP_of_2tuple_SS(p_2tuple_SS=p_DI_2tuple_SS,
+                                                                   p_op_idx_T=p_op_idx_T)
 
         return _2tuple_TS
 

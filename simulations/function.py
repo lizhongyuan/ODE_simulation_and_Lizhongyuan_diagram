@@ -3,7 +3,7 @@ from typing import List, Tuple
 from simulations.structure import _2Tuple, _2TupleSS, _2TupleT, _2TupleTS
 from simulations.structure import _2TupleS
 
-# fMin1oS
+
 def get_min_first_of_2tuple_S(p_2tuple_S: _2TupleS) -> object:
     min_first = None
     for item in p_2tuple_S:
@@ -12,7 +12,6 @@ def get_min_first_of_2tuple_S(p_2tuple_S: _2TupleS) -> object:
     return min_first
 
 
-# fMax2oS
 def get_max_second_of_2tuple_S(p_2tuple_S: _2TupleS) -> object:
     max_second = None
     for item in p_2tuple_S:
@@ -21,22 +20,20 @@ def get_max_second_of_2tuple_S(p_2tuple_S: _2TupleS) -> object:
     return max_second
 
 
-# fCPo2tupleSS实现
-# 2tupleSS内所有元素, 以pIdxT为顺序, 做笛卡尔积
-def get_custom_ordered_CP_of_2tuple_SS(p_2tuple_SS: _2TupleSS, p_idx_T: Tuple[int,...]) -> _2TupleTS:
+def get_custom_ordered_CP_of_2tuple_SS(p_2tuple_SS: _2TupleSS, p_op_idx_T: Tuple[int,...]) -> _2TupleTS:
     """
     (定义16)Let set p_2tuple_SS = { p_2tuple_S_1, p_2tuple_S_2, p_2tuple_S_3, ... , p_2tuple_S_n },
     and p_idx_T = [ p_idx_1, p_idx_2, p_idx_3, ..., p_idx_n ].
     get cartesian product with expression p_2tuple_S_(p_idx_1) * p_2tuple_S_(p_idx_2) * p_2tuple_S_(p_idx_3) * ... * p_2tuple_S_(p_idx_n)
     Args:
         p_2tuple_SS (_2TupleSS): A set whose elements are sets of 2-tuples
-        p_idx_T (Tuple[int,...]): A tuple representing the index order of operands
+        p_op_idx_T (Tuple[int,...]): A tuple representing the index order of operands
 
     Returns:
         (_2TupleTS): cartesian product
     """
 
-    _2tuple_list_list = get_custom_ordered_CP_of_2tuple_SS_recur(p_2tuple_SS, p_idx_T, 1)
+    _2tuple_list_list = get_custom_ordered_CP_of_2tuple_SS_recur(p_2tuple_SS, p_op_idx_T, 1)
 
     _2tuple_T_list = []
     for _2tuple_list in _2tuple_list_list:
@@ -50,30 +47,29 @@ def get_custom_ordered_CP_of_2tuple_SS(p_2tuple_SS: _2TupleSS, p_idx_T: Tuple[in
 
 # 递归求2tupleSS内某些元素的笛卡尔积, todo: 全面改造
 def get_custom_ordered_CP_of_2tuple_SS_recur(p_2tuple_SS: _2TupleSS,
-                                             p_idx_T: Tuple[int,...],
+                                             p_op_idx_T: Tuple[any,...],
                                              p_pivot: int) -> List[List[_2Tuple]]:
 
-    cur_idx = p_idx_T[p_pivot - 1] - 1               # pivot所代表的2tupleS的索引
-    cur_2tuple_S = p_2tuple_SS[cur_idx]
+    cur_idx: any = p_op_idx_T[p_pivot - 1] - 1               # pivot所代表的2tupleS的索引
+    cur_2tuple_S: _2TupleS = p_2tuple_SS[cur_idx]
 
-    _2tuple_list_list = []
+    _2tuple_list_list: List[List[_2Tuple]] = []
 
-    if p_pivot == len(p_idx_T):
+    if p_pivot == len(p_op_idx_T):
         for _2tuple in cur_2tuple_S:
                 _2tuple_list_list.append([ _2tuple ])
         return _2tuple_list_list
 
-    post_2tupleT_list_list = get_custom_ordered_CP_of_2tuple_SS_recur(p_2tuple_SS, p_idx_T, p_pivot + 1)
+    post_2tupleT_list_list: List[List[_2Tuple]] = get_custom_ordered_CP_of_2tuple_SS_recur(p_2tuple_SS, p_op_idx_T, p_pivot + 1)
 
     for _2tuple in cur_2tuple_S:
         for post_2tuple_list in post_2tupleT_list_list:
-            _2tuple_list = [ _2tuple ] + post_2tuple_list
+            _2tuple_list: List[_2Tuple] = [ _2tuple ] + post_2tuple_list
             _2tuple_list_list.append(_2tuple_list)
 
     return _2tuple_list_list
 
 
-# fBound2tuple函数实现
 def get_bound_2tuple(p_2tupleT: _2TupleT) -> _2Tuple | None:
     """
     (定义28)获取长度有限的二元组的元组的边界二元组
