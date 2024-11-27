@@ -48,12 +48,9 @@ class PDIE(AbstractPDIE):
              f"\texpression: {self._expression},\n" +
              f"\tis_error: {self._is_error},\n" +
              f"\tis_atom: {self._is_atom},\n" +
-#             f"\tmeta_PDIE: {str(self._meta_PDIE)},\n" +
-             f"\tmeta_PDIE_T: {str([meta_PDIE.getExpression() for meta_PDIE in self._meta_PDIE_T])}\n" +
+             f"\tmeta_PDIE_T: {'[ ' + ', '.join([meta_PDIE.getExpression() for meta_PDIE in self._meta_PDIE_T]) + ' ]'}\n" +
              f"\tmeta_DI_2tuple_TS: {str(self._meta_DI_2tuple_TS)}\n" +
              f"\tDI_2tuple_S: {str(self._DI_2tuple_S)}\n" +
-#             f"\tfactor_DI_2tuple_TS: {str(self._factor_DI_2tuple_TS)}\n" +
-#             f"\tdistinct_same_bound_2tuple_TSS: {str(self.get_factor_DI_distinct_same_bound_2tuple_TSS())}\n" +
              f"}}"
              )
         return format_str
