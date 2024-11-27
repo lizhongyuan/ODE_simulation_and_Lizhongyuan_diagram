@@ -3,10 +3,8 @@
 @author: ZhongYuan.Li
 @date: 2024/11/20
 """
-from locale import format_string
-from tarfile import DIRTYPE
-from typing import List, Tuple, Any
 
+from typing import List, Tuple, Any
 from simulations.PDIE.AbstractPDIE import AbstractPDIE
 from simulations.function import get_custom_ordered_CP_of_2tuple_SS
 from simulations.structure import MySet, _2TupleSS, _2TupleTS, _2TupleS
@@ -166,7 +164,6 @@ class PDIES(MySet):
         return _2tuple_TS
 
 
-    # todo: 增加定义16, 使用get_unfeasible_DI_2tuple_TS补充
     def get_custom_ordered_wildcard_unfeasible_DI_2tuple_TS(self, p_op_idx_T: tuple[Any,...]) -> _2TupleTS:
 
         unfeasible_DI_idx_list: List[any] = []
