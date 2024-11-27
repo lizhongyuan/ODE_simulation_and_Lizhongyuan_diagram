@@ -3,6 +3,8 @@
 @author: ZhongYuan.Li
 @date: 2024/11/15
 """
+from typing import Tuple
+
 from simulations.PDIE.AbstractPDIE import AbstractPDIE
 from simulations.PDIE.pdieS import PDIES
 from simulations.structure import MySet, _2TupleS, _2TupleSS, _2TupleTS, _2TupleT
@@ -21,7 +23,7 @@ class PDIE(AbstractPDIE):
                  p_is_error: bool,
                  p_is_atom: bool,
                  p_OP: str | None,
-                 p_meta_PDIE_S: PDIES,
+                 p_meta_PDIE_T: Tuple[AbstractPDIE,...],
                  p_meta_DI_2tuple_TS: _2TupleTS,
                  p_DI_2tuple_S: _2TupleS,
                  ):
@@ -31,7 +33,7 @@ class PDIE(AbstractPDIE):
         self._is_error = p_is_error
         self._is_atom = p_is_atom
         self._OP = p_OP
-        self._meta_PDIE_S = p_meta_PDIE_S
+        self._meta_PDIE_T = p_meta_PDIE_T
         self._meta_DI_2tuple_TS = p_meta_DI_2tuple_TS
         self._DI_2tuple_S = p_DI_2tuple_S
 
@@ -47,6 +49,7 @@ class PDIE(AbstractPDIE):
              f"\tis_error: {self._is_error},\n" +
              f"\tis_atom: {self._is_atom},\n" +
 #             f"\tmeta_PDIE: {str(self._meta_PDIE)},\n" +
+             f"\tmeta_PDIE_T: {str([meta_PDIE.getExpression() for meta_PDIE in self._meta_PDIE_T])}\n" +
              f"\tmeta_DI_2tuple_TS: {str(self._meta_DI_2tuple_TS)}\n" +
              f"\tDI_2tuple_S: {str(self._DI_2tuple_S)}\n" +
 #             f"\tfactor_DI_2tuple_TS: {str(self._factor_DI_2tuple_TS)}\n" +
@@ -64,7 +67,7 @@ class PDIE(AbstractPDIE):
         return self._is_error
 
     def setMetaPDIES(self, metaPDIES: PDIES):
-        self._meta_PDIE_S = metaPDIES
+        self._meta_PDIE_T = metaPDIES
 
     def set_meta_DI_2tuple_TS(self, p_meta_DI_2tuple_TS: _2TupleTS):
         self._meta_DI_2tuple_TS = p_meta_DI_2tuple_TS
@@ -86,7 +89,7 @@ class AtomPDIE(PDIE):
                          p_is_error=False,
                          p_is_atom=True,
                          p_OP=None,
-                         p_meta_PDIE_S=PDIES([]),
+                         p_meta_PDIE_T=tuple([]),
                          p_meta_DI_2tuple_TS=_2TupleTS([]),
                          p_DI_2tuple_S=p_DI_2tuple_S)
 
@@ -97,7 +100,7 @@ class PDIE_ERROR(PDIE):
                          p_is_error=True,
                          p_is_atom=False,
                          p_OP=None,
-                         p_meta_PDIE_S=PDIES([]),
+                         p_meta_PDIE_T=tuple([]),
                          p_meta_DI_2tuple_TS=_2TupleTS([]),
                          p_DI_2tuple_S=_2TupleS([]))
 

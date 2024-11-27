@@ -19,7 +19,10 @@ def add(p_PDIE_S: PDIES, p_op_idx_T: Tuple[int,...], p_comm_cut_2tuple: _2Tuple)
     print(f"PDIES 时序加法:\n")
 
     res_PDIE_expression = ""
+    meta_PDIE_list: list[PDIE] = []
+
     for i in range(len(p_op_idx_T)):
+        meta_PDIE_list.append(p_PDIE_S[p_op_idx_T[i] - 1])
         res_PDIE_expression += p_PDIE_S[p_op_idx_T[i] - 1].getExpression()
         if i < len(p_op_idx_T) - 1:
             res_PDIE_expression += ' + '
@@ -74,7 +77,7 @@ def add(p_PDIE_S: PDIES, p_op_idx_T: Tuple[int,...], p_comm_cut_2tuple: _2Tuple)
                     p_is_error=False,
                     p_is_atom=False,
                     p_OP='+',
-                    p_meta_PDIE_S=p_PDIE_S,
+                    p_meta_PDIE_T=tuple(meta_PDIE_list),
                     p_meta_DI_2tuple_TS=domain_filtered_sub_DI_2tuple_TS,
                     p_DI_2tuple_S=DI_2tuple_S)
 
@@ -85,7 +88,10 @@ def multi(p_PDIE_S: PDIES, p_op_idx_T: Tuple[int,...], ) -> PDIE:
     print(f"PDIES 时序乘法:\n")
 
     res_PDIE_expression: str = ""
+    meta_PDIE_list: list[PDIE] = []
+
     for i in range(len(p_op_idx_T)):
+        meta_PDIE_list.append(p_PDIE_S[p_op_idx_T[i] - 1])
         res_PDIE_expression += p_PDIE_S[p_op_idx_T[i] - 1].getExpression()
         if i < len(p_op_idx_T) - 1:
             res_PDIE_expression += ' * '
@@ -125,7 +131,7 @@ def multi(p_PDIE_S: PDIES, p_op_idx_T: Tuple[int,...], ) -> PDIE:
                     p_is_error=False,
                     p_is_atom=False,
                     p_OP='*',
-                    p_meta_PDIE_S=p_PDIE_S,
+                    p_meta_PDIE_T=tuple(meta_PDIE_list),
                     p_meta_DI_2tuple_TS=complete_asc_order_filtered_DI_2tuple_TS,
                     p_DI_2tuple_S=DI_2tuple_S)
 

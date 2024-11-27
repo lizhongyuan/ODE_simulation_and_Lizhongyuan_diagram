@@ -7,3 +7,6 @@
 class AbstractPDIE:
     def get_DI_2tuple_S(self):
         pass
+
+    def getExpression(self):
+        pass
