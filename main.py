@@ -1,13 +1,16 @@
+from typing import List
+
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib import colors
 import matplotlib as mpl
+from pandas.core.interchange.dataframe_protocol import DataFrame
 
 
-def init_data_frame(table_headers):
-    df = pd.DataFrame(index=list(table_headers), columns=list(table_headers))
-    return df
+def init_data_frame(table_headers: List[str]) -> DataFrame:
+    return pd.DataFrame(index=table_headers,
+                        columns=table_headers)
 
 
 def has_no_common_element(combination1, combination2):
@@ -175,42 +178,49 @@ def gen_sub_combinations_data_recur(combinations_and_pivots_cache,
     binomial_theorem_array.append(cur_binomial_theorem_item)
 
 
-def build_data_frame(data_frame, zero_element):
+def build_data_frame(p_data_frame: DataFrame, p_zero_elem: str):
     """
-    构造data_frame
-    @param data_frame:
-    @param zero_element: 0元素
+    构造p_data_frame
+    @param p_data_frame: DataFrame instance
+    @param p_zero_elem: 0 element
     @return:
     """
-    for row in data_frame.index:
-        for col in data_frame.columns:
-            if row == zero_element:
-                data_frame.loc[row, col] = col
-            elif col == zero_element:
-                data_frame.loc[row, col] = row
+    for row in p_data_frame.index:
+        for col in p_data_frame.columns:
+            if row == p_zero_elem:
+                p_data_frame.loc[row, col] = col
+            elif col == p_zero_elem:
+                p_data_frame.loc[row, col] = row
             else:
                 if has_no_common_element(row, col):
-                    data_frame.loc[row, col] = combination_merge(row, col)
+                    p_data_frame.loc[row, col] = combination_merge(row, col)
                 else:
-                    data_frame.loc[row, col] = 'ERR'
+                    p_data_frame.loc[row, col] = 'ERR'
 
 
-def color_up_plot(data_frame, plt, dpi, font_size, axis_length_zero):
+def color_up_plot(p_data_frame: DataFrame,
+                  p_plt: object,
+                  p_dpi: int,
+                  p_font_size: float,
+                  p_no_tick_marks: bool):
     """
     plot上色
-    @param data_frame:
-    @param plt:
+    @param p_data_frame: graph frame
+    @param p_plt:
+    @param p_dpi: Dots Per Inch
+    @param p_font_size: font size
+    @param p_no_tick_marks: whether it has a tick mark
     @return:
     """
 
-    mpl.rcParams["font.size"] = font_size
+    mpl.rcParams["font.size"] = p_font_size
 
-    if dpi is not None:
-        mpl.rcParams["figure.dpi"] = dpi
+    if p_dpi is not None:
+        mpl.rcParams["figure.dpi"] = p_dpi
 
-    fig, ax = plt.subplots()
+    fig, ax = p_plt.subplots()
 
-    if axis_length_zero:
+    if p_no_tick_marks:
         ax.tick_params(axis='both', which='both', length=0)
 
     ax.spines['top'].set_visible(False)
@@ -219,10 +229,10 @@ def color_up_plot(data_frame, plt, dpi, font_size, axis_length_zero):
     ax.spines['bottom'].set_visible(False)
 
     color_matrix = []
-    for row_idx in range(data_frame.index.size):
+    for row_idx in range(p_data_frame.index.size):
         row_colors = []
-        for col_idx in range(data_frame.columns.size):
-            if data_frame.values[row_idx][col_idx] == 'ERR':
+        for col_idx in range(p_data_frame.columns.size):
+            if p_data_frame.values[row_idx][col_idx] == 'ERR':
                 row_colors.append(0)        # set black
             else:
                 row_colors.append(100)      # set color
@@ -232,14 +242,14 @@ def color_up_plot(data_frame, plt, dpi, font_size, axis_length_zero):
     cmap = colors.ListedColormap(['#080402', '#D03D33'])
     ax.imshow(X=np.array(color_matrix), cmap=cmap)
 
-    ax.set_xticks(np.arange(data_frame.columns.size), labels=data_frame.columns)
-    ax.set_yticks(np.arange(data_frame.index.size), labels=data_frame.index)
+    ax.set_xticks(np.arange(p_data_frame.columns.size), labels=p_data_frame.columns)
+    ax.set_yticks(np.arange(p_data_frame.index.size), labels=p_data_frame.index)
 
     ax.tick_params(top=True, bottom=False,
                    labeltop=True, labelbottom=False)
 
     # Rotate the tick labels and set their alignment.
-    plt.setp(ax.get_xticklabels(), rotation=-70, ha="right", rotation_mode="anchor")
+    p_plt.setp(ax.get_xticklabels(), rotation=-70, ha="right", rotation_mode="anchor")
 
     fig.tight_layout()
 
@@ -257,16 +267,17 @@ if __name__ == '__main__':
     elements10 = 'ABCDEFGHIJ'
     elements11 = 'ABCDEFGHIJK'  # 再增加字符等待的时间会很久
 
-    # dpi = 100
-    # font_size = 10
-    # axis_length_zero = False
-    # res = gen_combinations_data(elements3)
-
-    # 9: 3000, 0.75
-    dpi = 3000
-    font_size = 0.75
+    dpi = 100
+    font_size = 10
+#    axis_length_zero = False
     axis_length_zero = True
     res = gen_combinations_data(elements3)
+
+    # 9: 3000, 0.75
+    # dpi = 3000
+    # font_size = 0.75
+    # axis_length_zero = True
+    # res = gen_combinations_data(elements9)
 
     # 10: 4000, 0.5
     # dpi = 3000
@@ -274,11 +285,11 @@ if __name__ == '__main__':
     # axis_length_zero = True
     # res = gen_combinations_data(elements10)
 
-    headers = res['combinations']
+    headers: List[str] = res['combinations']
 
     data_frame = init_data_frame(headers)
 
-    build_data_frame(data_frame, zero_element='0')
+    build_data_frame(data_frame, p_zero_elem='0')
     color_up_plot(data_frame, plt, dpi, font_size, axis_length_zero)
 
     # plt.show()
