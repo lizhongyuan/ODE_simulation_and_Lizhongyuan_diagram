@@ -43,19 +43,22 @@ def combination_merge(combination1, combination2):
     return merged_combination
 
 
-def gen_combinations_data(p_elements: str):
+def gen_combinations_data(p_elements: str, p_contain_zero: bool):
     """
     生成组合数据
     @param p_elements: 元素集合
+    @param p_contain_zero: 是否包含0元素
     @return: 组合数据
     """
 
     combinations_and_pivots_cache: List[List[dict]] = []
 
-    zero_element: str = '0'
-    zero_elements: List[str] = ['0']
-    combinations: List[str] = [zero_element]
-    binomial_theorem_array: List[List[str]] = [zero_elements]
+    combinations: List[str] = []
+    binomial_theorem_array: List[List[str]] = []    # binomial_theorem_array单独放在一个函数
+
+    if p_contain_zero:
+        combinations: List[str] = ['0']
+        binomial_theorem_array: List[List[str]] = [['0']]
 
     for i in range(len(p_elements)):
         cur_combinations_and_pivots: List[dict] = []
@@ -82,17 +85,17 @@ def gen_combinations_data(p_elements: str):
         combinations_and_pivots_cache.append(cur_combinations_and_pivots)
 
     for i in range(len(p_elements)):
-        binomial_theorem_array.append([])
-        cur_binomial_theorem_item: List[str] = []
+#        binomial_theorem_array.append([])
+#        cur_binomial_theorem_item: List[str] = []
         for j in range(len(combinations_and_pivots_cache[i])):
             cur_combination: str = combinations_and_pivots_cache[i][j]['combination']
             combinations.append(cur_combination)
-            cur_binomial_theorem_item.append(cur_combination)
-        binomial_theorem_array.append(cur_binomial_theorem_item)
+#            cur_binomial_theorem_item.append(cur_combination)
+#        binomial_theorem_array.append(cur_binomial_theorem_item)
 
     return {
         'combinations': combinations,
-        'binomial_theorem_array': binomial_theorem_array
+#        'binomial_theorem_array': binomial_theorem_array
     }
 
 
@@ -275,17 +278,18 @@ if __name__ == '__main__':
     elements10 = 'ABCDEFGHIJ'
     elements11 = 'ABCDEFGHIJK'  # 再增加字符等待的时间会很久
 
-    dpi = 100
-    font_size = 10
-#    axis_length_zero = False
-    no_tick_marks = True
-    res = gen_combinations_data(p_elements=elements3)
+    # dpi = 100
+    # font_size = 10
+    # no_tick_marks = True
+    # res = gen_combinations_data(p_elements=elements3,
+    #                             p_contain_zero=True)
 
-    # 9: 3000, 0.75
-    # dpi = 3000
-    # font_size = 0.75
-    # axis_length_zero = True
-    # res = gen_combinations_data(elements9)
+    #9: 3000, 0.75
+    dpi = 3000
+    font_size = 0.75
+    no_tick_marks = True
+    res = gen_combinations_data(p_elements=elements9,
+                                p_contain_zero=True)
 
     # 10: 4000, 0.5
     # dpi = 3000
