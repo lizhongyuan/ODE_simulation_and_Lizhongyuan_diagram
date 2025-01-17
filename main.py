@@ -228,9 +228,9 @@ def render_plot(p_data_frame: DataFrame,
     ax.spines['left'].set_visible(False)
     ax.spines['bottom'].set_visible(False)
 
-    color_matrix = []
+    color_matrix: List[List[int]] = []
     for row_idx in range(p_data_frame.index.size):
-        row_colors = []
+        row_colors: List[int] = []
         for col_idx in range(p_data_frame.columns.size):
             if p_data_frame.values[row_idx][col_idx] == 'ERR':
                 row_colors.append(0)        # set black
@@ -240,10 +240,13 @@ def render_plot(p_data_frame: DataFrame,
 
     # ax.imshow(X=color_arr, cmap=plt.cm.get_cmap('gist_heat'))
     cmap: ListedColormap = colors.ListedColormap(['#080402', '#D03D33'])
-    ax.imshow(X=np.array(color_matrix), cmap=cmap)
+    ax.imshow(X=np.array(color_matrix),
+              cmap=cmap)
 
-    ax.set_xticks(np.arange(p_data_frame.columns.size), labels=p_data_frame.columns)
-    ax.set_yticks(np.arange(p_data_frame.index.size), labels=p_data_frame.index)
+    ax.set_xticks(np.arange(p_data_frame.columns.size),
+                  labels=p_data_frame.columns)
+    ax.set_yticks(np.arange(p_data_frame.index.size),
+                  labels=p_data_frame.index)
 
     ax.tick_params(top=True,
                    bottom=False,
@@ -251,7 +254,10 @@ def render_plot(p_data_frame: DataFrame,
                    labelbottom=False)
 
     # Rotate the tick labels and set their alignment.
-    p_plt.setp(ax.get_xticklabels(), rotation=-70, ha="right", rotation_mode="anchor")
+    p_plt.setp(ax.get_xticklabels(),
+               rotation=-70,
+               ha="right",
+               rotation_mode="anchor")
 
     fig.tight_layout()
 
@@ -273,7 +279,7 @@ if __name__ == '__main__':
     font_size = 10
 #    axis_length_zero = False
     no_tick_marks = True
-    res = gen_combinations_data(elements3)
+    res = gen_combinations_data(p_elements=elements3)
 
     # 9: 3000, 0.75
     # dpi = 3000
