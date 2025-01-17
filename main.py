@@ -50,31 +50,30 @@ def gen_combinations_data(p_elements: str):
     @return: 组合数据
     """
 
-    # total = len(elements)
-    combinations_and_pivots_cache = []
+    combinations_and_pivots_cache: List[List[dict]] = []
 
     zero_element: str = '0'
     zero_elements: List[str] = ['0']
-    combinations = [zero_element]
-    binomial_theorem_array = [zero_elements]
+    combinations: List[str] = [zero_element]
+    binomial_theorem_array: List[List[str]] = [zero_elements]
 
     for i in range(len(p_elements)):
-        cur_combinations_and_pivots = []
+        cur_combinations_and_pivots: List[dict] = []
         if i == 0:
             for j in range(len(p_elements)):
-                cur_combination_and_pivot = {
+                cur_combination_and_pivot: dict = {
                     'combination': p_elements[j],
                     'pivot': j
                 }
                 cur_combinations_and_pivots.insert(len(cur_combinations_and_pivots), cur_combination_and_pivot)
         else:
-            pre_combinations_and_pivots = combinations_and_pivots_cache[i - 1]
+            pre_combinations_and_pivots: List[dict] = combinations_and_pivots_cache[i - 1]
 
             for j in range(len(pre_combinations_and_pivots)):
-                pre_combination = pre_combinations_and_pivots[j]['combination']
+                pre_combination: str = pre_combinations_and_pivots[j]['combination']
                 for k in range(pre_combinations_and_pivots[j]['pivot'] + 1, len(p_elements)):
-                    cur_combination = pre_combination + p_elements[k]
-                    cur_combination_and_pivot = {
+                    cur_combination: str = pre_combination + p_elements[k]
+                    cur_combination_and_pivot: dict = {
                         'combination': cur_combination,
                         'pivot': k
                     }
@@ -84,9 +83,9 @@ def gen_combinations_data(p_elements: str):
 
     for i in range(len(p_elements)):
         binomial_theorem_array.append([])
-        cur_binomial_theorem_item = []
+        cur_binomial_theorem_item: List[str] = []
         for j in range(len(combinations_and_pivots_cache[i])):
-            cur_combination = combinations_and_pivots_cache[i][j]['combination']
+            cur_combination: str = combinations_and_pivots_cache[i][j]['combination']
             combinations.append(cur_combination)
             cur_binomial_theorem_item.append(cur_combination)
         binomial_theorem_array.append(cur_binomial_theorem_item)
