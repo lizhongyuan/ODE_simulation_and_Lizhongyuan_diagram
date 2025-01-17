@@ -2,15 +2,16 @@ from typing import List
 
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as pyplot
 from matplotlib import colors
 import matplotlib as mpl
+from matplotlib.colors import ListedColormap
 from pandas.core.interchange.dataframe_protocol import DataFrame
 
 
-def init_data_frame(table_headers: List[str]) -> DataFrame:
-    return pd.DataFrame(index=table_headers,
-                        columns=table_headers)
+def init_data_frame(p_table_headers: List[str]) -> DataFrame:
+    return pd.DataFrame(index=p_table_headers,
+                        columns=p_table_headers)
 
 
 def has_no_common_element(combination1, combination2):
@@ -42,27 +43,27 @@ def combination_merge(combination1, combination2):
     return merged_combination
 
 
-def gen_combinations_data(elements):
+def gen_combinations_data(p_elements: str):
     """
     生成组合数据
-    @param elements: 元素集合
+    @param p_elements: 元素集合
     @return: 组合数据
     """
 
     # total = len(elements)
     combinations_and_pivots_cache = []
 
-    zero_element = '0'
-    zero_elements = ['0']
+    zero_element: str = '0'
+    zero_elements: List[str] = ['0']
     combinations = [zero_element]
     binomial_theorem_array = [zero_elements]
 
-    for i in range(len(elements)):
+    for i in range(len(p_elements)):
         cur_combinations_and_pivots = []
         if i == 0:
-            for j in range(len(elements)):
+            for j in range(len(p_elements)):
                 cur_combination_and_pivot = {
-                    'combination': elements[j],
+                    'combination': p_elements[j],
                     'pivot': j
                 }
                 cur_combinations_and_pivots.insert(len(cur_combinations_and_pivots), cur_combination_and_pivot)
@@ -71,8 +72,8 @@ def gen_combinations_data(elements):
 
             for j in range(len(pre_combinations_and_pivots)):
                 pre_combination = pre_combinations_and_pivots[j]['combination']
-                for k in range(pre_combinations_and_pivots[j]['pivot'] + 1, len(elements)):
-                    cur_combination = pre_combination + elements[k]
+                for k in range(pre_combinations_and_pivots[j]['pivot'] + 1, len(p_elements)):
+                    cur_combination = pre_combination + p_elements[k]
                     cur_combination_and_pivot = {
                         'combination': cur_combination,
                         'pivot': k
@@ -81,7 +82,7 @@ def gen_combinations_data(elements):
 
         combinations_and_pivots_cache.append(cur_combinations_and_pivots)
 
-    for i in range(len(elements)):
+    for i in range(len(p_elements)):
         binomial_theorem_array.append([])
         cur_binomial_theorem_item = []
         for j in range(len(combinations_and_pivots_cache[i])):
@@ -198,16 +199,16 @@ def build_data_frame(p_data_frame: DataFrame, p_zero_elem: str):
                     p_data_frame.loc[row, col] = 'ERR'
 
 
-def color_up_plot(p_data_frame: DataFrame,
-                  p_plt: object,
-                  p_dpi: int,
-                  p_font_size: float,
-                  p_no_tick_marks: bool):
+def render_plot(p_data_frame: DataFrame,
+                p_plt: pyplot,
+                p_dpi: int,
+                p_font_size: float,
+                p_no_tick_marks: bool):
     """
-    plot上色
+    Render the plot
     @param p_data_frame: graph frame
-    @param p_plt:
-    @param p_dpi: Dots Per Inch
+    @param p_plt: matplotlib.pyplot
+    @param p_dpi: dots per inch
     @param p_font_size: font size
     @param p_no_tick_marks: whether it has a tick mark
     @return:
@@ -239,14 +240,16 @@ def color_up_plot(p_data_frame: DataFrame,
         color_matrix.append(row_colors)
 
     # ax.imshow(X=color_arr, cmap=plt.cm.get_cmap('gist_heat'))
-    cmap = colors.ListedColormap(['#080402', '#D03D33'])
+    cmap: ListedColormap = colors.ListedColormap(['#080402', '#D03D33'])
     ax.imshow(X=np.array(color_matrix), cmap=cmap)
 
     ax.set_xticks(np.arange(p_data_frame.columns.size), labels=p_data_frame.columns)
     ax.set_yticks(np.arange(p_data_frame.index.size), labels=p_data_frame.index)
 
-    ax.tick_params(top=True, bottom=False,
-                   labeltop=True, labelbottom=False)
+    ax.tick_params(top=True,
+                   bottom=False,
+                   labeltop=True,
+                   labelbottom=False)
 
     # Rotate the tick labels and set their alignment.
     p_plt.setp(ax.get_xticklabels(), rotation=-70, ha="right", rotation_mode="anchor")
@@ -270,7 +273,7 @@ if __name__ == '__main__':
     dpi = 100
     font_size = 10
 #    axis_length_zero = False
-    axis_length_zero = True
+    no_tick_marks = True
     res = gen_combinations_data(elements3)
 
     # 9: 3000, 0.75
@@ -287,11 +290,17 @@ if __name__ == '__main__':
 
     headers: List[str] = res['combinations']
 
-    data_frame = init_data_frame(headers)
+    data_frame: DataFrame = init_data_frame(p_table_headers=headers)
 
-    build_data_frame(data_frame, p_zero_elem='0')
-    color_up_plot(data_frame, plt, dpi, font_size, axis_length_zero)
+    build_data_frame(p_data_frame=data_frame,
+                     p_zero_elem='0')
+
+    render_plot(p_data_frame=data_frame,
+                p_plt=pyplot,
+                p_dpi=dpi,
+                p_font_size=font_size,
+                p_no_tick_marks=no_tick_marks)
 
     # plt.show()
 
-    plt.savefig('pic.png')
+    pyplot.savefig('pic.png')
