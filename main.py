@@ -45,7 +45,7 @@ def combination_merge(combination1, combination2):
 
 def gen_combinations_data(p_elements: str, p_contain_zero: bool):
     """
-    生成组合数据
+    生成组合数据, todo: 优化函数和命名
     @param p_elements: 元素集合
     @param p_contain_zero: 是否包含0元素
     @return: 组合数据
@@ -54,7 +54,7 @@ def gen_combinations_data(p_elements: str, p_contain_zero: bool):
     combinations_and_pivots_cache: List[List[dict]] = []
 
     combinations: List[str] = []
-    binomial_theorem_array: List[List[str]] = []    # binomial_theorem_array单独放在一个函数
+    binomial_theorem_array: List[List[str]] = []    # todo: binomial_theorem_array单独放在一个函数
 
     if p_contain_zero:
         combinations: List[str] = ['0']
@@ -66,7 +66,7 @@ def gen_combinations_data(p_elements: str, p_contain_zero: bool):
             for j in range(len(p_elements)):
                 cur_combination_and_pivot: dict = {
                     'combination': p_elements[j],
-                    'pivot': j
+                    'next_trip_starting_idx': j
                 }
                 cur_combinations_and_pivots.insert(len(cur_combinations_and_pivots), cur_combination_and_pivot)
         else:
@@ -74,11 +74,11 @@ def gen_combinations_data(p_elements: str, p_contain_zero: bool):
 
             for j in range(len(pre_combinations_and_pivots)):
                 pre_combination: str = pre_combinations_and_pivots[j]['combination']
-                for k in range(pre_combinations_and_pivots[j]['pivot'] + 1, len(p_elements)):
+                for k in range(pre_combinations_and_pivots[j]['next_trip_starting_idx'] + 1, len(p_elements)):
                     cur_combination: str = pre_combination + p_elements[k]
                     cur_combination_and_pivot: dict = {
                         'combination': cur_combination,
-                        'pivot': k
+                        'next_trip_starting_idx': k
                     }
                     cur_combinations_and_pivots.append(cur_combination_and_pivot)
 
@@ -278,18 +278,18 @@ if __name__ == '__main__':
     elements10 = 'ABCDEFGHIJ'
     elements11 = 'ABCDEFGHIJK'  # 再增加字符等待的时间会很久
 
-    # dpi = 100
-    # font_size = 10
-    # no_tick_marks = True
-    # res = gen_combinations_data(p_elements=elements3,
-    #                             p_contain_zero=True)
+    dpi = 100
+    font_size = 10
+    no_tick_marks = True
+    res = gen_combinations_data(p_elements=elements3,
+                                p_contain_zero=True)
 
     #9: 3000, 0.75
-    dpi = 3000
-    font_size = 0.75
-    no_tick_marks = True
-    res = gen_combinations_data(p_elements=elements9,
-                                p_contain_zero=True)
+    # dpi = 3000
+    # font_size = 0.75
+    # no_tick_marks = True
+    # res = gen_combinations_data(p_elements=elements9,
+    #                             p_contain_zero=True)
 
     # 10: 4000, 0.5
     # dpi = 3000
