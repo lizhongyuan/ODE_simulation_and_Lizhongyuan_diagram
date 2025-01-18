@@ -99,60 +99,67 @@ def gen_combinations_data(p_elements: str, p_contain_zero: bool):
     }
 
 
-def gen_binomial_theorem_collection(p_elements: str, p_contain_zero: bool):
+def gen_binomial_theorem_collection(p_elements: str,
+                                    p_contain_zero: bool,
+                                    p_zero_elem: str,
+                                    p_err_elem: str) -> List[List[str]]:
     """
     生成二项式定理型数据
     @param p_elements: 元素集合
     @param p_contain_zero: 是否包含0元素
+    @param p_zero_elem: 0元素字符
+    @param p_err_elem: 错误PDIE字符
     @return: 组合数据
     """
 
-    combinations_and_pivots_cache: List[List[dict]] = []
-
-#    combinations: List[str] = []
-    binomial_theorem_array: List[List[str]] = []  # todo: binomial_theorem_array单独放在一个函数
+    comb_and_next_start_collection: List[List[dict]] = []
+    binomial_theorem_collection: List[List[str]] = []
 
     if p_contain_zero:
-#        combinations: List[str] = ['0']
-        binomial_theorem_array: List[List[str]] = [['0']]
+        binomial_theorem_collection: List[List[str]] = [[p_zero_elem]]
+
+    binomial_theorem_collection.append([p_err_elem])
 
     for i in range(len(p_elements)):
-        cur_combinations_and_pivots: List[dict] = []
+        cur_comb_and_next_start_list: List[dict] = []
         if i == 0:
             for j in range(len(p_elements)):
-                cur_combination_and_pivot: dict = {
+                cur_comb_and_next_start: dict = {
                     'combination': p_elements[j],
-                    'next_trip_starting_idx': j
+                    'next_trip_starting_idx': j + 1
                 }
-                cur_combinations_and_pivots.insert(len(cur_combinations_and_pivots), cur_combination_and_pivot)
+                cur_comb_and_next_start_list.append(cur_comb_and_next_start)
         else:
-            pre_combinations_and_pivots: List[dict] = combinations_and_pivots_cache[i - 1]
-
-            for j in range(len(pre_combinations_and_pivots)):
-                pre_combination: str = pre_combinations_and_pivots[j]['combination']
-                for k in range(pre_combinations_and_pivots[j]['next_trip_starting_idx'] + 1, len(p_elements)):
-                    cur_combination: str = pre_combination + p_elements[k]
-                    cur_combination_and_pivot: dict = {
-                        'combination': cur_combination,
-                        'next_trip_starting_idx': k
+            pre_comb_and_next_start_list: List[dict] = comb_and_next_start_collection[i - 1]
+            for pre_comb_and_next_start in pre_comb_and_next_start_list:
+                pre_comb: str = pre_comb_and_next_start['combination']
+                for j in range(pre_comb_and_next_start['next_trip_starting_idx'], len(p_elements)):
+                    cur_comb: str = pre_comb + p_elements[j]
+                    cur_comb_and_next_start: dict = {
+                        'combination': cur_comb,
+                        'next_trip_starting_idx': j + 1
                     }
-                    cur_combinations_and_pivots.append(cur_combination_and_pivot)
-
-        combinations_and_pivots_cache.append(cur_combinations_and_pivots)
+                    cur_comb_and_next_start_list.append(cur_comb_and_next_start)
+        comb_and_next_start_collection.append(cur_comb_and_next_start_list)
 
     for i in range(len(p_elements)):
-        #        binomial_theorem_array.append([])
         cur_binomial_theorem_item: List[str] = []
-        for j in range(len(combinations_and_pivots_cache[i])):
-            cur_combination: str = combinations_and_pivots_cache[i][j]['combination']
-#            combinations.append(cur_combination)
-            cur_binomial_theorem_item.append(cur_combination)
-            binomial_theorem_array.append(cur_binomial_theorem_item)
+        for j in range(len(comb_and_next_start_collection[i])):
+            cur_comb: str = comb_and_next_start_collection[i][j]['combination']
+            cur_binomial_theorem_item.append(cur_comb)
+        binomial_theorem_collection.append(cur_binomial_theorem_item)
 
-    return {
-#        'combinations': combinations,
-        'binomial_theorem_array': binomial_theorem_array
-    }
+    return binomial_theorem_collection
+
+
+def gen_all_combs(p_binomial_theorem_collection: List[List[str]]) -> List[str]:
+    all_combs = []
+
+    for combs in p_binomial_theorem_collection:
+        for comb in combs:
+            all_combs.append(comb)
+
+    return all_combs
 
 
 def gen_combinations_data_recur(elements):
@@ -237,7 +244,7 @@ def gen_sub_combinations_data_recur(combinations_and_pivots_cache,
     binomial_theorem_array.append(cur_binomial_theorem_item)
 
 
-def build_data_frame(p_data_frame: DataFrame, p_zero_elem: str):
+def build_data_frame(p_data_frame: DataFrame, p_zero_elem: str, p_err_elem: str):
     """
     构造p_data_frame
     @param p_data_frame: DataFrame instance
@@ -246,6 +253,10 @@ def build_data_frame(p_data_frame: DataFrame, p_zero_elem: str):
     """
     for row in p_data_frame.index:
         for col in p_data_frame.columns:
+            if row == p_err_elem or col == p_err_elem:
+                p_data_frame.loc[row, col] = p_err_elem
+                continue
+
             if row == p_zero_elem:
                 p_data_frame.loc[row, col] = col
             elif col == p_zero_elem:
@@ -254,14 +265,15 @@ def build_data_frame(p_data_frame: DataFrame, p_zero_elem: str):
                 if has_no_common_element(row, col):
                     p_data_frame.loc[row, col] = combination_merge(row, col)
                 else:
-                    p_data_frame.loc[row, col] = 'ERR'
+                    p_data_frame.loc[row, col] = p_err_elem
 
 
 def render_plot(p_data_frame: DataFrame,
                 p_plt: pyplot,
                 p_dpi: int,
                 p_font_size: float,
-                p_no_tick_marks: bool):
+                p_no_tick_marks: bool,
+                p_err_elem: str):
     """
     Render the plot
     @param p_data_frame: graph frame
@@ -291,7 +303,7 @@ def render_plot(p_data_frame: DataFrame,
     for row_idx in range(p_data_frame.index.size):
         row_colors: List[int] = []
         for col_idx in range(p_data_frame.columns.size):
-            if p_data_frame.values[row_idx][col_idx] == 'ERR':
+            if p_data_frame.values[row_idx][col_idx] == p_err_elem:
                 row_colors.append(0)        # set black
             else:
                 row_colors.append(100)      # set color
@@ -324,29 +336,23 @@ def render_plot(p_data_frame: DataFrame,
 if __name__ == '__main__':
     elements1 = 'A'
     elements2 = 'AB'
-    elements3 = 'ABC'
+    elements3 = '123'
     elements4 = 'ABCD'
     elements5 = 'ABCDE'
     elements6 = 'ABCDEF'
     elements7 = 'ABCDEFG'
     elements8 = 'ABCDEFGH'
-    elements9 = 'ABCDEFGHI'
+    elements9 = '123456789'
     elements10 = 'ABCDEFGHIJ'
     elements11 = 'ABCDEFGHIJK'  # 再增加字符等待的时间会很久
 
-    dpi = 100
-    font_size = 10
-    no_tick_marks = True
-    res = gen_combinations_data(p_elements=elements3,
-                                p_contain_zero=True)
-
-    res2 = gen_binomial_theorem_collection(p_elements=elements3,
-                                           p_contain_zero=True)
-
-    #9: 3000, 0.75
-    # dpi = 3000
-    # font_size = 0.75
+    # dpi = 100
+    # font_size = 10
     # no_tick_marks = True
+    # res = gen_combinations_data(p_elements=elements3,
+    #                             p_contain_zero=True)
+
+    # 9: 3000, 0.75
     # res = gen_combinations_data(p_elements=elements9,
     #                             p_contain_zero=True)
 
@@ -356,18 +362,30 @@ if __name__ == '__main__':
     # axis_length_zero = True
     # res = gen_combinations_data(elements10)
 
-    headers: List[str] = res['combinations']
+    dpi = 3000
+    font_size = 0.55
+    no_tick_marks = True
+    binomial_theorem_collection = gen_binomial_theorem_collection(p_elements=elements9,
+                                                                  p_contain_zero=False,
+                                                                  p_zero_elem='0',
+                                                                  p_err_elem='E')
+
+    headers = gen_all_combs(binomial_theorem_collection)
+
+#    headers: List[str] = res['combinations']
 
     data_frame: DataFrame = init_data_frame(p_table_headers=headers)
 
     build_data_frame(p_data_frame=data_frame,
-                     p_zero_elem='0')
+                     p_zero_elem='0',
+                     p_err_elem='E')
 
     render_plot(p_data_frame=data_frame,
                 p_plt=pyplot,
                 p_dpi=dpi,
                 p_font_size=font_size,
-                p_no_tick_marks=no_tick_marks)
+                p_no_tick_marks=no_tick_marks,
+                p_err_elem='E')
 
     # plt.show()
 
