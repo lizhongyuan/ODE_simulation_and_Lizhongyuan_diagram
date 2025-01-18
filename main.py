@@ -57,8 +57,8 @@ def gen_combinations_data(p_elements: str, p_contain_zero: bool):
     binomial_theorem_array: List[List[str]] = []    # todo: binomial_theorem_array单独放在一个函数
 
     if p_contain_zero:
-        combinations: List[str] = ['0']
-        binomial_theorem_array: List[List[str]] = [['0']]
+        combinations = ['0']
+        binomial_theorem_array = [['0']]
 
     for i in range(len(p_elements)):
         cur_combinations_and_pivots: List[dict] = []
@@ -96,6 +96,62 @@ def gen_combinations_data(p_elements: str, p_contain_zero: bool):
     return {
         'combinations': combinations,
 #        'binomial_theorem_array': binomial_theorem_array
+    }
+
+
+def gen_binomial_theorem_collection(p_elements: str, p_contain_zero: bool):
+    """
+    生成二项式定理型数据
+    @param p_elements: 元素集合
+    @param p_contain_zero: 是否包含0元素
+    @return: 组合数据
+    """
+
+    combinations_and_pivots_cache: List[List[dict]] = []
+
+#    combinations: List[str] = []
+    binomial_theorem_array: List[List[str]] = []  # todo: binomial_theorem_array单独放在一个函数
+
+    if p_contain_zero:
+#        combinations: List[str] = ['0']
+        binomial_theorem_array: List[List[str]] = [['0']]
+
+    for i in range(len(p_elements)):
+        cur_combinations_and_pivots: List[dict] = []
+        if i == 0:
+            for j in range(len(p_elements)):
+                cur_combination_and_pivot: dict = {
+                    'combination': p_elements[j],
+                    'next_trip_starting_idx': j
+                }
+                cur_combinations_and_pivots.insert(len(cur_combinations_and_pivots), cur_combination_and_pivot)
+        else:
+            pre_combinations_and_pivots: List[dict] = combinations_and_pivots_cache[i - 1]
+
+            for j in range(len(pre_combinations_and_pivots)):
+                pre_combination: str = pre_combinations_and_pivots[j]['combination']
+                for k in range(pre_combinations_and_pivots[j]['next_trip_starting_idx'] + 1, len(p_elements)):
+                    cur_combination: str = pre_combination + p_elements[k]
+                    cur_combination_and_pivot: dict = {
+                        'combination': cur_combination,
+                        'next_trip_starting_idx': k
+                    }
+                    cur_combinations_and_pivots.append(cur_combination_and_pivot)
+
+        combinations_and_pivots_cache.append(cur_combinations_and_pivots)
+
+    for i in range(len(p_elements)):
+        #        binomial_theorem_array.append([])
+        cur_binomial_theorem_item: List[str] = []
+        for j in range(len(combinations_and_pivots_cache[i])):
+            cur_combination: str = combinations_and_pivots_cache[i][j]['combination']
+#            combinations.append(cur_combination)
+            cur_binomial_theorem_item.append(cur_combination)
+            binomial_theorem_array.append(cur_binomial_theorem_item)
+
+    return {
+#        'combinations': combinations,
+        'binomial_theorem_array': binomial_theorem_array
     }
 
 
@@ -283,6 +339,9 @@ if __name__ == '__main__':
     no_tick_marks = True
     res = gen_combinations_data(p_elements=elements3,
                                 p_contain_zero=True)
+
+    res2 = gen_binomial_theorem_collection(p_elements=elements3,
+                                           p_contain_zero=True)
 
     #9: 3000, 0.75
     # dpi = 3000
