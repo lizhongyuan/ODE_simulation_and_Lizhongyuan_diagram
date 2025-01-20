@@ -269,27 +269,29 @@ def build_data_frame(p_data_frame: DataFrame, p_zero_elem: str, p_err_elem: str)
 
 
 def render_plot(p_data_frame: DataFrame,
-                p_plt: pyplot,
+                p_mpl: mpl,
                 p_dpi: int,
                 p_font_size: float,
                 p_no_tick_marks: bool,
-                p_err_elem: str):
+                p_err_elem: str) -> None:
     """
     Render the plot
     @param p_data_frame: graph frame
-    @param p_plt: matplotlib.pyplot
+    @param p_mpl: matplotlib
     @param p_dpi: dots per inch
     @param p_font_size: font size
     @param p_no_tick_marks: whether it has a tick mark
-    @return:
+    @param p_err_elem: Error PDIE's mark
+    @return: None
     """
 
-    mpl.rcParams["font.size"] = p_font_size
+    p_mpl.rcParams["font.size"] = p_font_size
 
     if p_dpi is not None:
-        mpl.rcParams["figure.dpi"] = p_dpi
+        p_mpl.rcParams["figure.dpi"] = p_dpi
 
-    fig, ax = p_plt.subplots()
+    #fig, ax = p_plt.subplots()
+    fig, ax = p_mpl.pyplot.subplots()
 
     if p_no_tick_marks:
         ax.tick_params(axis='both', which='both', length=0)
@@ -307,10 +309,13 @@ def render_plot(p_data_frame: DataFrame,
                 row_colors.append(0)        # set black
             else:
                 row_colors.append(100)      # set color
+#                value = (len(p_data_frame.values[row_idx][col_idx]) + 1)* 10
+#                row_colors.append(value)      # set color
         color_matrix.append(row_colors)
 
-    # ax.imshow(X=color_arr, cmap=plt.cm.get_cmap('gist_heat'))
     cmap: ListedColormap = colors.ListedColormap(['#080402', '#D03D33'])
+    # cmap: ListedColormap = p_mpl.colormaps.get_cmap('gist_heat')
+    # cmap: ListedColormap = p_mpl.colormaps.get_cmap('YlOrRd')
     ax.imshow(X=np.array(color_matrix),
               cmap=cmap)
 
@@ -325,10 +330,11 @@ def render_plot(p_data_frame: DataFrame,
                    labelbottom=False)
 
     # Rotate the tick labels and set their alignment.
-    p_plt.setp(ax.get_xticklabels(),
-               rotation=-70,
-               ha="right",
-               rotation_mode="anchor")
+#    p_plt.setp(ax.get_xticklabels(),
+    p_mpl.pyplot.setp(ax.get_xticklabels(),
+                      rotation=-70,
+                      ha="right",
+                      rotation_mode="anchor")
 
     fig.tight_layout()
 
@@ -348,9 +354,11 @@ if __name__ == '__main__':
 
     # dpi = 100
     # font_size = 10
-    # no_tick_marks = True
-    # res = gen_combinations_data(p_elements=elements3,
-    #                             p_contain_zero=True)
+    # no_tick_marks = False
+    # binomial_theorem_collection = gen_binomial_theorem_collection(p_elements=elements3,
+    #                                                               p_contain_zero=True,
+    #                                                               p_zero_elem='0',
+    #                                                               p_err_elem='E')
 
     # 9: 3000, 0.75
     # res = gen_combinations_data(p_elements=elements9,
@@ -381,12 +389,10 @@ if __name__ == '__main__':
                      p_err_elem='E')
 
     render_plot(p_data_frame=data_frame,
-                p_plt=pyplot,
+                p_mpl=mpl,
                 p_dpi=dpi,
                 p_font_size=font_size,
                 p_no_tick_marks=no_tick_marks,
                 p_err_elem='E')
 
-    # plt.show()
-
-    pyplot.savefig('pic.png')
+    mpl.pyplot.savefig('pic.png')
