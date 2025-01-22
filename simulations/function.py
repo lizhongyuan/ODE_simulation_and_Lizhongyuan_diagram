@@ -4,8 +4,16 @@ from simulations.structure import _2Tuple, _2TupleSS, _2TupleT, _2TupleTS
 from simulations.structure import _2TupleS
 
 
-def get_min_first_of_2tuple_S(p_2tuple_S: _2TupleS) -> object:
-    min_first = None
+def f_min_1_of_2tuple_S(p_2tuple_S: _2TupleS) -> object:
+    """
+    (定义6)获取一个2TupleS instance的最小第一项
+    Args:
+        p_2tuple_S (_2TupleSS):
+
+    Returns:
+        (object):
+    """
+    min_first: object = None
     for item in p_2tuple_S:
         if min_first is None or min_first > item.first():
             min_first = item.first()
@@ -13,16 +21,26 @@ def get_min_first_of_2tuple_S(p_2tuple_S: _2TupleS) -> object:
 
 
 def get_max_second_of_2tuple_S(p_2tuple_S: _2TupleS) -> object:
-    max_second = None
+    """
+    (定义6)获取一个2TupleS instance的最大第2项
+    Args:
+        p_2tuple_S (_2TupleSS):
+
+    Returns:
+        (object):
+    """
+
+    max_second: object = None
     for item in p_2tuple_S:
         if max_second is None or max_second < item.second():
             max_second = item.second()
     return max_second
 
 
-def get_custom_ordered_CP_of_2tuple_SS(p_2tuple_SS: _2TupleSS, p_op_idx_T: Tuple[int,...]) -> _2TupleTS:
+def get_custom_ordered_CP_of_2tuple_SS(p_2tuple_SS: _2TupleSS,
+                                       p_op_idx_T: Tuple[int,...]) -> _2TupleTS:
     """
-    (定义16)Let set p_2tuple_SS = { p_2tuple_S_1, p_2tuple_S_2, p_2tuple_S_3, ... , p_2tuple_S_n },
+    (定义14)Let set p_2tuple_SS = { p_2tuple_S_1, p_2tuple_S_2, p_2tuple_S_3, ... , p_2tuple_S_n },
     and p_idx_T = [ p_idx_1, p_idx_2, p_idx_3, ..., p_idx_n ].
     get cartesian product with expression p_2tuple_S_(p_idx_1) * p_2tuple_S_(p_idx_2) * p_2tuple_S_(p_idx_3) * ... * p_2tuple_S_(p_idx_n)
     Args:

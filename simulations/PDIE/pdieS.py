@@ -11,7 +11,9 @@ from simulations.structure import MySet, _2TupleSS, _2TupleTS, _2TupleS
 from simulations.unfeasible import get_custom_ordered_wildcard_unfeasible_2tuple_TS
 
 
-def get_feasible_2tuple_TS(_2tuple_TS: _2TupleTS, wildcard_unfeasible_2tuple_TS: _2TupleTS) -> _2TupleTS:
+def f_feasible_DI_2tuple_TS(_2tuple_TS: _2TupleTS, wildcard_unfeasible_2tuple_TS: _2TupleTS) -> _2TupleTS:
+
+    # todo: 大改
 
     # 1 ---------- 构造合法的二元组的元组的集合 ----------
 
@@ -87,7 +89,7 @@ class PDIES(MySet):
 
     def get_DI_2tuple_SS(self) -> _2TupleSS:
         """
-        获取自身的持续区间二元组的集合的集合(Get the "set composed of duration interval 2-tuple's sets" of itself)
+        (定义11)获取自身的持续区间二元组的集合的集合(Get the "set composed of duration interval 2-tuple's sets" of itself)
         Returns:
             (_2TupleSS): 默认顺序的持续区间二元组的集合的集合(set composed of duration interval 2-tuple's sets)
         """

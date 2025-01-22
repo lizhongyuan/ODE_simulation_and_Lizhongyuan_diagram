@@ -12,7 +12,7 @@ def get_custom_ordered_wildcard_unfeasible_2tuple_TS(p_op_idx_T: tuple[Any,...],
                                                      p_wildcard_unfeasible_2tuple_TS: _2TupleTS,
                                                      p_wildcard_unfeasible_idx_T: tuple[Any,...]) -> _2TupleTS:
     """
-    令
+    (定义15)令
     p_wildcard_unfeasible_DI_2tuple_TS = { _2tuple_T_1, _2tuple_T_2, ..., _2tuple_T_n }
     p_wildcard_unfeasible_DI_idx_T = { i1, i2, ..., in }, 其元组代表了p_wildcard_unfeasible_DI_2tuple_TS每个集合元素的元组索引顺序
     p_op_idx_T = { idx_1, idx_2, ..., idx_n }

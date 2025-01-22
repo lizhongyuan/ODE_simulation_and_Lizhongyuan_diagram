@@ -25,17 +25,16 @@ class PDIE(AbstractPDIE):
                  p_OP: str | None,
                  p_meta_PDIE_T: Tuple[AbstractPDIE,...],
                  p_meta_DI_2tuple_TS: _2TupleTS,
-                 p_DI_2tuple_S: _2TupleS,
-                 ):
+                 p_DI_2tuple_S: _2TupleS):
         super().__init__()
 
-        self._expression = p_expression   # todo: 可能需要改为operand_tuple
-        self._is_error = p_is_error
-        self._is_atom = p_is_atom
-        self._OP = p_OP
-        self._meta_PDIE_T = p_meta_PDIE_T
-        self._meta_DI_2tuple_TS = p_meta_DI_2tuple_TS
-        self._DI_2tuple_S = p_DI_2tuple_S
+        self._expression: str = p_expression   # todo: 可能需要改为operand_tuple
+        self._is_error: bool = p_is_error
+        self._is_atom: bool = p_is_atom
+        self._OP: str = p_OP
+        self._meta_PDIE_T: Tuple[AbstractPDIE,...] = p_meta_PDIE_T
+        self._meta_DI_2tuple_TS: _2TupleTS = p_meta_DI_2tuple_TS
+        self._DI_2tuple_S: _2TupleS = p_DI_2tuple_S
 
 
     def __str__(self):
@@ -73,6 +72,11 @@ class PDIE(AbstractPDIE):
         self._DI_2tuple_S = DI2tupleS
 
     def get_DI_2tuple_S(self):
+        """
+        (定义10) 获取一个PDIE instance的DI2TupleS instance
+        Returns:
+            (_2TupleS)
+        """
         return self._DI_2tuple_S
 
     def __add__(self, other):
