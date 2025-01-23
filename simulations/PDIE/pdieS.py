@@ -11,7 +11,7 @@ from simulations.structure import MySet, _2TupleSS, _2TupleTS, _2TupleS
 from simulations.unfeasible import get_custom_ordered_wildcard_unfeasible_2tuple_TS
 
 
-def f_feasible_DI_2tuple_TS(_2tuple_TS: _2TupleTS, wildcard_unfeasible_2tuple_TS: _2TupleTS) -> _2TupleTS:
+def get_feasible_DI_2tuple_TS(_2tuple_TS: _2TupleTS, wildcard_unfeasible_2tuple_TS: _2TupleTS) -> _2TupleTS:
 
     # todo: 大改
 
@@ -186,3 +186,23 @@ class PDIES(MySet):
 
 class AtomPDIES(PDIES):
     pass
+
+
+def f_feasible_DI_2tuple_TS(p_PDIE_S: PDIES, p_idx_T: tuple[int,...]):
+    """
+    (定义)
+    Args:
+        p_PDIE_S (PDIES):
+        p_idx_T ():
+
+    Returns:
+
+    """
+    custom_ordered_wildcard_unfeasible_2tuple_TS: _2TupleTS = p_PDIE_S.get_custom_ordered_wildcard_unfeasible_DI_2tuple_TS(p_idx_T)
+#    custom_ordered_CP_of_DI_2tuple_SS: _2TupleTS = p_PDIE_S.get_custom_ordered_CP_of_DI_2tuple_SS(DI_2tuple_SS, p_idx_T)
+    custom_ordered_CP_of_DI_2tuple_SS: _2TupleTS = p_PDIE_S.get_custom_ordered_CP_of_DI_2tuple_SS(p_PDIE_S.get_DI_2tuple_SS(), p_idx_T)
+
+    feasible_DI_2tuple_TS = get_feasible_DI_2tuple_TS(custom_ordered_CP_of_DI_2tuple_SS,
+                                                      custom_ordered_wildcard_unfeasible_2tuple_TS)
+
+    return feasible_DI_2tuple_TS
