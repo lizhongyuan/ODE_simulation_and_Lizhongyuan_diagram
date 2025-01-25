@@ -108,30 +108,30 @@ class PDIES(MySet):
 
     def set_wildcard_unfeasible_DI_2tuple_info(self,
                                                p_wildcard_unfeasible_DI_2tuple_TS: _2TupleTS,
-                                               p_unfeasible_PDIE_tuple: Tuple[AbstractPDIE,...]):
+                                               p_PDIE_tuple: Tuple[AbstractPDIE,...]):
         """
 
         Args:
             p_wildcard_unfeasible_DI_2tuple_TS:
-            p_unfeasible_PDIE_tuple:
+            p_PDIE_tuple:
 
         Returns:
 
         """
 
         for _2tuple_T in p_wildcard_unfeasible_DI_2tuple_TS:
-            if len(_2tuple_T) != len(p_unfeasible_PDIE_tuple):
+            if len(_2tuple_T) != len(p_PDIE_tuple):
                 raise ValueError(f"Wrong wildcard unfeasible DI 2tuple info")
 
             for i in range(len(_2tuple_T)):
                 if _2tuple_T[i] == '*':
                     continue
-                pdie: AbstractPDIE = p_unfeasible_PDIE_tuple[i]
+                pdie: AbstractPDIE = p_PDIE_tuple[i]
                 if _2tuple_T[i] not in pdie.get_DI_2tuple_S():
                     raise ValueError(f"Wrong wildcard unfeasible DI 2tuple info")
 
         self._wildcard_unfeasible_DI_2tuple_TS = p_wildcard_unfeasible_DI_2tuple_TS
-        self._unfeasible_PDIE_tuple = p_unfeasible_PDIE_tuple
+        self._unfeasible_PDIE_tuple = p_PDIE_tuple
 
     # def get_unfeasible_DI_2tuple_info(self):
     #     return self._unfeasible_PDIE_tuple, self._unfeasible_DI_2tuple_TS

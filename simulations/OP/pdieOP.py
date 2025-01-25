@@ -6,7 +6,7 @@
 
 from typing import Tuple
 
-from simulations.PDIE.pdieS import PDIES, get_feasible_DI_2tuple_TS
+from simulations.PDIE.pdieS import PDIES, get_feasible_DI_2tuple_TS, f_feasible_DI_2tuple_TS
 from simulations.TwoTupleTS import get_largest_comm_cut_2tuple_S_from_2tuple_TS
 from simulations.completeAscOrderFilteredSub2tupleTS import get_complete_asc_order_filtered_2tuple_TS
 from simulations.domainFilteredSub2tupleTS import get_domain_filtered_sub_2tuple_TS
@@ -44,6 +44,9 @@ def add(p_PDIE_S: PDIES, p_op_idx_T: Tuple[int,...], p_comm_cut_2tuple: _2Tuple)
     custom_ordered_wildcard_unfeasible_2tuple_TS: _2TupleTS = p_PDIE_S.get_custom_ordered_wildcard_unfeasible_DI_2tuple_TS(p_op_idx_T)
     custom_ordered_feasible_DI_2tuple_TS: _2TupleTS = get_feasible_DI_2tuple_TS(custom_ordered_CP_of_DI_2tuple_SS,
                                                                                 custom_ordered_wildcard_unfeasible_2tuple_TS)
+
+    feasible_DI_2tuple_TS = f_feasible_DI_2tuple_TS(PDIE_S_1, (1, 2))
+
     print(f"{str(custom_ordered_feasible_DI_2tuple_TS)}\n")
 
     print(f"4 取custom_ordered_feasible_DI_2tuple_TS的最大公共切割二元组集合largest_comm_cut_2tuple_S, 验证过滤域是否合法")

@@ -76,7 +76,7 @@ if __name__ == '__main__':
     # print(str(res))
 
     PDIE_S_1.set_wildcard_unfeasible_DI_2tuple_info(p_wildcard_unfeasible_DI_2tuple_TS=unfeasible_DI_2tuple_TS_2,
-                                                    p_unfeasible_PDIE_tuple=(atom_PDIE_1, atom_PDIE_2))
+                                                    p_PDIE_tuple=(atom_PDIE_1, atom_PDIE_2))
     PDIE_res = add(p_PDIE_S=PDIE_S_1,
               p_op_idx_T=(1, 2),
               p_comm_cut_2tuple=_2Tuple([ 1, 5 ]))
@@ -84,7 +84,7 @@ if __name__ == '__main__':
     print(f"{str(PDIE_res)}\n")
 
     PDIE_S_2.set_wildcard_unfeasible_DI_2tuple_info(p_wildcard_unfeasible_DI_2tuple_TS=unfeasible_DI_2tuple_TS_123,
-                                                    p_unfeasible_PDIE_tuple=(atom_PDIE_1, atom_PDIE_2, atom_PDIE_3))
+                                                    p_PDIE_tuple=(atom_PDIE_1, atom_PDIE_2, atom_PDIE_3))
     PDIE_res = add(p_PDIE_S=PDIE_S_2,
                    p_op_idx_T=(1, 2, 3),
                    p_comm_cut_2tuple=_2Tuple([ 1, 4 ]))
@@ -98,7 +98,7 @@ if __name__ == '__main__':
     print(f"{str(PDIE_res)}\n")
 
     PDIE_S_1.set_wildcard_unfeasible_DI_2tuple_info(p_wildcard_unfeasible_DI_2tuple_TS=unfeasible_DI_2tuple_TS_1,
-                                                    p_unfeasible_PDIE_tuple=(atom_PDIE_1, atom_PDIE_2))
+                                                    p_PDIE_tuple=(atom_PDIE_1, atom_PDIE_2))
     PDIE_res = multi(p_PDIE_S=PDIE_S_1,
                      p_op_idx_T=(1, 2))
     print(f"PDIE乘法执行成功, 结果PDIE如下")
