@@ -15,9 +15,9 @@ from simulations.PDIE.pdie import PDIE, PDIE_ERROR
 from simulations.structure import _2Tuple, _2TupleTS, _2TupleS, _2TupleSS
 
 
-def add(p_PDIE_S: PDIES,
-        p_op_idx_T: Tuple[int,...],
-        p_domain_filter_2tuple: _2Tuple) -> PDIE:
+def complete_sequential_addition(p_PDIE_S: PDIES,
+                                 p_op_idx_T: Tuple[int,...],
+                                 p_domain_filter_2tuple: _2Tuple) -> PDIE:
     print(f"PDIES 时序加法:\n")
 
     PDIE_result_expression = ""
