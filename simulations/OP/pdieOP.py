@@ -36,6 +36,8 @@ def complete_sequential_addition(p_PDIE_S: PDIES,
     print(f"1 取p_PDIE_S的DI2TupleSS instance的all members以p_op_idx_T为索引顺序的笛卡尔积的合法子集")
 
     feasible_DI_2tuple_TS = f_feasible_DI_2tuple_TS(p_PDIE_S, p_op_idx_T)
+    if feasible_DI_2tuple_TS.empty():
+        return PDIE_ERROR(PDIE_result_expression)
 
     print(f"feasible_DI_2tuple_TS: {str(feasible_DI_2tuple_TS)}\n")
 
