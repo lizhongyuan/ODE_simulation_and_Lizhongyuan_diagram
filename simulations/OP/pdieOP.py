@@ -15,7 +15,9 @@ from simulations.PDIE.pdie import PDIE, PDIE_ERROR
 from simulations.structure import _2Tuple, _2TupleTS, _2TupleS, _2TupleSS
 
 
-def add(p_PDIE_S: PDIES, p_op_idx_T: Tuple[int,...], p_comm_cut_2tuple: _2Tuple) -> PDIE:
+def add(p_PDIE_S: PDIES,
+        p_op_idx_T: Tuple[int,...],
+        p_domain_filter_2tuple: _2Tuple) -> PDIE:
     print(f"PDIES 时序加法:\n")
 
     PDIE_result_expression = ""
@@ -37,10 +39,10 @@ def add(p_PDIE_S: PDIES, p_op_idx_T: Tuple[int,...], p_comm_cut_2tuple: _2Tuple)
 
     print(f"feasible_DI_2tuple_TS: {str(feasible_DI_2tuple_TS)}\n")
 
-    print(f"2 使用p_comm_cut_2tuple对feasible_DI_2tuple_TS进行过滤\n得到一个二元组的元组的集合domain_filtered_sub_DI_2tuple_TS")
+    print(f"2 使用p_domain_filter_2tuple对feasible_DI_2tuple_TS进行过滤\n得到一个二元组的元组的集合domain_filtered_sub_DI_2tuple_TS")
 
-    TS_start: any = p_comm_cut_2tuple.first()
-    TS_end: any = p_comm_cut_2tuple.second()
+    TS_start: any = p_domain_filter_2tuple.first()
+    TS_end: any = p_domain_filter_2tuple.second()
 
     domain_filtered_sub_DI_2tuple_TS: _2TupleTS = \
         get_domain_filtered_sub_2tuple_TS(feasible_DI_2tuple_TS,
