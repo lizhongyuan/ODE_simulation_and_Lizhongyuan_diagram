@@ -1,7 +1,7 @@
 """
-@file test_add_1.py
-@brief Brief description of the file.
-@author Your Name
+@file test_add.py
+@brief Test complete sequential addition.
+@author Zhongyuan.Li
 @date 2025/1/27
 """
 
