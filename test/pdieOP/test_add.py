@@ -53,7 +53,7 @@ def test_complete_sequential_addition_1():
     domain_filter_2tuple = _2Tuple([1, 5])
     # 4.2 Execute
     PDIE_res = complete_sequential_addition(p_PDIE_S=PDIE_S,
-                                            p_op_idx_T=(1, 2),
+                                            p_opd_idx_T=(1, 2),
                                             p_domain_filter_2tuple=domain_filter_2tuple)
 
     # ---------- 5 Show the result ----------
@@ -109,7 +109,7 @@ def test_complete_sequential_addition_2():
     domain_filter_2tuple_A = _2Tuple([1, 4])
     # 4.2 Execute
     PDIE_res = complete_sequential_addition(p_PDIE_S=PDIE_S_1,
-                                            p_op_idx_T=(1, 2),
+                                            p_opd_idx_T=(1, 2),
                                             p_domain_filter_2tuple=domain_filter_2tuple_A)
 
     # ---------- 5 Show the result ----------
@@ -163,7 +163,7 @@ def test_complete_sequential_addition_3():
     domain_filter_2tuple = _2Tuple([1, 5])
     # 4.2 Execute
     PDIE_res = complete_sequential_addition(p_PDIE_S=PDIE_S,
-                                            p_op_idx_T=(1, 2),
+                                            p_opd_idx_T=(1, 2),
                                             p_domain_filter_2tuple=domain_filter_2tuple)
 
     # ---------- 5 Show the result ----------
@@ -212,7 +212,7 @@ def test_complete_sequential_addition_4():
     domain_filter_2tuple = _2Tuple([1, 4])
     # 4.2 Execute
     PDIE_res = complete_sequential_addition(p_PDIE_S=PDIE_S,
-                                            p_op_idx_T=(1, 2),
+                                            p_opd_idx_T=(1, 2),
                                             p_domain_filter_2tuple=domain_filter_2tuple)
 
     # ---------- 5 Show the result ----------
@@ -267,7 +267,7 @@ def test_complete_sequential_addition_5():
     domain_filter_2tuple = _2Tuple([1, 4])
     # 4.2 Execute
     PDIE_res = complete_sequential_addition(p_PDIE_S=PDIE_S_2,
-                                            p_op_idx_T=(1, 2, 3),
+                                            p_opd_idx_T=(1, 2, 3),
                                             p_domain_filter_2tuple=domain_filter_2tuple)
 
     # ---------- 5 Show the result ----------
@@ -320,7 +320,7 @@ def test_complete_sequential_addition_6():
     domain_filter_2tuple = _2Tuple([1, 4])
     # 4.2 Execute
     PDIE_res = complete_sequential_addition(p_PDIE_S=PDIE_S,
-                                            p_op_idx_T=(1, 3, 2),
+                                            p_opd_idx_T=(1, 3, 2),
                                             p_domain_filter_2tuple=domain_filter_2tuple)
 
     # ---------- 5 Show the result ----------

@@ -4,7 +4,7 @@
 @date: 2024/11/12
 """
 
-from simulations.OP.pdieOP import complete_sequential_addition, multi
+from simulations.OP.pdieOP import complete_sequential_addition, complete_sequential_multiplication
 from simulations.PDIE.pdie import PDIE, AtomPDIE
 from simulations.PDIE.pdieS import PDIES
 from simulations.structure import _2TupleS, _2Tuple, _2TupleTS, _2TupleT
@@ -78,7 +78,7 @@ if __name__ == '__main__':
     PDIE_S_1.set_wildcard_unfeasible_DI_2tuple_info(p_wildcard_unfeasible_DI_2tuple_TS=unfeasible_DI_2tuple_TS_2,
                                                     p_PDIE_tuple=(atom_PDIE_1, atom_PDIE_2))
     PDIE_res = complete_sequential_addition(p_PDIE_S=PDIE_S_1,
-                                            p_op_idx_T=(1, 2),
+                                            p_opd_idx_T=(1, 2),
                                             p_domain_filter_2tuple=_2Tuple([1, 5]))
     print(f"PDIE加法执行成功, 结果PDIE如下")
     print(f"{str(PDIE_res)}\n")
@@ -86,25 +86,25 @@ if __name__ == '__main__':
     PDIE_S_2.set_wildcard_unfeasible_DI_2tuple_info(p_wildcard_unfeasible_DI_2tuple_TS=unfeasible_DI_2tuple_TS_123,
                                                     p_PDIE_tuple=(atom_PDIE_1, atom_PDIE_2, atom_PDIE_3))
     PDIE_res = complete_sequential_addition(p_PDIE_S=PDIE_S_2,
-                                            p_op_idx_T=(1, 2, 3),
+                                            p_opd_idx_T=(1, 2, 3),
                                             p_domain_filter_2tuple=_2Tuple([1, 4]))
     print(f"PDIE加法执行成功, 结果PDIE如下")
     print(f"{str(PDIE_res)}\n")
 
     PDIE_res = complete_sequential_addition(p_PDIE_S=PDIE_S_2,
-                                            p_op_idx_T=(1, 3, 2),
+                                            p_opd_idx_T=(1, 3, 2),
                                             p_domain_filter_2tuple=_2Tuple([1, 4]))
     print(f"PDIE加法执行成功, 结果PDIE如下")
     print(f"{str(PDIE_res)}\n")
 
     PDIE_S_1.set_wildcard_unfeasible_DI_2tuple_info(p_wildcard_unfeasible_DI_2tuple_TS=unfeasible_DI_2tuple_TS_1,
                                                     p_PDIE_tuple=(atom_PDIE_1, atom_PDIE_2))
-    PDIE_res = multi(p_PDIE_S=PDIE_S_1,
-                     p_op_idx_T=(1, 2))
+    PDIE_res = complete_sequential_multiplication(p_PDIE_S=PDIE_S_1,
+                                                  p_opd_idx_T=(1, 2))
     print(f"PDIE乘法执行成功, 结果PDIE如下")
     print(f"{str(PDIE_res)}\n")
 
-    PDIE_res = multi(p_PDIE_S=PDIE_S_1,
-                     p_op_idx_T=(2, 1))
+    PDIE_res = complete_sequential_multiplication(p_PDIE_S=PDIE_S_1,
+                                                  p_opd_idx_T=(2, 1))
     print(f"PDIE乘法执行成功, 结果PDIE如下")
     print(f"{str(PDIE_res)}\n")
