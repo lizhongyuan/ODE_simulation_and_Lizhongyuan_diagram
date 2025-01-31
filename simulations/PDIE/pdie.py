@@ -96,8 +96,17 @@ class AtomPDIE(PDIE):
 
 
 class PDIE_ERROR(PDIE):
-    def __init__(self, p_expression: str | None):
-        super().__init__(p_expression=p_expression,
+    # def __init__(self, p_expression: str | None):
+    #     super().__init__(p_expression=p_expression,
+    #                      p_is_error=True,
+    #                      p_is_atom=False,
+    #                      p_OP=None,
+    #                      p_meta_PDIE_T=tuple([]),
+    #                      p_meta_DI_2tuple_TS=_2TupleTS([]),
+    #                      p_DI_2tuple_S=_2TupleS([]))
+
+    def __init__(self):
+        super().__init__(p_expression='',
                          p_is_error=True,
                          p_is_atom=False,
                          p_OP=None,

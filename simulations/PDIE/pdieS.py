@@ -57,15 +57,12 @@ class PDIES(MySet):
         format_str: str = \
             (f"{{\n" +
              f"\tdict: {dict_str},\n" +
-             # f"\tis_error: {self._is_error},\n" +
-             # f"\tis_atom: {self._is_atom},\n" +
-             # #             f"\tmeta_PDIE: {str(self._meta_PDIE)},\n" +
-             # f"\tDI_2tuple_S: {str(self._DI_2tuple_S)}\n" +
-             # f"\tfactor_DI_2tuple_TS: {str(self._factor_DI_2tuple_TS)}\n" +
-             # f"\tdistinct_same_bound_2tuple_TSS: {str(self.get_factor_DI_distinct_same_bound_2tuple_TSS())}\n" +
              f"}}"
              )
         return format_str
+
+    def __len__(self):
+        return len(self._list)
 
     def _get_dict_str(self) -> str:
         dict_str: str = f"{{ "
