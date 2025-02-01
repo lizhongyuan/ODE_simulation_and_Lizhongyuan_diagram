@@ -56,14 +56,6 @@ def test_complete_sequential_addition_1():
                                             p_opd_idx_T=(1, 2),
                                             p_domain_filter_2tuple=domain_filter_2tuple)
 
-    # ---------- 5 Show the result ----------
-
-    if PDIE_res.isError():
-        print(f"完全时序加法结果为PDIE_error")
-    else:
-        print(f"完全时序加法执行成功, 结果PDIE如下")
-        print(f"{str(PDIE_res)}\n")
-
 
 def test_complete_sequential_addition_2():
 
@@ -112,14 +104,6 @@ def test_complete_sequential_addition_2():
                                             p_opd_idx_T=(1, 2),
                                             p_domain_filter_2tuple=domain_filter_2tuple_A)
 
-    # ---------- 5 Show the result ----------
-
-    if PDIE_res.isError():
-        print(f"完全时序加法结果为PDIE_error")
-    else:
-        print(f"完全时序加法执行成功, 结果如下")
-        print(f"{str(PDIE_res)}\n")
-
 
 def test_complete_sequential_addition_3():
 
@@ -166,14 +150,6 @@ def test_complete_sequential_addition_3():
                                             p_opd_idx_T=(1, 2),
                                             p_domain_filter_2tuple=domain_filter_2tuple)
 
-    # ---------- 5 Show the result ----------
-
-    if PDIE_res.isError():
-        print(f"完全时序加法结果为PDIE_error")
-    else:
-        print(f"完全时序加法执行成功, 结果如下")
-        print(f"{str(PDIE_res)}\n")
-
 
 def test_complete_sequential_addition_4():
 
@@ -214,14 +190,6 @@ def test_complete_sequential_addition_4():
     PDIE_res = complete_sequential_addition(p_PDIE_S=PDIE_S,
                                             p_opd_idx_T=(1, 2),
                                             p_domain_filter_2tuple=domain_filter_2tuple)
-
-    # ---------- 5 Show the result ----------
-
-    if PDIE_res.isError():
-        print(f"完全时序加法结果为PDIE_error")
-    else:
-        print(f"完全时序加法执行成功, 结果如下")
-        print(f"{str(PDIE_res)}\n")
 
 
 def test_complete_sequential_addition_5():
@@ -270,14 +238,6 @@ def test_complete_sequential_addition_5():
                                             p_opd_idx_T=(1, 2, 3),
                                             p_domain_filter_2tuple=domain_filter_2tuple)
 
-    # ---------- 5 Show the result ----------
-
-    if PDIE_res.isError():
-        print(f"完全时序加法结果为PDIE_error")
-    else:
-        print(f"完全时序加法执行成功, 结果如下")
-        print(f"{str(PDIE_res)}\n")
-
 
 def test_complete_sequential_addition_6():
 
@@ -322,11 +282,3 @@ def test_complete_sequential_addition_6():
     PDIE_res = complete_sequential_addition(p_PDIE_S=PDIE_S,
                                             p_opd_idx_T=(1, 3, 2),
                                             p_domain_filter_2tuple=domain_filter_2tuple)
-
-    # ---------- 5 Show the result ----------
-
-    if PDIE_res.isError():
-        print(f"完全时序加法结果为PDIE_error")
-    else:
-        print(f"完全时序加法执行成功, 结果如下")
-        print(f"{str(PDIE_res)}\n")
