@@ -80,47 +80,59 @@ def complete_sequential_multiplication(p_PDIE_S: PDIES,
     print(f"###############  Complete sequential multiplication  ###############")
     print(f"####################################################################\n")
 
-    print(f"1 参数检查和处理\n")
+    print(f"1 Check parameters and handle\n")
 
     if len(p_PDIE_S) != len(p_opd_idx_T):
         raise ValueError("The length of p_PDIE_S must be equal to the length of p_opd_idx_T.")
 
-    if not check_index_tuple(p_opd_idx_T, len(p_opd_idx_T)):
+    if not check_idx_tuple_border(p_opd_idx_T, len(p_opd_idx_T)):
         raise ValueError("p_opd_idx_T error.")
 
     if has_duplicates(p_opd_idx_T):
-        print(f"There are duplicate elements, return PDIE_error")
-        return PDIE_ERROR()
+        print(f"There are duplicate elements, get PDIE_error")
+        PDIE_result = PDIE_ERROR()
+        print(f"{str(PDIE_result)}\n")
+        print_finish_line()
+        return PDIE_result
 
     for cur_PDIE in p_PDIE_S:
         if cur_PDIE.isError():
-            print(f"There are PDIE_errors in p_PDIE_S, return PDIE_error")
-            return PDIE_ERROR()
+            print(f"There are PDIE_errors in p_PDIE_S, get PDIE_error")
+            PDIE_result = PDIE_ERROR()
+            print(f"{str(PDIE_result)}\n")
+            print_finish_line()
+            return PDIE_result
 
-    print(f"2 取p_PDIE_S的DI2TupleSS instance的all members以p_opd_idx_T为索引顺序的笛卡尔积的合法子集")
+    print(f"2 Take the valid subset of the Cartesian product of all members of the DI2TupleSS instance of p_PDIE_S in the order of the indices specified by p_opd_idx_T")
 
     feasible_DI_2tuple_TS: _2TupleTS = f_feasible_DI_2tuple_TS(p_PDIE_S, p_opd_idx_T)
     if feasible_DI_2tuple_TS.empty():
-        print(f"feasible_DI_2tuple_TS is empty, return PDIE_error")
-        return PDIE_ERROR()
+        print(f"feasible_DI_2tuple_TS is empty, get PDIE_error")
+        PDIE_result = PDIE_ERROR()
+        print(f"{str(PDIE_result)}\n")
+        print_finish_line()
+        return PDIE_result
 
     print(f"feasible_DI_2tuple_TS: {str(feasible_DI_2tuple_TS)}\n")
 
-    print(f"3 使用完全正序规则对feasible_DI_2tuple_TS进行过滤, 得到一个二元组的元组的集合")
+    print(f"3 Filter the feasible_DI_2tuple_TS using the complete ascending order rule to obtain a set of tuples of 2-tuples")
     complete_asc_order_filtered_DI_2tuple_TS: _2TupleTS = get_complete_asc_order_filtered_2tuple_TS(feasible_DI_2tuple_TS)
     if complete_asc_order_filtered_DI_2tuple_TS.empty():
-        print(f"complete_asc_order_filtered_DI_2tuple_TS is empty, return PDIE_error")
-        return PDIE_ERROR()
+        print(f"complete_asc_order_filtered_DI_2tuple_TS is empty, get PDIE_error")
+        PDIE_result = PDIE_ERROR()
+        print(f"{str(PDIE_result)}\n")
+        print_finish_line()
+        return PDIE_result
 
     print(f"complete_asc_order_filtered_DI_2tuple_TS: {str(complete_asc_order_filtered_DI_2tuple_TS)}\n")
 
-    print(f"4 使用domain_filtered_sub_DI_2tuple_TS计算出PDIE_result的持续区间二元组集合")
+    print(f"4 Use domain_filtered_sub_DI_2tuple_TS to calculate the set of duration interval 2-tuples of PDIE_result")
 
     DI_2tuple_S: _2TupleS = get_bound_2tuple_S(complete_asc_order_filtered_DI_2tuple_TS)
 
     print(f"DI_2tuple_S: {str(DI_2tuple_S)}\n")
 
-    print(f"5 构造PDIE_result并返回")
+    print(f"5 Build PDIE_result")
 
     meta_PDIE_list: list[PDIE] = []
 
@@ -132,24 +144,39 @@ def complete_sequential_multiplication(p_PDIE_S: PDIES,
         if i < len(p_opd_idx_T) - 1:
             PDIE_result_expression += ' * '
 
-    res_PDIE = PDIE(p_expression=PDIE_result_expression,
-                    p_is_error=False,
-                    p_is_atom=False,
-                    p_OP='*',
-                    p_meta_PDIE_T=tuple(meta_PDIE_list),
-                    p_meta_DI_2tuple_TS=complete_asc_order_filtered_DI_2tuple_TS,
-                    p_DI_2tuple_S=DI_2tuple_S)
+    PDIE_result = PDIE(p_expression=PDIE_result_expression,
+                       p_is_error=False,
+                       p_is_atom=False,
+                       p_OP='*',
+                       p_meta_PDIE_T=tuple(meta_PDIE_list),
+                       p_meta_DI_2tuple_TS=complete_asc_order_filtered_DI_2tuple_TS,
+                       p_DI_2tuple_S=DI_2tuple_S)
+    print(f"{str(PDIE_result)}\n")
 
-    print(f"############################## Finish ##############################\n")
+    print_finish_line()
 
-    return res_PDIE
+    return PDIE_result
 
 
-def check_index_tuple(index_tuple: Tuple[int,...], n: int):
-    for index in index_tuple:
-        if not isinstance(index, int) or index < 1 or index > n:
+def check_idx_tuple_border(p_idx_T: Tuple[int,...],
+                           length: int) -> bool:
+    """
+    Check the upper and lower bounds of the index tuple
+    Args:
+        p_idx_T (Tuple[int,...]):
+        length (int):
+
+    Returns:
+        (bool)
+    """
+    for idx in p_idx_T:
+        if not isinstance(idx, int) or idx < 1 or idx > length:
             return False
     return True
 
-def has_duplicates(tup):
+def has_duplicates(tup) -> bool:
     return len(set(tup)) != len(tup)
+
+
+def print_finish_line() -> None:
+    print(f"############################## Finish ##############################\n\n\n\n")

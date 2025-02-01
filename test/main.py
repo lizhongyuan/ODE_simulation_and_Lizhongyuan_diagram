@@ -11,7 +11,8 @@ from pdieOP.test_add import (test_complete_sequential_addition_1,
                              test_complete_sequential_addition_6,
                              )
 from pdieOP.test_multi import (test_complete_sequential_multiplication_1,
-                               test_complete_sequential_multiplication_2)
+                               test_complete_sequential_multiplication_2,
+                               test_complete_sequential_multiplication_3)
 from test_feasibleDI2tupleTS import test_f_feasible_DI_2tuple_TS
 
 
@@ -34,3 +35,5 @@ if __name__ == '__main__':
 #    test_complete_sequential_multiplication_1()
 
     test_complete_sequential_multiplication_2()
+
+#    test_complete_sequential_multiplication_3()

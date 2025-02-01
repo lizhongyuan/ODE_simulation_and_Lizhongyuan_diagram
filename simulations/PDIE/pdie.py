@@ -38,9 +38,9 @@ class PDIE(AbstractPDIE):
 
 
     def __str__(self):
-        format_str: str = f"PDIE_error"
-        if self._is_error:
-            return format_str
+        # format_str: str = f"PDIE_error"
+        # if self._is_error:
+        #     return format_str
 
         format_str =\
             (f"{{\n" +
@@ -115,4 +115,5 @@ class PDIE_ERROR(PDIE):
                          p_DI_2tuple_S=_2TupleS([]))
 
     def __str__(self):
-        return f"PDIE_error"
+        return super().__str__()
+    #     return f"PDIE_error"

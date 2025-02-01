@@ -101,10 +101,6 @@ if __name__ == '__main__':
                                                     p_PDIE_tuple=(atom_PDIE_1, atom_PDIE_2))
     PDIE_res = complete_sequential_multiplication(p_PDIE_S=PDIE_S_1,
                                                   p_opd_idx_T=(1, 2))
-    print(f"PDIE乘法执行成功, 结果PDIE如下")
-    print(f"{str(PDIE_res)}\n")
 
     PDIE_res = complete_sequential_multiplication(p_PDIE_S=PDIE_S_1,
                                                   p_opd_idx_T=(2, 1))
-    print(f"PDIE乘法执行成功, 结果PDIE如下")
-    print(f"{str(PDIE_res)}\n")
