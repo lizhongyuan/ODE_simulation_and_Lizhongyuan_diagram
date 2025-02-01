@@ -1,40 +1,11 @@
 from typing import List, Tuple
 
-from simulations.structure import _2Tuple, _2TupleSS, _2TupleT, _2TupleTS
-from simulations.structure import _2TupleS
+from simulations.structure import _2Tuple, _2TupleT, _2TupleTS
+from simulations.PDIE._2TupleS import _2TupleS
+from simulations.PDIE._2TupleSS import _2TupleSS
 
 
-def f_min_1_of_2tuple_S(p_2tuple_S: _2TupleS) -> object:
-    """
-    (定义6)获取一个2TupleS instance的最小第一项
-    Args:
-        p_2tuple_S (_2TupleSS):
 
-    Returns:
-        (object):
-    """
-    min_first: object = None
-    for item in p_2tuple_S:
-        if min_first is None or min_first > item.first():
-            min_first = item.first()
-    return min_first
-
-
-def get_max_second_of_2tuple_S(p_2tuple_S: _2TupleS) -> object:
-    """
-    (定义6)获取一个2TupleS instance的最大第2项
-    Args:
-        p_2tuple_S (_2TupleSS):
-
-    Returns:
-        (object):
-    """
-
-    max_second: object = None
-    for item in p_2tuple_S:
-        if max_second is None or max_second < item.second():
-            max_second = item.second()
-    return max_second
 
 
 def get_custom_ordered_CP_of_2tuple_SS(p_2tuple_SS: _2TupleSS,

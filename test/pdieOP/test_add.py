@@ -7,9 +7,10 @@
 
 
 from simulations.OP.pdieOP import complete_sequential_addition
-from simulations.PDIE.pdie import AtomPDIE
-from simulations.PDIE.pdieS import PDIES
-from simulations.structure import _2TupleS, _2Tuple, _2TupleTS, _2TupleT
+from simulations.PDIE.partial_duration_interval_event import AtomPDIE
+from simulations.PDIE.partial_duration_interval_event_set import PDIES
+from simulations.structure import _2Tuple, _2TupleTS, _2TupleT
+from simulations.PDIE._2TupleS import _2TupleS
 
 
 def test_complete_sequential_addition_1():

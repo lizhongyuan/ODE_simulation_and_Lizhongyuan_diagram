@@ -1,6 +1,6 @@
 
 
-class MySet:
+class LiZhongYuanSet:
 
     def __init__(self, setList: list):
         self._list = setList
@@ -99,17 +99,15 @@ class MySet:
         self._list.append(elem)
 
 
-class MyTuple:  # todo: add get() func
+class LiZhongYuanTuple:  # todo: add get() func
 
     def __init__(self, tupleList):
         self._list = tupleList
 
     def __getitem__(self, index):
-#        return self._list[index - 1]
         return self._list[index]
 
     def __setitem__(self, index, value):
-#        self._list[index - 1] = value
         self._list[index] = value
 
     def __str__(self) -> str:
@@ -139,7 +137,7 @@ class MyTuple:  # todo: add get() func
         return True
 
 
-class _2Tuple(MyTuple):
+class _2Tuple(LiZhongYuanTuple):
 
     def first(self) -> any:
 #        return self.__getitem__(1)
@@ -154,16 +152,16 @@ class _2Tuple(MyTuple):
         return self.__getitem__(0), self.__getitem__(1)
 
 
-class _2TupleS(MySet):
+# class _2TupleS(MySet):
+#     pass
+
+class Cut2TupleS(LiZhongYuanSet):
     pass
 
-class Cut2TupleS(MySet):
-    pass
+# class _2TupleSS(MySet):
+#     pass
 
-class _2TupleSS(MySet):
-    pass
-
-class _2TupleT(MyTuple):
+class _2TupleT(LiZhongYuanTuple):
     def wildcard_match(self, p_pattern_2tuple_T) -> bool:
         if len(self._list) != len(p_pattern_2tuple_T):
             return False
@@ -177,8 +175,8 @@ class _2TupleT(MyTuple):
         return match
 
 
-class _2TupleTS(MySet):
+class _2TupleTS(LiZhongYuanSet):
     pass
 
-class _2TupleTSS(MySet):
+class _2TupleTSS(LiZhongYuanSet):
     pass

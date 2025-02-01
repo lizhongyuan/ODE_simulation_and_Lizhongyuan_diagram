@@ -1,7 +1,8 @@
 from simulations.function import get_bound_2tuple, get_bound_2tuple_S
 from simulations.structure import _2Tuple, _2TupleT, _2TupleTS
 
-if __name__ == '__main__':
+
+def test_bound_2tuple_S() -> None:
     _2tuple_1 = _2Tuple([1, 2])
     _2tuple_2 = _2Tuple([3, 4])
     _2tuple_T_1 = _2TupleT([_2tuple_1, _2tuple_2])

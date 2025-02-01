@@ -7,7 +7,9 @@
 from typing import List, Tuple, Any
 from simulations.PDIE.AbstractPDIE import AbstractPDIE
 from simulations.function import get_custom_ordered_CP_of_2tuple_SS
-from simulations.structure import MySet, _2TupleSS, _2TupleTS, _2TupleS
+from simulations.structure import LiZhongYuanSet, _2TupleTS
+from simulations.PDIE._2TupleS import _2TupleS
+from simulations.PDIE._2TupleSS import _2TupleSS
 from simulations.unfeasible import get_custom_ordered_wildcard_unfeasible_2tuple_TS
 
 
@@ -40,7 +42,7 @@ def get_feasible_DI_2tuple_TS(_2tuple_TS: _2TupleTS, wildcard_unfeasible_2tuple_
     return feasible_DI_2tuple_TS
 
 
-class PDIES(MySet):
+class PDIES(LiZhongYuanSet):
     """
     PDIE Set
     """
@@ -196,7 +198,6 @@ def f_feasible_DI_2tuple_TS(p_PDIE_S: PDIES, p_idx_T: tuple[int,...]):
 
     """
     custom_ordered_wildcard_unfeasible_2tuple_TS: _2TupleTS = p_PDIE_S.get_custom_ordered_wildcard_unfeasible_DI_2tuple_TS(p_idx_T)
-#    custom_ordered_CP_of_DI_2tuple_SS: _2TupleTS = p_PDIE_S.get_custom_ordered_CP_of_DI_2tuple_SS(DI_2tuple_SS, p_idx_T)
     custom_ordered_CP_of_DI_2tuple_SS: _2TupleTS = p_PDIE_S.get_custom_ordered_CP_of_DI_2tuple_SS(p_PDIE_S.get_DI_2tuple_SS(), p_idx_T)
 
     feasible_DI_2tuple_TS = get_feasible_DI_2tuple_TS(custom_ordered_CP_of_DI_2tuple_SS,

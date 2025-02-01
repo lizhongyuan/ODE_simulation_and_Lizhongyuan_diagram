@@ -3,8 +3,9 @@
 #
 from typing import List, Any
 
-from simulations.structure import _2Tuple, _2TupleSS, _2TupleT, _2TupleTS
-from simulations.structure import _2TupleS
+from simulations.structure import _2Tuple
+from simulations.PDIE._2TupleS import _2TupleS
+from simulations.PDIE._2TupleSS import _2TupleSS
 from collections import OrderedDict
 
 
