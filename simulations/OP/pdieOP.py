@@ -6,10 +6,7 @@
 
 from typing import Tuple
 
-from numpy.f2py.auxfuncs import throw_error
-
 from simulations.PDIE.pdieS import PDIES, get_feasible_DI_2tuple_TS, f_feasible_DI_2tuple_TS
-from simulations.TwoTupleTS import get_largest_comm_cut_2tuple_S_from_2tuple_TS
 from simulations.completeAscOrderFilteredSub2tupleTS import get_complete_asc_order_filtered_2tuple_TS
 from simulations.domainFilteredSub2tupleTS import get_domain_filtered_sub_2tuple_TS
 from simulations.function import get_bound_2tuple_S
@@ -20,6 +17,16 @@ from simulations.structure import _2Tuple, _2TupleTS, _2TupleS, _2TupleSS
 def complete_sequential_addition(p_PDIE_S: PDIES,
                                  p_opd_idx_T: Tuple[int,...],
                                  p_domain_filter_2tuple: _2Tuple) -> PDIE:
+    """
+    Complete sequential addition
+    Args:
+        p_PDIE_S (PDIES): A PDIES instance
+        p_opd_idx_T(Tuple[int,...]): Index order of operands
+        p_domain_filter_2tuple(_2Tuple): A domain filter 2Tuple instance
+
+    Returns:
+        (PDIE) The result of complete sequential addition
+    """
 
     print(f"####################################################################")
     print(f"##################  Complete sequential addition  ##################")
@@ -47,19 +54,6 @@ def complete_sequential_addition(p_PDIE_S: PDIES,
             print(f"{str(PDIE_result)}\n")
             print_finish_line()
             return PDIE_result
-
-    PDIE_result_expression: str = ""
-    meta_PDIE_list: list[PDIE] = []
-
-    for i in range(len(p_opd_idx_T)):
-        meta_PDIE_list.append(p_PDIE_S[p_opd_idx_T[i] - 1])
-        PDIE_result_expression += p_PDIE_S[p_opd_idx_T[i] - 1].getExpression()
-        if i < len(p_opd_idx_T) - 1:
-            PDIE_result_expression += ' + '
-
-    for cur_PDIE in p_PDIE_S:
-        if cur_PDIE.isError():
-            return PDIE_ERROR()
 
     print(f"2 Take the valid subset of the Cartesian product of all members of \nthe DI2TupleSS instance of p_PDIE_S in the order of the indices\n specified by p_opd_idx_T.\n")
 
@@ -107,12 +101,12 @@ def complete_sequential_addition(p_PDIE_S: PDIES,
         meta_PDIE_list.append(p_PDIE_S[p_opd_idx_T[i] - 1])
         PDIE_result_expression += p_PDIE_S[p_opd_idx_T[i] - 1].getExpression()
         if i < len(p_opd_idx_T) - 1:
-            PDIE_result_expression += ' * '
+            PDIE_result_expression += ' + '
 
     PDIE_result: PDIE = PDIE(p_expression=PDIE_result_expression,
                              p_is_error=False,
                              p_is_atom=False,
-                             p_OP='*',
+                             p_OP='+',
                              p_meta_PDIE_T=tuple(meta_PDIE_list),
                              p_meta_DI_2tuple_TS=domain_filtered_sub_DI_2tuple_TS,
                              p_DI_2tuple_S=DI_2tuple_S)
@@ -125,6 +119,15 @@ def complete_sequential_addition(p_PDIE_S: PDIES,
 
 def complete_sequential_multiplication(p_PDIE_S: PDIES,
                                        p_opd_idx_T: Tuple[int,...]) -> PDIE:
+    """
+        Complete sequential multiplication
+        Args:
+            p_PDIE_S (PDIES): A PDIES instance
+            p_opd_idx_T(Tuple[int,...]): Index order of operands
+
+        Returns:
+            (PDIE) The result of complete sequential multiplication
+        """
 
     print(f"####################################################################")
     print(f"###############  Complete sequential multiplication  ###############")

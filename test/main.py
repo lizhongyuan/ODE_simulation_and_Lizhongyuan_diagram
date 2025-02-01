@@ -1,6 +1,6 @@
 """
 @brief: Brief description of the class.
-@author: Your Name
+@author: Zhongyuan.Li
 @date: 2025/1/23
 """
 from pdieOP.test_add import (test_complete_sequential_addition_1,
@@ -32,8 +32,8 @@ if __name__ == '__main__':
 
     test_complete_sequential_addition_6()
 
-#    test_complete_sequential_multiplication_1()
+    test_complete_sequential_multiplication_1()
 
-#    test_complete_sequential_multiplication_2()
+    test_complete_sequential_multiplication_2()
 
-#    test_complete_sequential_multiplication_3()
+    test_complete_sequential_multiplication_3()
