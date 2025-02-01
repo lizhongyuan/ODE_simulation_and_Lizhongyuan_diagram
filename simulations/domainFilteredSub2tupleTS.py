@@ -46,28 +46,3 @@ def get_domain_filtered_sub_2tuple_TS(p_2tuple_TS: _2TupleTS, p_left: Any, p_rig
         return sub_2tuple_TS
 
     return _2TupleTS([])
-
-
-def Pred_is_domain_filter_2tuple(p_2tuple_TS: _2TupleTS, p_2tuple: _2Tuple) -> bool:
-    """
-    (定义25)Predicate, 判定p_2tuple是否是p_2tuple_TS的域过滤二元组
-    Args:
-        p_2tuple_TS (_2TupleTS): 一个二元组集合
-        p_2tuple (_2Tuple): 一个二元组
-
-    Returns:
-        bool: 判定结果
-    """
-
-    left = p_2tuple.first()
-    right = p_2tuple.second()
-
-    if get_domain_filtered_sub_2tuple_TS(p_2tuple_TS, left, right):
-        return True
-
-    return False
-
-# todo: 25, home mac
-
-
-

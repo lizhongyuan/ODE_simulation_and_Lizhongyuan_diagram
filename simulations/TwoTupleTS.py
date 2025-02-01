@@ -30,39 +30,3 @@ def get_2tuple_from_2tuple_TS(p_2tuple_TS: _2TupleTS, p_idx: int, p_n: int) -> _
         return None
 
     return p_2tuple_TS[p_idx - 1][p_n - 1]
-
-
-def get_largest_comm_cut_2tuple_S_from_2tuple_TS(p_2tuple_TS: _2TupleTS) -> _2TupleS:
-
-    if p_2tuple_TS.cardinality() == 0:
-        return _2TupleS([])
-
-    elem_2tuple_T_len: int = len(p_2tuple_TS[0])
-
-    # 检查正确性
-    for i in range(elem_2tuple_T_len):
-        if len(p_2tuple_TS[i]) != elem_2tuple_T_len:
-            raise ValueError("Wrong p_2tuple_TS !")
-
-    _2tuple_list_list: List[List[_2Tuple]] = []
-    for i in range(elem_2tuple_T_len):
-        _2tuple_list_list.append([])
-
-    # for i in range(p_2tuple_TS.cardinality()):
-    #     _2tuple_T = p_2tuple_TS[i]
-    #     for j in range(elem_2tuple_T_len):
-    #         _2tuple_list_list[j].append(_2tuple_T[j])
-    for _2tuple_T in p_2tuple_TS:
-        for i in range(elem_2tuple_T_len):
-            _2tuple_list_list[i].append(_2tuple_T[i])
-
-    _2tuple_S_list: List[_2TupleS] = []
-    for _2tuple_list in _2tuple_list_list:
-        _2tuple_S_list.append(_2TupleS(_2tuple_list))
-    _2tuple_SS: _2TupleSS = _2TupleSS(_2tuple_S_list)
-
-    largest_comm_cut_2tuple_S: _2TupleS = get_largest_comm_cut_2tuple_S_from_2tuple_SS(_2tuple_SS)
-
-    return largest_comm_cut_2tuple_S
-
-
