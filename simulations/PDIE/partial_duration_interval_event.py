@@ -11,12 +11,6 @@ from simulations.structure import _2TupleTS
 from simulations.PDIE._2TupleS import _2TupleS
 
 
-
-
-
-
-
-
 class PDIE(AbstractPDIE):
     def __init__(self,
                  p_expression: str | None,

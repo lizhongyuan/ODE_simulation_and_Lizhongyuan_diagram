@@ -29,7 +29,7 @@ def get_custom_ordered_CP_of_2tuple_SS(p_2tuple_SS: _2TupleSS,
         _2tuple_T = _2TupleT(_2tuple_list)
         _2tuple_T_list.append(_2tuple_T)
 
-    _2tuple_TS = _2TupleTS(_2tuple_T_list)
+    _2tuple_TS: _2TupleTS = _2TupleTS(_2tuple_T_list)
 
     return _2tuple_TS
 
@@ -66,7 +66,7 @@ def get_bound_2tuple(p_2tupleT: _2TupleT) -> _2Tuple | None:
         p_2tupleT (_2TupleT):
 
     Returns:
-        _2Tuple:
+        (_2Tuple):
     """
 
     if p_2tupleT is None:
