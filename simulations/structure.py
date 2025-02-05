@@ -66,7 +66,7 @@ class LiZhongYuanSet:
             p_item: an input value
 
         Returns:
-           (int | None) index of p_item, if there is no such element in the set, return None
+           (int | None): index of p_item, if there is no such element in the set, return None
         """
 
         for i in range(1, len(self._list) + 1):
@@ -140,26 +140,14 @@ class LiZhongYuanTuple:  # todo: add get() func
 class _2Tuple(LiZhongYuanTuple):
 
     def first(self) -> any:
-#        return self.__getitem__(1)
         return self.__getitem__(0)
 
     def second(self) -> any:
-#        return self.__getitem__(2)
         return self.__getitem__(1)
 
     def instance(self) -> tuple[any, any]:
-#        return self.__getitem__(1), self.__getitem__(2)
         return self.__getitem__(0), self.__getitem__(1)
 
-
-# class _2TupleS(MySet):
-#     pass
-
-class Cut2TupleS(LiZhongYuanSet):
-    pass
-
-# class _2TupleSS(MySet):
-#     pass
 
 class _2TupleT(LiZhongYuanTuple):
     def wildcard_match(self, p_pattern_2tuple_T) -> bool:
@@ -178,5 +166,3 @@ class _2TupleT(LiZhongYuanTuple):
 class _2TupleTS(LiZhongYuanSet):
     pass
 
-class _2TupleTSS(LiZhongYuanSet):
-    pass

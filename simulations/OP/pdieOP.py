@@ -1,19 +1,18 @@
 """
-@brief: Brief description of the class.
-@author: ZhongYuan.Li
+@brief: Complete sequential addition & Complete sequential multiplication.
+@author: li.zhong.yuan@outlook.com
 @date: 2024/11/14
 """
 
 from typing import Tuple
 
-from simulations.PDIE.partial_duration_interval_event_set import PDIES, get_feasible_DI_2tuple_TS, f_feasible_DI_2tuple_TS
+from simulations.PDIE.partial_duration_interval_event_set import PDIES, f_feasible_DI_2tuple_TS
 from simulations.completeAscOrderFilteredSub2tupleTS import get_complete_asc_order_filtered_2tuple_TS
 from simulations.domainFilteredSub2tupleTS import get_domain_filtered_sub_2tuple_TS
 from simulations.function import get_bound_2tuple_S
 from simulations.PDIE.partial_duration_interval_event import PDIE, PDIE_ERROR
 from simulations.structure import _2Tuple, _2TupleTS
 from simulations.PDIE._2TupleS import _2TupleS
-from simulations.PDIE._2TupleSS import _2TupleSS
 
 
 def complete_sequential_addition(p_PDIE_S: PDIES,
@@ -27,7 +26,7 @@ def complete_sequential_addition(p_PDIE_S: PDIES,
         p_domain_filter_2tuple(_2Tuple): A domain filter 2Tuple instance
 
     Returns:
-        (PDIE) The result of complete sequential addition
+        PDIE: The result of complete sequential addition
     """
 
     print(f"####################################################################")
@@ -122,14 +121,14 @@ def complete_sequential_addition(p_PDIE_S: PDIES,
 def complete_sequential_multiplication(p_PDIE_S: PDIES,
                                        p_opd_idx_T: Tuple[int,...]) -> PDIE:
     """
-        Complete sequential multiplication
-        Args:
-            p_PDIE_S (PDIES): A PDIES instance
-            p_opd_idx_T(Tuple[int,...]): Index order of operands
+    Complete sequential multiplication
+    Args:
+        p_PDIE_S (PDIES): A PDIES instance
+        p_opd_idx_T(Tuple[int,...]): Index order of operands
 
-        Returns:
-            (PDIE) The result of complete sequential multiplication
-        """
+    Returns:
+        PDIE: The result of complete sequential multiplication
+    """
 
     print(f"####################################################################")
     print(f"###############  Complete sequential multiplication  ###############")
@@ -218,11 +217,11 @@ def check_idx_tuple_border(p_idx_T: Tuple[int,...],
     """
     Check the upper and lower bounds of the index tuple
     Args:
-        p_idx_T (Tuple[int,...]):
-        length (int):
+        p_idx_T (Tuple[int,...]): An index tuple
+        length (int): The extent of the range
 
     Returns:
-        (bool)
+        bool: Whether the bound of p_idx_T is legal
     """
     for idx in p_idx_T:
         if not isinstance(idx, int) or idx < 1 or idx > length:

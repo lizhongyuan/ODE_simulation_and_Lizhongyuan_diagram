@@ -6,7 +6,7 @@
 
 from typing import Tuple
 
-from simulations.PDIE.partial_duration_interval_event_set import PDIES, get_feasible_DI_2tuple_TS, f_feasible_DI_2tuple_TS
+from simulations.PDIE.partial_duration_interval_event_set import PDIES, remove_unfeasible_elements_of_DI_2tuple_TS, f_feasible_DI_2tuple_TS
 from simulations.PDIE.partial_duration_interval_event import PDIE, PDIE_ERROR, AtomPDIE
 from simulations.structure import _2Tuple, _2TupleTS, _2TupleT
 from simulations.PDIE._2TupleS import _2TupleS
