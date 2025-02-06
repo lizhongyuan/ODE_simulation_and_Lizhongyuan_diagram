@@ -6,10 +6,10 @@
 
 from typing import List, Tuple, Any
 from simulations.PDIE.AbstractPDIE import AbstractPDIE
-from simulations.function import get_custom_ordered_CP_of_2tuple_SS
-from simulations.structure import LiZhongYuanSet, _2TupleTS
-from simulations.PDIE._2TupleS import _2TupleS
+from simulations.structure import LiZhongYuanSet
 from simulations.PDIE._2TupleSS import _2TupleSS
+from simulations.function import f_CP_of_2tuple_SS
+from simulations.structure import _2TupleTS
 from simulations.unfeasible import get_custom_ordered_wildcard_unfeasible_2tuple_TS
 
 
@@ -156,8 +156,8 @@ class PDIES(LiZhongYuanSet):
 
         # ---------- 2 获取p_op_idx_T作为表达式操作数索引顺序的, 集合内所有元素的DI2TupleS的笛卡尔积 ----------
 
-        _2tuple_TS: _2TupleTS = get_custom_ordered_CP_of_2tuple_SS(p_2tuple_SS=p_DI_2tuple_SS,
-                                                                   p_op_idx_T=p_op_idx_T)
+        _2tuple_TS: _2TupleTS = f_CP_of_2tuple_SS(p_2tuple_SS=p_DI_2tuple_SS,
+                                                  p_opr_idx_T=p_op_idx_T)
 
         return _2tuple_TS
 
