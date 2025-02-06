@@ -5,7 +5,9 @@
 """
 from typing import List, Any
 
-from simulations.structure import _2TupleTS, _2TupleT, _2Tuple
+from simulations.structure import _2Tuple
+from simulations.PDIE._2TupleTS import _2TupleTS
+from simulations.structure import _2TupleT
 
 
 def get_custom_ordered_wildcard_unfeasible_2tuple_TS(p_op_idx_T: tuple[Any,...],

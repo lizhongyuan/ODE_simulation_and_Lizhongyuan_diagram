@@ -8,8 +8,8 @@ from typing import List, Tuple, Any
 from simulations.PDIE.AbstractPDIE import AbstractPDIE
 from simulations.structure import LiZhongYuanSet
 from simulations.PDIE._2TupleSS import _2TupleSS
-from simulations.function import f_CP_of_2tuple_SS
-from simulations.structure import _2TupleTS
+from simulations.PDIE._2TupleTS import _2TupleTS
+from simulations.PDIE.cartesian_product import f_CP_of_2tuple_SS
 from simulations.unfeasible import get_custom_ordered_wildcard_unfeasible_2tuple_TS
 
 

@@ -1,6 +1,7 @@
 from typing import Any
 
-from simulations.structure import _2TupleT, _2TupleTS, _2Tuple
+from simulations.structure import _2TupleT
+from simulations.PDIE._2TupleTS import _2TupleTS
 from simulations.twoTupleT import get_min_1st_of_2tuple_T, get_max_2nd_of_2tuple_T
 
 

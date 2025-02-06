@@ -4,7 +4,7 @@
 @date: 2024/11/25
 """
 
-from simulations.structure import _2TupleTS
+from simulations.PDIE._2TupleTS import _2TupleTS
 
 
 def get_complete_asc_order_filtered_2tuple_TS(p_2tuple_TS: _2TupleTS) -> _2TupleTS:

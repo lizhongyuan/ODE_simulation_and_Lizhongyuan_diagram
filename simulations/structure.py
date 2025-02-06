@@ -163,6 +163,5 @@ class _2TupleT(LiZhongYuanTuple):
         return match
 
 
-class _2TupleTS(LiZhongYuanSet):
-    pass
+
 

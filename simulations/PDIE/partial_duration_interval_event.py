@@ -7,7 +7,7 @@ from typing import Tuple
 
 from simulations.PDIE.AbstractPDIE import AbstractPDIE
 from simulations.PDIE.partial_duration_interval_event_set import PDIES
-from simulations.structure import _2TupleTS
+from simulations.PDIE._2TupleTS import _2TupleTS
 from simulations.PDIE._2TupleS import _2TupleS
 
 
