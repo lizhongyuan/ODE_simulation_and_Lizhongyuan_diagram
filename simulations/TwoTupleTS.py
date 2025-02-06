@@ -3,12 +3,9 @@
 @author: Your Name
 @date: 2024/11/12
 """
-from typing import List
 
-from simulations.cut2tupleS import get_largest_comm_cut_2tuple_S_from_2tuple_SS
-from simulations.structure import _2TupleTS, _2Tuple
-from simulations.PDIE._2TupleS import _2TupleS
-from simulations.PDIE._2TupleSS import _2TupleSS
+from simulations.PDIE._2TupleTS import _2TupleTS
+from simulations.PDIE._2Tuple import _2Tuple
 
 
 def get_2tuple_from_2tuple_TS(p_2tuple_TS: _2TupleTS, p_idx: int, p_n: int) -> _2Tuple | None:

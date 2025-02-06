@@ -1,6 +1,6 @@
 """
-@brief: Brief description of the class.
-@author: ZhongYuan.Li
+@brief: PDIES & AtomPDIES.
+@author: li.zhong.yuan@outlook.com
 @date: 2024/11/20
 """
 
@@ -13,6 +13,7 @@ from simulations.PDIE.cartesian_product import f_CP_of_2tuple_SS
 from simulations.unfeasible import get_custom_ordered_wildcard_unfeasible_2tuple_TS
 
 
+# todo: 移到feasible和unfeasible
 def remove_unfeasible_elements_of_DI_2tuple_TS(p_2tuple_TS: _2TupleTS,
                                                p_wildcard_unfeasible_2tuple_TS: _2TupleTS) -> _2TupleTS:
 
@@ -184,6 +185,7 @@ class AtomPDIES(PDIES):
     pass
 
 
+# todo: 移到feasible和unfeasible
 def f_feasible_DI_2tuple_TS(p_PDIE_S: PDIES, p_idx_T: tuple[int,...]):
     """
     (定义)

@@ -135,33 +135,3 @@ class LiZhongYuanTuple:  # todo: add get() func
             if self.__getitem__(i) != other[i]:
                 return False
         return True
-
-
-class _2Tuple(LiZhongYuanTuple):
-
-    def first(self) -> any:
-        return self.__getitem__(0)
-
-    def second(self) -> any:
-        return self.__getitem__(1)
-
-    def instance(self) -> tuple[any, any]:
-        return self.__getitem__(0), self.__getitem__(1)
-
-
-class _2TupleT(LiZhongYuanTuple):
-    def wildcard_match(self, p_pattern_2tuple_T) -> bool:
-        if len(self._list) != len(p_pattern_2tuple_T):
-            return False
-
-        match = True
-        for i in range(0, len(self._list)):
-            if p_pattern_2tuple_T[i] != self._list[i] and p_pattern_2tuple_T[i] != '*':
-                match = False
-                break
-
-        return match
-
-
-
-

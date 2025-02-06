@@ -1,6 +1,6 @@
 """
 @brief: PDIE, PDIES, AtomPDIE, AtomPDIES and PDIE_ERROR
-@author: ZhongYuan.Li
+@author: li.zhong.yuan@outlook.com
 @date: 2024/11/15
 """
 from typing import Tuple

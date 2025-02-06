@@ -1,7 +1,7 @@
 """
-@brief: Brief description of the class.
-@author: Zhongyuan.Li
-@date: 2025/2/2
+@brief: _2TupleSS class.
+@author: li.zhong.yuan@outlook.com
+@date: 2025/2/6
 """
 
 from simulations.structure import LiZhongYuanSet

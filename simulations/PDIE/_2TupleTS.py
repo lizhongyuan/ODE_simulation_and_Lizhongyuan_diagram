@@ -1,7 +1,7 @@
 """
 @brief: _2TupleTS class.
 @author: li.zhong.yuan@outlook.com
-@date: 2025/2/2
+@date: 2025/2/6
 """
 
 from simulations.structure import LiZhongYuanSet

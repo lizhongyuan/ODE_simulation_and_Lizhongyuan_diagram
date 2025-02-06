@@ -1,6 +1,6 @@
 """
 @brief: Brief description of the class.
-@author: Zhongyuan.Li
+@author: li.zhong.yuan@outlook.com
 @date: 2025/2/2
 """
 

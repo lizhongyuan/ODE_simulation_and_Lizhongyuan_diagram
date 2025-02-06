@@ -1,14 +1,13 @@
 from typing import List, Tuple
 
-from simulations.structure import _2Tuple
+from simulations.PDIE._2Tuple import _2Tuple
 from simulations.PDIE import _2TupleT, _2TupleS, _2TupleTS
 from simulations.PDIE._2TupleS import _2TupleS
-from simulations.PDIE._2TupleSS import _2TupleSS
 
 
 
 
-
+# todo: 移动到pdieOP
 def get_bound_2tuple(p_2tupleT: _2TupleT) -> _2Tuple | None:
     """
     (定义28)获取长度有限的二元组的元组的边界二元组

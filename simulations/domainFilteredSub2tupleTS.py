@@ -1,6 +1,6 @@
 from typing import Any
 
-from simulations.structure import _2TupleT
+from simulations.PDIE._2TupleT import _2TupleT
 from simulations.PDIE._2TupleTS import _2TupleTS
 from simulations.twoTupleT import get_min_1st_of_2tuple_T, get_max_2nd_of_2tuple_T
 
@@ -18,6 +18,7 @@ def Pred_is_2tuple_T_in_Domain(p_2tuple_TS: _2TupleTS, p_2tuple_T: _2TupleT, p_l
     return True
 
 
+# todo: 移动到加法
 # 定义24, 求一个2tupleTS在域[A, B]的域过滤子集
 def get_domain_filtered_sub_2tuple_TS(p_2tuple_TS: _2TupleTS, p_left: Any, p_right: Any) -> _2TupleTS:
     """

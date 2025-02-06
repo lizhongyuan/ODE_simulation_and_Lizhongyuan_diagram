@@ -1,4 +1,5 @@
-from simulations.structure import _2Tuple, _2TupleT
+from simulations.PDIE._2Tuple import _2Tuple
+from simulations.PDIE._2TupleT import _2TupleT
 from simulations.twoTupleT import get_min_1st_of_2tuple_T, get_max_2nd_of_2tuple_T
 
 if __name__ == '__main__':

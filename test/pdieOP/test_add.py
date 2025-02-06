@@ -9,9 +9,9 @@
 from simulations.OP.pdieOP import complete_sequential_addition
 from simulations.PDIE.partial_duration_interval_event import AtomPDIE
 from simulations.PDIE.partial_duration_interval_event_set import PDIES
-from simulations.structure import _2Tuple, _2TupleT
+from simulations.PDIE._2Tuple import _2Tuple
+from simulations.PDIE._2TupleT import _2TupleT
 from simulations.PDIE._2TupleTS import _2TupleTS
-#from simulations.PDIE._2TupleT import _2TupleT
 from simulations.PDIE._2TupleS import _2TupleS
 
 

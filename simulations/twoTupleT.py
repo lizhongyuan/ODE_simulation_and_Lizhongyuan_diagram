@@ -4,7 +4,7 @@ Documentation for this module.
 More details.
 """
 
-from simulations.structure import _2TupleT
+from simulations.PDIE._2TupleT import _2TupleT
 
 
 def get_min_1st_of_2tuple_T(p_2tupleT: _2TupleT) -> object:

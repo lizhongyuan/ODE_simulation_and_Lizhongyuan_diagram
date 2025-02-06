@@ -1,7 +1,7 @@
 """
-@brief: Brief description of the class.
-@author: Your Name
-@date: 2024/11/20
+@brief: AbstractPDIE class.
+@author: li.zhong.yuan@outlook.com
+@date: 2025/2/6
 """
 
 class AbstractPDIE:
