@@ -18,7 +18,7 @@ from test_feasibleDI2tupleTS import test_f_feasible_DI_2tuple_TS
 
 if __name__ == '__main__':
 
-    # test_f_feasible_DI_2tuple_TS()
+    test_f_feasible_DI_2tuple_TS()
 
     test_complete_sequential_addition_1()
 

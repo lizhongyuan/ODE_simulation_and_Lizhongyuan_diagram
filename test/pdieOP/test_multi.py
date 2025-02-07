@@ -1,7 +1,7 @@
 """
 @file test_multi.py
-@brief Test complete sequential multiplication.
-@author Zhongyuan.Li
+@brief Test cases of complete sequential multiplication.
+@author li.zhong.yuan@outlook.com
 @date 2025/1/28
 """
 
@@ -17,7 +17,7 @@ from simulations.PDIE._2TupleTS import _2TupleTS
 
 def test_complete_sequential_multiplication_1():
 
-    # ---------- 1 Init some PDIE instances ----------
+    # ---------- 1 Init some AtomPDIE instances ----------
 
     _2_tuple_1 = _2Tuple([ 1, 2 ])
     _2_tuple_2 = _2Tuple([ 3, 4 ])

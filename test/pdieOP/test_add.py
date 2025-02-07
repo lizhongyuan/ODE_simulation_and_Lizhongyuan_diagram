@@ -1,7 +1,7 @@
 """
 @file test_add.py
-@brief Test complete sequential addition.
-@author Zhongyuan.Li
+@brief Test cases of complete sequential addition.
+@author li.zhong.yuan@outlook.com
 @date 2025/1/27
 """
 
