@@ -245,14 +245,10 @@ def render_plot(p_data_frame: DataFrame,
 
     fig, ax = p_mpl.pyplot.subplots()
 
-    ax.spines['top'].set_color('gray')
-    ax.spines['bottom'].set_color('gray')
-    ax.spines['left'].set_color('gray')
-    ax.spines['right'].set_color('gray')
-    ax.spines['top'].set_linewidth(1)
-    ax.spines['bottom'].set_linewidth(1)
-    ax.spines['left'].set_linewidth(1)
-    ax.spines['right'].set_linewidth(1)
+    ax.spines['top'].set_linewidth(0)
+    ax.spines['bottom'].set_linewidth(0)
+    ax.spines['left'].set_linewidth(0)
+    ax.spines['right'].set_linewidth(0)
 
     if p_no_tick_marks:
         ax.tick_params(axis='both', which='both', length=0)
@@ -291,6 +287,7 @@ def render_plot(p_data_frame: DataFrame,
     p_mpl.pyplot.setp(ax.get_xticklabels(),
                       rotation=-70,
                       ha="right",
+                      va="center_baseline",
                       rotation_mode="anchor")
 
     fig.tight_layout()
@@ -322,15 +319,15 @@ if __name__ == '__main__':
     #                                       p_err_elem_mark=err_elem_mark)
 
     # # 5 PDIEs
-    # dpi: int = 500
-    # contain_zero = False
-    # font_size: float = 4
-    # no_tick_marks: bool = False
-    # binomial_theorem_collection: List[List[str]] \
-    #     = gen_binomial_theorem_collection(p_elements=elements5,
-    #                                       p_contain_zero=contain_zero,
-    #                                       p_zero_elem_mark=zero_elem_mark,
-    #                                       p_err_elem_mark=err_elem_mark)
+    dpi: int = 500
+    contain_zero = False
+    font_size: float = 4
+    no_tick_marks: bool = False
+    binomial_theorem_collection: List[List[str]] \
+        = gen_binomial_theorem_collection(p_elements=elements5,
+                                          p_contain_zero=contain_zero,
+                                          p_zero_elem_mark=zero_elem_mark,
+                                          p_err_elem_mark=err_elem_mark)
 
     # # 7 PDIEs
     # dpi: int = 2000
@@ -355,15 +352,15 @@ if __name__ == '__main__':
     #                                       p_err_elem_mark=err_elem_mark)
 
     # 9 PDIEs
-    dpi: int = 3000
-    contain_zero = True
-    font_size: float = 0.45
-    no_tick_marks: bool = True
-    binomial_theorem_collection: List[List[str]] \
-        = gen_binomial_theorem_collection(p_elements=elements9,
-                                          p_contain_zero=contain_zero,
-                                          p_zero_elem_mark=zero_elem_mark,
-                                          p_err_elem_mark=err_elem_mark)
+    # dpi: int = 3000
+    # contain_zero = True
+    # font_size: float = 0.45
+    # no_tick_marks: bool = True
+    # binomial_theorem_collection: List[List[str]] \
+    #     = gen_binomial_theorem_collection(p_elements=elements9,
+    #                                       p_contain_zero=contain_zero,
+    #                                       p_zero_elem_mark=zero_elem_mark,
+    #                                       p_err_elem_mark=err_elem_mark)
 
     headers: List[str] = gen_all_combs(binomial_theorem_collection)
 

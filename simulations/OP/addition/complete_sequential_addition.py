@@ -14,7 +14,7 @@ from simulations.PDIE._2TupleTS import _2TupleTS
 from simulations.PDIE.feasible import f_feasible_DI_2tuple_TS
 from simulations.PDIE.partial_duration_interval_event import PDIE, PDIE_ERROR
 from simulations.PDIE.partial_duration_interval_event_set import PDIES
-from simulations.domainFilteredSub2tupleTS import get_domain_filtered_sub_2tuple_TS
+from simulations.domainFilteredSub2tupleTS import f_domain_filtered_sub_2tuple_TS
 from simulations.function import get_bound_2tuple_S
 
 
@@ -77,9 +77,9 @@ def complete_sequential_addition(p_PDIE_S: PDIES,
     TS_end: any = p_domain_filter_2tuple.second()
 
     domain_filtered_sub_DI_2tuple_TS: _2TupleTS = \
-        get_domain_filtered_sub_2tuple_TS(feasible_DI_2tuple_TS,
-                                         TS_start,
-                                         TS_end)
+        f_domain_filtered_sub_2tuple_TS(feasible_DI_2tuple_TS,
+                                        TS_start,
+                                        TS_end)
     if domain_filtered_sub_DI_2tuple_TS.empty():
         print(f"domain_filtered_sub_DI_2tuple_TS is empty, get PDIE_error")
         PDIE_result: PDIE = PDIE_ERROR()
