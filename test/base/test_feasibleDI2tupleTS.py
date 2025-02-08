@@ -14,7 +14,7 @@ from simulations.PDIE._2TupleT import _2TupleT
 from simulations.PDIE._2TupleTS import _2TupleTS
 from simulations.PDIE._2TupleS import _2TupleS
 
-#if __name__ == '__main__':
+
 def test_f_feasible_DI_2tuple_TS() -> None:
 
     print('test_f_feasible_DI_2tuple_TS')

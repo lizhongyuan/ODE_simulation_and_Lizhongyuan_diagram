@@ -6,6 +6,30 @@
 
 from typing import Tuple
 
+from simulations.PDIE._2Tuple import _2Tuple
+from simulations.PDIE._2TupleTS import _2TupleTS
+
+
+def get_2tuple_from_2tuple_TS(p_2tuple_TS: _2TupleTS, p_idx: int, p_n: int) -> _2Tuple | None:
+    """
+    获取一个2TupleTS instance的某索引对应的集合元素中的某个2Tuple元素
+    Args:
+        p_2tuple_TS (_2TupleTS): A 2TupleTS instance
+        p_idx (int): An index for elements of p_2tuple_TS
+        p_n (int): An index for an element of p_2tuple_TS
+
+    Returns:
+        (_2Tuple | None): Get the p_n-th 2-tuple of the element at index p_idx in p_2tuple_TS. Return None if it doesn't exist.
+    """
+
+    if p_idx < 1 or p_idx > p_2tuple_TS.cardinality():
+        return None
+
+    if p_n < 1 or p_n > len(p_2tuple_TS[p_idx - 1]):
+        return None
+
+    return p_2tuple_TS[p_idx - 1][p_n - 1]
+
 
 def check_idx_tuple_border(p_idx_T: Tuple[int,...], length: int) -> bool:
     """

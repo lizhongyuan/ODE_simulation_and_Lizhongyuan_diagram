@@ -3,7 +3,7 @@
 @author: ZhongYuan.Li
 @date: 2024/11/12
 """
-from simulations.TwoTupleTS import get_2tuple_from_2tuple_TS
+from simulations.OP.helper import get_2tuple_from_2tuple_TS
 from simulations.PDIE._2Tuple import _2Tuple
 from simulations.PDIE._2TupleT import _2TupleT
 from simulations.PDIE._2TupleTS import _2TupleTS

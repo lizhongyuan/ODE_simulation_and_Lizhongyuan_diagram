@@ -20,7 +20,7 @@ if __name__ == '__main__':
 
     twoTupleSS = _2TupleSS([twoTplS1, twoTplS2, twoTplS3])
     print(str(twoTupleSS))
-    idxT = [1, 2, 3]
+    idxT = (1, 2, 3)
 
     # 2tupleSS做某个顺序的笛卡尔积
     twoTupleTS_CP = f_CP_of_2tuple_SS(twoTupleSS, idxT)
