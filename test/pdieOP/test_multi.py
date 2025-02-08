@@ -6,7 +6,7 @@
 """
 
 
-from simulations.OP.pdieOP import complete_sequential_multiplication
+from simulations.OP.multiplication.complete_sequential_multiplication import complete_sequential_multiplication
 from simulations.PDIE.partial_duration_interval_event import AtomPDIE
 from simulations.PDIE.partial_duration_interval_event_set import PDIES
 from simulations.PDIE._2Tuple import _2Tuple
