@@ -1,7 +1,7 @@
 """
 @file complete_sequential_addition.py
 @brief Brief description of the file.
-@author Your Name
+@author li.zhong.yuan@hotmail
 @date 2025/2/8
 """
 
@@ -14,7 +14,7 @@ from simulations.PDIE._2TupleTS import _2TupleTS
 from simulations.PDIE.feasible import f_feasible_DI_2tuple_TS
 from simulations.PDIE.partial_duration_interval_event import PDIE, PDIE_ERROR
 from simulations.PDIE.partial_duration_interval_event_set import PDIES
-from simulations.domainFilteredSub2tupleTS import f_domain_filtered_sub_2tuple_TS
+from simulations.OP.addition.domainFilteredSub2tupleTS import f_domain_filtered_sub_2tuple_TS
 from simulations.function import get_bound_2tuple_S
 
 

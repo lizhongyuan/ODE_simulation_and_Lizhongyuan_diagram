@@ -2,14 +2,24 @@ from typing import Any
 
 from simulations.PDIE._2TupleT import _2TupleT, f_min_1_of_2tuple_T, f_max_2_of_2tuple_T
 from simulations.PDIE._2TupleTS import _2TupleTS
-#from simulations.twoTupleT import f_min_1_of_2tuple_T, f_max_2_of_2tuple_T
 
 
-# 定义24的判定函数, 判断_2tuple_T是否是_2tuple_TS在域[A, B]内部的子集(注意:还需要其他条件才能决定是否是域过滤子集)
 def Pred_is_2tuple_T_in_Domain(p_2tuple_TS: _2TupleTS,
                                p_2tuple_T: _2TupleT,
                                p_left: object,
                                p_right: object) -> bool:
+    """
+    (谓词判定18)Determine whether a 2TupleT instance is a member of the domain-filtered subset of a 2TupleTS instance in a domain.
+
+    Args:
+        p_2tuple_TS (_2TupleTS): A 2TupleTS instance
+        p_2tuple_T (_2TupleT): A 2TupleT instance
+        p_left (object): The left border of a domain
+        p_right (object): The right border of a domain
+
+    Returns:
+        (bool): The result of the determination
+    """
 
 
     if not p_2tuple_TS.has(p_2tuple_T):
@@ -22,7 +32,6 @@ def Pred_is_2tuple_T_in_Domain(p_2tuple_TS: _2TupleTS,
     return True
 
 
-# todo: 移动到加法
 def f_domain_filtered_sub_2tuple_TS(p_2tuple_TS: _2TupleTS,
                                     p_left: object,
                                     p_right: object) -> _2TupleTS:
@@ -39,8 +48,8 @@ def f_domain_filtered_sub_2tuple_TS(p_2tuple_TS: _2TupleTS,
     """
 
     sub_2tuple_TS = _2TupleTS([])
-    exists_1st_equal_to_left = False
-    exists_2nd_equal_to_right = False
+    exists_1st_equal_to_left: bool = False
+    exists_2nd_equal_to_right: bool = False
 
     for _2tuple_T in p_2tuple_TS:
         if not Pred_is_2tuple_T_in_Domain(p_2tuple_TS, _2tuple_T, p_left, p_right):
