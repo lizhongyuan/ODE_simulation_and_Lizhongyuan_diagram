@@ -1,20 +1,22 @@
 """
-@brief: Brief description of the class.
-@author: ZhongYuan.Li
-@date: 2024/11/15
+@file unfeasible.py
+@brief Brief description of the file.
+@author Your Name
+@date 2025/2/8
 """
-from typing import List, Any
+from typing import Any, List
 
 from simulations.PDIE._2Tuple import _2Tuple
-from simulations.PDIE._2TupleTS import _2TupleTS
 from simulations.PDIE._2TupleT import _2TupleT
+from simulations.PDIE._2TupleTS import _2TupleTS
 
 
 def get_custom_ordered_wildcard_unfeasible_2tuple_TS(p_op_idx_T: tuple[Any,...],
                                                      p_wildcard_unfeasible_2tuple_TS: _2TupleTS,
                                                      p_wildcard_unfeasible_idx_T: tuple[Any,...]) -> _2TupleTS:
     """
-    (定义15)令
+    (定义15) Unfeasible DI2TupleTS instance for all members of a PDIES instance under a certain index order
+    令
     p_wildcard_unfeasible_DI_2tuple_TS = { _2tuple_T_1, _2tuple_T_2, ..., _2tuple_T_n }
     p_wildcard_unfeasible_DI_idx_T = { i1, i2, ..., in }, 其元组代表了p_wildcard_unfeasible_DI_2tuple_TS每个集合元素的元组索引顺序
     p_op_idx_T = { idx_1, idx_2, ..., idx_n }

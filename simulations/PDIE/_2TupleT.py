@@ -19,3 +19,46 @@ class _2TupleT(LiZhongYuanTuple):
                 break
 
         return match
+
+
+def f_min_1_of_2tuple_T(p_2tupleT: _2TupleT) -> object:
+    """
+    (定义17)Obtain the minimum 1st item of a 2TupleT instance
+
+    Args:
+        p_2tupleT (_2TupleT): An TwoTupleT instance
+
+    Returns:
+        (object): the minimum 1st item
+    """
+
+    if p_2tupleT is None:
+        return None
+
+    min_1st: object = p_2tupleT[0].first()
+    for _2tuple in p_2tupleT:
+        if min_1st > _2tuple.first():
+            min_1st = _2tuple.first()
+    return min_1st
+
+
+def f_max_2_of_2tuple_T(p_2tupleT: _2TupleT) -> object:
+    """
+    (定义17)Obtain the maximum 2nd item of a 2TupleT instance
+
+    Args:
+        p_2tupleT (_2TupleT): An TwoTupleT instance
+
+    Returns:
+        (object): the maximum 2nd item
+    """
+
+    if p_2tupleT is None:
+        return None
+
+    max_2nd: object = p_2tupleT[0].second()
+    for _2tuple in p_2tupleT:
+        if max_2nd < _2tuple.second():
+            max_2nd = _2tuple.second()
+
+    return max_2nd

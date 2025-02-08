@@ -9,8 +9,9 @@ from typing import Tuple
 from simulations.PDIE._2Tuple import _2Tuple
 from simulations.PDIE._2TupleS import _2TupleS
 from simulations.PDIE._2TupleTS import _2TupleTS
+from simulations.PDIE.feasible import f_feasible_DI_2tuple_TS
 from simulations.PDIE.partial_duration_interval_event import PDIE, PDIE_ERROR
-from simulations.PDIE.partial_duration_interval_event_set import PDIES, f_feasible_DI_2tuple_TS
+from simulations.PDIE.partial_duration_interval_event_set import PDIES
 from simulations.completeAscOrderFilteredSub2tupleTS import get_complete_asc_order_filtered_2tuple_TS
 from simulations.domainFilteredSub2tupleTS import get_domain_filtered_sub_2tuple_TS
 from simulations.function import get_bound_2tuple_S
@@ -50,7 +51,7 @@ def complete_sequential_addition(p_PDIE_S: PDIES,
         return PDIE_result
 
     for cur_PDIE in p_PDIE_S:
-        if cur_PDIE.isError():
+        if cur_PDIE.is_error():
             print(f"There are PDIE_errors in p_PDIE_S, get PDIE_error")
             PDIE_result: PDIE = PDIE_ERROR()
             print(f"{str(PDIE_result)}\n")
@@ -151,7 +152,7 @@ def complete_sequential_multiplication(p_PDIE_S: PDIES,
         return PDIE_result
 
     for cur_PDIE in p_PDIE_S:
-        if cur_PDIE.isError():
+        if cur_PDIE.is_error():
             print(f"There are PDIE_errors in p_PDIE_S, get PDIE_error")
             PDIE_result: PDIE = PDIE_ERROR()
             print(f"{str(PDIE_result)}\n")

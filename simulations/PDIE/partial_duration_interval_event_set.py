@@ -10,34 +10,11 @@ from simulations.structure import LiZhongYuanSet
 from simulations.PDIE._2TupleSS import _2TupleSS
 from simulations.PDIE._2TupleTS import _2TupleTS
 from simulations.PDIE.cartesian_product import f_CP_of_2tuple_SS
-from simulations.unfeasible import get_custom_ordered_wildcard_unfeasible_2tuple_TS
+from simulations.PDIE.unfeasible import get_custom_ordered_wildcard_unfeasible_2tuple_TS
 
 
 # todo: 移到feasible和unfeasible
-def remove_unfeasible_elements_of_DI_2tuple_TS(p_2tuple_TS: _2TupleTS,
-                                               p_wildcard_unfeasible_2tuple_TS: _2TupleTS) -> _2TupleTS:
 
-    feasible_DI_2tuple_TS: _2TupleTS = _2TupleTS([])
-    for _2tuple_T in p_2tuple_TS:
-        # 1.1 如果在wildcard_unfeasible_2tuple_TS, 则_2tuple_T非法, continue
-        if _2tuple_T in p_wildcard_unfeasible_2tuple_TS:
-            continue
-
-        # 1.2 如果通配匹配在wildcard_unfeasible_2tuple_TS, 则_2tuple_T非法, continue
-        wildcard_matched: bool = False
-        for op_ordered_unfeasible_DI_2tuple_T in p_wildcard_unfeasible_2tuple_TS:
-            if _2tuple_T.wildcard_match(op_ordered_unfeasible_DI_2tuple_T):
-                wildcard_matched = True
-                break
-        if wildcard_matched:
-            continue
-
-        # 1.3 合法, 加入到feasible_DI_2tuple_TS
-        feasible_DI_2tuple_TS.add(_2tuple_T)
-
-    # 2 ---------- 返回结果 ----------
-
-    return feasible_DI_2tuple_TS
 
 
 class PDIES(LiZhongYuanSet):
@@ -84,17 +61,18 @@ class PDIES(LiZhongYuanSet):
                 return key
         return None
 
-    def get_DI_2tuple_SS(self) -> _2TupleSS:
+    def f_DI_2tuple_SS(self) -> _2TupleSS:
         """
-        (定义11)获取自身的持续区间二元组的集合的集合(Get the "set composed of duration interval 2-tuple's sets" of itself)
+        (定义11)Get the "set composed of duration interval 2-tuple's sets" of itself
+
         Returns:
-            (_2TupleSS): 默认顺序的持续区间二元组的集合的集合(set composed of duration interval 2-tuple's sets)
+            (_2TupleSS): Set composed of duration interval 2-tuple's sets
         """
 
         DI_2tuple_SS: _2TupleSS = _2TupleSS([])
 
         for item in self._list:
-            DI_2tuple_SS.add(item.get_DI_2tuple_S())
+            DI_2tuple_SS.add(item.f_DI_2tuple_S())
 
         return DI_2tuple_SS
 
@@ -124,7 +102,7 @@ class PDIES(LiZhongYuanSet):
                 if _2tuple_T[i] == '*':
                     continue
                 pdie: AbstractPDIE = p_PDIE_tuple[i]
-                if _2tuple_T[i] not in pdie.get_DI_2tuple_S():
+                if _2tuple_T[i] not in pdie.f_DI_2tuple_S():
                     raise ValueError(f"Wrong wildcard unfeasible DI 2tuple info")
 
         self._wildcard_unfeasible_DI_2tuple_TS = p_wildcard_unfeasible_DI_2tuple_TS
@@ -186,23 +164,4 @@ class AtomPDIES(PDIES):
 
 
 # todo: 移到feasible和unfeasible
-def f_feasible_DI_2tuple_TS(p_PDIE_S: PDIES, p_idx_T: tuple[int,...]):
-    """
-    (定义)
-    Args:
-        p_PDIE_S (PDIES):
-        p_idx_T ():
 
-    Returns:
-
-    """
-    custom_ordered_wildcard_unfeasible_2tuple_TS: _2TupleTS = \
-        p_PDIE_S.get_custom_ordered_wildcard_unfeasible_DI_2tuple_TS(p_idx_T)
-    custom_ordered_CP_of_DI_2tuple_SS: _2TupleTS = \
-        p_PDIE_S.get_custom_ordered_CP_of_DI_2tuple_SS(p_PDIE_S.get_DI_2tuple_SS(), p_idx_T)
-
-    feasible_DI_2tuple_TS: _2TupleTS = \
-        remove_unfeasible_elements_of_DI_2tuple_TS(p_2tuple_TS=custom_ordered_CP_of_DI_2tuple_SS,
-                                                   p_wildcard_unfeasible_2tuple_TS=custom_ordered_wildcard_unfeasible_2tuple_TS)
-
-    return feasible_DI_2tuple_TS

@@ -1,8 +1,8 @@
 from typing import Any
 
-from simulations.PDIE._2TupleT import _2TupleT
+from simulations.PDIE._2TupleT import _2TupleT, f_min_1_of_2tuple_T, f_max_2_of_2tuple_T
 from simulations.PDIE._2TupleTS import _2TupleTS
-from simulations.twoTupleT import get_min_1st_of_2tuple_T, get_max_2nd_of_2tuple_T
+#from simulations.twoTupleT import f_min_1_of_2tuple_T, f_max_2_of_2tuple_T
 
 
 # 定义24的判定函数, 判断_2tuple_T是否是_2tuple_TS在域[A, B]内部的子集(注意:还需要其他条件才能决定是否是域过滤子集)
@@ -39,9 +39,9 @@ def get_domain_filtered_sub_2tuple_TS(p_2tuple_TS: _2TupleTS, p_left: Any, p_rig
 
         sub_2tuple_TS.add(_2tuple_T)
 
-        if not has_A_left and get_min_1st_of_2tuple_T(_2tuple_T) == p_left:
+        if not has_A_left and f_min_1_of_2tuple_T(_2tuple_T) == p_left:
             has_A_left = True
-        if not has_B_right and get_max_2nd_of_2tuple_T(_2tuple_T) == p_right:
+        if not has_B_right and f_max_2_of_2tuple_T(_2tuple_T) == p_right:
             has_B_right = True
 
     if has_A_left and has_B_right:

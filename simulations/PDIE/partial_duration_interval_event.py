@@ -53,7 +53,7 @@ class PDIE(AbstractPDIE):
     def setExpression(self, p_expression: str):
         self._expression = p_expression
 
-    def isError(self):
+    def is_error(self):
         return self._is_error
 
     def setMetaPDIES(self, metaPDIES: PDIES):
@@ -65,11 +65,11 @@ class PDIE(AbstractPDIE):
     def set_DI_2tuple_S(self, DI2tupleS: _2TupleS):
         self._DI_2tuple_S = DI2tupleS
 
-    def get_DI_2tuple_S(self):
+    def f_DI_2tuple_S(self):
         """
         (定义10) 获取一个PDIE instance的DI2TupleS instance
         Returns:
-            (_2TupleS)
+            (_2TupleS): The DI2TupleSS instance
         """
         return self._DI_2tuple_S
 
