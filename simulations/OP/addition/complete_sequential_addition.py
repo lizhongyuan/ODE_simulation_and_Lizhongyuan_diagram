@@ -11,20 +11,20 @@ from simulations.OP.helper import check_idx_tuple_border, has_duplicates, print_
 from simulations.PDIE._2Tuple import _2Tuple
 from simulations.PDIE._2TupleS import _2TupleS
 from simulations.PDIE._2TupleTS import _2TupleTS
+from simulations.PDIE.bound import get_bound_2tuple_S
 from simulations.PDIE.feasible import f_feasible_DI_2tuple_TS
 from simulations.PDIE.partial_duration_interval_event import PDIE, PDIE_ERROR
 from simulations.PDIE.partial_duration_interval_event_set import PDIES
 from simulations.OP.addition.domainFilteredSub2tupleTS import f_domain_filtered_sub_2tuple_TS
-from simulations.function import get_bound_2tuple_S
 
 
-def complete_sequential_addition(p_PDIE_S: PDIES,
+def complete_sequential_addition(p_finite_PDIE_S: PDIES,
                                  p_opd_idx_T: Tuple[int,...],
                                  p_domain_filter_2tuple: _2Tuple) -> PDIE:
     """
-    Complete sequential addition
+    (定义21)Complete sequential addition
     Args:
-        p_PDIE_S (PDIES): A PDIES instance
+        p_finite_PDIE_S (PDIES): A finite PDIES instance
         p_opd_idx_T(Tuple[int,...]): Index order of operands
         p_domain_filter_2tuple(_2Tuple): A domain filter 2Tuple instance
 
@@ -38,7 +38,7 @@ def complete_sequential_addition(p_PDIE_S: PDIES,
 
     print(f"1 Check parameters and handle.\n")
 
-    if len(p_PDIE_S) != len(p_opd_idx_T):
+    if len(p_finite_PDIE_S) != len(p_opd_idx_T):
         raise ValueError("The length of p_PDIE_S must be equal to the length of p_opd_idx_T.")
 
     if not check_idx_tuple_border(p_opd_idx_T, len(p_opd_idx_T)):
@@ -51,7 +51,7 @@ def complete_sequential_addition(p_PDIE_S: PDIES,
         print_finish_line()
         return PDIE_result
 
-    for cur_PDIE in p_PDIE_S:
+    for cur_PDIE in p_finite_PDIE_S:
         if cur_PDIE.is_error():
             print(f"There are PDIE_errors in p_PDIE_S, get PDIE_error")
             PDIE_result: PDIE = PDIE_ERROR()
@@ -61,7 +61,7 @@ def complete_sequential_addition(p_PDIE_S: PDIES,
 
     print(f"2 Take the valid subset of the Cartesian product of all members of \nthe DI2TupleSS instance of p_PDIE_S in the order of the indices\n specified by p_opd_idx_T.\n")
 
-    feasible_DI_2tuple_TS: _2TupleTS = f_feasible_DI_2tuple_TS(p_PDIE_S, p_opd_idx_T)
+    feasible_DI_2tuple_TS: _2TupleTS = f_feasible_DI_2tuple_TS(p_finite_PDIE_S, p_opd_idx_T)
     if feasible_DI_2tuple_TS.empty():
         print(f"feasible_DI_2tuple_TS is empty, get PDIE_error")
         PDIE_result: PDIE = PDIE_ERROR()
@@ -102,8 +102,8 @@ def complete_sequential_addition(p_PDIE_S: PDIES,
     PDIE_result_expression: str = ""
 
     for i in range(len(p_opd_idx_T)):
-        meta_PDIE_list.append(p_PDIE_S[p_opd_idx_T[i] - 1])
-        PDIE_result_expression += p_PDIE_S[p_opd_idx_T[i] - 1].getExpression()
+        meta_PDIE_list.append(p_finite_PDIE_S[p_opd_idx_T[i] - 1])
+        PDIE_result_expression += p_finite_PDIE_S[p_opd_idx_T[i] - 1].getExpression()
         if i < len(p_opd_idx_T) - 1:
             PDIE_result_expression += ' + '
 

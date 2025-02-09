@@ -39,9 +39,6 @@ def remove_unfeasible_elements_of_DI_2tuple_TS(p_2tuple_TS: _2TupleTS,
     return feasible_DI_2tuple_TS
 
 
-
-
-
 def f_feasible_DI_2tuple_TS(p_PDIE_S: PDIES, p_idx_T: tuple[int,...]) -> _2TupleTS:
     """
     (定义16) Get the feasible subset of the Cartesian product of all members of the DI2TupleSS instance of a finite PDIES instance in index order IdxT

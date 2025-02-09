@@ -9,17 +9,17 @@ from typing import Tuple
 from simulations.OP.helper import check_idx_tuple_border, has_duplicates, print_finish_line
 from simulations.PDIE._2TupleS import _2TupleS
 from simulations.PDIE._2TupleTS import _2TupleTS
+from simulations.PDIE.bound import get_bound_2tuple_S
 from simulations.PDIE.feasible import f_feasible_DI_2tuple_TS
 from simulations.PDIE.partial_duration_interval_event import PDIE, PDIE_ERROR
 from simulations.PDIE.partial_duration_interval_event_set import PDIES
 from simulations.OP.multiplication.completeAscOrderFilteredSub2tupleTS import get_complete_asc_order_filtered_2tuple_TS
-from simulations.function import get_bound_2tuple_S
 
 
 def complete_sequential_multiplication(p_PDIE_S: PDIES,
                                        p_opd_idx_T: Tuple[int,...]) -> PDIE:
     """
-    Complete sequential multiplication
+    (定义23)Complete sequential multiplication
     Args:
         p_PDIE_S (PDIES): A PDIES instance
         p_opd_idx_T(Tuple[int,...]): Index order of operands

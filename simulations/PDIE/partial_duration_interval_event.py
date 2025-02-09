@@ -59,8 +59,16 @@ class PDIE(AbstractPDIE):
     def setMetaPDIES(self, metaPDIES: PDIES):
         self._meta_PDIE_T = metaPDIES
 
-    def set_meta_DI_2tuple_TS(self, p_meta_DI_2tuple_TS: _2TupleTS):
+    def set_meta_DI_2tuple_TS(self, p_meta_DI_2tuple_TS: _2TupleTS) -> None:
         self._meta_DI_2tuple_TS = p_meta_DI_2tuple_TS
+
+    def f_meta_DI_2tuple_TS(self) -> _2TupleTS:
+        """
+        (定义20) 获取PDIE instance的MetaDI2TupleTS instance
+        Returns:
+            (_2TupleTS): The MetaDI2TupleTS instance
+        """
+        return self._meta_DI_2tuple_TS
 
     def set_DI_2tuple_S(self, DI2tupleS: _2TupleS):
         self._DI_2tuple_S = DI2tupleS

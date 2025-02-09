@@ -1,13 +1,19 @@
-from typing import List, Tuple
+"""
+@file bound.py
+@brief Brief description of the file.
+@author li.zhong.yuan@outlook.com
+@date 2025/2/9
+"""
+
 
 from simulations.PDIE._2Tuple import _2Tuple
-from simulations.PDIE import _2TupleT, _2TupleS, _2TupleTS
+from simulations.PDIE._2TupleT import _2TupleT
 from simulations.PDIE._2TupleS import _2TupleS
+from simulations.PDIE._2TupleTS import _2TupleTS
 
 
 
 
-# todo: 移动到pdieOP
 def get_bound_2tuple(p_2tupleT: _2TupleT) -> _2Tuple | None:
     """
     (定义28)获取长度有限的二元组的元组的边界二元组
@@ -35,7 +41,7 @@ def get_bound_2tuple(p_2tupleT: _2TupleT) -> _2Tuple | None:
 
 def get_bound_2tuple_S(p_2tupleT_S: _2TupleTS) -> _2TupleS | None:
     """
-    获取二元组的元组的集合p_2tupleT_S的边界二元组集合
+    (定义19)获取二元组的元组的集合p_2tupleT_S的边界二元组集合
     Args:
         p_2tupleT_S (_2TupleTS): 二元组的元组的集合
 

@@ -55,7 +55,7 @@ def test_complete_sequential_addition_1():
     # 4.1 Init a DomainFilter2Tuple instance
     domain_filter_2tuple = _2Tuple([1, 5])
     # 4.2 Execute
-    PDIE_res = complete_sequential_addition(p_PDIE_S=PDIE_S,
+    PDIE_res = complete_sequential_addition(p_finite_PDIE_S=PDIE_S,
                                             p_opd_idx_T=(1, 2),
                                             p_domain_filter_2tuple=domain_filter_2tuple)
 
@@ -103,7 +103,7 @@ def test_complete_sequential_addition_2():
     # 4.1 Init a DomainFilter2Tuple instance
     domain_filter_2tuple_A = _2Tuple([1, 4])
     # 4.2 Execute
-    PDIE_res = complete_sequential_addition(p_PDIE_S=PDIE_S_1,
+    PDIE_res = complete_sequential_addition(p_finite_PDIE_S=PDIE_S_1,
                                             p_opd_idx_T=(1, 2),
                                             p_domain_filter_2tuple=domain_filter_2tuple_A)
 
@@ -149,7 +149,7 @@ def test_complete_sequential_addition_3():
     # 4.1 Init a DomainFilter2Tuple instance
     domain_filter_2tuple = _2Tuple([1, 5])
     # 4.2 Execute
-    PDIE_res = complete_sequential_addition(p_PDIE_S=PDIE_S,
+    PDIE_res = complete_sequential_addition(p_finite_PDIE_S=PDIE_S,
                                             p_opd_idx_T=(1, 2),
                                             p_domain_filter_2tuple=domain_filter_2tuple)
 
@@ -190,7 +190,7 @@ def test_complete_sequential_addition_4():
     # 4.1 Init a DomainFilter2Tuple instance
     domain_filter_2tuple = _2Tuple([1, 4])
     # 4.2 Execute
-    PDIE_res = complete_sequential_addition(p_PDIE_S=PDIE_S,
+    PDIE_res = complete_sequential_addition(p_finite_PDIE_S=PDIE_S,
                                             p_opd_idx_T=(1, 2),
                                             p_domain_filter_2tuple=domain_filter_2tuple)
 
@@ -237,7 +237,7 @@ def test_complete_sequential_addition_5():
     # 4.1 Init a DomainFilter2Tuple instance
     domain_filter_2tuple = _2Tuple([1, 4])
     # 4.2 Execute
-    PDIE_res = complete_sequential_addition(p_PDIE_S=PDIE_S_2,
+    PDIE_res = complete_sequential_addition(p_finite_PDIE_S=PDIE_S_2,
                                             p_opd_idx_T=(1, 2, 3),
                                             p_domain_filter_2tuple=domain_filter_2tuple)
 
@@ -282,6 +282,6 @@ def test_complete_sequential_addition_6():
     # 4.1 Init a DomainFilter2Tuple instance
     domain_filter_2tuple = _2Tuple([1, 4])
     # 4.2 Execute
-    PDIE_res = complete_sequential_addition(p_PDIE_S=PDIE_S,
+    PDIE_res = complete_sequential_addition(p_finite_PDIE_S=PDIE_S,
                                             p_opd_idx_T=(1, 3, 2),
                                             p_domain_filter_2tuple=domain_filter_2tuple)
