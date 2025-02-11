@@ -6,7 +6,7 @@
 """
 
 
-from simulations.structure import LiZhongYuanSet
+from simulations.base.structure import LiZhongYuanSet
 
 
 class _2TupleSS(LiZhongYuanSet):

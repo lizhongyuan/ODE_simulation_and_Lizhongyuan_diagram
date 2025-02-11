@@ -8,7 +8,7 @@
 
 from typing import List, Tuple, Any
 from simulations.PDIE.abstract_PDIE import AbstractPDIE
-from simulations.structure import LiZhongYuanSet
+from simulations.base.structure import LiZhongYuanSet
 from simulations.PDIE._2Tuple_SS import _2TupleSS
 from simulations.PDIE._2Tuple_TS import _2TupleTS
 from simulations.PDIE.cartesian_product import f_CP_of_2tuple_SS
