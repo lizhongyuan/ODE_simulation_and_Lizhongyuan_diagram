@@ -1,11 +1,12 @@
 """
 @file unfeasible.py
-@brief Brief description of the file.
-@author Your Name
+@brief Functions for unfeasible items.
+@author li.zhong.yuan@outlook.com
 @date 2025/2/8
 """
-from typing import Any, List
 
+
+from typing import Any, List
 from simulations.PDIE._2Tuple import _2Tuple
 from simulations.PDIE._2Tuple_T import _2TupleT
 from simulations.PDIE._2Tuple_TS import _2TupleTS
@@ -15,6 +16,7 @@ def get_custom_ordered_wildcard_unfeasible_2tuple_TS(p_op_idx_T: tuple[Any,...],
                                                      p_wildcard_unfeasible_2tuple_TS: _2TupleTS,
                                                      p_wildcard_unfeasible_idx_T: tuple[Any,...]) -> _2TupleTS:
     """
+    todo 优化
     (定义15) Unfeasible DI2TupleTS instance for all members of a PDIES instance under a certain index order
     令
     p_wildcard_unfeasible_DI_2tuple_TS = { _2tuple_T_1, _2tuple_T_2, ..., _2tuple_T_n }

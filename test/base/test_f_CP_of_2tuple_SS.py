@@ -1,3 +1,11 @@
+"""
+@file test_f_CP_of_2TupleSS.py
+@brief: Test cases for Cartesian product of members of _2TupleTSS instance.
+@author: li.zhong.yuan@outlook.com
+@date: 2024/11/20
+"""
+
+
 from simulations.PDIE.cartesian_product import f_CP_of_2tuple_SS
 from simulations.PDIE._2Tuple import _2Tuple
 from simulations.PDIE._2Tuple_SS import _2TupleSS

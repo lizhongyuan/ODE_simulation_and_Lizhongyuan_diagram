@@ -5,8 +5,9 @@
 @date: 2025/2/6
 """
 
-from typing import Tuple, List
 
+from typing import (Tuple,
+                    List)
 from simulations.PDIE._2Tuple_S import _2TupleS
 from simulations.PDIE._2Tuple_SS import _2TupleSS
 from simulations.PDIE._2Tuple_TS import _2TupleTS
@@ -35,9 +36,12 @@ def f_CP_of_2tuple_SS(p_2tuple_SS: _2TupleSS,
         (_2TupleTS): cartesian product(A 2TupleTS instance)
     """
 
-    _2tuple_list_list = get_custom_ordered_CP_of_2tuple_SS_recur(p_2tuple_SS, p_opr_idx_T, 1)
+    _2tuple_list_list: List[List[_2Tuple]] = \
+        get_custom_ordered_CP_of_2tuple_SS_recur(p_2tuple_SS=p_2tuple_SS,
+                                                 p_opr_idx_T=p_opr_idx_T,
+                                                 p_starting_pivot=1)
 
-    _2tuple_T_list = []
+    _2tuple_T_list: List[_2TupleT] = []
     for _2tuple_list in _2tuple_list_list:
         _2tuple_T = _2TupleT(_2tuple_list)
         _2tuple_T_list.append(_2tuple_T)

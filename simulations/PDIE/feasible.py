@@ -1,20 +1,27 @@
 """
 @file feasible.py
-@brief Brief description of the file.
+@brief Functions for feasible sub set.
 @author li.zhong.yuan@outlook.com
 @date 2025/2/8
 """
 
-from typing import Any, List
 
-from simulations.PDIE._2Tuple import _2Tuple
-from simulations.PDIE._2Tuple_T import _2TupleT
 from simulations.PDIE._2Tuple_TS import _2TupleTS
 from simulations.PDIE.partial_duration_interval_event_set import PDIES
 
 
 def remove_unfeasible_elements_of_DI_2tuple_TS(p_2tuple_TS: _2TupleTS,
                                                p_wildcard_unfeasible_2tuple_TS: _2TupleTS) -> _2TupleTS:
+    """
+    Remove the unfeasible elements from an instance of 2TupleTS instance.
+
+    Args:
+        (p_2tuple_TS): An instance of 2TupleTS instance
+        (p_wildcard_unfeasible_2tuple_TS): An wildcard unfeasible 2TupleTS instance as pattern set.
+
+    Returns:
+        (_2TupleTS): feasible 2TupleTS instance.
+    """
 
     feasible_DI_2tuple_TS: _2TupleTS = _2TupleTS()
     for _2tuple_T in p_2tuple_TS:
@@ -41,7 +48,7 @@ def remove_unfeasible_elements_of_DI_2tuple_TS(p_2tuple_TS: _2TupleTS,
 
 def f_feasible_DI_2tuple_TS(p_PDIE_S: PDIES, p_idx_T: tuple[int,...]) -> _2TupleTS:
     """
-    (定义16) Get the feasible subset of the Cartesian product of all members of the DI2TupleSS instance of a finite PDIES instance in index order IdxT
+    (定义16) Get the feasible subset of the Cartesian product of all members of the DI2TupleSS instance of a finite PDIES instance in an index order
     Args:
         p_PDIE_S (PDIES): A finite PDIES instance
         p_idx_T (tuple[int,...]): An index order
@@ -52,6 +59,7 @@ def f_feasible_DI_2tuple_TS(p_PDIE_S: PDIES, p_idx_T: tuple[int,...]) -> _2Tuple
 
     custom_ordered_wildcard_unfeasible_2tuple_TS: _2TupleTS = \
         p_PDIE_S.get_custom_ordered_wildcard_unfeasible_DI_2tuple_TS(p_idx_T)
+
     custom_ordered_CP_of_DI_2tuple_SS: _2TupleTS = \
         p_PDIE_S.get_custom_ordered_CP_of_DI_2tuple_SS(p_PDIE_S.f_DI_2tuple_SS(), p_idx_T)
 

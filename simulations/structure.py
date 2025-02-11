@@ -1,3 +1,9 @@
+"""
+@file structure.py
+@brief: LiZhongYuanSet & LiZhongYuanTuple.
+@author: li.zhong.yuan@outlook.com
+@date: 2024/11/20
+"""
 
 
 class LiZhongYuanSet:
@@ -117,7 +123,7 @@ class LiZhongYuanTuple:  # todo: add get() func
         self._list[index] = value
 
     def __str__(self) -> str:
-        format_str = "("
+        format_str: str = "("
         for i, elem in enumerate(self._list):
             if i < len(self._list) - 1:
                 format_str += (str(elem) + ", ")
@@ -140,4 +146,5 @@ class LiZhongYuanTuple:  # todo: add get() func
         for i in range(0, len(self._list)):
             if self.__getitem__(i) != other[i]:
                 return False
+
         return True

@@ -1,8 +1,10 @@
 """
+@file partial_duration_interval_event_set.py
 @brief: PDIES & AtomPDIES.
 @author: li.zhong.yuan@outlook.com
 @date: 2024/11/20
 """
+
 
 from typing import List, Tuple, Any
 from simulations.PDIE.abstract_PDIE import AbstractPDIE
@@ -13,19 +15,16 @@ from simulations.PDIE.cartesian_product import f_CP_of_2tuple_SS
 from simulations.PDIE.unfeasible import get_custom_ordered_wildcard_unfeasible_2tuple_TS
 
 
-# todo: 移到feasible和unfeasible
-
-
-
 class PDIES(LiZhongYuanSet):
     """
-    PDIE Set
+    PDIE set class
     """
 
     def __init__(self, p_set_list: list):
         super().__init__(p_set_list)
         self._unfeasible_PDIE_tuple = None
         self._wildcard_unfeasible_DI_2tuple_TS = None
+
 
     def __str__(self):
 
@@ -38,8 +37,10 @@ class PDIES(LiZhongYuanSet):
              )
         return format_str
 
+
     def __len__(self):
         return len(self._list)
+
 
     def _get_dict_str(self) -> str:
         dict_str: str = f"{{ "
@@ -52,14 +53,13 @@ class PDIES(LiZhongYuanSet):
 
         return dict_str
 
-    def show_dict(self) -> None:
-        print(self._get_dict_str())
 
     def get_dict_key(self, p_pdie: AbstractPDIE) -> str | None:
         for key in list(self._dict.keys()):
             if self._dict[key] == p_pdie:
                 return key
         return None
+
 
     def f_DI_2tuple_SS(self) -> _2TupleSS:
         """
@@ -76,22 +76,19 @@ class PDIES(LiZhongYuanSet):
 
         return DI_2tuple_SS
 
-    def get_unfeasible_asc_DI_2tuple_TS(self):
-        pass
-    def set_unfeasible_asc_DI_2tuple_TS(self, p_unfeasible_asc_DI_2tuple_TS: _2TupleTS):
-        pass
 
     def set_wildcard_unfeasible_DI_2tuple_info(self,
                                                p_wildcard_unfeasible_DI_2tuple_TS: _2TupleTS,
-                                               p_PDIE_tuple: Tuple[AbstractPDIE,...]):
+                                               p_PDIE_tuple: Tuple[AbstractPDIE,...]) -> None:
         """
+        Set _wildcard_unfeasible_DI_2tuple_TS and _unfeasible_PDIE_tuple.
 
         Args:
-            p_wildcard_unfeasible_DI_2tuple_TS:
-            p_PDIE_tuple:
+            (p_wildcard_unfeasible_DI_2tuple_TS): Wildcard unfeasible DI2TupleTS instance
+            (p_PDIE_tuple): A PDIE instance tuple
 
         Returns:
-
+            None
         """
 
         for _2tuple_T in p_wildcard_unfeasible_DI_2tuple_TS:
@@ -108,10 +105,10 @@ class PDIES(LiZhongYuanSet):
         self._wildcard_unfeasible_DI_2tuple_TS = p_wildcard_unfeasible_DI_2tuple_TS
         self._unfeasible_PDIE_tuple = p_PDIE_tuple
 
-    # def get_unfeasible_DI_2tuple_info(self):
-    #     return self._unfeasible_PDIE_tuple, self._unfeasible_DI_2tuple_TS
 
-    def get_custom_ordered_CP_of_DI_2tuple_SS(self, p_DI_2tuple_SS: _2TupleSS, p_op_idx_T: Tuple[int,...] | None) -> _2TupleTS:
+    def get_custom_ordered_CP_of_DI_2tuple_SS(self,
+                                              p_DI_2tuple_SS: _2TupleSS,
+                                              p_op_idx_T: Tuple[int,...] | None) -> _2TupleTS:
         """
         获取p_op_idx_T作为表达式操作数索引顺序的, 集合内所有元素的DI2TupleS的笛卡尔积.
         如果p_op_idx_T为None, 表达式操作数索引顺序为(1, 2, 3, ..., n)
@@ -129,7 +126,7 @@ class PDIES(LiZhongYuanSet):
         if p_op_idx_T is None:
             p_op_idx_T = default_idx_T
         else:
-            sorted_idx_T = tuple(sorted(p_op_idx_T))
+            sorted_idx_T: Tuple[int,...] = tuple(sorted(p_op_idx_T))
             if sorted_idx_T != default_idx_T:
                 raise ValueError("Wrong p_op_idx_T !")
 
@@ -141,7 +138,16 @@ class PDIES(LiZhongYuanSet):
         return _2tuple_TS
 
 
-    def get_custom_ordered_wildcard_unfeasible_DI_2tuple_TS(self, p_op_idx_T: tuple[Any,...]) -> _2TupleTS:
+    def get_custom_ordered_wildcard_unfeasible_DI_2tuple_TS(self,
+                                                            p_op_idx_T: tuple[Any,...]) -> _2TupleTS:
+        """
+        todo:
+        Args:
+            p_op_idx_T:
+
+        Returns:
+
+        """
 
         unfeasible_DI_idx_list: List[any] = []
 
@@ -161,7 +167,3 @@ class PDIES(LiZhongYuanSet):
 
 class AtomPDIES(PDIES):
     pass
-
-
-# todo: 移到feasible和unfeasible
-

@@ -1,14 +1,19 @@
 """
-@brief: Brief description of the class.
-@author: ZhongYuan.Li
-@date: 2024/11/12
+@file test_2TupleTS.py
+@brief: Test cases of _2TupleTS.
+@author: li.zhong.yuan@outlook.com
+@date: 2024/11/20
 """
+
+
 from simulations.OP.helper import get_2tuple_from_2tuple_TS
 from simulations.PDIE._2Tuple import _2Tuple
 from simulations.PDIE._2Tuple_T import _2TupleT
 from simulations.PDIE._2Tuple_TS import _2TupleTS
 
-if __name__ == '__main__':
+
+def test_2TupleTS():
+
     _2tuple_1 = _2Tuple([1, 2])
     _2tuple_2 = _2Tuple([3, 4])
     _2tuple_T_1 = _2TupleT([_2tuple_1, _2tuple_2])

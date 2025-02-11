@@ -5,8 +5,8 @@
 @date: 2024/11/14
 """
 
-from typing import Tuple
 
+from typing import Tuple
 from simulations.PDIE._2Tuple import _2Tuple
 from simulations.PDIE._2Tuple_TS import _2TupleTS
 
