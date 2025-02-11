@@ -25,7 +25,7 @@ def remove_unfeasible_elements_of_DI_2tuple_TS(p_2tuple_TS: _2TupleTS,
         # 1.2 如果通配匹配在wildcard_unfeasible_2tuple_TS, 则_2tuple_T非法, continue
         wildcard_matched: bool = False
         for op_ordered_unfeasible_DI_2tuple_T in p_wildcard_unfeasible_2tuple_TS:
-            if _2tuple_T.wildcard_match(op_ordered_unfeasible_DI_2tuple_T):
+            if _2tuple_T.is_wildcard_included(op_ordered_unfeasible_DI_2tuple_T):
                 wildcard_matched = True
                 break
         if wildcard_matched:

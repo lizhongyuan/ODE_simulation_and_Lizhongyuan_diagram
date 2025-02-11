@@ -1,5 +1,6 @@
 """
-@brief: Complete sequential addition & Complete sequential multiplication.
+@file helper.py
+@brief: helper functions.
 @author: li.zhong.yuan@outlook.com
 @date: 2024/11/14
 """
@@ -47,7 +48,18 @@ def check_idx_tuple_border(p_idx_T: Tuple[int,...], length: int) -> bool:
             return False
     return True
 
-def has_duplicates(tup) -> bool:
+
+def has_duplicates(tup: Tuple) -> bool:
+    """
+    Check if there are identical elements in the tuple.
+
+    Args:
+        tup (Tuple): A tuple
+
+    Returns:
+        (bool) result
+    """
+
     return len(set(tup)) != len(tup)
 
 

@@ -1,9 +1,10 @@
 """
 @file complete_sequential_addition.py
-@brief Brief description of the file.
+@brief Complete sequential addition.
 @author li.zhong.yuan@hotmail
 @date 2025/2/8
 """
+
 
 from typing import Tuple
 

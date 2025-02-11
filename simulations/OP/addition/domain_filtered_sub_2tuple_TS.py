@@ -1,6 +1,14 @@
-from typing import Any
+"""
+@file domain_filtered_sub_2tuple_TS.py
+@brief Predicate & function for domain filtered sub 2TupleTS instance.
+@author li.zhong.yuan@outlook.com
+@date 2025/2/8
+"""
 
-from simulations.PDIE._2Tuple_T import _2TupleT, f_min_1_of_2tuple_T, f_max_2_of_2tuple_T
+
+from simulations.PDIE._2Tuple_T import (_2TupleT,
+                                        f_min_1_of_2tuple_T,
+                                        f_max_2_of_2tuple_T)
 from simulations.PDIE._2Tuple_TS import _2TupleTS
 
 
@@ -9,7 +17,7 @@ def Pred_is_2tuple_T_in_Domain(p_2tuple_TS: _2TupleTS,
                                p_left: object,
                                p_right: object) -> bool:
     """
-    (谓词判定18)Determine whether a 2TupleT instance is a member of the domain-filtered subset of a 2TupleTS instance in a domain.
+    (定义18/谓词判定)Determine whether a 2TupleT instance is a member of the domain-filtered subset of a 2TupleTS instance in a domain.
 
     Args:
         p_2tuple_TS (_2TupleTS): A 2TupleTS instance
@@ -20,7 +28,6 @@ def Pred_is_2tuple_T_in_Domain(p_2tuple_TS: _2TupleTS,
     Returns:
         (bool): The result of the determination
     """
-
 
     if not p_2tuple_TS.has(p_2tuple_T):
         return False
@@ -36,7 +43,7 @@ def f_domain_filtered_sub_2tuple_TS(p_2tuple_TS: _2TupleTS,
                                     p_left: object,
                                     p_right: object) -> _2TupleTS:
     """
-    (定义18)Get the domain filtered subset of a 2TupleTS instance in a domain
+    (定义18/函数)Get the domain filtered subset of a 2TupleTS instance in a domain
 
     Args:
         p_2tuple_TS (_2TupleTS): A 2TupleTS instance
@@ -47,7 +54,7 @@ def f_domain_filtered_sub_2tuple_TS(p_2tuple_TS: _2TupleTS,
         (_2TupleTS): The domain filtered subset
     """
 
-    sub_2tuple_TS = _2TupleTS()
+    sub_2tuple_TS: _2TupleTS = _2TupleTS()
     exists_1st_equal_to_left: bool = False
     exists_2nd_equal_to_right: bool = False
 

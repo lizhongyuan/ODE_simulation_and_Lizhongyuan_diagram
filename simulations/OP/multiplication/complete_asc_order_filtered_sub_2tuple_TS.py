@@ -1,8 +1,10 @@
 """
-@brief: Brief description of the class.
-@author: ZhongYuan.Li
+@file complete_asc_order_filtered_2tuple_TS.py
+@brief: Function for complete asc order filtered 2TupleTS instance.
+@author: li.zhong.yuan@outlook.com
 @date: 2024/11/25
 """
+
 
 from simulations.PDIE._2Tuple_TS import _2TupleTS
 

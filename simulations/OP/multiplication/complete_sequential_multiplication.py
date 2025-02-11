@@ -1,18 +1,22 @@
 """
 @file complete_sequential_multiplication.py
-@brief Brief description of the file.
-@author Your Name
+@brief Complete sequential multiplication.
+@author li.zhong.yuan@outlook.com
 @date 2025/2/8
 """
 
+
 from typing import Tuple
 
-from simulations.OP.helper import check_idx_tuple_border, has_duplicates, print_finish_line
+from simulations.OP.helper import (check_idx_tuple_border,
+                                   has_duplicates,
+                                   print_finish_line)
 from simulations.PDIE._2Tuple_S import _2TupleS
 from simulations.PDIE._2Tuple_TS import _2TupleTS
 from simulations.PDIE.bound import get_bound_2tuple_S
 from simulations.PDIE.feasible import f_feasible_DI_2tuple_TS
-from simulations.PDIE.partial_duration_interval_event import PDIE, ErrorPDIE
+from simulations.PDIE.partial_duration_interval_event import (PDIE,
+                                                              ErrorPDIE)
 from simulations.PDIE.partial_duration_interval_event_set import PDIES
 from simulations.OP.multiplication.complete_asc_order_filtered_sub_2tuple_TS import f_complete_asc_order_filtered_2tuple_TS
 
