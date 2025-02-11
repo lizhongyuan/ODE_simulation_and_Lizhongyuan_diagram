@@ -7,8 +7,8 @@
 from typing import Any, List
 
 from simulations.PDIE._2Tuple import _2Tuple
-from simulations.PDIE._2TupleT import _2TupleT
-from simulations.PDIE._2TupleTS import _2TupleTS
+from simulations.PDIE._2Tuple_T import _2TupleT
+from simulations.PDIE._2Tuple_TS import _2TupleTS
 
 
 def get_custom_ordered_wildcard_unfeasible_2tuple_TS(p_op_idx_T: tuple[Any,...],
@@ -40,7 +40,7 @@ def get_custom_ordered_wildcard_unfeasible_2tuple_TS(p_op_idx_T: tuple[Any,...],
 
     # ---------- 2 构造p_op_idx_T作为元组顺序的通配的不合法DI二元组的元组的集合 ----------
 
-    op_ordered_wildcard_unfeasible_DI_2tuple_TS: _2TupleTS = _2TupleTS([])
+    op_ordered_wildcard_unfeasible_DI_2tuple_TS: _2TupleTS = _2TupleTS()
     for unfeasible_DI_2tuple_T in p_wildcard_unfeasible_2tuple_TS:
 
         # 2.1

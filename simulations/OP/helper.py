@@ -7,7 +7,7 @@
 from typing import Tuple
 
 from simulations.PDIE._2Tuple import _2Tuple
-from simulations.PDIE._2TupleTS import _2TupleTS
+from simulations.PDIE._2Tuple_TS import _2TupleTS
 
 
 def get_2tuple_from_2tuple_TS(p_2tuple_TS: _2TupleTS, p_idx: int, p_n: int) -> _2Tuple | None:

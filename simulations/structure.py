@@ -2,9 +2,11 @@
 
 class LiZhongYuanSet:
 
-    def __init__(self, setList: list):
-        self._list = setList
-        self._dict = {i: self._list[i - 1] for i in range(1, len(self._list) + 1)}
+    def __init__(self, setList=None):
+        if setList is None:
+            setList = []
+        self._list: list = setList
+        self._dict: dict = {i: self._list[i - 1] for i in range(1, len(self._list) + 1)}
 
 
     def __getitem__(self, index):
@@ -17,7 +19,7 @@ class LiZhongYuanSet:
 
 
     def __str__(self) -> str:
-        format_str = "{"
+        format_str: str = "{"
         for i, elem in enumerate(self._list):
             if i < len(self._list) - 1:
                 format_str += (str(elem) + ", ")
@@ -42,6 +44,10 @@ class LiZhongYuanSet:
                 return False
 
         return True
+
+
+    def __len__(self):
+        return len(self._list)
 
 
     def get(self, p_i: int) -> any:

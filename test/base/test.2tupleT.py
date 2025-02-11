@@ -1,5 +1,5 @@
 from simulations.PDIE._2Tuple import _2Tuple
-from simulations.PDIE._2TupleT import _2TupleT, f_min_1_of_2tuple_T, f_max_2_of_2tuple_T
+from simulations.PDIE._2Tuple_T import _2TupleT, f_min_1_of_2tuple_T, f_max_2_of_2tuple_T
 
 if __name__ == '__main__':
 

@@ -1,7 +1,7 @@
 from typing import Any
 
-from simulations.PDIE._2TupleT import _2TupleT, f_min_1_of_2tuple_T, f_max_2_of_2tuple_T
-from simulations.PDIE._2TupleTS import _2TupleTS
+from simulations.PDIE._2Tuple_T import _2TupleT, f_min_1_of_2tuple_T, f_max_2_of_2tuple_T
+from simulations.PDIE._2Tuple_TS import _2TupleTS
 
 
 def Pred_is_2tuple_T_in_Domain(p_2tuple_TS: _2TupleTS,
@@ -47,7 +47,7 @@ def f_domain_filtered_sub_2tuple_TS(p_2tuple_TS: _2TupleTS,
         (_2TupleTS): The domain filtered subset
     """
 
-    sub_2tuple_TS = _2TupleTS([])
+    sub_2tuple_TS = _2TupleTS()
     exists_1st_equal_to_left: bool = False
     exists_2nd_equal_to_right: bool = False
 
@@ -65,4 +65,4 @@ def f_domain_filtered_sub_2tuple_TS(p_2tuple_TS: _2TupleTS,
     if exists_1st_equal_to_left and exists_2nd_equal_to_right:
         return sub_2tuple_TS
 
-    return _2TupleTS([])
+    return _2TupleTS()

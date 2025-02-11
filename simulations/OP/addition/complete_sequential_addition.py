@@ -9,13 +9,13 @@ from typing import Tuple
 
 from simulations.OP.helper import check_idx_tuple_border, has_duplicates, print_finish_line
 from simulations.PDIE._2Tuple import _2Tuple
-from simulations.PDIE._2TupleS import _2TupleS
-from simulations.PDIE._2TupleTS import _2TupleTS
+from simulations.PDIE._2Tuple_S import _2TupleS
+from simulations.PDIE._2Tuple_TS import _2TupleTS
 from simulations.PDIE.bound import get_bound_2tuple_S
 from simulations.PDIE.feasible import f_feasible_DI_2tuple_TS
-from simulations.PDIE.partial_duration_interval_event import PDIE, PDIE_ERROR
+from simulations.PDIE.partial_duration_interval_event import PDIE, ErrorPDIE
 from simulations.PDIE.partial_duration_interval_event_set import PDIES
-from simulations.OP.addition.domainFilteredSub2tupleTS import f_domain_filtered_sub_2tuple_TS
+from simulations.OP.addition.domain_filtered_sub_2tuple_TS import f_domain_filtered_sub_2tuple_TS
 
 
 def complete_sequential_addition(p_finite_PDIE_S: PDIES,
@@ -46,7 +46,7 @@ def complete_sequential_addition(p_finite_PDIE_S: PDIES,
 
     if has_duplicates(p_opd_idx_T):
         print(f"There are duplicate elements, get PDIE_error")
-        PDIE_result: PDIE = PDIE_ERROR()
+        PDIE_result: PDIE = ErrorPDIE()
         print(f"{str(PDIE_result)}\n")
         print_finish_line()
         return PDIE_result
@@ -54,7 +54,7 @@ def complete_sequential_addition(p_finite_PDIE_S: PDIES,
     for cur_PDIE in p_finite_PDIE_S:
         if cur_PDIE.is_error():
             print(f"There are PDIE_errors in p_PDIE_S, get PDIE_error")
-            PDIE_result: PDIE = PDIE_ERROR()
+            PDIE_result: PDIE = ErrorPDIE()
             print(f"{str(PDIE_result)}\n")
             print_finish_line()
             return PDIE_result
@@ -64,7 +64,7 @@ def complete_sequential_addition(p_finite_PDIE_S: PDIES,
     feasible_DI_2tuple_TS: _2TupleTS = f_feasible_DI_2tuple_TS(p_finite_PDIE_S, p_opd_idx_T)
     if feasible_DI_2tuple_TS.empty():
         print(f"feasible_DI_2tuple_TS is empty, get PDIE_error")
-        PDIE_result: PDIE = PDIE_ERROR()
+        PDIE_result: PDIE = ErrorPDIE()
         print(f"{str(PDIE_result)}\n")
         print_finish_line()
         return PDIE_result
@@ -82,7 +82,7 @@ def complete_sequential_addition(p_finite_PDIE_S: PDIES,
                                         TS_end)
     if domain_filtered_sub_DI_2tuple_TS.empty():
         print(f"domain_filtered_sub_DI_2tuple_TS is empty, get PDIE_error")
-        PDIE_result: PDIE = PDIE_ERROR()
+        PDIE_result: PDIE = ErrorPDIE()
         print(f"{str(PDIE_result)}\n")
         print_finish_line()
         return PDIE_result

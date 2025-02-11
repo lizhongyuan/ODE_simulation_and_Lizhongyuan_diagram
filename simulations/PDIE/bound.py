@@ -7,9 +7,9 @@
 
 
 from simulations.PDIE._2Tuple import _2Tuple
-from simulations.PDIE._2TupleT import _2TupleT
-from simulations.PDIE._2TupleS import _2TupleS
-from simulations.PDIE._2TupleTS import _2TupleTS
+from simulations.PDIE._2Tuple_T import _2TupleT
+from simulations.PDIE._2Tuple_S import _2TupleS
+from simulations.PDIE._2Tuple_TS import _2TupleTS
 
 
 
@@ -46,7 +46,7 @@ def get_bound_2tuple_S(p_2tupleT_S: _2TupleTS) -> _2TupleS | None:
         p_2tupleT_S (_2TupleTS): 二元组的元组的集合
 
     Returns:
-        (_2TupleS) p_2tupleT_S的边界二元组集合
+        (_2TupleS) 边界二元组集合
     """
 
     if p_2tupleT_S is None:

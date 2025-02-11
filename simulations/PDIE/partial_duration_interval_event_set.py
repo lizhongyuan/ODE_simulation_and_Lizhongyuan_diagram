@@ -5,10 +5,10 @@
 """
 
 from typing import List, Tuple, Any
-from simulations.PDIE.AbstractPDIE import AbstractPDIE
+from simulations.PDIE.abstract_PDIE import AbstractPDIE
 from simulations.structure import LiZhongYuanSet
-from simulations.PDIE._2TupleSS import _2TupleSS
-from simulations.PDIE._2TupleTS import _2TupleTS
+from simulations.PDIE._2Tuple_SS import _2TupleSS
+from simulations.PDIE._2Tuple_TS import _2TupleTS
 from simulations.PDIE.cartesian_product import f_CP_of_2tuple_SS
 from simulations.PDIE.unfeasible import get_custom_ordered_wildcard_unfeasible_2tuple_TS
 
@@ -69,7 +69,7 @@ class PDIES(LiZhongYuanSet):
             (_2TupleSS): Set composed of duration interval 2-tuple's sets
         """
 
-        DI_2tuple_SS: _2TupleSS = _2TupleSS([])
+        DI_2tuple_SS: _2TupleSS = _2TupleSS()
 
         for item in self._list:
             DI_2tuple_SS.add(item.f_DI_2tuple_S())
@@ -148,7 +148,7 @@ class PDIES(LiZhongYuanSet):
         for unfeasible_PDIE in self._unfeasible_PDIE_tuple:
             cur_idx: any = self.get_dict_key(unfeasible_PDIE)
             if cur_idx is None:
-                return _2TupleTS([])
+                return _2TupleTS()
             unfeasible_DI_idx_list.append(cur_idx)
 
         wildcard_unfeasible_DI_2tuple_TS: _2TupleTS \

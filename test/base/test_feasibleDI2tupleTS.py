@@ -10,9 +10,9 @@ from simulations.PDIE.feasible import f_feasible_DI_2tuple_TS
 from simulations.PDIE.partial_duration_interval_event_set import PDIES
 from simulations.PDIE.partial_duration_interval_event import AtomPDIE
 from simulations.PDIE._2Tuple import _2Tuple
-from simulations.PDIE._2TupleT import _2TupleT
-from simulations.PDIE._2TupleTS import _2TupleTS
-from simulations.PDIE._2TupleS import _2TupleS
+from simulations.PDIE._2Tuple_T import _2TupleT
+from simulations.PDIE._2Tuple_TS import _2TupleTS
+from simulations.PDIE._2Tuple_S import _2TupleS
 
 
 def test_f_feasible_DI_2tuple_TS() -> None:

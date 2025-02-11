@@ -8,15 +8,15 @@
 from typing import Any, List
 
 from simulations.PDIE._2Tuple import _2Tuple
-from simulations.PDIE._2TupleT import _2TupleT
-from simulations.PDIE._2TupleTS import _2TupleTS
+from simulations.PDIE._2Tuple_T import _2TupleT
+from simulations.PDIE._2Tuple_TS import _2TupleTS
 from simulations.PDIE.partial_duration_interval_event_set import PDIES
 
 
 def remove_unfeasible_elements_of_DI_2tuple_TS(p_2tuple_TS: _2TupleTS,
                                                p_wildcard_unfeasible_2tuple_TS: _2TupleTS) -> _2TupleTS:
 
-    feasible_DI_2tuple_TS: _2TupleTS = _2TupleTS([])
+    feasible_DI_2tuple_TS: _2TupleTS = _2TupleTS()
     for _2tuple_T in p_2tuple_TS:
         # 1.1 如果在wildcard_unfeasible_2tuple_TS, 则_2tuple_T非法, continue
         if _2tuple_T in p_wildcard_unfeasible_2tuple_TS:

@@ -1,7 +1,7 @@
 from simulations.PDIE.cartesian_product import f_CP_of_2tuple_SS
 from simulations.PDIE._2Tuple import _2Tuple
-from simulations.PDIE._2TupleSS import _2TupleSS
-from simulations.PDIE._2TupleS import _2TupleS
+from simulations.PDIE._2Tuple_SS import _2TupleSS
+from simulations.PDIE._2Tuple_S import _2TupleS
 
 
 if __name__ == '__main__':

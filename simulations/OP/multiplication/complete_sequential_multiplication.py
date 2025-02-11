@@ -4,16 +4,17 @@
 @author Your Name
 @date 2025/2/8
 """
+
 from typing import Tuple
 
 from simulations.OP.helper import check_idx_tuple_border, has_duplicates, print_finish_line
-from simulations.PDIE._2TupleS import _2TupleS
-from simulations.PDIE._2TupleTS import _2TupleTS
+from simulations.PDIE._2Tuple_S import _2TupleS
+from simulations.PDIE._2Tuple_TS import _2TupleTS
 from simulations.PDIE.bound import get_bound_2tuple_S
 from simulations.PDIE.feasible import f_feasible_DI_2tuple_TS
-from simulations.PDIE.partial_duration_interval_event import PDIE, PDIE_ERROR
+from simulations.PDIE.partial_duration_interval_event import PDIE, ErrorPDIE
 from simulations.PDIE.partial_duration_interval_event_set import PDIES
-from simulations.OP.multiplication.completeAscOrderFilteredSub2tupleTS import get_complete_asc_order_filtered_2tuple_TS
+from simulations.OP.multiplication.complete_asc_order_filtered_sub_2tuple_TS import f_complete_asc_order_filtered_2tuple_TS
 
 
 def complete_sequential_multiplication(p_PDIE_S: PDIES,
@@ -42,7 +43,7 @@ def complete_sequential_multiplication(p_PDIE_S: PDIES,
 
     if has_duplicates(p_opd_idx_T):
         print(f"There are duplicate elements, get PDIE_error")
-        PDIE_result: PDIE = PDIE_ERROR()
+        PDIE_result: PDIE = ErrorPDIE()
         print(f"{str(PDIE_result)}\n")
         print_finish_line()
         return PDIE_result
@@ -50,7 +51,7 @@ def complete_sequential_multiplication(p_PDIE_S: PDIES,
     for cur_PDIE in p_PDIE_S:
         if cur_PDIE.is_error():
             print(f"There are PDIE_errors in p_PDIE_S, get PDIE_error")
-            PDIE_result: PDIE = PDIE_ERROR()
+            PDIE_result: PDIE = ErrorPDIE()
             print(f"{str(PDIE_result)}\n")
             print_finish_line()
             return PDIE_result
@@ -60,7 +61,7 @@ def complete_sequential_multiplication(p_PDIE_S: PDIES,
     feasible_DI_2tuple_TS: _2TupleTS = f_feasible_DI_2tuple_TS(p_PDIE_S, p_opd_idx_T)
     if feasible_DI_2tuple_TS.empty():
         print(f"feasible_DI_2tuple_TS is empty, get PDIE_error")
-        PDIE_result: PDIE = PDIE_ERROR()
+        PDIE_result: PDIE = ErrorPDIE()
         print(f"{str(PDIE_result)}\n")
         print_finish_line()
         return PDIE_result
@@ -68,10 +69,10 @@ def complete_sequential_multiplication(p_PDIE_S: PDIES,
     print(f"feasible_DI_2tuple_TS: {str(feasible_DI_2tuple_TS)}\n")
 
     print(f"3 Filter the feasible_DI_2tuple_TS using the complete ascending \n order rule to obtain a set of tuples of 2-tuples.\n")
-    complete_asc_order_filtered_DI_2tuple_TS: _2TupleTS = get_complete_asc_order_filtered_2tuple_TS(feasible_DI_2tuple_TS)
+    complete_asc_order_filtered_DI_2tuple_TS: _2TupleTS = f_complete_asc_order_filtered_2tuple_TS(feasible_DI_2tuple_TS)
     if complete_asc_order_filtered_DI_2tuple_TS.empty():
         print(f"complete_asc_order_filtered_DI_2tuple_TS is empty, get PDIE_error")
-        PDIE_result: PDIE = PDIE_ERROR()
+        PDIE_result: PDIE = ErrorPDIE()
         print(f"{str(PDIE_result)}\n")
         print_finish_line()
         return PDIE_result

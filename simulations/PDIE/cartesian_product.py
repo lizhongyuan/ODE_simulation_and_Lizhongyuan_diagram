@@ -7,11 +7,11 @@
 
 from typing import Tuple, List
 
-from simulations.PDIE._2TupleS import _2TupleS
-from simulations.PDIE._2TupleSS import _2TupleSS
-from simulations.PDIE._2TupleTS import _2TupleTS
+from simulations.PDIE._2Tuple_S import _2TupleS
+from simulations.PDIE._2Tuple_SS import _2TupleSS
+from simulations.PDIE._2Tuple_TS import _2TupleTS
 from simulations.PDIE._2Tuple import _2Tuple
-from simulations.PDIE._2TupleT import _2TupleT
+from simulations.PDIE._2Tuple_T import _2TupleT
 
 
 def f_CP_of_2tuple_SS(p_2tuple_SS: _2TupleSS,

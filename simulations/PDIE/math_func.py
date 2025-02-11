@@ -4,7 +4,7 @@
 @date: 2025/2/2
 """
 
-from simulations.PDIE._2TupleS import _2TupleS
+from simulations.PDIE._2Tuple_S import _2TupleS
 
 
 def f_min_1_of_2tuple_S(p_2tuple_S: _2TupleS) -> object:

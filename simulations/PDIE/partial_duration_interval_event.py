@@ -5,10 +5,10 @@
 """
 from typing import Tuple
 
-from simulations.PDIE.AbstractPDIE import AbstractPDIE
+from simulations.PDIE.abstract_PDIE import AbstractPDIE
 from simulations.PDIE.partial_duration_interval_event_set import PDIES
-from simulations.PDIE._2TupleTS import _2TupleTS
-from simulations.PDIE._2TupleS import _2TupleS
+from simulations.PDIE._2Tuple_TS import _2TupleTS
+from simulations.PDIE._2Tuple_S import _2TupleS
 
 
 class PDIE(AbstractPDIE):
@@ -93,11 +93,11 @@ class AtomPDIE(PDIE):
                          p_is_atom=True,
                          p_OP=None,
                          p_meta_PDIE_T=tuple([]),
-                         p_meta_DI_2tuple_TS=_2TupleTS([]),
+                         p_meta_DI_2tuple_TS=_2TupleTS(),
                          p_DI_2tuple_S=p_DI_2tuple_S)
 
 
-class PDIE_ERROR(PDIE):
+class ErrorPDIE(PDIE):
 
     def __init__(self):
         super().__init__(p_expression='',
@@ -105,8 +105,8 @@ class PDIE_ERROR(PDIE):
                          p_is_atom=False,
                          p_OP=None,
                          p_meta_PDIE_T=tuple([]),
-                         p_meta_DI_2tuple_TS=_2TupleTS([]),
-                         p_DI_2tuple_S=_2TupleS([]))
+                         p_meta_DI_2tuple_TS=_2TupleTS(),
+                         p_DI_2tuple_S=_2TupleS())
 
     def __str__(self):
         return super().__str__()
