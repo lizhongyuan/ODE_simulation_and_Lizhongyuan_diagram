@@ -96,20 +96,20 @@ def gen_binomial_theorem_collection(p_elements: str,
     return binomial_theorem_collection
 
 
-def gen_all_combs(p_binomial_theorem_collection: List[List[str]]) -> List[str]:
+def gen_all_combos(p_binomial_theorem_collection: List[List[str]]) -> List[str]:
     """
     Generate all combinations
     @param p_binomial_theorem_collection: binomial theorem type collection
     @return: list of all combinations
     """
 
-    all_combs: List[str] = []
+    all_combos: List[str] = []
 
-    for combs in p_binomial_theorem_collection:
-        for comb in combs:
-            all_combs.append(comb)
+    for combos in p_binomial_theorem_collection:
+        for combo in combos:
+            all_combos.append(combo)
 
-    return all_combs
+    return all_combos
 
 
 def gen_combinations_data_recur(elements):
@@ -362,7 +362,7 @@ if __name__ == '__main__':
     #                                       p_zero_elem_mark=zero_elem_mark,
     #                                       p_err_elem_mark=err_elem_mark)
 
-    headers: List[str] = gen_all_combs(binomial_theorem_collection)
+    headers: List[str] = gen_all_combos(binomial_theorem_collection)
 
     data_frame: DataFrame = init_data_frame(p_table_headers=headers)
 
