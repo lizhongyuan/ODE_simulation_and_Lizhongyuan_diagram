@@ -18,7 +18,7 @@ from simulations.PDIE._2Tuple_T import _2TupleT
 def f_CP_of_2tuple_SS(p_2tuple_SS: _2TupleSS,
                       p_opr_idx_T: Tuple[int,...]) -> _2TupleTS:
     """
-    (定义14) Obtain the Cartesian product of each element of a 2TupleSS instance according to a certain index order.\n
+    (definition 14) Obtain the Cartesian product of each element of a 2TupleSS instance according to a certain index order.\n
     Let set p_2tuple_SS = {
         p_2tuple_S_1, p_2tuple_S_2, p_2tuple_S_3, ... , p_2tuple_S_n
     },
@@ -65,26 +65,26 @@ def get_custom_ordered_CP_of_2tuple_SS_recur(p_2tuple_SS: _2TupleSS,
         The representation of the Cartesian product result in the form of List[List[_2Tuple]]
     """
 
-    # 获取p_starting_pivot在p_2tuple_SS对应的的元素cur_2tuple_S
+    # Get cur_2tuple_S using p_starting_pivot from p_2tuple_SS
     cur_starting_idx: int = p_opr_idx_T[p_starting_pivot - 1] - 1
     cur_2tuple_S: _2TupleS = p_2tuple_SS[cur_starting_idx]
 
-    # 初始化本次递归的结果为[]
+    # init recursion list
     cur_2tuple_list_list: List[List[_2Tuple]] = []
 
-    # 本次递归是最后一趟的情况, 使用cur_2tuple_S构造结果, 然后返回
+    # end recursion, construct result by cur_2tuple_S, return result
     if p_starting_pivot == len(p_opr_idx_T):
         for _2tuple in cur_2tuple_S:
                 cur_2tuple_list_list.append([ _2tuple ])
         return cur_2tuple_list_list
 
-    # 获取后一趟递归的结果post_2tuple_list_list
+    # Get the next pass of recursion: post_2tuple_list_list
     post_2tuple_list_list: List[List[_2Tuple]] = \
         get_custom_ordered_CP_of_2tuple_SS_recur(p_2tuple_SS=p_2tuple_SS,
                                                  p_opr_idx_T=p_opr_idx_T,
                                                  p_starting_pivot=p_starting_pivot + 1)
 
-    # 使用post_2tuple_list_list和cur_2tuple_S构造结果
+    # Construct result by post_2tuple_list_list and cur_2tuple_S
     for _2tuple in cur_2tuple_S:
         for post_2tuple_list in post_2tuple_list_list:
             _2tuple_list: List[_2Tuple] = [ _2tuple ] + post_2tuple_list

@@ -63,7 +63,7 @@ class PDIES(LiZhongYuanSet):
 
     def f_DI_2tuple_SS(self) -> _2TupleSS:
         """
-        (定义11)Get the "set composed of duration interval 2-tuple's sets" of itself
+        (definition 11)Get the "set composed of duration interval 2-tuple's sets" of itself
 
         Returns:
             (_2TupleSS): Set composed of duration interval 2-tuple's sets
@@ -110,17 +110,17 @@ class PDIES(LiZhongYuanSet):
                                               p_DI_2tuple_SS: _2TupleSS,
                                               p_op_idx_T: Tuple[int,...] | None) -> _2TupleTS:
         """
-        获取p_op_idx_T作为表达式操作数索引顺序的, 集合内所有元素的DI2TupleS的笛卡尔积.
-        如果p_op_idx_T为None, 表达式操作数索引顺序为(1, 2, 3, ..., n)
+        Compute Cartesian product of DI2TupleS for all elements in the set using operand index order p_op_idx_T.
+        When p_op_idx_T is None, use default operand index order (1, 2, 3, ..., n)
         Args:
-            p_DI_2tuple_SS:
-            p_op_idx_T: 笛卡尔积表达式运算数的索引顺序元组 或者 None
+            p_DI_2tuple_SS: Input collection of DI2TupleS
+            p_op_idx_T: Tuple specifying Cartesian product operand index order, or None
 
         Returns:
-            _2TupleSS: 集合所有元素的DI2TupleS的笛卡尔积
+            _2TupleSS: Cartesian product result of all DI2TupleS elements
         """
 
-        # ---------- 1 None参数处理和参数检查----------
+        # ---------- 1 None handling and parameter validation----------
 
         default_idx_T: tuple[int,...] = tuple(range(1, len(self._list) + 1))
         if p_op_idx_T is None:
@@ -130,7 +130,7 @@ class PDIES(LiZhongYuanSet):
             if sorted_idx_T != default_idx_T:
                 raise ValueError("Wrong p_op_idx_T !")
 
-        # ---------- 2 获取p_op_idx_T作为表达式操作数索引顺序的, 集合内所有元素的DI2TupleS的笛卡尔积 ----------
+        # ---------- 2 Get p_opr_idx order for expression operations, Cartesian product result of all DI2TupleS elements ----------
 
         _2tuple_TS: _2TupleTS = f_CP_of_2tuple_SS(p_2tuple_SS=p_DI_2tuple_SS,
                                                   p_opr_idx_T=p_op_idx_T)

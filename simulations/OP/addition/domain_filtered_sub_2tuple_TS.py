@@ -17,7 +17,7 @@ def Pred_is_2tuple_T_in_Domain(p_2tuple_TS: _2TupleTS,
                                p_left: object,
                                p_right: object) -> bool:
     """
-    (定义18/谓词判定)Determine whether a 2TupleT instance is a member of the domain-filtered subset of a 2TupleTS instance in a domain.
+    (definition 18/predicate)Determine whether a 2TupleT instance is a member of the domain-filtered subset of a 2TupleTS instance in a domain.
 
     Args:
         p_2tuple_TS (_2TupleTS): A 2TupleTS instance
@@ -43,7 +43,7 @@ def f_domain_filtered_sub_2tuple_TS(p_2tuple_TS: _2TupleTS,
                                     p_left: object,
                                     p_right: object) -> _2TupleTS:
     """
-    (定义18/函数)Get the domain filtered subset of a 2TupleTS instance in a domain
+    (definition 18/function)Get the domain filtered subset of a 2TupleTS instance in a domain
 
     Args:
         p_2tuple_TS (_2TupleTS): A 2TupleTS instance

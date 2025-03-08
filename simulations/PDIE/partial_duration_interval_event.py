@@ -73,7 +73,7 @@ class PDIE(AbstractPDIE):
 
     def f_meta_DI_2tuple_TS(self) -> _2TupleTS:
         """
-        (定义20) 获取PDIE instance的MetaDI2TupleTS instance
+        (definition 20) Get PDIE instance of MetaDI2TupleTS instance
         Returns:
             (_2TupleTS): The MetaDI2TupleTS instance
         """
@@ -86,7 +86,7 @@ class PDIE(AbstractPDIE):
 
     def f_DI_2tuple_S(self):
         """
-        (定义10) 获取一个PDIE instance的DI2TupleS instance
+        (definition 10) Get PDIE instance of DI2TupleS instance
         Returns:
             (_2TupleS): The DI2TupleSS instance
         """

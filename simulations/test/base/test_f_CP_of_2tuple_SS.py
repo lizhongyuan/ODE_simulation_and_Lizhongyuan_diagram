@@ -30,7 +30,7 @@ if __name__ == '__main__':
     print(str(twoTupleSS))
     idxT = (1, 2, 3)
 
-    # 2tupleSS做某个顺序的笛卡尔积
+    # 2tupleSS generate Cartesian product by sort
     twoTupleTS_CP = f_CP_of_2tuple_SS(twoTupleSS, idxT)
 
     print(str(twoTupleTS_CP))

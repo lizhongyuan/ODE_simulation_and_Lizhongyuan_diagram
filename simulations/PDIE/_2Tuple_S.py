@@ -15,7 +15,7 @@ class _2TupleS(LiZhongYuanSet):
 
 def f_min_1_of_2tuple_S(p_2tuple_S: _2TupleS) -> object:
     """
-    (定义6) Get the minimum first item of a 2TupleS instance.
+    (definition 6) Get the minimum first item of a 2TupleS instance.
     Args:
         p_2tuple_S (_2TupleSS): A 2TupleS instance
 
@@ -31,7 +31,8 @@ def f_min_1_of_2tuple_S(p_2tuple_S: _2TupleS) -> object:
 
 def f_max_2_of_2tuple_S(p_2tuple_S: _2TupleS) -> object:
     """
-    (定义6)获取一个2TupleS instance的最大第2项
+    (definition 6) Functions for finding the minimum 1st item and the maximum 2nd item of a 2TupleS Instance)
+
     Args:
         p_2tuple_S (_2TupleSS):
 

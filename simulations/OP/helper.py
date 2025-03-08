@@ -13,7 +13,7 @@ from simulations.PDIE._2Tuple_TS import _2TupleTS
 
 def get_2tuple_from_2tuple_TS(p_2tuple_TS: _2TupleTS, p_idx: int, p_n: int) -> _2Tuple | None:
     """
-    获取一个2TupleTS instance的某索引对应的集合元素中的某个2Tuple元素
+    Retrieve specific 2-tuple element from 2TupleTS collection
     Args:
         p_2tuple_TS (_2TupleTS): A 2TupleTS instance
         p_idx (int): An index for elements of p_2tuple_TS
