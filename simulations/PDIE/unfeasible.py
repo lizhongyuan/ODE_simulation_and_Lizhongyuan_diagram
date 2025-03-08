@@ -17,22 +17,22 @@ def get_custom_ordered_wildcard_unfeasible_2tuple_TS(p_op_idx_T: tuple[Any,...],
                                                      p_wildcard_unfeasible_idx_T: tuple[Any,...]) -> _2TupleTS:
     """
     todo 优化
-    (定义15) Unfeasible DI2TupleTS instance for all members of a PDIES instance under a certain index order
-    令
+    (definition 15) Unfeasible DI2TupleTS instance for all members of a PDIES instance under a certain index order
+    
     p_wildcard_unfeasible_DI_2tuple_TS = { _2tuple_T_1, _2tuple_T_2, ..., _2tuple_T_n }
-    p_wildcard_unfeasible_DI_idx_T = { i1, i2, ..., in }, 其元组代表了p_wildcard_unfeasible_DI_2tuple_TS每个集合元素的元组索引顺序
+    p_wildcard_unfeasible_DI_idx_T = { i1, i2, ..., in }, Specifies tuple index order for p_wildcard_unfeasible_DI_2tuple_TS elements
     p_op_idx_T = { idx_1, idx_2, ..., idx_n }
-    获取p_op_idx_T作为元组顺序的通配的不合法DI二元组的元组的集合
+    Get wildcard-invalid DI 2-tuple collection ordered by p_op_idx_T
     Args:
-        p_op_idx_T: 一个索引元组
-        p_wildcard_unfeasible_2tuple_TS: 通配的不合法DI二元组的元组的集合
-        p_wildcard_unfeasible_idx_T: 通配的不合法DI二元组的元组的集合的索引元组
+        p_op_idx_T: Index order tuple 
+        p_wildcard_unfeasible_2tuple_TS: Source collection of wildcard invalid DI 2-tuples
+        p_wildcard_unfeasible_idx_T: Source collection of wildcard invalid DI 2-tuples index
 
     Returns:
-        (_2TupleTS): p_op_idx_T作为元组顺序的通配的不合法DI二元组的元组的集合
+        (_2TupleTS): Ordered collection of invalid 2-tuples.
     """
 
-    # ---------- 1 构造元组索引的转换词典 ----------
+    # ---------- 1 Build tuple index conversion dictionary  ----------
 
     idx_trans_dict: dict = {}
     for op_idx_pos in range(0, len(p_op_idx_T)):
@@ -40,14 +40,14 @@ def get_custom_ordered_wildcard_unfeasible_2tuple_TS(p_op_idx_T: tuple[Any,...],
             if p_wildcard_unfeasible_idx_T[DI_pos] == p_op_idx_T[op_idx_pos]:
                 idx_trans_dict[DI_pos] = op_idx_pos
 
-    # ---------- 2 构造p_op_idx_T作为元组顺序的通配的不合法DI二元组的元组的集合 ----------
+    # ---------- 2 Build wildcard invalid DI 2-tuple collection following p_op_idx_T order----------
 
     op_ordered_wildcard_unfeasible_DI_2tuple_TS: _2TupleTS = _2TupleTS()
     for unfeasible_DI_2tuple_T in p_wildcard_unfeasible_2tuple_TS:
 
         # 2.1
-        # 以表达式运算数的顺序, 将wildcard_unfeasible_DI_2tuple_T,
-        # 转化为符合p_op_idx_T顺序的op_ordered_wildcard_unfeasible_DI_2tuple_T
+        # Convert wildcard_unfeasible_DI_2tuple_T to op_ordered_wildcard_unfeasible_DI_2tuple_T
+        # following p_op_idx_T order based on expression operands' sequence
         op_ordered_wildcard_unfeasible_DI_2tuple_list: List[_2Tuple] = []
         for DI_pos in range(0, len(p_wildcard_unfeasible_idx_T)):
             op_idx_pos: int = idx_trans_dict[DI_pos]
@@ -57,10 +57,10 @@ def get_custom_ordered_wildcard_unfeasible_2tuple_TS(p_op_idx_T: tuple[Any,...],
         op_ordered_unfeasible_DI_2tuple_T: _2TupleT = _2TupleT(op_ordered_wildcard_unfeasible_DI_2tuple_list)
 
         # 2.2
-        # op_ordered_wildcard_unfeasible_DI_2tuple_T加入到op_ordered_wildcard_unfeasible_DI_2tuple_TS
+        # op_ordered_wildcard_unfeasible_DI_2tuple_T add to op_ordered_wildcard_unfeasible_DI_2tuple_TS
         op_ordered_wildcard_unfeasible_DI_2tuple_TS.add(op_ordered_unfeasible_DI_2tuple_T)
 
-    # ---------- 3 返回结果 ----------
+    # ---------- 3 return result ----------
 
     return op_ordered_wildcard_unfeasible_DI_2tuple_TS
 

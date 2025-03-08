@@ -36,7 +36,7 @@ class _2TupleT(LiZhongYuanTuple):
 
 def f_min_1_of_2tuple_T(p_2tupleT: _2TupleT) -> object:
     """
-    (定义17/function 1)Obtain the minimum 1st item of a 2TupleT instance
+    (definition 17/function 1)Obtain the minimum 1st item of a 2TupleT instance
 
     Args:
         p_2tupleT (_2TupleT): An _2TupleT instance
@@ -58,7 +58,7 @@ def f_min_1_of_2tuple_T(p_2tupleT: _2TupleT) -> object:
 
 def f_max_2_of_2tuple_T(p_2tupleT: _2TupleT) -> object:
     """
-    (定义17/function 2)Obtain the maximum 2nd item of a 2TupleT instance
+    (definition 17/function 2)Obtain the maximum 2nd item of a 2TupleT instance
 
     Args:
         p_2tupleT (_2TupleT): An _2TupleT instance

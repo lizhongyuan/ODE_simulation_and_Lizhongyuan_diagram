@@ -25,7 +25,7 @@ def complete_sequential_addition(p_finite_PDIE_S: PDIES,
                                  p_opd_idx_T: Tuple[int,...],
                                  p_domain_filter_2tuple: _2Tuple) -> PDIE:
     """
-    (定义21)Complete sequential addition
+    (definition 21)Complete sequential addition
     Args:
         p_finite_PDIE_S (PDIES): A finite PDIES instance
         p_opd_idx_T(Tuple[int,...]): Index order of operands

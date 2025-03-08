@@ -15,12 +15,12 @@ from simulations.PDIE._2Tuple_TS import _2TupleTS
 
 def get_bound_2tuple_S(p_2tupleT_S: _2TupleTS) -> _2TupleS | None:
     """
-    获取二元组的元组的集合p_2tupleT_S的边界二元组集合
+    Get the bound 2-tuple from 2-tuple linguistic term set
     Args:
-        p_2tupleT_S (_2TupleTS): 二元组的元组的集合
+        p_2tupleT_S (_2TupleTS): source 2-tuple linguistic term set
 
     Returns:
-        (_2TupleS) 边界二元组集合
+        (_2TupleS) bound 2-tuple. Return None if input is None
     """
 
     if p_2tupleT_S is None:
@@ -39,7 +39,7 @@ def get_bound_2tuple_S(p_2tupleT_S: _2TupleTS) -> _2TupleS | None:
 
 def get_bound_2tuple(p_2tupleT: _2TupleT) -> _2Tuple | None:
     """
-    (定义19)Get the bound 2-tuple of a tuple of 2-tuples with a limited length.
+    (definition 19)Get the bound 2-tuple of a tuple of 2-tuples with a limited length.
 
     Args:
         p_2tupleT (_2TupleT): A _2TupleT instance with a limited length

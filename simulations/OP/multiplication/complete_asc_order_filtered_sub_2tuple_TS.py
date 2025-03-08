@@ -11,7 +11,7 @@ from simulations.PDIE._2Tuple_TS import _2TupleTS
 
 def f_complete_asc_order_filtered_2tuple_TS(p_2tuple_TS: _2TupleTS) -> _2TupleTS:
     """
-    (定义22)Get the complete ascending order filtered subset of a 2TupleTS instance
+    (definition 22)Get the complete ascending order filtered subset of a 2TupleTS instance
 
     Args:
         p_2tuple_TS (_2TupleTS): A 2TupleTS instance

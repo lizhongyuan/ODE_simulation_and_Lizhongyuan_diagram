@@ -24,7 +24,7 @@ from simulations.OP.multiplication.complete_asc_order_filtered_sub_2tuple_TS imp
 def complete_sequential_multiplication(p_PDIE_S: PDIES,
                                        p_opd_idx_T: Tuple[int,...]) -> PDIE:
     """
-    (定义23)Complete sequential multiplication
+    (definition 23)Complete sequential multiplication
     Args:
         p_PDIE_S (PDIES): A PDIES instance
         p_opd_idx_T(Tuple[int,...]): Index order of operands

@@ -16,10 +16,10 @@ def init_data_frame(p_table_headers: List[str]) -> DataFrame:
 
 def has_no_common_element(p_combination1: str, p_combination2: str) -> bool:
     """
-    检查两个元素组合是否没有相同元素
-    @param p_combination1: 元素组合1
-    @param p_combination2: 元素组合2
-    @return: 是否没有相同元素
+    Verify that the elements are distinct
+    @param p_combination1: first element
+    @param p_combination2: second element
+    @return: True if there are no common elements, otherwise False
     """
 
     for element in p_combination1:
@@ -31,10 +31,10 @@ def has_no_common_element(p_combination1: str, p_combination2: str) -> bool:
 
 def combination_merge(p_combination1, p_combination2) -> str:
     """
-    合并组合
-    @param p_combination1: 元素组合1
-    @param p_combination2: 元素组合2
-    @return: 合并后的组合
+    Merge combinations
+    @param p_combination1: first element
+    @param p_combination2: second element
+    @return: merged element
     """
 
     merged_combination: str = p_combination1 + p_combination2
@@ -49,10 +49,10 @@ def gen_binomial_theorem_collection(p_elements: str,
                                     p_err_elem_mark: str) -> List[List[str]]:
     """
     Generate binomial theorem type collection
-    @param p_elements: 元素集合
-    @param p_contain_zero: 是否包含0元素
-    @param p_zero_elem_mark: 0元素字符
-    @param p_err_elem_mark: 错误PDIE字符
+    @param p_elements: elements
+    @param p_contain_zero: verify includes zero
+    @param p_zero_elem_mark: zero element
+    @param p_err_elem_mark: invalid PDIE mark
     @return: binomial theorem type collection
     """
 
@@ -114,9 +114,9 @@ def gen_all_combos(p_binomial_theorem_collection: List[List[str]]) -> List[str]:
 
 def gen_combinations_data_recur(elements):
     """
-    生成组合数据(递归)
-    @param elements: 元素集合
-    @return: 组合数据
+    Generate combination data (recursive)
+    @param elements: elements
+    @return: combination data
     """
 
     combinations_and_pivots_cache = []
@@ -144,19 +144,19 @@ def gen_sub_combinations_data_recur(combinations_and_pivots_cache,
                                     count,
                                     elements):
     """
-    生成子axes的headers
-    @param combinations_and_pivots_cache: 元素组合和结尾元素位置数组
-    @param combinations: 元素组合数组
-    @param binomial_theorem_array: 二项式定理分布数组
-    @param count: 参与组合的元素数
-    @param elements: 全部元素数组
-    @return
+    Generate headers for sub-axes
+    @param combinations_and_pivots_cache: array of element combinations and end pivot positions
+    @param combinations: array of element combinations
+    @param binomial_theorem_array: array of binomial coefficient distributions
+    @param count: number of elements involoed in combinations
+    @param elements: Complete set of elements array
+    @return None
     """
 
-    cur_combinations_and_pivots = []                                                        # 声明"当前组合和枢轴数组"
+    cur_combinations_and_pivots = []                                                        # current array of element combinations and end pivot positions 
 
-    if count == 1:                                                                          # if elements元素数为1
-        for i in range(len(elements)):                                                      # 遍历elements数组:
+    if count == 1:                                                                          # if elements is 1
+        for i in range(len(elements)):                                                      # traverse elements:
             cur_combination_and_pivot = {                                                   #
                 'combination': elements[i],
                 'pivot': i
@@ -198,7 +198,7 @@ def build_data_frame(p_data_frame: DataFrame,
                      p_zero_elem: str,
                      p_err_elem: str) -> None:
     """
-    构造p_data_frame
+    p_data_frame creator
     @param p_data_frame: DataFrame instance
     @param p_zero_elem: 0 element
     @param p_err_elem: err element
