@@ -7,9 +7,9 @@
 
 
 from typing import Any, List
-from simulations.PDIE._2Tuple import _2Tuple
-from simulations.PDIE._2Tuple_T import _2TupleT
-from simulations.PDIE._2Tuple_TS import _2TupleTS
+from simulations.OIE._2Tuple import _2Tuple
+from simulations.OIE._2Tuple_T import _2TupleT
+from simulations.OIE._2Tuple_TS import _2TupleTS
 
 
 def get_custom_ordered_wildcard_unfeasible_2tuple_TS(p_op_idx_T: tuple[Any,...],
@@ -17,7 +17,7 @@ def get_custom_ordered_wildcard_unfeasible_2tuple_TS(p_op_idx_T: tuple[Any,...],
                                                      p_wildcard_unfeasible_idx_T: tuple[Any,...]) -> _2TupleTS:
     """
     todo 优化
-    (definition 15) Unfeasible DI2TupleTS instance for all members of a PDIES instance under a certain index order
+    (definition 15) Unfeasible DI2TupleTS instance for all members of a OIES instance under a certain index order
     
     p_wildcard_unfeasible_DI_2tuple_TS = { _2tuple_T_1, _2tuple_T_2, ..., _2tuple_T_n }
     p_wildcard_unfeasible_DI_idx_T = { i1, i2, ..., in }, Specifies tuple index order for p_wildcard_unfeasible_DI_2tuple_TS elements

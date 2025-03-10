@@ -7,9 +7,9 @@
 
 
 from simulations.OP.helper import get_2tuple_from_2tuple_TS
-from simulations.PDIE._2Tuple import _2Tuple
-from simulations.PDIE._2Tuple_T import _2TupleT
-from simulations.PDIE._2Tuple_TS import _2TupleTS
+from simulations.OIE._2Tuple import _2Tuple
+from simulations.OIE._2Tuple_T import _2TupleT
+from simulations.OIE._2Tuple_TS import _2TupleTS
 
 
 def test_2TupleTS():

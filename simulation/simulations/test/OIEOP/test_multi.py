@@ -7,17 +7,17 @@
 
 
 from simulations.OP.multiplication.complete_sequential_multiplication import complete_sequential_multiplication
-from simulations.PDIE.partial_duration_interval_event import AtomPDIE
-from simulations.PDIE.partial_duration_interval_event_set import PDIES
-from simulations.PDIE._2Tuple import _2Tuple
-from simulations.PDIE._2Tuple_T import _2TupleT
-from simulations.PDIE._2Tuple_S import _2TupleS
-from simulations.PDIE._2Tuple_TS import _2TupleTS
+from simulations.OIE.optional_intervals_event import AtomOIE
+from simulations.OIE.optional_intervals_event_set import OIES
+from simulations.OIE._2Tuple import _2Tuple
+from simulations.OIE._2Tuple_T import _2TupleT
+from simulations.OIE._2Tuple_S import _2TupleS
+from simulations.OIE._2Tuple_TS import _2TupleTS
 
 
 def test_complete_sequential_multiplication_1():
 
-    # ---------- 1 Init some AtomPDIE instances ----------
+    # ---------- 1 Init some AtomOIE instances ----------
 
     _2_tuple_1 = _2Tuple([ 1, 2 ])
     _2_tuple_2 = _2Tuple([ 3, 4 ])
@@ -27,18 +27,18 @@ def test_complete_sequential_multiplication_1():
     _2_tuple_6 = _2Tuple([ 3, 5 ])
 
     DI_2tuple_S_1 = _2TupleS([ _2_tuple_1, _2_tuple_2, _2_tuple_3 ])
-    atom_PDIE_1 = AtomPDIE(p_expression='atomPDIE1',
+    atom_OIE_1 = AtomOIE(p_expression='atomOIE1',
                            p_DI_2tuple_S=DI_2tuple_S_1)
 
     DI_2tuple_S_2 = _2TupleS([ _2_tuple_4, _2_tuple_5, _2_tuple_6 ])
-    atom_PDIE_2 = AtomPDIE(p_expression='atomPDIE2',
+    atom_OIE_2 = AtomOIE(p_expression='atomOIE2',
                            p_DI_2tuple_S=DI_2tuple_S_2)
 
-    # ---------- 2 Init a PDIES instance ----------
+    # ---------- 2 Init a OIES instance ----------
 
-    PDIE_S = PDIES([ atom_PDIE_1, atom_PDIE_2 ])
+    OIE_S = OIES([ atom_OIE_1, atom_OIE_2 ])
 
-    # ---------- 3 Set UnfeasibleDI2TupleTS instance to the PDIES instance ----------
+    # ---------- 3 Set UnfeasibleDI2TupleTS instance to the OIES instance ----------
 
     # 3.1 init a UnfeasibleDI2TupleTS instance
     unfeasible_DI_2tuple_TS_2 = _2TupleTS([
@@ -46,19 +46,19 @@ def test_complete_sequential_multiplication_1():
         _2TupleT([ _2_tuple_1, _2_tuple_5 ]),
         _2TupleT([ _2_tuple_2, _2_tuple_4 ]),
     ])
-    # 3.2 Assign to the member value of PDIE_S
-    PDIE_S.set_wildcard_unfeasible_DI_2tuple_info(p_wildcard_unfeasible_DI_2tuple_TS=unfeasible_DI_2tuple_TS_2,
-                                                  p_PDIE_tuple=(atom_PDIE_1, atom_PDIE_2))
+    # 3.2 Assign to the member value of OIE_S
+    OIE_S.set_wildcard_unfeasible_DI_2tuple_info(p_wildcard_unfeasible_DI_2tuple_TS=unfeasible_DI_2tuple_TS_2,
+                                                  p_OIE_tuple=(atom_OIE_1, atom_OIE_2))
 
     # ---------- 4 Multi ----------
 
-    PDIE_res = complete_sequential_multiplication(p_PDIE_S=PDIE_S,
+    OIE_res = complete_sequential_multiplication(p_OIE_S=OIE_S,
                                                   p_opd_idx_T=(1, 2))
 
 
 def test_complete_sequential_multiplication_2():
 
-    # ---------- 1 Init some PDIE instances ----------
+    # ---------- 1 Init some OIE instances ----------
 
     _2_tuple_1 = _2Tuple([ 1, 2 ])
     _2_tuple_2 = _2Tuple([ 3, 4 ])
@@ -68,18 +68,18 @@ def test_complete_sequential_multiplication_2():
     _2_tuple_6 = _2Tuple([ 3, 5 ])
 
     DI_2tuple_S_1 = _2TupleS([ _2_tuple_1, _2_tuple_2, _2_tuple_3 ])
-    atom_PDIE_1 = AtomPDIE(p_expression='atomPDIE1',
+    atom_OIE_1 = AtomOIE(p_expression='atomOIE1',
                            p_DI_2tuple_S=DI_2tuple_S_1)
 
     DI_2tuple_S_2 = _2TupleS([ _2_tuple_4, _2_tuple_5, _2_tuple_6 ])
-    atom_PDIE_2 = AtomPDIE(p_expression='atomPDIE2',
+    atom_OIE_2 = AtomOIE(p_expression='atomOIE2',
                            p_DI_2tuple_S=DI_2tuple_S_2)
 
-    # ---------- 2 Init a PDIES instance ----------
+    # ---------- 2 Init a OIES instance ----------
 
-    PDIE_S = PDIES([ atom_PDIE_1, atom_PDIE_2 ])
+    OIE_S = OIES([ atom_OIE_1, atom_OIE_2 ])
 
-    # ---------- 3 Set UnfeasibleDI2TupleTS instance to the PDIES instance ----------
+    # ---------- 3 Set UnfeasibleDI2TupleTS instance to the OIES instance ----------
 
     # 3.1 init a UnfeasibleDI2TupleTS instance
     unfeasible_DI_2tuple_TS_2 = _2TupleTS([
@@ -87,19 +87,19 @@ def test_complete_sequential_multiplication_2():
         _2TupleT([ _2_tuple_1, _2_tuple_5 ]),
         _2TupleT([ _2_tuple_2, _2_tuple_4 ]),
     ])
-    # 3.2 Assign to the member value of PDIE_S
-    PDIE_S.set_wildcard_unfeasible_DI_2tuple_info(p_wildcard_unfeasible_DI_2tuple_TS=unfeasible_DI_2tuple_TS_2,
-                                                  p_PDIE_tuple=(atom_PDIE_1, atom_PDIE_2))
+    # 3.2 Assign to the member value of OIE_S
+    OIE_S.set_wildcard_unfeasible_DI_2tuple_info(p_wildcard_unfeasible_DI_2tuple_TS=unfeasible_DI_2tuple_TS_2,
+                                                  p_OIE_tuple=(atom_OIE_1, atom_OIE_2))
 
     # ---------- 4 Multi ----------
 
-    PDIE_res = complete_sequential_multiplication(p_PDIE_S=PDIE_S,
+    OIE_res = complete_sequential_multiplication(p_OIE_S=OIE_S,
                                                   p_opd_idx_T=(2, 1))
 
 
 def test_complete_sequential_multiplication_3():
 
-    # ---------- 1 Init some PDIE instances ----------
+    # ---------- 1 Init some OIE instances ----------
 
     _2_tuple_1 = _2Tuple([ 1, 2 ])
     _2_tuple_2 = _2Tuple([ 3, 4 ])
@@ -109,18 +109,18 @@ def test_complete_sequential_multiplication_3():
     _2_tuple_6 = _2Tuple([ 3, 5 ])
 
     DI_2tuple_S_1 = _2TupleS([ _2_tuple_1, _2_tuple_2, _2_tuple_3 ])
-    atom_PDIE_1 = AtomPDIE(p_expression='atomPDIE1',
+    atom_OIE_1 = AtomOIE(p_expression='atomOIE1',
                            p_DI_2tuple_S=DI_2tuple_S_1)
 
     DI_2tuple_S_2 = _2TupleS([ _2_tuple_4, _2_tuple_5, _2_tuple_6 ])
-    atom_PDIE_2 = AtomPDIE(p_expression='atomPDIE2',
+    atom_OIE_2 = AtomOIE(p_expression='atomOIE2',
                            p_DI_2tuple_S=DI_2tuple_S_2)
 
-    # ---------- 2 Init a PDIES instance ----------
+    # ---------- 2 Init a OIES instance ----------
 
-    PDIE_S = PDIES([ atom_PDIE_1, atom_PDIE_2 ])
+    OIE_S = OIES([ atom_OIE_1, atom_OIE_2 ])
 
-    # ---------- 3 Set UnfeasibleDI2TupleTS instance to the PDIES instance ----------
+    # ---------- 3 Set UnfeasibleDI2TupleTS instance to the OIES instance ----------
 
     # 3.1 init a UnfeasibleDI2TupleTS instance
     unfeasible_DI_2tuple_TS_2 = _2TupleTS([
@@ -128,11 +128,11 @@ def test_complete_sequential_multiplication_3():
         _2TupleT([ _2_tuple_1, _2_tuple_5 ]),
         _2TupleT([ _2_tuple_2, _2_tuple_4 ]),
     ])
-    # 3.2 Assign to the member value of PDIE_S
-    PDIE_S.set_wildcard_unfeasible_DI_2tuple_info(p_wildcard_unfeasible_DI_2tuple_TS=unfeasible_DI_2tuple_TS_2,
-                                                  p_PDIE_tuple=(atom_PDIE_1, atom_PDIE_2))
+    # 3.2 Assign to the member value of OIE_S
+    OIE_S.set_wildcard_unfeasible_DI_2tuple_info(p_wildcard_unfeasible_DI_2tuple_TS=unfeasible_DI_2tuple_TS_2,
+                                                  p_OIE_tuple=(atom_OIE_1, atom_OIE_2))
 
     # ---------- 4 Multi ----------
 
-    PDIE_res = complete_sequential_multiplication(p_PDIE_S=PDIE_S,
+    OIE_res = complete_sequential_multiplication(p_OIE_S=OIE_S,
                                                   p_opd_idx_T=(1, 1))
