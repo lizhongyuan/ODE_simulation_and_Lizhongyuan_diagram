@@ -6,8 +6,8 @@
 """
 
 
-from simulations.PDIE._2Tuple import _2Tuple
-from simulations.PDIE._2Tuple_T import (_2TupleT,
+from simulations.OIE._2Tuple import _2Tuple
+from simulations.OIE._2Tuple_T import (_2TupleT,
                                         f_min_1_of_2tuple_T,
                                         f_max_2_of_2tuple_T)
 

@@ -1,28 +1,28 @@
 """
-@file partial_duration_interval_event_set.py
-@brief: PDIES & AtomPDIES.
+@file optional_intervals_event_set.py
+@brief: OIES & AtomOIES.
 @author: li.zhong.yuan@outlook.com
 @date: 2024/11/20
 """
 
 
 from typing import List, Tuple, Any
-from simulations.PDIE.abstract_PDIE import AbstractPDIE
+from simulations.OIE.abstract_OIE import AbstractOIE
 from simulations.base.structure import LiZhongYuanSet
-from simulations.PDIE._2Tuple_SS import _2TupleSS
-from simulations.PDIE._2Tuple_TS import _2TupleTS
-from simulations.PDIE.cartesian_product import f_CP_of_2tuple_SS
-from simulations.PDIE.unfeasible import get_custom_ordered_wildcard_unfeasible_2tuple_TS
+from simulations.OIE._2Tuple_SS import _2TupleSS
+from simulations.OIE._2Tuple_TS import _2TupleTS
+from simulations.OIE.cartesian_product import f_CP_of_2tuple_SS
+from simulations.OIE.unfeasible import get_custom_ordered_wildcard_unfeasible_2tuple_TS
 
 
-class PDIES(LiZhongYuanSet):
+class OIES(LiZhongYuanSet):
     """
-    PDIE set class
+    OIE set class
     """
 
     def __init__(self, p_set_list: list):
         super().__init__(p_set_list)
-        self._unfeasible_PDIE_tuple = None
+        self._unfeasible_OIE_tuple = None
         self._wildcard_unfeasible_DI_2tuple_TS = None
 
 
@@ -54,9 +54,9 @@ class PDIES(LiZhongYuanSet):
         return dict_str
 
 
-    def get_dict_key(self, p_pdie: AbstractPDIE) -> str | None:
+    def get_dict_key(self, p_OIE: AbstractOIE) -> str | None:
         for key in list(self._dict.keys()):
-            if self._dict[key] == p_pdie:
+            if self._dict[key] == p_OIE:
                 return key
         return None
 
@@ -79,31 +79,31 @@ class PDIES(LiZhongYuanSet):
 
     def set_wildcard_unfeasible_DI_2tuple_info(self,
                                                p_wildcard_unfeasible_DI_2tuple_TS: _2TupleTS,
-                                               p_PDIE_tuple: Tuple[AbstractPDIE,...]) -> None:
+                                               p_OIE_tuple: Tuple[AbstractOIE,...]) -> None:
         """
-        Set _wildcard_unfeasible_DI_2tuple_TS and _unfeasible_PDIE_tuple.
+        Set _wildcard_unfeasible_DI_2tuple_TS and _unfeasible_OIE_tuple.
 
         Args:
             (p_wildcard_unfeasible_DI_2tuple_TS): Wildcard unfeasible DI2TupleTS instance
-            (p_PDIE_tuple): A PDIE instance tuple
+            (p_OIE_tuple): A OIE instance tuple
 
         Returns:
             None
         """
 
         for _2tuple_T in p_wildcard_unfeasible_DI_2tuple_TS:
-            if len(_2tuple_T) != len(p_PDIE_tuple):
+            if len(_2tuple_T) != len(p_OIE_tuple):
                 raise ValueError(f"Wrong wildcard unfeasible DI 2tuple info")
 
             for i in range(len(_2tuple_T)):
                 if _2tuple_T[i] == '*':
                     continue
-                pdie: AbstractPDIE = p_PDIE_tuple[i]
-                if _2tuple_T[i] not in pdie.f_DI_2tuple_S():
+                OIE: AbstractOIE = p_OIE_tuple[i]
+                if _2tuple_T[i] not in OIE.f_DI_2tuple_S():
                     raise ValueError(f"Wrong wildcard unfeasible DI 2tuple info")
 
         self._wildcard_unfeasible_DI_2tuple_TS = p_wildcard_unfeasible_DI_2tuple_TS
-        self._unfeasible_PDIE_tuple = p_PDIE_tuple
+        self._unfeasible_OIE_tuple = p_OIE_tuple
 
 
     def get_custom_ordered_CP_of_DI_2tuple_SS(self,
@@ -151,8 +151,8 @@ class PDIES(LiZhongYuanSet):
 
         unfeasible_DI_idx_list: List[any] = []
 
-        for unfeasible_PDIE in self._unfeasible_PDIE_tuple:
-            cur_idx: any = self.get_dict_key(unfeasible_PDIE)
+        for unfeasible_OIE in self._unfeasible_OIE_tuple:
+            cur_idx: any = self.get_dict_key(unfeasible_OIE)
             if cur_idx is None:
                 return _2TupleTS()
             unfeasible_DI_idx_list.append(cur_idx)
@@ -165,5 +165,5 @@ class PDIES(LiZhongYuanSet):
         return wildcard_unfeasible_DI_2tuple_TS
 
 
-class AtomPDIES(PDIES):
+class AtomOIES(OIES):
     pass

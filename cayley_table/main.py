@@ -52,7 +52,7 @@ def gen_binomial_theorem_collection(p_elements: str,
     @param p_elements: elements
     @param p_contain_zero: verify includes zero
     @param p_zero_elem_mark: zero element
-    @param p_err_elem_mark: invalid PDIE mark
+    @param p_err_elem_mark: invalid OIE mark
     @return: binomial theorem type collection
     """
 
@@ -234,7 +234,7 @@ def render_plot(p_data_frame: DataFrame,
     @param p_dpi: dots per inch
     @param p_font_size: font size
     @param p_no_tick_marks: whether it has a tick mark
-    @param p_err_elem: Error PDIE's mark
+    @param p_err_elem: Error OIE's mark
     @return: None
     """
 
@@ -307,7 +307,7 @@ if __name__ == '__main__':
     zero_elem_mark = '0'
     err_elem_mark = 'E'
 
-    # # 2 PDIEs
+    # # 2 OIEs
     # dpi: int = 200
     # contain_zero = False
     # font_size: float = 5
@@ -318,7 +318,7 @@ if __name__ == '__main__':
     #                                       p_zero_elem_mark=zero_elem_mark,
     #                                       p_err_elem_mark=err_elem_mark)
 
-    # # 5 PDIEs
+    # # 5 OIEs
     # dpi: int = 500
     # contain_zero = False
     # font_size: float = 4
@@ -329,7 +329,7 @@ if __name__ == '__main__':
     #                                       p_zero_elem_mark=zero_elem_mark,
     #                                       p_err_elem_mark=err_elem_mark)
 
-    # 6 PDIEs
+    # 6 OIEs
     dpi: int = 1000
     contain_zero = True
     font_size: float = 4
@@ -340,7 +340,7 @@ if __name__ == '__main__':
                                           p_zero_elem_mark=zero_elem_mark,
                                           p_err_elem_mark=err_elem_mark)
 
-    # # 7 PDIEs
+    # # 7 OIEs
     # dpi: int = 2000
     # contain_zero = False
     # font_size: float = 0.7
@@ -351,7 +351,7 @@ if __name__ == '__main__':
     #                                       p_zero_elem_mark=zero_elem_mark,
     #                                       p_err_elem_mark=err_elem_mark)
 
-    # # 8 PDIEs
+    # # 8 OIEs
     # dpi: int = 3000
     # contain_zero = True
     # font_size: float = 0.45
@@ -362,7 +362,7 @@ if __name__ == '__main__':
     #                                       p_zero_elem_mark=zero_elem_mark,
     #                                       p_err_elem_mark=err_elem_mark)
 
-    # 9 PDIEs
+    # 9 OIEs
     # dpi: int = 3000
     # contain_zero = True
     # font_size: float = 0.45

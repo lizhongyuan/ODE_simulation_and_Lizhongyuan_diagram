@@ -6,13 +6,13 @@
 """
 
 
-from simulations.test.pdieOP.test_add import (test_complete_sequential_addition_1,
+from simulations.test.OIEOP.test_add import (test_complete_sequential_addition_1,
                                               test_complete_sequential_addition_2,
                                               test_complete_sequential_addition_3,
                                               test_complete_sequential_addition_4,
                                               test_complete_sequential_addition_5,
                                               test_complete_sequential_addition_6)
-from simulations.test.pdieOP.test_multi import (test_complete_sequential_multiplication_1,
+from simulations.test.OIEOP.test_multi import (test_complete_sequential_multiplication_1,
                                                 test_complete_sequential_multiplication_2,
                                                 test_complete_sequential_multiplication_3)
 

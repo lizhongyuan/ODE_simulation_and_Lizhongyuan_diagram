@@ -6,8 +6,8 @@
 """
 
 
-from simulations.PDIE._2Tuple_TS import _2TupleTS
-from simulations.PDIE.partial_duration_interval_event_set import PDIES
+from simulations.OIE._2Tuple_TS import _2TupleTS
+from simulations.OIE.optional_intervals_event_set import OIES
 
 
 def remove_unfeasible_elements_of_DI_2tuple_TS(p_2tuple_TS: _2TupleTS,
@@ -46,11 +46,11 @@ def remove_unfeasible_elements_of_DI_2tuple_TS(p_2tuple_TS: _2TupleTS,
     return feasible_DI_2tuple_TS
 
 
-def f_feasible_DI_2tuple_TS(p_PDIE_S: PDIES, p_idx_T: tuple[int,...]) -> _2TupleTS:
+def f_feasible_DI_2tuple_TS(p_OIE_S: OIES, p_idx_T: tuple[int,...]) -> _2TupleTS:
     """
-    (definition 16) Get the feasible subset of the Cartesian product of all members of the DI2TupleSS instance of a finite PDIES instance in an index order
+    (definition 16) Get the feasible subset of the Cartesian product of all members of the DI2TupleSS instance of a finite OIES instance in an index order
     Args:
-        p_PDIE_S (PDIES): A finite PDIES instance
+        p_OIE_S (OIES): A finite OIES instance
         p_idx_T (tuple[int,...]): An index order
 
     Returns:
@@ -58,10 +58,10 @@ def f_feasible_DI_2tuple_TS(p_PDIE_S: PDIES, p_idx_T: tuple[int,...]) -> _2Tuple
     """
 
     custom_ordered_wildcard_unfeasible_2tuple_TS: _2TupleTS = \
-        p_PDIE_S.get_custom_ordered_wildcard_unfeasible_DI_2tuple_TS(p_idx_T)
+        p_OIE_S.get_custom_ordered_wildcard_unfeasible_DI_2tuple_TS(p_idx_T)
 
     custom_ordered_CP_of_DI_2tuple_SS: _2TupleTS = \
-        p_PDIE_S.get_custom_ordered_CP_of_DI_2tuple_SS(p_PDIE_S.f_DI_2tuple_SS(), p_idx_T)
+        p_OIE_S.get_custom_ordered_CP_of_DI_2tuple_SS(p_OIE_S.f_DI_2tuple_SS(), p_idx_T)
 
     feasible_DI_2tuple_TS: _2TupleTS = \
         remove_unfeasible_elements_of_DI_2tuple_TS(p_2tuple_TS=custom_ordered_CP_of_DI_2tuple_SS,
