@@ -92,7 +92,7 @@ def complete_sequential_addition(p_finite_OIE_S: OIES,
 
     print(f"domain_filtered_sub_Intvl_2tuple_TS: {str(domain_filtered_sub_Intvl_2tuple_TS)}\n")
 
-    print(f"4 Use domain_filtered_sub_Intvl_2tuple_TS to calculate the set of duration \n interval 2-tuples of OIE_result.\n")
+    print(f"4 Use domain_filtered_sub_Intvl_2tuple_TS to calculate the set of \n interval 2-tuples of OIE_result.\n")
 
     Intvl_2tuple_S: _2TupleS = get_bound_2tuple_S(domain_filtered_sub_Intvl_2tuple_TS)
 

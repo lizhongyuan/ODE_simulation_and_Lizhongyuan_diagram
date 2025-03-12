@@ -83,7 +83,7 @@ def complete_sequential_multiplication(p_OIE_S: OIES,
 
     print(f"complete_asc_order_filtered_Intvl_2tuple_TS: {str(complete_asc_order_filtered_Intvl_2tuple_TS)}\n")
 
-    print(f"4 Use complete_asc_order_filtered_Intvl_2tuple_TS to calculate the set of duration \n interval 2-tuples of OIE_result.\n")
+    print(f"4 Use complete_asc_order_filtered_Intvl_2tuple_TS to calculate the set of \n interval 2-tuples of OIE_result.\n")
 
     Intvl_2tuple_S: _2TupleS = get_bound_2tuple_S(complete_asc_order_filtered_Intvl_2tuple_TS)
 

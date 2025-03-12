@@ -63,10 +63,10 @@ class OIES(LiZhongYuanSet):
 
     def f_Intvl_2tuple_SS(self) -> _2TupleSS:
         """
-        (definition 11)Get the "set composed of duration interval 2-tuple's sets" of itself
+        (definition 11)Get the "set composed of interval 2-tuple's sets" of itself
 
         Returns:
-            (_2TupleSS): Set composed of duration interval 2-tuple's sets
+            (_2TupleSS): Set composed of interval 2-tuple's sets
         """
 
         Intvl_2tuple_SS: _2TupleSS = _2TupleSS()
