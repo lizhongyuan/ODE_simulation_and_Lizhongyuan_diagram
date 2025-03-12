@@ -6,8 +6,8 @@
 """
 
 
-from simulations.OIE._2Tuple_S import _2TupleS
-from simulations.OIE._2Tuple_TS import _2TupleTS
+from simulation.OIE._2Tuple_S import _2TupleS
+from simulation.OIE._2Tuple_TS import _2TupleTS
 
 
 class AbstractOIE:

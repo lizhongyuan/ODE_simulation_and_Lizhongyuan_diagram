@@ -7,18 +7,18 @@
 
 
 from typing import Tuple
-from simulations.OP.helper import (check_idx_tuple_border,
+from simulation.OP.helper import (check_idx_tuple_border,
                                    has_duplicates,
                                    print_finish_line)
-from simulations.OIE._2Tuple import _2Tuple
-from simulations.OIE._2Tuple_S import _2TupleS
-from simulations.OIE._2Tuple_TS import _2TupleTS
-from simulations.OIE.bound import get_bound_2tuple_S
-from simulations.OIE.feasible import f_feasible_DI_2tuple_TS
-from simulations.OIE.optional_intervals_event import (OIE,
+from simulation.OIE._2Tuple import _2Tuple
+from simulation.OIE._2Tuple_S import _2TupleS
+from simulation.OIE._2Tuple_TS import _2TupleTS
+from simulation.OIE.bound import get_bound_2tuple_S
+from simulation.OIE.feasible import f_feasible_DI_2tuple_TS
+from simulation.OIE.optional_intervals_event import (OIE,
                                                               ErrorOIE)
-from simulations.OIE.optional_intervals_event_set import OIES
-from simulations.OP.addition.domain_filtered_sub_2tuple_TS import f_domain_filtered_sub_2tuple_TS
+from simulation.OIE.optional_intervals_event_set import OIES
+from simulation.OP.addition.domain_filtered_sub_2tuple_TS import f_domain_filtered_sub_2tuple_TS
 
 
 def complete_sequential_addition(p_finite_OIE_S: OIES,

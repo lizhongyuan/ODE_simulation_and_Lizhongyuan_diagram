@@ -6,8 +6,8 @@
 """
 
 
-from simulations.OIE._2Tuple_TS import _2TupleTS
-from simulations.OIE.optional_intervals_event_set import OIES
+from simulation.OIE._2Tuple_TS import _2TupleTS
+from simulation.OIE.optional_intervals_event_set import OIES
 
 
 def remove_unfeasible_elements_of_DI_2tuple_TS(p_2tuple_TS: _2TupleTS,

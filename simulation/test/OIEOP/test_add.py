@@ -6,13 +6,13 @@
 """
 
 
-from simulations.OIE._2Tuple import _2Tuple
-from simulations.OIE._2Tuple_T import _2TupleT
-from simulations.OIE._2Tuple_TS import _2TupleTS
-from simulations.OIE._2Tuple_S import _2TupleS
-from simulations.OP.addition.complete_sequential_addition import complete_sequential_addition
-from simulations.OIE.optional_intervals_event import AtomOIE
-from simulations.OIE.optional_intervals_event_set import OIES
+from simulation.OIE._2Tuple import _2Tuple
+from simulation.OIE._2Tuple_T import _2TupleT
+from simulation.OIE._2Tuple_TS import _2TupleTS
+from simulation.OIE._2Tuple_S import _2TupleS
+from simulation.OP.addition.complete_sequential_addition import complete_sequential_addition
+from simulation.OIE.optional_intervals_event import AtomOIE
+from simulation.OIE.optional_intervals_event_set import OIES
 
 
 def test_complete_sequential_addition_1():

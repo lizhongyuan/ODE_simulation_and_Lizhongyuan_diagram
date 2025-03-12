@@ -6,13 +6,13 @@
 """
 
 
-from simulations.OP.multiplication.complete_sequential_multiplication import complete_sequential_multiplication
-from simulations.OIE.optional_intervals_event import AtomOIE
-from simulations.OIE.optional_intervals_event_set import OIES
-from simulations.OIE._2Tuple import _2Tuple
-from simulations.OIE._2Tuple_T import _2TupleT
-from simulations.OIE._2Tuple_S import _2TupleS
-from simulations.OIE._2Tuple_TS import _2TupleTS
+from simulation.OP.multiplication.complete_sequential_multiplication import complete_sequential_multiplication
+from simulation.OIE.optional_intervals_event import AtomOIE
+from simulation.OIE.optional_intervals_event_set import OIES
+from simulation.OIE._2Tuple import _2Tuple
+from simulation.OIE._2Tuple_T import _2TupleT
+from simulation.OIE._2Tuple_S import _2TupleS
+from simulation.OIE._2Tuple_TS import _2TupleTS
 
 
 def test_complete_sequential_multiplication_1():

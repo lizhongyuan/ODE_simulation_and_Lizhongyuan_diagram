@@ -6,10 +6,10 @@
 """
 
 
-from simulations.OIE._2Tuple_T import (_2TupleT,
+from simulation.OIE._2Tuple_T import (_2TupleT,
                                         f_min_1_of_2tuple_T,
                                         f_max_2_of_2tuple_T)
-from simulations.OIE._2Tuple_TS import _2TupleTS
+from simulation.OIE._2Tuple_TS import _2TupleTS
 
 
 def Pred_is_2tuple_T_in_Domain(p_2tuple_TS: _2TupleTS,

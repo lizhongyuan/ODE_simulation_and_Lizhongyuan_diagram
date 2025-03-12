@@ -7,12 +7,12 @@
 
 
 from typing import List, Tuple, Any
-from simulations.OIE.abstract_OIE import AbstractOIE
-from simulations.base.structure import LiZhongYuanSet
-from simulations.OIE._2Tuple_SS import _2TupleSS
-from simulations.OIE._2Tuple_TS import _2TupleTS
-from simulations.OIE.cartesian_product import f_CP_of_2tuple_SS
-from simulations.OIE.unfeasible import get_custom_ordered_wildcard_unfeasible_2tuple_TS
+from simulation.OIE.abstract_OIE import AbstractOIE
+from simulation.base.structure import LiZhongYuanSet
+from simulation.OIE._2Tuple_SS import _2TupleSS
+from simulation.OIE._2Tuple_TS import _2TupleTS
+from simulation.OIE.cartesian_product import f_CP_of_2tuple_SS
+from simulation.OIE.unfeasible import get_custom_ordered_wildcard_unfeasible_2tuple_TS
 
 
 class OIES(LiZhongYuanSet):

@@ -7,10 +7,10 @@
 
 
 from typing import List
-from simulations.OIE._2Tuple import _2Tuple
-from simulations.OIE._2Tuple_T import _2TupleT
-from simulations.OIE._2Tuple_S import _2TupleS
-from simulations.OIE._2Tuple_TS import _2TupleTS
+from simulation.OIE._2Tuple import _2Tuple
+from simulation.OIE._2Tuple_T import _2TupleT
+from simulation.OIE._2Tuple_S import _2TupleS
+from simulation.OIE._2Tuple_TS import _2TupleTS
 
 
 def get_bound_2tuple_S(p_2tupleT_S: _2TupleTS) -> _2TupleS | None:

@@ -7,10 +7,10 @@
 
 
 from typing import Tuple
-from simulations.OIE.abstract_OIE import AbstractOIE
-from simulations.OIE.optional_intervals_event_set import OIES
-from simulations.OIE._2Tuple_TS import _2TupleTS
-from simulations.OIE._2Tuple_S import _2TupleS
+from simulation.OIE.abstract_OIE import AbstractOIE
+from simulation.OIE.optional_intervals_event_set import OIES
+from simulation.OIE._2Tuple_TS import _2TupleTS
+from simulation.OIE._2Tuple_S import _2TupleS
 
 
 class OIE(AbstractOIE):

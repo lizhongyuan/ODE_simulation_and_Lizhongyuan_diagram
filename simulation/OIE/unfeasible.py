@@ -7,9 +7,9 @@
 
 
 from typing import Any, List
-from simulations.OIE._2Tuple import _2Tuple
-from simulations.OIE._2Tuple_T import _2TupleT
-from simulations.OIE._2Tuple_TS import _2TupleTS
+from simulation.OIE._2Tuple import _2Tuple
+from simulation.OIE._2Tuple_T import _2TupleT
+from simulation.OIE._2Tuple_TS import _2TupleTS
 
 
 def get_custom_ordered_wildcard_unfeasible_2tuple_TS(p_op_idx_T: tuple[Any,...],
