@@ -14,7 +14,7 @@ from simulation.OP.helper import (check_idx_tuple_border,
 from simulation.OIE._2Tuple_S import _2TupleS
 from simulation.OIE._2Tuple_TS import _2TupleTS
 from simulation.OIE.bound import get_bound_2tuple_S
-from simulation.OIE.feasible import f_feasible_DI_2tuple_TS
+from simulation.OIE.feasible import f_feasible_Intvl_2tuple_TS
 from simulation.OIE.optional_intervals_event import (OIE,
                                                               ErrorOIE)
 from simulation.OIE.optional_intervals_event_set import OIES
@@ -60,34 +60,34 @@ def complete_sequential_multiplication(p_OIE_S: OIES,
             print_finish_line()
             return OIE_result
 
-    print(f"2 Take the valid subset of the Cartesian product of all members of \nthe DI2TupleSS instance of p_OIE_S in the order of the indices\n specified by p_opd_idx_T.\n")
+    print(f"2 Take the valid subset of the Cartesian product of all members of \nthe Intvl2TupleSS instance of p_OIE_S in the order of the indices\n specified by p_opd_idx_T.\n")
 
-    feasible_DI_2tuple_TS: _2TupleTS = f_feasible_DI_2tuple_TS(p_OIE_S, p_opd_idx_T)
-    if feasible_DI_2tuple_TS.empty():
-        print(f"feasible_DI_2tuple_TS is empty, get OIE_error")
+    feasible_Intvl_2tuple_TS: _2TupleTS = f_feasible_Intvl_2tuple_TS(p_OIE_S, p_opd_idx_T)
+    if feasible_Intvl_2tuple_TS.empty():
+        print(f"feasible_Intvl_2tuple_TS is empty, get OIE_error")
         OIE_result: OIE = ErrorOIE()
         print(f"{str(OIE_result)}\n")
         print_finish_line()
         return OIE_result
 
-    print(f"feasible_DI_2tuple_TS: {str(feasible_DI_2tuple_TS)}\n")
+    print(f"feasible_Intvl_2tuple_TS: {str(feasible_Intvl_2tuple_TS)}\n")
 
-    print(f"3 Filter the feasible_DI_2tuple_TS using the complete ascending \n order rule to obtain a set of tuples of 2-tuples.\n")
-    complete_asc_order_filtered_DI_2tuple_TS: _2TupleTS = f_complete_asc_order_filtered_2tuple_TS(feasible_DI_2tuple_TS)
-    if complete_asc_order_filtered_DI_2tuple_TS.empty():
-        print(f"complete_asc_order_filtered_DI_2tuple_TS is empty, get OIE_error")
+    print(f"3 Filter the feasible_Intvl_2tuple_TS using the complete ascending \n order rule to obtain a set of tuples of 2-tuples.\n")
+    complete_asc_order_filtered_Intvl_2tuple_TS: _2TupleTS = f_complete_asc_order_filtered_2tuple_TS(feasible_Intvl_2tuple_TS)
+    if complete_asc_order_filtered_Intvl_2tuple_TS.empty():
+        print(f"complete_asc_order_filtered_Intvl_2tuple_TS is empty, get OIE_error")
         OIE_result: OIE = ErrorOIE()
         print(f"{str(OIE_result)}\n")
         print_finish_line()
         return OIE_result
 
-    print(f"complete_asc_order_filtered_DI_2tuple_TS: {str(complete_asc_order_filtered_DI_2tuple_TS)}\n")
+    print(f"complete_asc_order_filtered_Intvl_2tuple_TS: {str(complete_asc_order_filtered_Intvl_2tuple_TS)}\n")
 
-    print(f"4 Use complete_asc_order_filtered_DI_2tuple_TS to calculate the set of duration \n interval 2-tuples of OIE_result.\n")
+    print(f"4 Use complete_asc_order_filtered_Intvl_2tuple_TS to calculate the set of duration \n interval 2-tuples of OIE_result.\n")
 
-    DI_2tuple_S: _2TupleS = get_bound_2tuple_S(complete_asc_order_filtered_DI_2tuple_TS)
+    Intvl_2tuple_S: _2TupleS = get_bound_2tuple_S(complete_asc_order_filtered_Intvl_2tuple_TS)
 
-    print(f"DI_2tuple_S: {str(DI_2tuple_S)}\n")
+    print(f"Intvl_2tuple_S: {str(Intvl_2tuple_S)}\n")
 
     print(f"5 Build OIE_result.\n")
 
@@ -106,8 +106,8 @@ def complete_sequential_multiplication(p_OIE_S: OIES,
                              p_is_atom=False,
                              p_OP='*',
                              p_meta_OIE_T=tuple(meta_OIE_list),
-                             p_meta_DI_2tuple_TS=complete_asc_order_filtered_DI_2tuple_TS,
-                             p_DI_2tuple_S=DI_2tuple_S)
+                             p_meta_Intvl_2tuple_TS=complete_asc_order_filtered_Intvl_2tuple_TS,
+                             p_Intvl_2tuple_S=Intvl_2tuple_S)
     print(f"OIE_result: {str(OIE_result)}\n")
 
     print_finish_line()

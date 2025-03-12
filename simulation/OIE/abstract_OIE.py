@@ -15,10 +15,10 @@ class AbstractOIE:
     An abstract class that defines the interface for OIE
     """
 
-    def f_DI_2tuple_S(self) -> _2TupleS:
+    def f_Intvl_2tuple_S(self) -> _2TupleS:
         pass
 
-    def f_meta_DI_2tuple_TS(self) -> _2TupleTS:
+    def f_meta_Intvl_2tuple_TS(self) -> _2TupleTS:
         pass
 
     def getExpression(self) -> str:

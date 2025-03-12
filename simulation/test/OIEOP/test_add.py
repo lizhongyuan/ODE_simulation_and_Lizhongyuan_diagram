@@ -26,28 +26,28 @@ def test_complete_sequential_addition_1():
     _2_tuple_5 = _2Tuple([ 2, 4 ])
     _2_tuple_6 = _2Tuple([ 3, 5 ])
 
-    DI_2tuple_S_1 = _2TupleS([ _2_tuple_1, _2_tuple_2, _2_tuple_3 ])
+    Intvl_2tuple_S_1 = _2TupleS([ _2_tuple_1, _2_tuple_2, _2_tuple_3 ])
     atom_OIE_1 = AtomOIE(p_expression='atomOIE1',
-                           p_DI_2tuple_S=DI_2tuple_S_1)
+                           p_Intvl_2tuple_S=Intvl_2tuple_S_1)
 
-    DI_2tuple_S_2 = _2TupleS([ _2_tuple_4, _2_tuple_5, _2_tuple_6 ])
+    Intvl_2tuple_S_2 = _2TupleS([ _2_tuple_4, _2_tuple_5, _2_tuple_6 ])
     atom_OIE_2 = AtomOIE(p_expression='atomOIE2',
-                           p_DI_2tuple_S=DI_2tuple_S_2)
+                           p_Intvl_2tuple_S=Intvl_2tuple_S_2)
 
     # ---------- 2 Init a OIES instance ----------
 
     OIE_S = OIES([ atom_OIE_1, atom_OIE_2 ])
 
-    # ---------- 3 Set UnfeasibleDI2TupleTS instance to the OIES instance ----------
+    # ---------- 3 Set UnfeasibleIntvl2TupleTS instance to the OIES instance ----------
 
-    # 3.1 init a UnfeasibleDI2TupleTS instance
-    unfeasible_DI_2tuple_TS_2 = _2TupleTS([
+    # 3.1 init a UnfeasibleIntvl2TupleTS instance
+    unfeasible_Intvl_2tuple_TS_2 = _2TupleTS([
         _2TupleT([ _2_tuple_1, _2_tuple_4 ]),
         _2TupleT([ _2_tuple_1, _2_tuple_5 ]),
         _2TupleT([ _2_tuple_2, _2_tuple_4 ]),
     ])
     # 3.2 Assign to the member value of OIE_S
-    OIE_S.set_wildcard_unfeasible_DI_2tuple_info(p_wildcard_unfeasible_DI_2tuple_TS=unfeasible_DI_2tuple_TS_2,
+    OIE_S.set_wildcard_unfeasible_Intvl_2tuple_info(p_wildcard_unfeasible_Intvl_2tuple_TS=unfeasible_Intvl_2tuple_TS_2,
                                                   p_OIE_tuple=(atom_OIE_1, atom_OIE_2))
 
     # ---------- 4 Add ----------
@@ -71,31 +71,31 @@ def test_complete_sequential_addition_2():
     _2_tuple_5 = _2Tuple([ 2, 4 ])
     _2_tuple_6 = _2Tuple([ 3, 5 ])
 
-    DI_2tuple_S_1 = _2TupleS([ _2_tuple_1, _2_tuple_2, _2_tuple_3 ])
+    Intvl_2tuple_S_1 = _2TupleS([ _2_tuple_1, _2_tuple_2, _2_tuple_3 ])
     atom_OIE_1 = AtomOIE(p_expression='atomOIE1',
-                           p_DI_2tuple_S=DI_2tuple_S_1)
+                           p_Intvl_2tuple_S=Intvl_2tuple_S_1)
 
-    DI_2tuple_S_2 = _2TupleS([ _2_tuple_4, _2_tuple_5, _2_tuple_6 ])
+    Intvl_2tuple_S_2 = _2TupleS([ _2_tuple_4, _2_tuple_5, _2_tuple_6 ])
     atom_OIE_2 = AtomOIE(p_expression='atomOIE2',
-                           p_DI_2tuple_S=DI_2tuple_S_2)
+                           p_Intvl_2tuple_S=Intvl_2tuple_S_2)
 
-    DI_2tuple_S_3 = _2TupleS([ _2_tuple_1, _2_tuple_5 ])
+    Intvl_2tuple_S_3 = _2TupleS([ _2_tuple_1, _2_tuple_5 ])
     atom_OIE_3 = AtomOIE(p_expression='atomOIE3',
-                           p_DI_2tuple_S=DI_2tuple_S_3)
+                           p_Intvl_2tuple_S=Intvl_2tuple_S_3)
 
     # ---------- 2 Init a OIES instance ----------
 
     OIE_S_1 = OIES([ atom_OIE_1, atom_OIE_2 ])
     OIE_S_2 = OIES([ atom_OIE_1, atom_OIE_2, atom_OIE_3 ])
 
-    # ---------- 3 Set UnfeasibleDI2TupleTS instance to the OIES instance ----------
+    # ---------- 3 Set UnfeasibleIntvl2TupleTS instance to the OIES instance ----------
 
-    # 3.1 init a UnfeasibleDI2TupleTS instance
-    unfeasible_DI_2tuple_TS_1 = _2TupleTS([
+    # 3.1 init a UnfeasibleIntvl2TupleTS instance
+    unfeasible_Intvl_2tuple_TS_1 = _2TupleTS([
         _2TupleT([ _2_tuple_1, _2_tuple_4 ])
     ])
     # 3.2 Assign to the member value of OIE_S
-    OIE_S_1.set_wildcard_unfeasible_DI_2tuple_info(p_wildcard_unfeasible_DI_2tuple_TS=unfeasible_DI_2tuple_TS_1,
+    OIE_S_1.set_wildcard_unfeasible_Intvl_2tuple_info(p_wildcard_unfeasible_Intvl_2tuple_TS=unfeasible_Intvl_2tuple_TS_1,
                                                     p_OIE_tuple=(atom_OIE_1, atom_OIE_2))
 
     # ---------- 4 Add ----------
@@ -119,29 +119,29 @@ def test_complete_sequential_addition_3():
     _2_tuple_5 = _2Tuple([ 2, 4 ])
     _2_tuple_6 = _2Tuple([ 3, 5 ])
 
-    DI_2tuple_S_1 = _2TupleS([ _2_tuple_1, _2_tuple_2, _2_tuple_3 ])
+    Intvl_2tuple_S_1 = _2TupleS([ _2_tuple_1, _2_tuple_2, _2_tuple_3 ])
     atom_OIE_1 = AtomOIE(p_expression='atomOIE1',
-                           p_DI_2tuple_S=DI_2tuple_S_1)
+                           p_Intvl_2tuple_S=Intvl_2tuple_S_1)
 
-    DI_2tuple_S_2 = _2TupleS([ _2_tuple_4, _2_tuple_5, _2_tuple_6 ])
+    Intvl_2tuple_S_2 = _2TupleS([ _2_tuple_4, _2_tuple_5, _2_tuple_6 ])
     atom_OIE_2 = AtomOIE(p_expression='atomOIE2',
-                           p_DI_2tuple_S=DI_2tuple_S_2)
+                           p_Intvl_2tuple_S=Intvl_2tuple_S_2)
 
     # ---------- 2 Init a OIES instance ----------
 
     OIE_S = OIES([ atom_OIE_1, atom_OIE_2 ])
 
-    # ---------- 3 Set UnfeasibleDI2TupleTS instance to the OIES instance ----------
+    # ---------- 3 Set UnfeasibleIntvl2TupleTS instance to the OIES instance ----------
 
-    # 3.1 init a UnfeasibleDI2TupleTS instance
-    wildcard_unfeasible_DI_2tuple_TS = _2TupleTS([
+    # 3.1 init a UnfeasibleIntvl2TupleTS instance
+    wildcard_unfeasible_Intvl_2tuple_TS = _2TupleTS([
         _2TupleT([ _2_tuple_1, '*', ]),
         _2TupleT([ _2_tuple_2, '*', ]),
         _2TupleT([ '*', _2_tuple_6, ]),
 
     ])
     # 3.2 Assign to the member value of OIE_S
-    OIE_S.set_wildcard_unfeasible_DI_2tuple_info(p_wildcard_unfeasible_DI_2tuple_TS=wildcard_unfeasible_DI_2tuple_TS,
+    OIE_S.set_wildcard_unfeasible_Intvl_2tuple_info(p_wildcard_unfeasible_Intvl_2tuple_TS=wildcard_unfeasible_Intvl_2tuple_TS,
                                                   p_OIE_tuple=(atom_OIE_1, atom_OIE_2))
 
     # ---------- 4 Add ----------
@@ -165,24 +165,24 @@ def test_complete_sequential_addition_4():
     _2_tuple_5 = _2Tuple([ 2, 4 ])
     _2_tuple_6 = _2Tuple([ 3, 5 ])
 
-    DI_2tuple_S_1 = _2TupleS([ _2_tuple_1, _2_tuple_2, _2_tuple_3 ])
+    Intvl_2tuple_S_1 = _2TupleS([ _2_tuple_1, _2_tuple_2, _2_tuple_3 ])
     atom_OIE_1 = AtomOIE(p_expression='atomOIE1',
-                           p_DI_2tuple_S=DI_2tuple_S_1)
+                           p_Intvl_2tuple_S=Intvl_2tuple_S_1)
 
-    DI_2tuple_S_2 = _2TupleS([ _2_tuple_4, _2_tuple_5, _2_tuple_6 ])
+    Intvl_2tuple_S_2 = _2TupleS([ _2_tuple_4, _2_tuple_5, _2_tuple_6 ])
     atom_OIE_2 = AtomOIE(p_expression='atomOIE2',
-                           p_DI_2tuple_S=DI_2tuple_S_2)
+                           p_Intvl_2tuple_S=Intvl_2tuple_S_2)
 
     # ---------- 2 Init a OIES instance ----------
 
     OIE_S = OIES([ atom_OIE_1, atom_OIE_2 ])
 
-    # ---------- 3 Set UnfeasibleDI2TupleTS instance to the OIES instance ----------
+    # ---------- 3 Set UnfeasibleIntvl2TupleTS instance to the OIES instance ----------
 
-    # 3.1 init a UnfeasibleDI2TupleTS instance
-    empty_unfeasible_DI_2tuple_TS = _2TupleTS([])
+    # 3.1 init a UnfeasibleIntvl2TupleTS instance
+    empty_unfeasible_Intvl_2tuple_TS = _2TupleTS([])
     # 3.2 Assign to the member value of OIE_S
-    OIE_S.set_wildcard_unfeasible_DI_2tuple_info(p_wildcard_unfeasible_DI_2tuple_TS=empty_unfeasible_DI_2tuple_TS,
+    OIE_S.set_wildcard_unfeasible_Intvl_2tuple_info(p_wildcard_unfeasible_Intvl_2tuple_TS=empty_unfeasible_Intvl_2tuple_TS,
                                                     p_OIE_tuple=(atom_OIE_1, atom_OIE_2))
 
     # ---------- 4 Add ----------
@@ -206,30 +206,30 @@ def test_complete_sequential_addition_5():
     _2_tuple_5 = _2Tuple([ 2, 4 ])
     _2_tuple_6 = _2Tuple([ 3, 5 ])
 
-    DI_2tuple_S_1 = _2TupleS([ _2_tuple_1, _2_tuple_2, _2_tuple_3 ])
+    Intvl_2tuple_S_1 = _2TupleS([ _2_tuple_1, _2_tuple_2, _2_tuple_3 ])
     atom_OIE_1 = AtomOIE(p_expression='atomOIE1',
-                           p_DI_2tuple_S=DI_2tuple_S_1)
+                           p_Intvl_2tuple_S=Intvl_2tuple_S_1)
 
-    DI_2tuple_S_2 = _2TupleS([ _2_tuple_4, _2_tuple_5, _2_tuple_6 ])
+    Intvl_2tuple_S_2 = _2TupleS([ _2_tuple_4, _2_tuple_5, _2_tuple_6 ])
     atom_OIE_2 = AtomOIE(p_expression='atomOIE2',
-                           p_DI_2tuple_S=DI_2tuple_S_2)
+                           p_Intvl_2tuple_S=Intvl_2tuple_S_2)
 
-    DI_2tuple_S_3 = _2TupleS([ _2_tuple_1, _2_tuple_5 ])
+    Intvl_2tuple_S_3 = _2TupleS([ _2_tuple_1, _2_tuple_5 ])
     atom_OIE_3 = AtomOIE(p_expression='atomOIE3',
-                           p_DI_2tuple_S=DI_2tuple_S_3)
+                           p_Intvl_2tuple_S=Intvl_2tuple_S_3)
 
     # ---------- 2 Init a OIES instance ----------
 
     OIE_S_2 = OIES([ atom_OIE_1, atom_OIE_2, atom_OIE_3 ])
 
-    # ---------- 3 Set UnfeasibleDI2TupleTS instance to the OIES instance ----------
+    # ---------- 3 Set UnfeasibleIntvl2TupleTS instance to the OIES instance ----------
 
-    # 3.1 init a UnfeasibleDI2TupleTS instance
-    unfeasible_DI_2tuple_TS_123 = _2TupleTS([
+    # 3.1 init a UnfeasibleIntvl2TupleTS instance
+    unfeasible_Intvl_2tuple_TS_123 = _2TupleTS([
         _2TupleT(['*', '*', '*']),
     ])
     # 3.2 Assign to the member value of OIE_S
-    OIE_S_2.set_wildcard_unfeasible_DI_2tuple_info(p_wildcard_unfeasible_DI_2tuple_TS=unfeasible_DI_2tuple_TS_123,
+    OIE_S_2.set_wildcard_unfeasible_Intvl_2tuple_info(p_wildcard_unfeasible_Intvl_2tuple_TS=unfeasible_Intvl_2tuple_TS_123,
                                                     p_OIE_tuple=(atom_OIE_1, atom_OIE_2, atom_OIE_3))
 
     # ---------- 4 Add ----------
@@ -253,28 +253,28 @@ def test_complete_sequential_addition_6():
     _2_tuple_5 = _2Tuple([2, 4])
     _2_tuple_6 = _2Tuple([3, 5])
 
-    DI_2tuple_S_1 = _2TupleS([_2_tuple_1, _2_tuple_2, _2_tuple_3])
+    Intvl_2tuple_S_1 = _2TupleS([_2_tuple_1, _2_tuple_2, _2_tuple_3])
     atom_OIE_1 = AtomOIE(p_expression='atomOIE1',
-                           p_DI_2tuple_S=DI_2tuple_S_1)
+                           p_Intvl_2tuple_S=Intvl_2tuple_S_1)
 
-    DI_2tuple_S_2 = _2TupleS([_2_tuple_4, _2_tuple_5, _2_tuple_6])
+    Intvl_2tuple_S_2 = _2TupleS([_2_tuple_4, _2_tuple_5, _2_tuple_6])
     atom_OIE_2 = AtomOIE(p_expression='atomOIE2',
-                           p_DI_2tuple_S=DI_2tuple_S_2)
+                           p_Intvl_2tuple_S=Intvl_2tuple_S_2)
 
-    DI_2tuple_S_3 = _2TupleS([_2_tuple_1, _2_tuple_5])
+    Intvl_2tuple_S_3 = _2TupleS([_2_tuple_1, _2_tuple_5])
     atom_OIE_3 = AtomOIE(p_expression='atomOIE3',
-                           p_DI_2tuple_S=DI_2tuple_S_3)
+                           p_Intvl_2tuple_S=Intvl_2tuple_S_3)
 
     # ---------- 2 Init a OIES instance ----------
 
     OIE_S = OIES([atom_OIE_1, atom_OIE_2, atom_OIE_3])
 
-    # ---------- 3 Set UnfeasibleDI2TupleTS instance to the OIES instance ----------
+    # ---------- 3 Set UnfeasibleIntvl2TupleTS instance to the OIES instance ----------
 
-    # 3.1 init a UnfeasibleDI2TupleTS instance
-    empty_unfeasible_DI_2tuple_TS = _2TupleTS([])
+    # 3.1 init a UnfeasibleIntvl2TupleTS instance
+    empty_unfeasible_Intvl_2tuple_TS = _2TupleTS([])
     # 3.2 Assign to the member value of OIE_S
-    OIE_S.set_wildcard_unfeasible_DI_2tuple_info(p_wildcard_unfeasible_DI_2tuple_TS=empty_unfeasible_DI_2tuple_TS,
+    OIE_S.set_wildcard_unfeasible_Intvl_2tuple_info(p_wildcard_unfeasible_Intvl_2tuple_TS=empty_unfeasible_Intvl_2tuple_TS,
                                                   p_OIE_tuple=(atom_OIE_1, atom_OIE_2, atom_OIE_3))
 
     # ---------- 4 Add ----------
